@@ -1,0 +1,93 @@
+[Table]
+ColWidth=640000004B0000004B0000004B0000004B000000640000004B0000004B0000004B000000640000004B0000004B0000004B0000004B0000004B000000640000004B0000004B000000640000004B0000004B000000640000004B0000004B000000
+
+[Chip]
+Name=ATmega8535
+
+[CPU]
+Clock Frequency=8000000
+Operating Voltage=0
+
+[Compiler]
+Generate lst-file=0
+Auto declaring fragments of working registers=1
+Optimization=1
+Round immediate data=1
+
+[Monitor chip]
+Using pin=5
+
+[Template]
+K_to_Z_Interpretation=1
+
+[Fuse bits]
+CKSEL0=1
+CKSEL1=0
+CKSEL2=0
+CKSEL3=0
+SUT0=0
+SUT1=1
+BODEN=1
+BODLEVEL=1
+BOOTRST=1
+BOOTSZ0=0
+BOOTSZ1=0
+EESAVE=1
+CKOPT=1
+SPIEN=1
+WDTON=0
+S8535C=1
+
+[Lock bits]
+LockBit1=1
+LockBit2=1
+BootLockBit01=1
+BootLockBit02=1
+BootLockBit11=1
+BootLockBit12=1
+
+[TemplatesForm]
+Opened=0
+Left=50
+Top=50
+
+[EEMacroOptions]
+WaitEEWEBefore=0
+LockGlobalInterrupt=0
+
+[SRAM]
+External=0
+
+[Programmer]
+Counter=0
+Check device=1
+Chip erase=1
+Write to program=1
+Write to EEPROM=1
+Write fuse bits=0
+Write lock bits=0
+Copy calibration byte=0
+Close on completion=1
+Calibration byte address=0
+Calibration byte EEPROM address=0
+
+[Program]
+Fill value=0
+
+[Text reports]
+Generate lst-file=0
+Generate asm-file=0
+[Chip reader]
+Flash file name=
+EEPROM file name=
+[Debug]
+Configuration=0
+[Port]
+Deceleration=2
+[Control]
+Read only=0
+[MainWindow]
+Left=137
+Top=69
+Width=1116
+Height=793

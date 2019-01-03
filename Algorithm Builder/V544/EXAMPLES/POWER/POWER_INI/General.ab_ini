@@ -1,0 +1,156 @@
+[Table]
+ColWidth=9F000000740000004B000000800000004B000000640000004B0000004B0000004B000000640000004B0000004B0000004B0000004B0000004B000000640000004B0000004B0000008B0000004B0000004B000000AF000000E10000004B000000
+[Chip]
+Name=ATmega2561
+[CPU]
+Clock Frequency=8000000
+[Text reports]
+Generate lst-file=1
+Generate asm-file=1
+[Monitor chip]
+Using pin=5
+[Template]
+K_to_Z_Interpretation=1
+[Fuse bits]
+CKSEL0=1
+CKSEL1=0
+CKSEL2=1
+CKSEL3=1
+SUT0=0
+SUT1=1
+BODEN=0
+BODLEVEL=1
+BOOTRST=1
+BOOTSZ0=0
+BOOTSZ1=0
+EESAVE=0
+CKOPT=1
+SPIEN=0
+JTAGEN=1
+OCDEN=1
+WDTON=1
+M103C=1
+CKOUT=1
+CKDIV8=1
+BODLEVEL0=0
+BODLEVEL1=0
+BODLEVEL2=1
+[Lock bits]
+LockBit1=1
+LockBit2=1
+BootLockBit01=1
+BootLockBit02=1
+BootLockBit11=1
+BootLockBit12=1
+[TemplatesForm]
+Opened=0
+Left=508
+Top=311
+[EEMacroOptions]
+WaitEEWEBefore=0
+LockGlobalInterrupt=0
+[SRAM]
+External=0
+[Programmer]
+Counter=1734
+Check device=1
+Chip erase=1
+Write to program=1
+Write to EEPROM=0
+Write fuse bits=0
+Write lock bits=0
+Copy calibration byte=0
+Close on completion=1
+Calibration byte address=0
+Calibration byte EEPROM address=0
+[Program]
+Fill value=65535
+[Chip reader]
+Flash file name=D:\IRBIS-T\PROJECTS\1M00 (Контроллер)\ALG-V220\POWER_0.bin
+EEPROM file name=D:\IRBIS-T\PROJECTS\1M00 (Контроллер)\ALG\EEPROM_0.bin
+[Compiler]
+Auto declaring fragments of working registers=0
+Round odd immediate data count=1
+Round immediate data=1
+Optimization=1
+[Debug]
+Configuration=1
+[Port]
+Deceleration=0
+[Control]
+Read only=0
+[MainWindow]
+Left=0
+Top=0
+Width=1920
+Height=1056
+[Pages]
+Page1=Ctrl.alg
+Page2=Status.alg
+Page3=Manager.alg
+Page4=Menu.alg
+Page5=Rectifiers.alg
+Page6=Invertors.alg
+Page7=Arithmetic.alg
+Page8=Battarey.alg
+Page9=Alarm.alg
+Page10=LogEvents.alg
+Page11=ALM_DBG.alg
+Page12=SNMP.alg
+Page13=ANSI.alg
+Page14=Process.alg
+Page15=Web.alg
+Page16=General.alg
+Page17=LCD.alg
+Page18=Key.alg
+Page19=Poll.alg
+Page20=COM.alg
+Page21=Faults.alg
+Page22=Rectifiers_GP.alg
+Page23=Rectifiers_MGN.alg
+Page24=Rectifiers_MGNOLD.alg
+Page25=Rectifiers_CHR.alg
+Page26=Rectifiers_PO.alg
+Page27=Rectifiers_XXX.alg
+Page28=rect_Calibration.alg
+Page29=rect_Standby.alg
+Page30=inv_Groups.alg
+Page31=inv_XXX.alg
+Page32=inv_MGN.alg
+Page33=inv_Calibration.alg
+Page34=ValueEditor.alg
+Page35=rs485.alg
+Page36=Dbg.alg
+Page37=almc.alg
+Page38=Password.alg
+Page39=Message.alg
+Page40=TWI.alg
+Page41=RTC.alg
+Page42=Options.alg
+Page43=LVD.alg
+Page44=ADC.alg
+Page45=Breaks.alg
+Page46=Ethernet.alg
+Page47=EM203.alg
+Page48=Temperature.alg
+Page49=PLD.alg
+Page50=Calibration.alg
+Page51=bat_Supervisor.alg
+Page52=GridSupervisor.alg
+Page53=BAT_TST_CAP.alg
+Page54=BAT_TST_PWR.alg
+Page55=BAT_EQ.alg
+Page56=Relays.alg
+Page57=Bypass.alg
+Page58=eLoad.alg
+Page59=PowerCounter.alg
+Page60=ObjectSupervisor.alg
+Page61=DataTranslator.alg
+Page62=Box.alg
+Page63=Cooler.alg
+Page64=TermoRelays.alg
+Page65=Timers.alg
+Page66=BOOT.alg
+Page67=Custom.alg
+Page68=Edit.alg
+Page69=editArray.alg

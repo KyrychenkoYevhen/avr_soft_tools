@@ -1,0 +1,250 @@
+{\rtf1\ansi\ansicpg1252\deff0\deflang1033\deflangfe1033{\fonttbl{\f0\froman\fprq2\fcharset0 Times New Roman;}}
+{\colortbl ;\red0\green0\blue255;}
+{\stylesheet{ Normal;}{\s1 heading 1;}{\s2 heading 2;}{\s3 heading 3;}{\s4 heading 4;}{\s5 heading 5;}{\s6 heading 6;}}
+\viewkind4\uc1\pard\keepn\nowidctlpar\s5\lang2057\ul\b\f0\fs24 FTDI Win 2k Drivers - Revision Comments  December 12, 2005\ulnone\par
+\pard\keepn\nowidctlpar\s6\ul\b0\fs16 C:\\WINDOWS\\Desktop\\Releases\\Drivers\\Beta Release 906 2176 Dec12,2005\\2176 Release Info.doc\par
+\pard\nowidctlpar\ulnone\fs20\par
+FTDI\rquote s drivers have been changed to accommodate the support of Windows 98 and Windows 2000 for all three of FTDI\rquote s USB controllers from a single INF file. \par
+\par
+New drivers will be posted on the support page of FTDI\rquote s web page - in ZIP format, following the following naming convention - Rxxyy where xx is the version of the Windows 98 drivers and yy is the version of the Windows 2000 drivers. The first release of the common INF drivers was named R0855.zip - which is version 10208 of the Windows 98 drivers and version 2055 of the Windows 2000 drivers.\par
+\par
+There are now six files which are provided as a standard release\par
+\par
+FTDIBUS.SYS (two driver files)\par
+FTSER2K.SYS\par
+FTDIUNIN.EXE (uninstaller and associated ini file)\par
+FTDIUN2K.INI\par
+FTDIBUS.INF (two shared INF files for Win98 and Win2k)\par
+FTDIPORT.INF \par
+\par
+On making a new release the files will also be posted onto FTDI\rquote s web page \cf1\ul http://www.ftdichip.com\cf0\ulnone .\par
+Proceed to the support page to download drivers (select Support tab at top of screen).\par
+\par
+\pard\keepn\nowidctlpar\s4\b Release versions\par
+\pard\nowidctlpar\b0\par
+1.00.2176 (December 12, 2005)\par
+\tab Fixed installation problem. \par
+\tab WHQL candidate.\par
+\par
+1.00.2172 (October 31, 2005) \par
+\tab Support for FT2232C devices.\par
+\par
+1.00.2170 (October 27, 2005) \par
+\tab Fixed write request synchronization issue.\par
+\par
+1.00.2169 (September 1, 2005) \par
+\tab Fixed flow control issues.\par
+\tab Changed cancel processing to fix blue screen.\par
+\par
+1.00.2168 (June 8, 2005) \par
+\tab Fixed lockup condition on port close.\par
+\par
+1.00.2166 (May 23, 2005) \par
+\tab Fixed bug in software flow control.\par
+\par
+1.00.2163 (February 7, 2005) \par
+\tab Support for buffered writes.\par
+\tab Fixed property page.\par
+\par
+1.00.2162 (November 25, 2004) \par
+\tab Tested with HCT 12.0.\par
+\par
+1.00.2160 (October 26, 2004) \par
+\tab Added option to prevent modem control signals following legacy port behaviour at startup.\par
+\par
+1.00.2159 (October 15, 2004) \par
+\tab Fixed delay on disconnect under WinXP.\par
+\par
+1.00.2157 (September 28, 2004) \par
+\tab Fixed bug that could cause computer to hang during closedown.\par
+\par
+1.00.2156 (September 9, 2004) \par
+\tab Fixed bug in baud rate divisor calculation for AM devices.\par
+\tab Location Ids supported is no longer restricted to 10 or less.\par
+\tab Fixed bug that could cause computer to hang on surprise removal.\par
+\tab Fixed bug that caused device handle notification to fail.\par
+\par
+1.00.2154 (April 20, 2004) \par
+\tab Fixed initialization problem on WinXP SP1.\par
+\tab Fixed IOCTL_SERIAL_GET_DTRRTS.\par
+\par
+1.00.2151 (February 4, 2004) \par
+\tab Fixed problem with signalling events on disconnect with open port.\par
+\par
+1.00.2150 (January 19, 2004) \par
+\tab Fixed problem with signalling line status errors.\par
+\tab Fixed problem with Location IDs and external hubs.\par
+\par
+1.00.2148 (November 11, 2003) \par
+\tab More fixes for WHQL.\par
+\tab Fixed problem that prevented RXCHAR event being signalled when buffers were full. \par
+\par
+1.00.2146 (October 28, 2003) \par
+\tab Various fixes for WHQL.\par
+\tab Added option for immediate processing of vendor commands.\par
+\par
+1.00.2145 (October 20, 2003) \par
+\tab Fixed power-level problem with VCP serializer DLL interface.\par
+\par
+1.00.2143 (September 24, 2003) \par
+\tab Fixed problem with RTS control toggle mode.\par
+\tab Fixed problem with device state after suspend/resume.\par
+\par
+1.00.2140 (September 11, 2003) \par
+\tab Fixed problem with uninstall from DeviceManager.\par
+\tab Fixed problem with Sandstorm software.\par
+\tab Improved device request processing.\par
+\tab Fixed problem with modem control signal state on open.\par
+\tab Fixed cancel write request problem.\par
+\tab Added reset pipe retry count.\par
+\tab Added maximum devices option.\par
+\tab Added supported locations option.\par
+\tab\par
+1.00.2134 (June 16, 2003) \par
+\tab More changes for BusHound.\par
+\par
+1.00.2133 (June 12, 2003) \par
+\tab Fixed BusHound compatibility problem.\par
+\tab Updated properties page with serial enumerator option.\par
+\par
+1.00.2132 (June 09, 2003) \par
+\tab Bug fixes for substitution mode.\par
+\tab Fixed problem where laptops could not enter standby mode.\par
+\tab Fixed problem with Lexmark printer.\par
+\tab Added "Set RTS on Close" flag.\par
+\tab Updated properties page.\par
+\par
+1.00.2126 (April 10, 2003) \par
+\tab\lang1036 Support substitution mode.\par
+\tab\lang2057 Restore device state on return from suspend or hibernate.\par
+\tab Fixed device naming problem.\par
+\tab Fixed bug in purge when receive buffer full.\par
+\tab Fixed bug in properties page.\par
+\par
+1.00.2115 (February 25, 2003) \par
+\tab Beta release includes drivers that have passed Microsoft certification tests.\par
+\par
+1.00.2115 (December 20, 2002) \par
+\tab Beta release.\par
+\pard\nowidctlpar\fi720 Support force XON/XOFF option.\par
+New properties page.\par
+\pard\nowidctlpar\par
+1.00.2114 (November 1, 2002) \par
+\tab Beta release.\par
+\pard\nowidctlpar\fi720 Correctly identifies unserialized FT232BM and FT245BM devices.\par
+Fixed remote wakeup.\par
+\par
+\pard\nowidctlpar 1.00.2112 (October 25, 2002) \par
+\tab Beta release.\par
+\pard\nowidctlpar\fi720 Support for FT232BM and FT245BM.\par
+Uses location information to enumerate non-serialized devices.\par
+\par
+\pard\nowidctlpar 1.00.2104 (July 22, 2002)     \par
+\pard\nowidctlpar\fi720 Drivers digitally signed.\par
+\par
+\pard\nowidctlpar 1.00.2101 (February 1, 2002)     \par
+\pard\nowidctlpar\fi720 Fixed problem that resulted in some devices not coming out of hibernate.\par
+Fixed divide-by-zero problem zero baud rate.\par
+\par
+\pard\nowidctlpar 1.00.2099 (January 7, 2002)     \par
+\pard\nowidctlpar\fi720 Fixed problem with aliased baud rates.\par
+\par
+\pard\nowidctlpar 1.00.2098 (December 20, 2001)     \par
+\pard\nowidctlpar\fi720 Improved transmit throughput.\par
+Support serial printers through Registry setting.\par
+Support for non-standard baud rates.\par
+Support Transmit Immediate.\par
+Disable modem control signals on port close.\par
+Fixed serial mouse disconnect problem in Standby mode.\par
+Runs under driver verifier.\par
+\pard\nowidctlpar\par
+1.00.2088 (October 30, 2001)     \par
+\pard\nowidctlpar\fi720 Fixed connect/disconnect problem in Windows XP.\par
+Runs under driver verifier in Windows XP.\par
+\pard\nowidctlpar\par
+1.00.2086 (October 5, 2001)     \par
+\pard\nowidctlpar\fi720 Fixed write request timeout processing.\par
+Fixed problem with restarting writes after port close.\par
+Fixed no space in read buffer problem.\par
+\pard\nowidctlpar\par
+1.00.2084 (October 2, 2001)     \par
+\pard\nowidctlpar\fi720 Passes HCT tests (required for Windows XP Logo).\par
+Uses common uninstaller FTDIUNIN.EXE.\par
+Fixed minimum timeout problem.\par
+Fixed write request blue screen.\par
+Fixed write request timeout processing.\par
+Fixed data loss at low baud rates.\par
+\pard\nowidctlpar\par
+1.00.2078 (July 27, 2001)     \par
+\pard\nowidctlpar\fi720 Fixed support for Logitech mice.\par
+Enhanced write request processing.\par
+\pard\nowidctlpar\par
+1.00.2072 (May 2, 2001)     \par
+\pard\nowidctlpar\fi720 Runs under Windows XP.\par
+Fixed receive buffer full problem.\par
+\pard\nowidctlpar\par
+1.00.2071 (Apr 26, 2001)     \par
+\pard\nowidctlpar\fi720 Enhanced BREAK condition processing.\par
+\pard\nowidctlpar\par
+1.00.2069 (Mar 28, 2001)     \par
+\pard\nowidctlpar\fi720 Fixed hyper-terminal re-boot problem seen when transmitting files at low baud rates.\par
+\pard\nowidctlpar\par
+1.00.2068 (Mar 23, 2001)     \par
+\pard\nowidctlpar\fi720 Drop modem status signals on disconnect\par
+\pard\nowidctlpar\par
+1.00.2067 (Feb 26, 2001)\par
+\tab Fixed disconnect with open port problems\par
+\tab Support multiple devices attached at the same time\par
+\tab Fixed hyper-terminal re-boot problem seen when typing characters in terminal screen\par
+\tab Enabled for surprise removal (removes unexpected removal dialogue box)\par
+\par
+1.00.2060 (Jan 19, 2001)\par
+\tab Change to modem status register set up to improve port initialisation \par
+\par
+1.00.2058 (Nov 7, 2000)\par
+\tab Fix to changing buffer size under Windows 2000 for FT8U232AM and FT8U245AM\par
+\par
+1.00.2057 (Oct 19, 2000)\par
+\tab Fix to enable speeds greater then 115k baud for FT8U232AM and FT8U245AM\par
+\par
+1.00.2055 (Sept 7, 2000)\par
+\tab Support for common INF for Win98 and Win2k drivers\par
+\tab Update of INF to support FT8U232AM and FT8U245AM\par
+\par
+1.00.2054 (Aug 10, 2000)\par
+\tab Increased time out delay to make enumerator performance more robust\par
+\par
+1.00.2053 (Aug 9, 2000)\par
+\tab Fixed transmit toggle problem\par
+\par
+1.00.2052 (July 24, 2000)\par
+\tab Driver stack made consistent to fix device power state failure\par
+\tab INF changes to add serial services\par
+\par
+1.00.2051 (June 15, 2000)\par
+\tab Fixed problem with 230k baud select, IN transfer restriction of 64 bytes removed\par
+\tab Fixed X-ON/X-OFF handshaking problem, added support for serial mouse\par
+\par
+1.00.2049 (Mar 25, 2000)\par
+\tab Install / uninstall for new naming (ftser2k)\par
+\par
+1.00.2046 (Mar 15, 2000)\par
+\tab New naming format: ftserial -> ftser2k\par
+\par
+1.00.2044 (Mar 8, 2000)\par
+\tab Update to fix problem with Direct Cable Connect\par
+\par
+1.00.2041 (Mar 3, 2000)\par
+\tab Fixed problem with baud rate selection\par
+\par
+1.00.2040 (Mar 1, 2000)\par
+\tab Removed FTDI uninstaller\par
+\par
+\pard\nowidctlpar\fi-720\li720\tx720 1.00.0\tab Beta (Feb 21, 2000)\par
+\pard\nowidctlpar\tab Update to improve flow control\par
+\par
+Alpha100 (Feb 18, 2000) - first release\par
+\pard\nowidctlpar\fi720 Connects to ISP. Some flow control problems.\par
+\pard\nowidctlpar\par
+}
+ 

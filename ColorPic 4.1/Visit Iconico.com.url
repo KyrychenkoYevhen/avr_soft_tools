@@ -1,0 +1,7 @@
+[DEFAULT]
+BASEURL=http://www.iconico.com/index.aspx
+[InternetShortcut]
+URL=http://www.iconico.com/link.asp?app=ColorPic&ver=4&minorver=1&action=StartMenu
+Modified=F0E213DA9315C6012E
+IconIndex=0
+IconFile=C:\Laptop-D\Projects\WebTools\deploy\Iconico.ico

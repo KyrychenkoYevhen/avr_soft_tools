@@ -1,0 +1,83 @@
+[Chip]
+Name=ATtiny2313
+[CPU]
+Clock Frequency=16000000
+[Text reports]
+Generate lst-file=1
+Generate asm-file=0
+[Monitor chip]
+Using pin=12
+[Template]
+K_to_Z_Interpretation=1
+[Fuse bits]
+CKSEL0=1
+CKSEL1=1
+CKSEL2=1
+CKSEL3=1
+SUT0=0
+SUT1=1
+CKOUT=1
+CKDIV8=1
+RSTDISBL=1
+BODLEVEL0=0
+BODLEVEL1=0
+BODLEVEL2=1
+WDTON=1
+SPIEN=0
+EESAVE=1
+DWEN=1
+SELFPRGEN=1
+[Lock bits]
+LockBit1=1
+LockBit2=1
+BootLockBit01=1
+BootLockBit02=1
+BootLockBit11=1
+BootLockBit12=1
+[TemplatesForm]
+Opened=0
+Left=50
+Top=50
+[EEMacroOptions]
+WaitEEWEBefore=0
+LockGlobalInterrupt=0
+[SRAM]
+External=0
+[Programmer]
+Counter=90
+Check device=1
+Chip erase=1
+Write to program=1
+Write to EEPROM=1
+Write fuse bits=1
+Write lock bits=0
+Copy calibration byte=0
+Close on completion=1
+Calibration byte address=0
+Calibration byte EEPROM address=0
+[Program]
+Fill value=0
+[Chip reader]
+Flash file name=D:\ALGORITHM\FAST PROGRAMMER\ALG\FastProgrammer.bin
+EEPROM file name=D:\ALGORITHM\FAST PROGRAMMER\ALG\EE_FastProgrammer.bin
+[Compiler]
+Auto declaring fragments of working registers=1
+Optimization=1
+Round immediate data=1
+[Debug]
+Configuration=0
+[Port]
+Deceleration=2
+[Control]
+Read only=0
+[MainWindow]
+Left=0
+Top=0
+Width=1920
+Height=1040
+[Pages]
+Page1=USART.alg
+Page2=Respondents.alg
+Page3=SPI.alg
+Page4=CRC.alg
+Page5=Monitor.alg

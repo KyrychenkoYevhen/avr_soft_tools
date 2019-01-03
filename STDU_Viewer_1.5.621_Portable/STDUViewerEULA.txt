@@ -1,0 +1,31 @@
+STDU VIEWER END-USER LICENSE AGREEMENT
+
+IMPORTANT-READ CAREFULLY: This STDUViewer End-User License Agreement is a legal Agreement between you and Thor Engineering Ltd for STDUViewer.
+
+By installing, copying, or otherwise using and testing STDUtility, you agree to be bound by the terms of this agreement. If you do not agree to the terms of this agreement, do not install or use STDUtility software.
+
+STDUViewer is fully owned by STDUtility, this license agreement doesn't change the ownership.
+
+STDUtility grants You the license to use STDUViewer, free of charge, for evaluation and for noncommercial use, if you accept all the conditions listed in this agreement. "Use" means loading the product to CPU, memory, and/or other storages of your computer.
+
+You may not:
+1. Use, copy, modify, or transfer copies of STDUViewer except as provided for in this License.
+2. Remove any proprietary notices or labels from STDUViewer. 
+3. Reverse engineer, decompile, disassemble or make derivative works based on STDUViewer (except and only to the extent that such activity is expressly permitted by applicable law notwithstanding this limitation).
+4. Rent, lease, sublicense or assign STDUViewer or any copy thereof, including any related documentation.
+5. Make any attempt to discover the source code of STDUtility software.
+
+
+NO WARRANTIES.
+
+Thor Engineering Ltd expressly disclaims any warranty for STDUViewer.
+
+STDUVIEWER AND ANY RELATED DOCUMENTATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTIES OR MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, OR NONINFRINGEMENT.
+
+THE ENTIRE RISK ARISING OUT OF USE OR PERFORMANCE OF STDUVIEWER REMAINS WITH YOU.
+
+NO LIABILITY FOR CONSEQUENTIAL DAMAGES.
+IN NO EVENT SHALL THOR ENGINEERING LTD BE LIABLE FOR ANY SPECIAL, INCIDENTAL, INDIRECT, OR CONSEQUENTIAL DAMAGES WHATSOEVER (INCLUDING, WITHOUT LIMITATION, DAMAGES FOR LOSS OF BUSINESS PROFITS, BUSINESS INTERRUPTION, LOSS OF BUSINESS INFORMATION, OR ANY OTHER PECUNIARY LOSS) ARISING OUT OF THE USE OR OF INABILITY TO USE STDUVIEWER.
+
+COPYRIGHT NOTICE. Copyright(C) 2007-2010 Thor Engineering Ltd, All rights reserved. 
+Any rights not expressly granted herein are reserved.
