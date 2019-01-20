@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--<application xmlns="http://ns.adobe.com/air/application/3.8">-->
+<application xmlns="http://ns.adobe.com/air/application/29.0">
+
+	
+	<id>PyxelEdit</id>
+	<versionNumber>0.4.8</versionNumber>
+	<filename>PyxelEdit</filename>
+	<architecture>32</architecture>
+	
+	<name>PyxelEdit</name>
+	<description>Pixel art, tileset and animation editor</description> 
+	<copyright>Daniel Kvarfordt</copyright> 
+	
+	<initialWindow>
+		<title>PyxelEdit</title>
+		<content>PyxelEdit.swf</content>
+		<systemChrome>standard</systemChrome>
+		<transparent>false</transparent>
+		<visible>true</visible>
+		<minimizable>true</minimizable>
+		<maximizable>true</maximizable>
+		<resizable>true</resizable>
+	</initialWindow>
+	
+    <fileTypes>
+        <fileType>
+            <name>danik.PyxelDoc</name>
+            <extension>pyxel</extension>
+            <description>PyxelEdit Document</description>
+            <contentType>application/pyxel.image-file</contentType>
+            <icon>
+				<image16x16>IconDocument16.png</image16x16>
+				<image32x32>IconDocument32.png</image32x32>
+				<image48x48>IconDocument48.png</image48x48>
+                <image128x128>IconDocument128.png</image128x128>
+                <image512x512>IconDocument512.png</image512x512>
+            </icon>
+        </fileType>
+    </fileTypes>
+	
+    <icon>
+		<image16x16>IconHeart16.png</image16x16>
+		<image32x32>IconHeart32.png</image32x32>
+		<image48x48>IconHeart48.png</image48x48>
+		<image128x128>IconHeart128.png</image128x128>
+		<image512x512>IconHeart512.png</image512x512>
+    </icon>
+
+  <!-- 
+	More options:
+	http://livedocs.adobe.com/flex/3/html/File_formats_1.html#1043413
+	-->
+</application>

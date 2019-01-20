@@ -1,0 +1,1 @@
+Paste your activation key in this file to avoid re-entering it if using the portable version.
