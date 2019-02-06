@@ -1,0 +1,1330 @@
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, font, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+	background: transparent;
+}
+body { line-height: 1; }
+ol, ul { list-style: none; }
+blockquote, q { quotes: none; }
+blockquote:before, blockquote:after,
+q:before, q:after { content: ''; content: none; }
+
+/* remember to define focus styles! */
+:focus { outline: 0; }
+
+/* remember to highlight inserts somehow! */
+ins { text-decoration: none; }
+del { text-decoration: line-through; }
+
+/* tables still need 'cellspacing="0"' in the markup */
+table { border-collapse: collapse; border-spacing: 0; }/* -------------------------------------------------------------------
+// markItUp! Universal MarkUp Engine, JQuery plugin
+// By Jay Salvat - http: //markitup.jaysalvat.com/
+// ------------------------------------------------------------------*/
+.markItUp a: link,
+.markItUp a: visited { color: #000; text-decoration: none; }
+.markItUp  { width: 600px; margin-bottom: 5px; }
+.markItUpContainer { font: 11px Verdana, Arial, Helvetica, sans-serif; }
+.markItUpEditor {
+	font: 12px "Courier New", Courier, monospace;
+	padding: 5px;
+	width: 587px;
+	height: 200px;
+	line-height: 18px;
+	overflow: auto;
+}
+.markItUpPreviewFrame	{
+	overflow: auto;
+	background-color: #FFF;
+	border: 1px solid #eee;
+	padding: 10px;
+	height: 300px;
+	margin: 5px 0;
+	font: 12px Tahoma, Arial, Helvetica, sans-serif;
+}
+.markItUpFooter { width: 100%; }
+.markItUpResizeHandle {
+	overflow: hidden;
+	height: 8px;
+	background: url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/skins/simple/images/handle.png) 50% 3px no-repeat;
+	cursor: n-resize;
+}
+
+
+/***************************************************************************************/
+/* first row of buttons */
+.markItUpHeader { 
+	width: 587px;
+	background: #eee; 
+	padding: 5px; 
+	border-top: 1px solid #c0cad5; 
+	border-left: 1px solid #c0cad5; 
+	border-right: 1px solid #c0cad5; 
+}
+.markItUpHeader ul	{ overflow: hidden; zoom: 1; }
+.markItUpHeader ul li	{ list-style: none; float: left; position: relative; margin-right: 6px; }
+.markItUpHeader ul li: hover > ul{ display: block; }
+.markItUpHeader ul .markItUpDropMenu {
+	background: transparent url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/skins/simple/images/menu.png) no-repeat 115% 50%;
+	margin-right: 5px;
+}
+.markItUpHeader ul .markItUpDropMenu li {
+	margin-right: 0px;
+}
+/* next rows of buttons */
+.markItUpHeader ul ul {
+	display: none;
+	position: absolute;
+	top: 18px; left: 0px;	
+	background: #FFF;
+	border: 1px solid #000;
+}
+.markItUpHeader ul ul li {
+	float: none;
+	border-bottom: 1px solid #000;
+}
+.markItUpHeader ul ul .markItUpDropMenu {
+	background: #FFF url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/skins/simple/images/submenu.png) no-repeat 100% 50%;
+}
+.markItUpHeader ul .markItUpSeparator {
+	margin: 0 6px 0 0;
+	width: 1px;
+	height: 16px;
+	overflow: hidden;
+	background-color: #CCC;
+}
+.markItUpHeader ul ul .markItUpSeparator {
+	width: auto; height: 1px;
+	margin: 0px;
+}
+/* next rows of buttons */
+.markItUpHeader ul ul ul {
+	position: absolute;
+	top: -1px; left: 150px; 
+}
+.markItUpHeader ul ul ul li {
+	float: none;
+}
+.markItUpHeader ul a {
+	display: block;
+	width: 16px; height: 16px;
+	text-indent: -10000px;
+	background-repeat: no-repeat;
+	margin: 0px;
+}
+.markItUpHeader ul ul a {
+	display: block;
+	padding-left: 0px;
+	text-indent: 0;
+	width: 120px; 
+	padding: 5px 5px 5px 25px;
+	background-position: 2px 50%;
+}
+.markItUpHeader ul ul a: hover  {
+	color: #FFF;
+	background-color: #000;
+}
+
+
+
+
+
+.markItUpPreviewFrame { }
+.markItUpPreviewFrame p { margin-bottom: 18px; }
+.markItUpPreviewFrame blockquote { background: #fafafa; padding: 10px 15px; color: #555; margin-bottom: 5px; clear: both; }
+.markItUpPreviewFrame pre { background: #fafafa; border: 1px solid #dce6f0; margin-bottom: 10px; overflow: auto; padding: 5px 10px; }
+.markItUpPreviewFrame ul { list-style-type: disc; margin-left: 17px; }
+.markItUpPreviewFrame ol { list-style-type: decimal; margin-left: 22px; }
+.markItUpPreviewFrame img[align="right"] { margin: 4px 0 5px 15px; }
+.markItUpPreviewFrame img[align="left"] { margin: 4px 15px 10px 0; }
+/* -------------------------------------------------------------------
+// markItUp!
+// By Jay Salvat - http://markitup.jaysalvat.com/
+// ------------------------------------------------------------------*/
+.markItUp .editor-h4 a 			{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/h4.png); }
+.markItUp .editor-h5 a 			{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/h5.png); }
+.markItUp .editor-h6 a 			{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/h6.png); }
+.markItUp .editor-bold a 		{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/bold.png); }
+.markItUp .editor-italic a 		{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/italic.png); }
+.markItUp .editor-stroke a 		{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/stroke.png); }
+.markItUp .editor-underline a 	{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/underline.png); }
+.markItUp .editor-quote a 		{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/quote.png); }
+.markItUp .editor-code a 		{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/code.png); }
+.markItUp .editor-ul a 			{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/ul.png); }
+.markItUp .editor-ol a 			{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/ol.png); }
+.markItUp .editor-li a 			{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/li.png); }
+
+.markItUp .editor-picture a 	{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/picture.png); }
+.markItUp .editor-image a 		{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/image.png); }
+.markItUp .editor-link a 		{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/link.png); }
+
+.markItUp .editor-clean a 		{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/clean.png); }
+.markItUp .editor-preview a 	{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/preview.png); }
+.markItUp .editor-cut a 		{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/cut.png); }
+.markItUp .editor-video a 		{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/video.png); }
+.markItUp .editor-user a 		{ background-image:url(http://we.easyelectronics.ru/engine/lib/external/jquery/markitup/sets/default/images/user.png); }.str{color:#080}.kwd{color:#008}.com{color:#800}.typ{color:#606}.lit{color:#066}.pun{color:#660}.pln{color:#000}.tag{color:#008}.atn{color:#606}.atv{color:#080}.dec{color:#606}pre.prettyprint{padding:2px;border:1px solid #888}@media print{.str{color:#060}.kwd{color:#006;font-weight:bold}.com{color:#600;font-style:italic}.typ{color:#404;font-weight:bold}.lit{color:#044}.pun{color:#440}.pln{color:#000}.tag{color:#006;font-weight:bold}.atn{color:#404}.atv{color:#060}}body { 
+	font: 12px/18px Tahoma, Arial, Sans-Serif; 
+	color: #333; 
+	background: #F7F8F9;
+}
+
+h1, h2, h3, h4, h5, h6 { font: normal 18px Verdana, Arial, Sans-Serif; line-height: 1.3em; margin-bottom: 0.3em; color: #333; }
+h2 { font-size: 22px; margin-bottom: 10px; }
+h2 span { color: #6EC80D; }
+h3 { font-size: 18px; }
+
+a 			{ color: #971E27; }
+a:hover 	{ text-decoration: none; }
+
+a.dashed { text-decoration: none; border-bottom: 1px dashed #70AAE0; }
+
+p { margin-bottom: 18px; }
+
+
+
+
+
+
+/* Blocks
+-------------------- */
+#container 	{ margin: 0 auto 20px; max-width: 1600px; min-width: 960px; }
+#header 	{ min-width: 960px; height: 160px; margin: 0 auto; max-width: 1570px; position: relative; overflow: hidden; zoom: 1; padding: 0 15px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/bg.gif) repeat-x scroll 0 0 #000000; }
+#header-light { text-align: center; padding: 20px 0; background: #fff; width: 400px; margin: 20px auto 40px; border-radius: 5px; }
+#wrapper 	{ overflow: hidden; zoom: 1; padding: 0 20px 20px; }
+#wrapper.show-update-button { padding-right: 55px; }
+#wrapper.white-back { background: #fff; margin: 0 20px 30px 20px;}
+#wrapper.white-back #content {  }
+#content 	{ width: 66.5%; float: left; margin-right: 1.5%; background: #fff; }
+#content-inner { padding: 20px; }
+#sidebar	{ width: 32%; float: left; }
+#footer 	{ overflow: hidden; zoom: 1; margin: 0 0 20px; color: #777; border-top: 1px solid #DADADA; }
+#footer-inner 	{ border-top: 1px solid #fff; padding: 15px 20px 10px; }
+
+
+
+/* Header
+-------------------- */
+#header a.logo { font-size: 20px; float: left; text-decoration: none; }
+#header a.logo span { position: absolute; left: 210px; top: 70px;}
+
+#header a { color: #fff; }
+
+#header .pages { zoom: 1; padding: 10px 0px 0 0; list-style: none; float: left; font-size: 15px; }
+#header .pages li { float: left; margin-right: 10px; position: relative; }
+#header .pages li a { color: #BEBEBE; text-decoration: underline; padding: 2px 5px 3px; }
+#header .pages li.active a { color: #FFFFFF; font-size: 24px; line-height: 24px; text-decoration: none; }
+#header .pages li.active { top: -5px; }
+
+#header .profile { color: #777; text-align: right; position: absolute; top: 70px; right: 23px; padding-right: 60px; font-size: 11px; color: #AFAFAF; line-height: 12px; }
+#header .profile li { margin-bottom: 6px; }
+#header .profile .message { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat scroll right 3px; margin-right: 5px; padding-right: 18px; zoom: 1; text-decoration: none; }
+#header .profile .message.new { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat right -17px; color: #ffea00; }
+#header .profile .create { color: #f79cf3; }
+#header .profile .logout { color: #AFAFAF; text-decoration: none; }
+#header .profile .avatar { position: absolute; top: 0; right: 0; width: 48px; height: 48px;}
+#header .profile a:hover { color: #ddd; }
+
+#header .auth { position: absolute; top: 9px; right: 33px; color: #ddd; }
+#header .auth .login-link { font-size: 18px; }
+
+
+/* Header Light
+-------------------- */
+#header-light .logo { font-size: 28px; text-decoration: none; color: #777; }
+#header-light .logo:hover { color: #555; }
+
+
+
+/* Navigation
+-------------------- */
+#nav { margin: 0 auto 15px; max-width: 1600px; min-width: 960px; position: relative; zoom: 1; background: #FFF;}
+#nav-inner { height: 92px; padding: 0 0 0 0; margin-left: 20px; overflow: hidden; zoom: 1; background: #FFF}
+
+/* Menu */
+#nav .menu { padding-bottom: 30px; float: left; font-size: 15px; margin: 11px 0 0 0; }
+#nav .menu li { float: left; color: #971E27; padding: 3px 10px 4px 10px; margin-right: 5px; position: relative; }
+#nav .menu li a.new { color: #390; }
+#nav .menu li a { text-decoration: none; color: #838383; }
+#nav .menu li a:hover { color: #333; }
+#nav .menu li.active { position: relative; background: #fff; border-bottom: 1px solid #ddd; }
+#nav .menu li.active a { color: #333; }
+#nav .menu li.active:before { content: ""; position: absolute; bottom: -5px; left: 10px; width: 9px; height: 5px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/arrows.png) no-repeat; }
+
+/* Sub-menu */
+#nav .sub-menu { position: absolute; top: 35px; left: 0; width: 500px; font-size: 11px; }
+#nav .sub-menu li { margin-right: 5px; line-height: 13px; padding: 3px 10px 5px 10px !important; }
+#nav .sub-menu li a { color: #777 !important; text-decoration: underline; }
+#nav .sub-menu li a:hover { text-decoration: none !important; }
+#nav .sub-menu li.active { background: #555; color: #fff; font-weight: bold; background: #971E27; box-shadow: 0 2px 0 #971E27 inset; }
+#nav .sub-menu li.active a { color: #fff !important; text-decoration: none; }
+#nav .sub-menu li.active:before { display: none; }
+
+/* Search */
+#nav .search { position: absolute; bottom: 25px; right: 20px; }
+#nav .search .text { width: 165px; border: 1px solid #ccc; border-radius: 13px; padding: 4px 35px 4px 13px; color: #777; box-shadow: 0 2px 2px #eee inset; }
+#nav .search .search-submit { width: 18px; height: 18px; position: absolute; top: 4px; right: 7px; *top: 5px; border: none; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/search.png) no-repeat; cursor: pointer; }
+
+/* Search */
+#nav .button-publish { float: left; text-decoration: none; color: #333; margin-top: 45px; margin-right: 35px; background: url("http://we.easyelectronics.ru/templates/skin/easyelectronics/images/button-small.gif") no-repeat scroll 0 0 transparent;}
+#nav .button-publish span { float: left; margin-left: 25px; padding: 2px 25px 3px 0; cursor: pointer; background: url("http://we.easyelectronics.ru/templates/skin/easyelectronics/images/button-small.gif") no-repeat scroll right 0 transparent;}
+
+
+/* Misc blocks
+-------------------- */
+
+/* Blog profile */
+.blog { padding: 20px 20px 0; margin-bottom: 20px; color: #666; position: relative; }
+
+.blog .voting { position: absolute; top: 10px; right: 20px; z-index: 100; }
+.blog .voting .total { font-weight: normal; padding: 4px 10px 5px; font-size: 14px; }
+.blog .voting .plus { margin: 4px 6px 0 0; }
+.blog .voting .minus { margin: 4px 0 0 6px; }
+.blog .voting .text { font-size: 10px; color: #aaa; text-align: center; clear: both; }
+.blog .voting.positive .total { background: #68BF46; color: #fff; }
+.blog .voting.negative .total { background: #FF3B3C; color: #fff; }
+
+.blog .blog-header { overflow: hidden; zoom: 1; position: relative; padding: 0 100px 0 30px; }
+.blog .blog-header img { position: absolute; top: 0; left: 0; }
+.blog .blog-header h2 { font-size: 24px; line-height: 1.3em; margin-top: -4px; }
+.blog .blog-header h2 a { text-decoration: none; border-bottom: 1px dashed #971E27; }
+.blog .blog-header h2.inactive a { color: #ccc; border-color: #ccc; }
+
+.blog .actions { margin-bottom: 10px; }
+
+.blog .blog-info { display: none; background: #F4F4F6; padding: 25px 30px; border-radius: 10px; }
+.blog .blog-info h3 { font-size: 22px; color: #555; font-family: Verdana, sans-serif; }
+.blog .blog-info p { border-bottom: 1px solid #DADADA; padding-bottom: 15px; margin-bottom: 0; }
+.blog .blog-info .user { margin-right: 5px; }
+
+.blog .blog-wrapper { overflow: hidden; zoom: 1; margin-bottom: 40px; border-top: 1px solid #fff; padding: 20px 0 0; }
+.blog .blog-wrapper .blog-admins { float: left; width: 50%; }
+.blog .blog-wrapper .blog-mods { float: left; width: 50%; }
+.blog .blog-wrapper .user-list li { float: left; width: 60px;text-align: center; overflow: hidden; }
+.blog .blog-wrapper .user-list li img { display: block; margin: 0 auto 2px; }
+
+.blog-list-table { }
+.blog-list-table tbody { color: #999; }
+.blog-list-table td .avatar { float: left; position: relative; top: 2px; }
+.blog-list-table td .title { font-size: 18px; line-height: 22px; }
+.blog-list-table td .user { font-weight: bold; color: #999; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) 0 -108px no-repeat; }
+.blog-list-table td .private { position: relative; top: 2px; }
+.blog-list-table td p { margin-bottom: 0; color: #999; }
+
+/* User profile */
+.user-profile { margin-bottom: 20px; overflow: hidden; zoom: 1; position: relative; }
+.user-profile .avatar { float: left; margin-right: 15px; }
+.user-profile h3 { font-size: 24px; line-height: 1em; margin-bottom: 10px; }
+.user-profile p.realname { font-size: 18px; color: #999; }
+
+.user-profile .voting { position: absolute; top: 0px; right: 85px; z-index: 100; }
+.user-profile .voting .total { font-weight: normal; padding: 4px 10px 5px; font-size: 14px; }
+.user-profile .voting .plus { margin: 4px 6px 0 0; }
+.user-profile .voting .minus { margin: 4px 0 0 6px; }
+.user-profile .voting .text { font-size: 10px; color: #aaa; text-align: center; clear: both; }
+.user-profile .voting.positive .total { background: #68BF46; color: #fff; }
+.user-profile .voting.negative .total { background: #FF3B3C; color: #fff; }
+
+.user-profile .strength { float: right; }
+.user-profile .strength .total { background: #971E27; font-size: 14px; padding: 4px 10px 5px; font-weight: normal; color: #fff; }
+.user-profile .strength .text { font-size: 10px; color: #aaa; text-align: center; }
+
+.user-profile-header { font-size: 18px; margin-bottom: 7px; border-bottom: 1px solid #ccc; }
+
+.user-profile-table { width: 100%; }
+.user-profile-table td { vertical-align: top; padding: 0 0 5px; }
+.user-profile-table td.var { width: 150px; font-weight: bold; color: #999; }
+.user-profile-table td .user { margin-right: 7px; }
+
+/* Stat */
+.stat-performance { padding: 15px 20px; background: #fff; border-top: 1px solid #eee; border-bottom: 1px solid #eee; }
+.stat-performance table { }
+.stat-performance table td { width: 200px; vertical-align: top; }
+.stat-performance h4 { font-weight: bold; }
+
+/* Userfeed */
+.userfeed-get-more { display:block; width: 90%; margin: 0px auto; text-align: center; height: 2.5em; padding-top: 1em;}
+.userfeed-get-more:hover { background: #f0f7fd;}
+.userfeed_loading {background: #F7F7F7 url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/loader.gif) no-repeat center;}
+
+/* Stream */
+.stream-get-more { display: block; text-align: center; padding: 12px 0; background: #fafafa; color: #aaa; border-top: 1px solid #eee; text-decoration: none; }
+.stream-get-more:hover { background: #f0f7fd; }
+.stream_loading { background: #f7f7f7 url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/loader.gif) no-repeat center; }
+.stream-comment-preview { padding: 5px 10px; background: #f3f3f3; margin-top: 5px; }
+
+.stream-list { margin: 0 0 20px; }
+.stream-list li { margin-bottom: 5px; min-height: 48px; _height: 48px; background: #fafafa; padding: 10px 15px 10px 70px; position: relative; }
+.stream-list li .avatar { position: absolute; top: 10px; left: 10px; }
+.stream-list li .date { display: block; color: #999; }
+.stream-list li a { text-decoration: none; }
+.stream-list li a:hover { text-decoration: underline; }
+
+/* Userfields */
+.userfield-list { width: 450px; }
+.userfield-list li { background: #f7f7f7; margin-bottom: 1px; padding: 10px 5px; overflow: hidden; zoom: 1; line-height: 12px; color: #777; }
+.userfield-list li .uf-actions { float: right; }
+.userfield-list li .uf-actions img { vertical-align: top; }
+.userfield-list li .userfield_admin_name { font-weight: bold; color: #333; }
+
+.userfield-add { text-decoration: none; border-bottom: 1px dashed #971E27; }
+.userfield-add:hover { color: #333; border-color: #333; }
+/* Voting */
+.voting { overflow: hidden; zoom: 1; }
+
+.voting .total { float: left; padding: 0 7px; color: #aaa; }
+.voting .total a { text-decoration: none; color: #999; outline: none; }
+
+.voting.positive .total { color: #390; }
+.voting.negative .total { color: #f00; }
+
+.voting .plus,
+.voting .minus 			{ width: 9px; height: 11px; float: left; display: block; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/voting.png) no-repeat; position: relative; top: 4px; outline: none; }
+.voting .plus 			{ background-position: 0 0; }
+.voting .minus 			{ background-position: -18px 0; }
+.voting .plus:hover 	{ background-position: -9px 0; }
+.voting .minus:hover 	{ background-position: -27px 0; }
+
+.voting.voted.plus 	.plus 			{ background-position: -9px 0; }
+.voting.voted.minus .minus 			{ background-position: -27px 0; }
+.voting.voted.plus 	.minus:hover 	{ background-position: -18px 0; }
+.voting.voted.minus .plus:hover 	{ background-position: 0 0; }
+
+.voting.guest .plus:hover 	{ background-position: 0 0; }
+.voting.guest .minus:hover 	{ background-position: -18px 0; }
+
+
+/* Favorite */
+.favourite 			{ background: url() no-repeat; display: block; height: 16px; width: 16px; position: relative; top: 1px; }
+.favourite:hover 	{ background-position: 0 -16px; }
+.favourite.active 	{ background-position: 0 -16px; }
+
+
+/* Pagination */
+.pagination {  }
+.pagination p { font-size: 16px; color: #bbb; margin-bottom: 10px; }
+.pagination ul { overflow: hidden; font-family: Verdana, Sans-Serif; }
+.pagination ul li { float: left; margin-right: 8px; }
+.pagination ul li.active { font-weight: bold; }
+.pagination ul li.active { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/pagination.gif) no-repeat top right; padding: 0 6px 1px 3px; border-left: 1px solid #eee; }
+
+
+/* Switcher */
+.switcher { overflow: hidden; zoom: 1; margin-bottom: 15px; font-size: 11px; padding-bottom: 3px; }
+.switcher li { float: left; padding: 1px 7px 1px; color: #A2A2A2; background: #fff; position: relative; line-height: 15px; cursor: pointer; border-top: 1px solid #ddd; border-bottom: 1px solid #ddd; }
+.switcher li a { color: #A2A2A2; text-decoration: none; }
+.switcher li:first-child { -moz-border-radius-topleft: 5px; -moz-border-radius-bottomleft: 5px; border-top-left-radius: 5px; border-bottom-left-radius: 5px; border-left: 1px solid #ddd; }
+.switcher li.first-child { border-left: 1px solid #ddd; }
+.switcher li:last-child { -moz-border-radius-topright: 5px; -moz-border-radius-bottomright: 5px; border-top-right-radius: 5px; border-bottom-right-radius: 5px; border-right: 1px solid #ddd; }
+.switcher li.last-child { border-right: 1px solid #ddd; }
+.switcher li.active { color: #fff; background: #971E27; border-color: #971E27; box-shadow: 0 1px 0 #971E27 inset; }
+.switcher li.active a { color: #fff; }
+.switcher li.active:before { content: ""; position: absolute; bottom: -4px; left: 8px; width: 5px; height: 3px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/arrows.png) -9px 0 no-repeat; }
+
+
+/* System messages */
+.system-message-error 	{ background: #f0c8c8; color: #b22626; padding: 10px 15px; margin-bottom: 15px; }
+.system-message-notice { background: #dafad8; color: #4bb23b; padding: 10px 15px; margin-bottom: 15px; }
+
+
+/* Actions */
+.actions { overflow: hidden; zoom: 1; font-size: 11px; }
+.actions a { overflow: hidden; zoom: 1; margin-right: 10px; text-decoration: none; }
+.actions li { float: left;}
+.actions .edit { padding-left: 16px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/edit.gif) no-repeat 0 1px; }
+.actions .delete { padding-left: 15px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/delete.gif) no-repeat 0 1px; color: #f00; }
+.actions .rss { display: block; width: 10px; height: 10px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat -70px -250px; margin-right: 4px; margin-top: 4px; }
+.actions .join { margin-top: 4px; }
+.actions a:hover { text-decoration: underline; }
+
+
+/* Misc */
+.user { padding-left: 12px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat 0 -107px; color: #555; text-decoration: none;}
+.ls-user { padding-left: 12px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat 0 -105px; color: #999999; text-decoration: none; font-size: 14px; font-weight: bold;}
+.user.inactive { color: #888; }
+
+.padding { padding: 10px 20px; }
+
+.tags-search { position: relative; left: -20px; margin-bottom: 20px; }
+.tags-input { width: 400px; font-size: 18px; padding: 4px 4px 6px; border: 1px solid #ccc; color: #555; background: #fafafa; }
+
+.center { width: 400px; margin: 0 auto; }
+.center .input-text { border: 1px solid #ccc; width: 386px; padding: 4px 6px; font-size: 18px; font-family: Arial, sans-serif; }
+.center h2 { color: #888; }
+.center .button-login { float: right; }
+
+.join { width: 10px; height: 10px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat 0 -250px; cursor: pointer; }
+.join.active { background-position: -10px -250px; }
+
+.table { width: 100%; margin-bottom: 15px; }
+.table td { padding: 5px; }
+.table tr.active td { background: #F1FCEF; }
+.table thead td { background: #F0F1F1; font-weight: bold; }
+.table tbody td { padding: 5px; border-bottom: 1px solid #ddd; font-size: 11px; }
+
+.table.table-people {  }
+.table.table-people .avatar { vertical-align: middle; margin-right: 7px; }
+.table.table-people td { padding: 5px 10px; vertical-align: middle; }
+.table.table-people .username { font-weight: bold; color: #999; }
+.table.table-people .strength { font-weight: bold; color: #70AAE0; }
+.table.table-people .date { color: #999; }
+.table.table-people .rating strong { font-weight: bold; color: #fff; background: #FF68CF; padding: 5px 10px; }
+
+.table.table-talk tbody td { color: #999; }
+.table.table-talk td { padding: 5px; }
+.table.table-talk td .username { padding-left: 13px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) 0 -108px no-repeat; margin-right: 5px; text-decoration: none;}
+.table.table-talk td .username.inactive { color: #bbb; }
+.table.table-talk a.favourite { float: left; width: 10px; height: 8px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) -40px -40px no-repeat; }
+.table.table-talk a.favourite.active { background-position: -50px -40px; }
+.table.table-talk a.favourite:hover { background-position: -50px -40px; }
+
+.right { float: right; }
+span.green { color: #008000; }.input-wide { width: 98%; _width: 97%; padding: 2px; }
+.input-100 { width: 100px; padding: 2px; }
+.input-200 { width: 200px; padding: 2px; }
+.input-300 { width: 300px; padding: 2px; }
+.note { font-size: 12px; color: #aaa; }
+.checkbox { position: relative; top: 2px; margin: 0 4px 0 1px; }
+.question-list { margin-bottom: 15px; }
+.question-list li { margin-bottom: 5px; }
+.question-list li input { margin-right: 5px; }
+
+
+.markItUp  { width: 100%; }
+.markItUpEditor { width: 100%; -moz-box-sizing: border-box; box-sizing: border-box; }
+.markItUpHeader { width: 100%; -moz-box-sizing: border-box; box-sizing: border-box; }
+
+.button { 
+	background: rgb(254,254,254);
+	background: -moz-linear-gradient(top, rgba(254,254,254,1) 0%, rgba(233,233,233,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(254,254,254,1)), color-stop(100%,rgba(233,233,233,1)));
+	background: -webkit-linear-gradient(top, rgba(254,254,254,1) 0%,rgba(233,233,233,1) 100%);
+	background: -o-linear-gradient(top, rgba(254,254,254,1) 0%,rgba(233,233,233,1) 100%);
+	background: -ms-linear-gradient(top, rgba(254,254,254,1) 0%,rgba(233,233,233,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#fefefe', endColorstr='#e9e9e9',GradientType=0 );
+	background: linear-gradient(top, rgba(254,254,254,1) 0%,rgba(233,233,233,1) 100%);
+
+	border-radius: 15px; 
+	border: none; 
+	font-family: Arial, sans-serif; 
+	padding: 3px 13px 3px;
+	color: #444;
+	text-shadow: 0 1px 0 #fff;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #fafafa;
+	cursor: pointer;
+}/* Login popup */
+.login-form { width: 400px; margin-left: -200px; left: 50%; top: 60px; background: #fff; display: none; }
+.login-form p { margin-bottom: 15px; }
+.login-form a { color: #555; }
+.login-form label.label-remember { position: relative; top: 3px; }
+.login-form input.input-text { border: 1px solid #ccc; width: 386px; padding: 4px 6px; font-size: 18px; font-family: Arial, sans-serif; }
+.login-form .button{ float: right; }
+.login-form .checkbox-label { color: #333; }
+.login-form .checkbox { position: relative; top: 2px; margin-right: 5px; }
+
+
+/* Upload image popup */
+.upload-form { width: 300px; margin-left: -150px; left: 50%; }
+.upload-form h3 { margin-bottom: 15px; }
+.upload-form .button { float: left; margin-right: 10px; }
+
+
+/* Blog delete popup */
+.blog-delete-form { width: 200px; margin-left: -100px; left: 50%; top: 300px; display: none; }
+.blog-delete-form p { margin-bottom: 8px; }
+.blog-delete-form select { width: 100%; }
+
+
+/* Add friend popup */
+.add-friend-form { width: 200px; margin-left: -100px; left: 50%; top: 300px; display: none; }
+.add-friend-form textarea { width: 195px; margin-bottom: 5px; }
+
+
+/* Add userfield popup */
+.userfield-form { width: 270px; padding: 15px; margin-left: -120px; top: 100px; left: 50%; display: none; }
+.userfield-form p { margin-bottom: 10px; }
+.userfield-form .input-text { width: 262px; border: 1px solid #ccc; margin: 0; padding: 3px; font-family: Arial, sans-serif; font-size: 12px; }
+.userfield-form .button { float: left; margin-right: 10px; }
+
+
+
+.topic { margin-bottom: 50px; padding-left: 20px; position: relative; zoom: 1;}
+
+/* Title */
+.topic .title { margin-bottom: 3px; font-size: 22px; font-family: Verdana, sans-serif; }
+.topic .title a {  }
+
+/* Content */
+.topic .content { overflow: hidden; zoom: 1; margin-bottom: 15px; font-size: 14px; font-family: Verdana, sans-serif; line-height: 20px; }
+.topic .content p { margin-bottom: 18px; }
+.topic .content h4 { font-size: 22px; line-height: 1.3em; margin-bottom: 10px; }
+.topic .content h5 { font-size: 20px; line-height: 1.3em; margin-bottom: 10px; }
+.topic .content h6 { font-size: 18px; line-height: 1.3em; margin-bottom: 10px; }
+.topic .content blockquote { background: #fafafa; padding: 10px 15px; color: #555; margin-bottom: 5px; clear: both; }
+.topic .content pre, .comment .content pre { overflow: auto; width: 95%; padding: 5px 2%; margin-bottom: 10px; background: #f8f8f8 url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/code.gif); border: 1px solid #dce6f0; clear: both; }
+.topic .content ul { list-style-type: disc; margin-left: 17px; }
+.topic .content ol { list-style-type: decimal; margin-left: 30px; }
+.topic .content img[align="right"] { margin: 4px 0 5px 15px; }
+.topic .content img[align="left"] { margin: 4px 15px 10px 0; }
+.topic .content img.image-center { display: block; margin: 0 auto; }
+
+/* Tags */
+.topic .tags { margin: 0 0 6px; padding-left: 13px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/tag.png) no-repeat 0 5px; zoom: 1; }
+.topic .tags li { display: inline; color: #777; }
+.topic .tags li a { color: #777; text-decoration: none; }
+.topic .tags li a:hover { color: #fff; background: #777; }
+
+/* Info */
+.topic .info-top { margin-bottom: 20px; }
+.topic .info-top .title-blog { color: #aaa; margin-right: 15px; }
+
+.topic .info { overflow: hidden; zoom: 1; padding: 9px 0 0; font-size: 13px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/info_bg.png) repeat-x; }
+.topic .info li { float: left; margin-right: 15px; }
+.topic .info li a { text-decoration: none; }
+
+.topic .info li.date { color: #999; font-size: 11px; }
+.topic .info li.username a { font-weight: bold; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat 0 -106px; padding-left: 13px; }
+.topic .info li.username a:hover { text-decoration: underline; }
+.topic .info li.voting { padding-right: 15px; }
+.topic .info li.comments-link a { color: #f00; font-size: 11px; }
+.topic .info li.comments-link a span { color: #390; }
+.topic .info li.comments-link a:hover { background: #f00; color: #fff; }
+.topic .info li.comments-link a:hover span { background: #390; color: #fff; }
+.topic .info li.url a { padding-left: 16px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/topic_link.gif) 0 1px no-repeat; font-size: 11px; }
+
+.topic .favourite { position: absolute; top: 8px; left: -8px; height: 16px; width: 20px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat 0 -40px; }
+.topic .favourite:hover { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat -20px -40px;  }
+.topic .favourite.active { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat -20px -40px;  }
+
+/* Poll */
+.topic .poll { margin-bottom: 15px; font-size: 14px; }
+
+.topic .poll .poll-vote { margin-bottom: 10px; margin-left: 0; list-style-type: none; }
+.topic .poll .poll-vote li { margin-bottom: 5px; }
+.topic .poll .poll-vote li label { display: inline; }
+
+.topic .poll .poll-result { margin-bottom: 10px; margin-left: 0; list-style-type: none; font-family: Verdana, sans-serif; }
+.topic .poll .poll-result li { margin-bottom: 20px; }
+.topic .poll .poll-result li dl { overflow: hidden; zoom: 1; }
+.topic .poll .poll-result li dl dt { float: left; width: 50px; text-align: right; padding-right: 15px; }
+.topic .poll .poll-result li dl dt span { color: #aaa; }
+.topic .poll .poll-result li dl dd { float: left; width: 400px; }
+.topic .poll .poll-result li dl dd div { height: 5px; margin-top: 5px; background: #ccc; overflow: hidden; border-radius: 3px; box-shadow: 0 1px 0 #939393 inset; }
+.topic .poll .poll-result li.most dl dd div { color: #fff; background: #83DC5F; border-color: #83DC5F; box-shadow: 0 1px 0 #75C656 inset; border-radius: 3px; }
+
+.topic .poll .poll-total { color: #aaa; }
+
+/* Topic Photo */
+.topic.photo {  }
+.topic.photo .topic-photo-preview { position: relative; margin-bottom: 15px; cursor: pointer; }
+.topic.photo .topic-photo-preview img { vertical-align: top; }
+.topic.photo .topic-photo-preview .topic-photo-count { display: none; cursor: pointer; position: absolute; top: 5px; right: 5px; background: #000; color: #6bd24b; padding: 4px 7px; background: rgba(0,0,0,.6); }
+.topic.photo .topic-photo-preview .topic-photo-desc { display: none; width: 96%; padding: 7px 2%; position: absolute; bottom: 0; left: 0; background: #000; color: #6bd24b; color: #fff; line-height: 16px; background: rgba(0,0,0,.7); }
+
+.topic.photo .topic-photo-images { padding-top: 10px; margin-bottom: 15px; }
+.topic.photo .topic-photo-images h2 { border-bottom: 1px solid #ddd; padding-bottom: 4px; margin-bottom: 15px; }
+.topic.photo .topic-photo-images ul { overflow: hidden; zoom: 1; }
+.topic.photo .topic-photo-images ul li { float: left; margin: 0 9px 9px 0; position: relative; }
+.topic.photo .topic-photo-images ul li .image-number { display: none; position: absolute; top: 5px; right: 5px; background: #000; color: #6bd24b; padding: 1px 6px; font-size: 11px; background: rgba(0,0,0,.6); }
+.topic.photo .topic-photo-images ul li:hover .image-number { display: block; }
+.topic.photo .topic-photo-images ul li img { vertical-align: top; }
+.topic.photo .topic-photo-images .topic-photo-more { display: block; border-top: 1px solid #dbe6f0; text-align: center; padding: 10px 0; margin-bottom: 15px; text-decoration: none; background: #f3f7fa; color: #7b90a5; }
+.topic.photo .topic-photo-images .topic-photo-more:hover { background: #eaf2f8; }
+
+.topic-photo-upload { background: #fafafa; padding: 15px 15px 15px; margin-bottom: 20px; }
+.topic-photo-upload h2 { margin-bottom: 15px; }
+.topic-photo-upload ul { overflow: hidden; zoom: 1; }
+.topic-photo-upload ul li { min-height: 100px; _height: 100px; margin-bottom: 10px; padding-left: 110px; position: relative; }
+.topic-photo-upload ul li img { position: absolute; top: 0; left: 0; }
+.topic-photo-upload ul li label { color: #aaa; }
+.topic-photo-upload ul li textarea { border: 1px solid #ddd; width: 350px; height: 60px; padding: 3px; font-size: 12px; font-family: Arial, sans-serif; color: #333; }
+.topic-photo-upload ul li .image-delete { text-decoration: none; margin-right: 15px; }
+.topic-photo-upload ul li .image-delete:hover { color: #f00; }
+.topic-photo-upload ul li.marked-as-preview .mark-as-preview { display: inline; color: #43c70f; font-weight: bold; }
+.topic-photo-upload ul li .mark-as-preview { display: none; text-decoration: none; }
+.topic-photo-upload ul li:hover .mark-as-preview { display: inline; }
+.topic-photo-upload .topic-photo-upload-rules { color: #888; margin-bottom: 15px; }
+.topic-photo-upload .topic-photo-upload-input { margin-bottom: 20px; }
+.topic-photo-upload .topic-photo-upload-input input { margin-top: 3px; }
+
+#photoset-upload-form {
+	width: 270px; 
+	padding: 15px;
+	position: absolute;
+	top:70%;
+	display: none;
+	background-color: #fff; 
+	border: 1px solid #ccc; 
+	-moz-box-shadow: 0 0 10px #ddd;
+	-webkit-box-shadow: 0 0 10px #ddd;
+	box-shadow: 0 0 10px #ddd;
+}
+#photoset-upload-form p { margin-bottom: 10px; }
+#photoset-upload-form .input-text { width: 262px; border: 1px solid #ccc; margin: 0; padding: 3px; font-family: Arial, sans-serif; font-size: 12px; }/* Update button */
+.update { 
+	padding: 8px; 
+	float: right; 
+	position: fixed; 
+	top: 220px; 
+	right: 0; 
+	z-index: 100;
+	text-align: center; 
+	background: #FAFBFB; 
+	border-radius: 10px 0 0 10px;
+	border-top: 1px solid #eee; 
+	border-bottom: 1px solid #ddd; 
+	border-left: 1px solid #ddd; 
+	_position: absolute; 
+	_top: expression( eval(document.documentElement.scrollTop) + 220 +"px" ); 
+}
+.update .update-comments { width: 26px; height: 26px; cursor: pointer; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/update.gif) no-repeat; }
+.update .update-comments.active { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/update_act.gif) no-repeat; }
+.update .new-comments { border-top: 1px solid #ececed; color: #3cc600; padding-top: 7px; margin-top: 3px; cursor: pointer; }
+
+
+/* Comments */
+.comments { margin-bottom: 10px; }
+.comments .comment-wrapper { overflow: hidden; zoom: 1; position: relative; }
+.comments .comment-wrapper .comment-wrapper { padding-left: 25px; }
+
+.comment-preview { padding: 5px 10px; margin-bottom: 5px; background: #fafafa; overflow: hidden; zoom: 1; }
+.comments-header { padding-left: 20px; margin-bottom: 20px; }
+.comments-header h3 { font-size: 18px; font-family: Verdana, sans-serif; margin-bottom: 3px; }
+.comments-header a.rss { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat scroll -70px -247px transparent; margin-right: 20px; padding-left: 14px; }
+
+/* Comment */
+.comment { margin-bottom: 20px; position: relative; padding-left: 20px; zoom: 1; }
+.comment .deleted { padding: 5px 10px; color: #777; background: #f4f4f4; }
+.comment .folding { width: 10px; height: 10px; position: absolute; top: 14px; left: 4px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) -20px -210px no-repeat; cursor: pointer; }
+.comment .folding.folded { background-position: 0 -210px; }
+.comment .goto-comment-child { display: none; }
+.comment .voting { position: absolute; top: 5px; right: 0; width: 48px; height: 30px; }
+.comment .voting .plus { position: absolute; top: 0; left: 0; }
+.comment .voting .minus { position: absolute; top: 16px; left: 0; }
+.comment .voting .total { position: absolute; top: 4px; right: 0; font-weight: normal; color: #333; padding: 0; }
+.comment .voting.positive .total { color: #390; }
+.comment .voting.negative .total { color: #f00; }
+
+/* Comment Highlights */
+.comment .content, 						.comment .content:before					{ background-color: #f7f7f7; }
+.comment.deleted .content, 				.comment.deleted .content:before 			{ background-color: #c5c5c5; }
+.comment.deleted.not-admin .content, 	.comment.deleted.not-admin .content:before 	{ padding: 5px 10px; min-height: 0; background-color: #f7f7f7; color: #888; }
+.comment.self .content, 				.comment.self .content:before 				{ background-color: #fdf5e6; }
+.comment.new .content, 					.comment.new .content:before 				{ background-color: #e4fbf1; }
+.comment.current .content, 				.comment.current .content:before 			{ background-color: #cdf5a6; }
+
+/* Info Block */
+.comment .info { overflow: hidden; zoom: 1; font-size: 10px; line-height: 14px; margin-bottom: 5px; position: relative; padding: 12px 0 0 31px; }
+.comment .info li { float: left; margin-right: 10px; }
+.comment .info li.avatar { padding-top: 0; position: absolute; top: 0; left: 0; }
+.comment .info li.avatar img { vertical-align: top; }
+.comment .info li.username a { font-weight: bold; text-decoration: none; color: #333; font-size: 11px; line-height: 11px; position: absolute; top: -1px; left: 31px; }
+.comment .info li.date { color: #999; margin-right: 25px; }
+.comment .info li a.comment-link { float: left; width: 9px; height: 11px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) -10px -230px no-repeat; position: relative; top: 3px; }
+.comment .info li a.favourite { float: left; width: 10px; height: 8px; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) -40px -40px no-repeat; position: relative; top: 4px; }
+.comment .info li a.favourite.active { background-position: -50px -40px; }
+.comment .info li a.favourite:hover { background-position: -50px -40px; }
+.comment .info li a {  }
+
+/* Content */
+.comment .content { color: #000; margin: 0 30px 10px 0; border: 1px solid #DDDEDE; background: #f7f7f7; border-radius: 7px; padding: 8px 30px 9px 10px; position: relative; overflow: hidden; zoom: 1; }
+.comment .content:before { content: ""; position: absolute; bottom: -9px; left: 10px; width: 7px; height: 9px; background: #F7F7F7 url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/comment_arrow.png) 0 0 no-repeat; }
+.comment pre, .comment-preview pre { overflow: auto; width: 95%; padding: 5px 2%; margin-bottom: 10px; background: #f8f8f8 url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/code.gif); border: 1px solid #dce6f0; clear: both; }
+.comment blockquote, .comment-preview blockquote {font-style: italic; padding: 5px 10px; background: #ffffff; border: 1px solid #ddd;}
+
+/* Actions */
+.comment .actions { font-size: 11px; }
+.comment .actions a { text-decoration: none; }
+
+/* Comment List */
+.comments.comment-list .path { padding-bottom: 3px; font-size: 11px; font-weight: bold; color: #aaa; }
+.comments.comment-list .path .blog-name { color: #999; }
+.comments.comment-list .path .comments-total { color: #78C658; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/comment-total.gif) no-repeat 0 4px; padding-left: 10px; margin-left: 10px; font-weight: normal; text-decoration: none; }
+.comments.comment-list .comment { padding-left: 0; }
+
+/* Reply Form */
+.reply-area { padding-left: 20px; }
+
+.reply { padding-bottom: 10px; padding-top: 10px; }
+.reply .markItUp { width: 98%; }
+.reply .markItUpHeader { width: 98%; }
+.reply textarea { height: 100px; width: 98%; }
+.reply textarea.loader { background: #f7f7f7 url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/loader.gif) no-repeat center;}.block { padding: 15px 20px; background: #fff; margin-bottom: 15px; border: 1px solid #ddd; border-radius: 7px; box-shadow: 0 0 5px #eee; }
+.block h2 { font-size: 20px; font-family: Tahoma, sans-serif; }
+.block.nostyle { padding: 20px 25px; background: none; margin: 0px; border: none; box-shadow: none;}
+
+.block .bottom { padding-top: 5px; font-size: 11px; text-align: right; }
+.block .bottom a {  }
+
+.block .stream-settings-userlist ul, 
+.block .stream-settings-friends,
+.block .stream-settings-blogs { overflow: auto; max-height: 200px; _height: expression( this.scrollHeight > 200 ? "200px" : "auto" ); position: relative; }
+
+/* Contacts */
+.block.contacts img { padding: 7px; border: 1px solid #ccc; }
+.block.contacts ul { margin-top: 5px; }
+.block.contacts ul li { padding: 3px 0 3px 25px; }
+.block.contacts ul li.icq { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons-contacts.gif) no-repeat scroll 0px 2px; }
+.block.contacts ul li.jabber { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons-contacts.gif) no-repeat scroll 0px -23px; }
+.block.contacts ul li.skype { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons-contacts.gif) no-repeat scroll 0px -47px; margin-bottom: 10px; }
+.block.contacts ul li.lj { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons-contacts.gif) no-repeat scroll 0px -73px; }
+.block.contacts ul li.vk { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons-contacts.gif) no-repeat scroll 0px -99px; margin-bottom: 10px; }
+.block.contacts ul li.email { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons-contacts.gif) no-repeat scroll 0px -122px; }
+.block.contacts ul li.phone { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons-contacts.gif) no-repeat scroll 0px -145px; }
+
+/* Stream */
+.block.stream ul.list { border-top: 1px solid #eee; font-size: 11px; line-height: 16px; color: #999; }
+.block.stream ul.list li { padding: 5px 6px 6px; border-bottom: 1px solid #eee; }
+.block.stream ul.list li .user { font-weight: bold; color: #999; text-decoration: none; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) 0 -108px no-repeat; }
+.block.stream ul.list li .topic-title { color: #333; }
+.block.stream ul.list li .blog-title { color: #999; }
+.block.stream ul.list li .stream-comment-icon { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat 0 -146px; padding-left: 12px; zoom: 1; }
+.block.stream ul.list li .stream-topic-icon { background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/icons.gif) no-repeat 0 -188px; padding-left: 12px; zoom: 1; }
+.block.stream ul.list li span { color: #66B746; }
+.block.stream ul.list li.even { background: #F8F8F8; }
+
+/* Top Blogs */
+.block.blogs ul.list { border-top: 1px solid #eee; }
+.block.blogs ul.list li { padding: 5px 0 5px; border-bottom: 1px solid #eee; overflow: hidden; zoom: 1; }
+.block.blogs ul.list li a { color: #777; }
+.block.blogs ul.list li img { vertical-align: top; }
+.block.blogs ul.list li .rating { float: right; font-weight: bold; margin-left: 10px; }
+
+/* Tags */
+.block.tags { background: #F7F8F9; box-shadow: none; border-color: #EAEBEB; }
+
+.block .cloud { text-align: center; }
+.block .cloud li { display: inline; margin-right: 5px; line-height: 22px; }
+.block .cloud li a { text-decoration: none; white-space: nowrap; color: #8B8B8B; }
+.block .cloud li a:hover { color: #fff; background: #777; }
+.block .cloud li a.w1 { font-size: 12px; }
+.block .cloud li a.w2 { font-size: 12px; }
+.block .cloud li a.w3 { font-size: 14px; }
+.block .cloud li a.w4 { font-size: 14px; }
+.block .cloud li a.w5 { font-size: 18px; }
+.block .cloud li a.w6 { font-size: 18px; }
+.block .cloud li a.w7 { font-size: 20px; }
+.block .cloud li a.w8 { font-size: 20px; }
+.block .cloud li a.w9 { font-size: 22px; }
+.block .cloud li a.w10 { font-size: 22px; }
+
+/* Stream Settings */
+.block.stream-settings h2 { margin-bottom: 7px; }
+.block.stream-settings h3 { margin-bottom: 7px; }
+.block.stream-settings p.note { margin-bottom: 15px; color: #aaa; }
+.block.stream-settings input.input-checkbox { position: relative; top: 2px; margin: 0 2px 0 1px; }
+.block.stream-settings ul li { padding-bottom: 5px; }
+.block.stream-settings .stream-settings-filter { padding-bottom: 15px; margin: 0 0 15px 0; border-bottom: 1px solid #ddd; }
+.block.stream-settings .stream-settings-userlist { padding-bottom: 15px; margin: 0 0 15px 0; border-bottom: 1px solid #ddd; }
+.block.stream-settings .stream-settings-userlist p { margin-bottom: 10px; }
+.block.stream-settings .stream-settings-userlist p input { border: 1px solid #ccc; padding: 3px; margin-right: 5px; }
+.block.stream-settings .stream-settings-userlist p a { border-bottom: 1px dashed #70AAE0; text-decoration: none; }
+.block.stream-settings .stream-settings-userlist p a:hover { color: #555; border-color: #555; }
+.block.stream-settings .stream-settings-userlist li { padding-bottom: 5px; }/* jqModal base Styling courtesy of;
+	Brice Burgess <bhb@iceburg.net> */
+
+/* The Window's CSS z-index value is respected (takes priority). If none is supplied,
+	the Window's z-index value will be set to 3000 by default (via jqModal.js). */
+	
+.jqmWindow {
+    display: none;
+    
+    position: fixed;
+    top: 25%;
+    left: 50%;
+	z-index: 200;
+    
+    background-color: #fff;
+    color: #333;
+	border: 1px solid #777;
+    padding: 20px 25px 25px;
+
+	background: rgb(249,249,249);
+	background: -moz-linear-gradient(top, rgba(249,249,249,1) 0%, rgba(241,241,241,1) 50%, rgba(222,222,222,1) 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(249,249,249,1)), color-stop(50%,rgba(241,241,241,1)), color-stop(100%,rgba(222,222,222,1)));
+	background: -webkit-linear-gradient(top, rgba(249,249,249,1) 0%,rgba(241,241,241,1) 50%,rgba(222,222,222,1) 100%);
+	background: -o-linear-gradient(top, rgba(249,249,249,1) 0%,rgba(241,241,241,1) 50%,rgba(222,222,222,1) 100%);
+	background: -ms-linear-gradient(top, rgba(249,249,249,1) 0%,rgba(241,241,241,1) 50%,rgba(222,222,222,1) 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f9f9f9', endColorstr='#dedede',GradientType=0 );
+	background: linear-gradient(top, rgba(249,249,249,1) 0%,rgba(241,241,241,1) 50%,rgba(222,222,222,1) 100%); 
+	
+	border-radius: 10px;
+	overflow: hidden; 
+	zoom: 1;
+}
+.jqmWindow h3 { margin-bottom: 15px; color: #999; }
+.jqmWindow label { color: #777; }
+.jqmWindow .close { position: absolute; top: 5px; right: 5px; width: 14px; height: 14px; outline: none; background: url(http://we.easyelectronics.ru/templates/skin/new-jquery/images/close.png) no-repeat; }
+
+
+.jqmOverlay { background-color: #000; }
+
+/* Background iframe styling for IE6. Prevents ActiveX bleed-through (<select> form elements, etc.) */
+* iframe.jqm {position:absolute;top:0;left:0;z-index:-1;
+	width: expression(this.parentNode.offsetWidth+'px');
+	height: expression(this.parentNode.offsetHeight+'px');
+}
+
+/* Fixed posistioning emulation for IE6
+     Star selector used to hide definition from browsers other than IE6
+     For valid CSS, use a conditional include instead */
+* html .jqmWindow {
+     position: absolute;
+     top: expression((document.documentElement.scrollTop || document.body.scrollTop) + Math.round(17 * (document.documentElement.offsetHeight || document.body.clientHeight) / 100) + 'px');
+}#notifier { 
+	width: 250px; 
+	
+	position: fixed; 
+	top: 10px; 
+	right: 10px; 
+	
+	font-size: 12px;
+	z-index: 9999; 
+	
+	/* IE 6 Fix */
+	_position: absolute; 
+	_top: expression( eval(document.documentElement.scrollTop) + 10 +"px" );
+}
+
+#notifier .n-box { 
+	position: relative; 
+	
+	padding: 10px 15px 11px; 
+	margin-bottom: 10px;
+	
+	color: #fff; 
+	background: #000; 
+	
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	border-radius: 5px;
+	
+	cursor: pointer;
+}
+#notifier .n-box h3 { color: #fff; font-size: 14px; font-weight: bold; margin-bottom: 3px; }
+#notifier .n-box p { margin: 0; }
+
+#notifier .n-box.n-notice { background: #64DD49; color: #000; opacity: 0.95; }
+#notifier .n-box.n-notice h3 { color: #333; }
+#notifier .n-box.n-error { background: #BC0000; color: #fff; opacity: 0.8; }/*
+ * jQuery UI CSS Framework 1.8.14
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Theming/API
+ */
+
+/* Layout helpers
+----------------------------------*/
+.ui-helper-hidden { display: none; }
+.ui-helper-hidden-accessible { position: absolute !important; clip: rect(1px 1px 1px 1px); clip: rect(1px,1px,1px,1px); }
+.ui-helper-reset { margin: 0; padding: 0; border: 0; outline: 0; line-height: 1.3; text-decoration: none; font-size: 100%; list-style: none; }
+.ui-helper-clearfix:after { content: "."; display: block; height: 0; clear: both; visibility: hidden; }
+.ui-helper-clearfix { display: inline-block; }
+/* required comment for clearfix to work in Opera \*/
+* html .ui-helper-clearfix { height:1%; }
+.ui-helper-clearfix { display:block; }
+/* end clearfix */
+.ui-helper-zfix { width: 100%; height: 100%; top: 0; left: 0; position: absolute; opacity: 0; filter:Alpha(Opacity=0); }
+
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-disabled { cursor: default !important; }
+
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon { display: block; text-indent: -99999px; overflow: hidden; background-repeat: no-repeat; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.ui-widget-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }
+
+
+/*
+ * jQuery UI CSS Framework 1.8.14
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Theming/API
+ *
+ * To view and modify this theme, visit http://jqueryui.com/themeroller/?ffDefault=Verdana,Arial,sans-serif&fwDefault=normal&fsDefault=1.1em&cornerRadius=4px&bgColorHeader=cccccc&bgTextureHeader=03_highlight_soft.png&bgImgOpacityHeader=75&borderColorHeader=aaaaaa&fcHeader=222222&iconColorHeader=222222&bgColorContent=ffffff&bgTextureContent=01_flat.png&bgImgOpacityContent=75&borderColorContent=aaaaaa&fcContent=222222&iconColorContent=222222&bgColorDefault=e6e6e6&bgTextureDefault=02_glass.png&bgImgOpacityDefault=75&borderColorDefault=d3d3d3&fcDefault=555555&iconColorDefault=888888&bgColorHover=dadada&bgTextureHover=02_glass.png&bgImgOpacityHover=75&borderColorHover=999999&fcHover=212121&iconColorHover=454545&bgColorActive=ffffff&bgTextureActive=02_glass.png&bgImgOpacityActive=65&borderColorActive=aaaaaa&fcActive=212121&iconColorActive=454545&bgColorHighlight=fbf9ee&bgTextureHighlight=02_glass.png&bgImgOpacityHighlight=55&borderColorHighlight=fcefa1&fcHighlight=363636&iconColorHighlight=2e83ff&bgColorError=fef1ec&bgTextureError=02_glass.png&bgImgOpacityError=95&borderColorError=cd0a0a&fcError=cd0a0a&iconColorError=cd0a0a&bgColorOverlay=aaaaaa&bgTextureOverlay=01_flat.png&bgImgOpacityOverlay=0&opacityOverlay=30&bgColorShadow=aaaaaa&bgTextureShadow=01_flat.png&bgImgOpacityShadow=0&opacityShadow=30&thicknessShadow=8px&offsetTopShadow=-8px&offsetLeftShadow=-8px&cornerRadiusShadow=8px
+ */
+
+
+/* Component containers
+----------------------------------*/
+.ui-widget { font-family: Verdana,Arial,sans-serif; font-size: 1.1em; }
+.ui-widget .ui-widget { font-size: 1em; }
+.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button { font-family: Verdana,Arial,sans-serif; font-size: 1em; }
+.ui-widget-content { border: 1px solid #aaaaaa; background: #ffffff url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-bg_flat_75_ffffff_40x100.png) 50% 50% repeat-x; color: #222222; }
+.ui-widget-content a { color: #222222; }
+.ui-widget-header { border: 1px solid #aaaaaa; background: #cccccc url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-bg_highlight-soft_75_cccccc_1x100.png) 50% 50% repeat-x; color: #222222; font-weight: bold; }
+.ui-widget-header a { color: #222222; }
+
+/* Interaction states
+----------------------------------*/
+.ui-state-default, .ui-widget-content .ui-state-default, .ui-widget-header .ui-state-default { border: 1px solid #d3d3d3; background: #e6e6e6 url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-bg_glass_75_e6e6e6_1x400.png) 50% 50% repeat-x; font-weight: normal; color: #555555; }
+.ui-state-default a, .ui-state-default a:link, .ui-state-default a:visited { color: #555555; text-decoration: none; }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid #999999; background: #dadada url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-bg_glass_75_dadada_1x400.png) 50% 50% repeat-x; font-weight: normal; color: #212121; }
+.ui-state-hover a, .ui-state-hover a:hover { color: #212121; text-decoration: none; }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid #aaaaaa; background: #ffffff url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-bg_glass_65_ffffff_1x400.png) 50% 50% repeat-x; font-weight: normal; color: #212121; }
+.ui-state-active a, .ui-state-active a:link, .ui-state-active a:visited { color: #212121; text-decoration: none; }
+.ui-widget :active { outline: none; }
+
+/* Interaction Cues
+----------------------------------*/
+.ui-state-highlight, .ui-widget-content .ui-state-highlight, .ui-widget-header .ui-state-highlight  {border: 1px solid #fcefa1; background: #fbf9ee url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-bg_glass_55_fbf9ee_1x400.png) 50% 50% repeat-x; color: #363636; }
+.ui-state-highlight a, .ui-widget-content .ui-state-highlight a,.ui-widget-header .ui-state-highlight a { color: #363636; }
+.ui-state-error, .ui-widget-content .ui-state-error, .ui-widget-header .ui-state-error {border: 1px solid #cd0a0a; background: #fef1ec url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-bg_glass_95_fef1ec_1x400.png) 50% 50% repeat-x; color: #cd0a0a; }
+.ui-state-error a, .ui-widget-content .ui-state-error a, .ui-widget-header .ui-state-error a { color: #cd0a0a; }
+.ui-state-error-text, .ui-widget-content .ui-state-error-text, .ui-widget-header .ui-state-error-text { color: #cd0a0a; }
+.ui-priority-primary, .ui-widget-content .ui-priority-primary, .ui-widget-header .ui-priority-primary { font-weight: bold; }
+.ui-priority-secondary, .ui-widget-content .ui-priority-secondary,  .ui-widget-header .ui-priority-secondary { opacity: .7; filter:Alpha(Opacity=70); font-weight: normal; }
+.ui-state-disabled, .ui-widget-content .ui-state-disabled, .ui-widget-header .ui-state-disabled { opacity: .35; filter:Alpha(Opacity=35); background-image: none; }
+
+/* Icons
+----------------------------------*/
+
+/* states and images */
+.ui-icon { width: 16px; height: 16px; background-image: url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-icons_222222_256x240.png); }
+.ui-widget-content .ui-icon {background-image: url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-icons_222222_256x240.png); }
+.ui-widget-header .ui-icon {background-image: url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-icons_222222_256x240.png); }
+.ui-state-default .ui-icon { background-image: url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-icons_888888_256x240.png); }
+.ui-state-hover .ui-icon, .ui-state-focus .ui-icon {background-image: url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-icons_454545_256x240.png); }
+.ui-state-active .ui-icon {background-image: url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-icons_454545_256x240.png); }
+.ui-state-highlight .ui-icon {background-image: url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-icons_2e83ff_256x240.png); }
+.ui-state-error .ui-icon, .ui-state-error-text .ui-icon {background-image: url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-icons_cd0a0a_256x240.png); }
+
+/* positioning */
+.ui-icon-carat-1-n { background-position: 0 0; }
+.ui-icon-carat-1-ne { background-position: -16px 0; }
+.ui-icon-carat-1-e { background-position: -32px 0; }
+.ui-icon-carat-1-se { background-position: -48px 0; }
+.ui-icon-carat-1-s { background-position: -64px 0; }
+.ui-icon-carat-1-sw { background-position: -80px 0; }
+.ui-icon-carat-1-w { background-position: -96px 0; }
+.ui-icon-carat-1-nw { background-position: -112px 0; }
+.ui-icon-carat-2-n-s { background-position: -128px 0; }
+.ui-icon-carat-2-e-w { background-position: -144px 0; }
+.ui-icon-triangle-1-n { background-position: 0 -16px; }
+.ui-icon-triangle-1-ne { background-position: -16px -16px; }
+.ui-icon-triangle-1-e { background-position: -32px -16px; }
+.ui-icon-triangle-1-se { background-position: -48px -16px; }
+.ui-icon-triangle-1-s { background-position: -64px -16px; }
+.ui-icon-triangle-1-sw { background-position: -80px -16px; }
+.ui-icon-triangle-1-w { background-position: -96px -16px; }
+.ui-icon-triangle-1-nw { background-position: -112px -16px; }
+.ui-icon-triangle-2-n-s { background-position: -128px -16px; }
+.ui-icon-triangle-2-e-w { background-position: -144px -16px; }
+.ui-icon-arrow-1-n { background-position: 0 -32px; }
+.ui-icon-arrow-1-ne { background-position: -16px -32px; }
+.ui-icon-arrow-1-e { background-position: -32px -32px; }
+.ui-icon-arrow-1-se { background-position: -48px -32px; }
+.ui-icon-arrow-1-s { background-position: -64px -32px; }
+.ui-icon-arrow-1-sw { background-position: -80px -32px; }
+.ui-icon-arrow-1-w { background-position: -96px -32px; }
+.ui-icon-arrow-1-nw { background-position: -112px -32px; }
+.ui-icon-arrow-2-n-s { background-position: -128px -32px; }
+.ui-icon-arrow-2-ne-sw { background-position: -144px -32px; }
+.ui-icon-arrow-2-e-w { background-position: -160px -32px; }
+.ui-icon-arrow-2-se-nw { background-position: -176px -32px; }
+.ui-icon-arrowstop-1-n { background-position: -192px -32px; }
+.ui-icon-arrowstop-1-e { background-position: -208px -32px; }
+.ui-icon-arrowstop-1-s { background-position: -224px -32px; }
+.ui-icon-arrowstop-1-w { background-position: -240px -32px; }
+.ui-icon-arrowthick-1-n { background-position: 0 -48px; }
+.ui-icon-arrowthick-1-ne { background-position: -16px -48px; }
+.ui-icon-arrowthick-1-e { background-position: -32px -48px; }
+.ui-icon-arrowthick-1-se { background-position: -48px -48px; }
+.ui-icon-arrowthick-1-s { background-position: -64px -48px; }
+.ui-icon-arrowthick-1-sw { background-position: -80px -48px; }
+.ui-icon-arrowthick-1-w { background-position: -96px -48px; }
+.ui-icon-arrowthick-1-nw { background-position: -112px -48px; }
+.ui-icon-arrowthick-2-n-s { background-position: -128px -48px; }
+.ui-icon-arrowthick-2-ne-sw { background-position: -144px -48px; }
+.ui-icon-arrowthick-2-e-w { background-position: -160px -48px; }
+.ui-icon-arrowthick-2-se-nw { background-position: -176px -48px; }
+.ui-icon-arrowthickstop-1-n { background-position: -192px -48px; }
+.ui-icon-arrowthickstop-1-e { background-position: -208px -48px; }
+.ui-icon-arrowthickstop-1-s { background-position: -224px -48px; }
+.ui-icon-arrowthickstop-1-w { background-position: -240px -48px; }
+.ui-icon-arrowreturnthick-1-w { background-position: 0 -64px; }
+.ui-icon-arrowreturnthick-1-n { background-position: -16px -64px; }
+.ui-icon-arrowreturnthick-1-e { background-position: -32px -64px; }
+.ui-icon-arrowreturnthick-1-s { background-position: -48px -64px; }
+.ui-icon-arrowreturn-1-w { background-position: -64px -64px; }
+.ui-icon-arrowreturn-1-n { background-position: -80px -64px; }
+.ui-icon-arrowreturn-1-e { background-position: -96px -64px; }
+.ui-icon-arrowreturn-1-s { background-position: -112px -64px; }
+.ui-icon-arrowrefresh-1-w { background-position: -128px -64px; }
+.ui-icon-arrowrefresh-1-n { background-position: -144px -64px; }
+.ui-icon-arrowrefresh-1-e { background-position: -160px -64px; }
+.ui-icon-arrowrefresh-1-s { background-position: -176px -64px; }
+.ui-icon-arrow-4 { background-position: 0 -80px; }
+.ui-icon-arrow-4-diag { background-position: -16px -80px; }
+.ui-icon-extlink { background-position: -32px -80px; }
+.ui-icon-newwin { background-position: -48px -80px; }
+.ui-icon-refresh { background-position: -64px -80px; }
+.ui-icon-shuffle { background-position: -80px -80px; }
+.ui-icon-transfer-e-w { background-position: -96px -80px; }
+.ui-icon-transferthick-e-w { background-position: -112px -80px; }
+.ui-icon-folder-collapsed { background-position: 0 -96px; }
+.ui-icon-folder-open { background-position: -16px -96px; }
+.ui-icon-document { background-position: -32px -96px; }
+.ui-icon-document-b { background-position: -48px -96px; }
+.ui-icon-note { background-position: -64px -96px; }
+.ui-icon-mail-closed { background-position: -80px -96px; }
+.ui-icon-mail-open { background-position: -96px -96px; }
+.ui-icon-suitcase { background-position: -112px -96px; }
+.ui-icon-comment { background-position: -128px -96px; }
+.ui-icon-person { background-position: -144px -96px; }
+.ui-icon-print { background-position: -160px -96px; }
+.ui-icon-trash { background-position: -176px -96px; }
+.ui-icon-locked { background-position: -192px -96px; }
+.ui-icon-unlocked { background-position: -208px -96px; }
+.ui-icon-bookmark { background-position: -224px -96px; }
+.ui-icon-tag { background-position: -240px -96px; }
+.ui-icon-home { background-position: 0 -112px; }
+.ui-icon-flag { background-position: -16px -112px; }
+.ui-icon-calendar { background-position: -32px -112px; }
+.ui-icon-cart { background-position: -48px -112px; }
+.ui-icon-pencil { background-position: -64px -112px; }
+.ui-icon-clock { background-position: -80px -112px; }
+.ui-icon-disk { background-position: -96px -112px; }
+.ui-icon-calculator { background-position: -112px -112px; }
+.ui-icon-zoomin { background-position: -128px -112px; }
+.ui-icon-zoomout { background-position: -144px -112px; }
+.ui-icon-search { background-position: -160px -112px; }
+.ui-icon-wrench { background-position: -176px -112px; }
+.ui-icon-gear { background-position: -192px -112px; }
+.ui-icon-heart { background-position: -208px -112px; }
+.ui-icon-star { background-position: -224px -112px; }
+.ui-icon-link { background-position: -240px -112px; }
+.ui-icon-cancel { background-position: 0 -128px; }
+.ui-icon-plus { background-position: -16px -128px; }
+.ui-icon-plusthick { background-position: -32px -128px; }
+.ui-icon-minus { background-position: -48px -128px; }
+.ui-icon-minusthick { background-position: -64px -128px; }
+.ui-icon-close { background-position: -80px -128px; }
+.ui-icon-closethick { background-position: -96px -128px; }
+.ui-icon-key { background-position: -112px -128px; }
+.ui-icon-lightbulb { background-position: -128px -128px; }
+.ui-icon-scissors { background-position: -144px -128px; }
+.ui-icon-clipboard { background-position: -160px -128px; }
+.ui-icon-copy { background-position: -176px -128px; }
+.ui-icon-contact { background-position: -192px -128px; }
+.ui-icon-image { background-position: -208px -128px; }
+.ui-icon-video { background-position: -224px -128px; }
+.ui-icon-script { background-position: -240px -128px; }
+.ui-icon-alert { background-position: 0 -144px; }
+.ui-icon-info { background-position: -16px -144px; }
+.ui-icon-notice { background-position: -32px -144px; }
+.ui-icon-help { background-position: -48px -144px; }
+.ui-icon-check { background-position: -64px -144px; }
+.ui-icon-bullet { background-position: -80px -144px; }
+.ui-icon-radio-off { background-position: -96px -144px; }
+.ui-icon-radio-on { background-position: -112px -144px; }
+.ui-icon-pin-w { background-position: -128px -144px; }
+.ui-icon-pin-s { background-position: -144px -144px; }
+.ui-icon-play { background-position: 0 -160px; }
+.ui-icon-pause { background-position: -16px -160px; }
+.ui-icon-seek-next { background-position: -32px -160px; }
+.ui-icon-seek-prev { background-position: -48px -160px; }
+.ui-icon-seek-end { background-position: -64px -160px; }
+.ui-icon-seek-start { background-position: -80px -160px; }
+/* ui-icon-seek-first is deprecated, use ui-icon-seek-start instead */
+.ui-icon-seek-first { background-position: -80px -160px; }
+.ui-icon-stop { background-position: -96px -160px; }
+.ui-icon-eject { background-position: -112px -160px; }
+.ui-icon-volume-off { background-position: -128px -160px; }
+.ui-icon-volume-on { background-position: -144px -160px; }
+.ui-icon-power { background-position: 0 -176px; }
+.ui-icon-signal-diag { background-position: -16px -176px; }
+.ui-icon-signal { background-position: -32px -176px; }
+.ui-icon-battery-0 { background-position: -48px -176px; }
+.ui-icon-battery-1 { background-position: -64px -176px; }
+.ui-icon-battery-2 { background-position: -80px -176px; }
+.ui-icon-battery-3 { background-position: -96px -176px; }
+.ui-icon-circle-plus { background-position: 0 -192px; }
+.ui-icon-circle-minus { background-position: -16px -192px; }
+.ui-icon-circle-close { background-position: -32px -192px; }
+.ui-icon-circle-triangle-e { background-position: -48px -192px; }
+.ui-icon-circle-triangle-s { background-position: -64px -192px; }
+.ui-icon-circle-triangle-w { background-position: -80px -192px; }
+.ui-icon-circle-triangle-n { background-position: -96px -192px; }
+.ui-icon-circle-arrow-e { background-position: -112px -192px; }
+.ui-icon-circle-arrow-s { background-position: -128px -192px; }
+.ui-icon-circle-arrow-w { background-position: -144px -192px; }
+.ui-icon-circle-arrow-n { background-position: -160px -192px; }
+.ui-icon-circle-zoomin { background-position: -176px -192px; }
+.ui-icon-circle-zoomout { background-position: -192px -192px; }
+.ui-icon-circle-check { background-position: -208px -192px; }
+.ui-icon-circlesmall-plus { background-position: 0 -208px; }
+.ui-icon-circlesmall-minus { background-position: -16px -208px; }
+.ui-icon-circlesmall-close { background-position: -32px -208px; }
+.ui-icon-squaresmall-plus { background-position: -48px -208px; }
+.ui-icon-squaresmall-minus { background-position: -64px -208px; }
+.ui-icon-squaresmall-close { background-position: -80px -208px; }
+.ui-icon-grip-dotted-vertical { background-position: 0 -224px; }
+.ui-icon-grip-dotted-horizontal { background-position: -16px -224px; }
+.ui-icon-grip-solid-vertical { background-position: -32px -224px; }
+.ui-icon-grip-solid-horizontal { background-position: -48px -224px; }
+.ui-icon-gripsmall-diagonal-se { background-position: -64px -224px; }
+.ui-icon-grip-diagonal-se { background-position: -80px -224px; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Corner radius */
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl { -moz-border-radius-topleft: 4px; -webkit-border-top-left-radius: 4px; -khtml-border-top-left-radius: 4px; border-top-left-radius: 4px; }
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr { -moz-border-radius-topright: 4px; -webkit-border-top-right-radius: 4px; -khtml-border-top-right-radius: 4px; border-top-right-radius: 4px; }
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl { -moz-border-radius-bottomleft: 4px; -webkit-border-bottom-left-radius: 4px; -khtml-border-bottom-left-radius: 4px; border-bottom-left-radius: 4px; }
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br { -moz-border-radius-bottomright: 4px; -webkit-border-bottom-right-radius: 4px; -khtml-border-bottom-right-radius: 4px; border-bottom-right-radius: 4px; }
+
+/* Overlays */
+.ui-widget-overlay { background: #aaaaaa url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); }
+.ui-widget-shadow { margin: -8px 0 0 -8px; padding: 8px; background: #aaaaaa url(http://we.easyelectronics.ru/templates/skin/new-jquery/css/smoothness/images/ui-bg_flat_0_aaaaaa_40x100.png) 50% 50% repeat-x; opacity: .30;filter:Alpha(Opacity=30); -moz-border-radius: 8px; -khtml-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }/*
+ * jQuery UI Autocomplete 1.8.14
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Autocomplete#theming
+ */
+.ui-autocomplete { position: absolute; cursor: default; }	
+
+/* workarounds */
+* html .ui-autocomplete { width:1px; } /* without this, the menu expands to 100% in IE6 */
+
+/*
+ * jQuery UI Menu 1.8.14
+ *
+ * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Menu#theming
+ */
+.ui-menu {
+	list-style:none;
+	padding: 2px;
+	margin: 0;
+	display:block;
+	float: left;
+}
+.ui-menu .ui-menu {
+	margin-top: -3px;
+}
+.ui-menu .ui-menu-item {
+	margin:0;
+	padding: 0;
+	zoom: 1;
+	float: left;
+	clear: left;
+	width: 100%;
+}
+.ui-menu .ui-menu-item a {
+	text-decoration:none;
+	display:block;
+	padding:.2em .4em;
+	line-height:1.5;
+	zoom:1;
+}
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active {
+	font-weight: normal;
+	margin: -1px;
+}
+/*
+ * jQuery UI Datepicker 1.8.14
+ *
+ * Copyright 2011, AUTHORS.txt (http://jqueryui.com/about)
+ * Dual licensed under the MIT or GPL Version 2 licenses.
+ * http://jquery.org/license
+ *
+ * http://docs.jquery.com/UI/Datepicker#theming
+ */
+.ui-datepicker { width: 17em; padding: .2em .2em 0; display: none; }
+.ui-datepicker .ui-datepicker-header { position:relative; padding:.2em 0; }
+.ui-datepicker .ui-datepicker-prev, .ui-datepicker .ui-datepicker-next { position:absolute; top: 2px; width: 1.8em; height: 1.8em; }
+.ui-datepicker .ui-datepicker-prev-hover, .ui-datepicker .ui-datepicker-next-hover { top: 1px; }
+.ui-datepicker .ui-datepicker-prev { left:2px; }
+.ui-datepicker .ui-datepicker-next { right:2px; }
+.ui-datepicker .ui-datepicker-prev-hover { left:1px; }
+.ui-datepicker .ui-datepicker-next-hover { right:1px; }
+.ui-datepicker .ui-datepicker-prev span, .ui-datepicker .ui-datepicker-next span { display: block; position: absolute; left: 50%; margin-left: -8px; top: 50%; margin-top: -8px;  }
+.ui-datepicker .ui-datepicker-title { margin: 0 2.3em; line-height: 1.8em; text-align: center; }
+.ui-datepicker .ui-datepicker-title select { font-size:1em; margin:1px 0; }
+.ui-datepicker select.ui-datepicker-month-year {width: 100%;}
+.ui-datepicker select.ui-datepicker-month, 
+.ui-datepicker select.ui-datepicker-year { width: 49%;}
+.ui-datepicker table {width: 100%; font-size: .9em; border-collapse: collapse; margin:0 0 .4em; }
+.ui-datepicker th { padding: .7em .3em; text-align: center; font-weight: bold; border: 0;  }
+.ui-datepicker td { border: 0; padding: 1px; }
+.ui-datepicker td span, .ui-datepicker td a { display: block; padding: .2em; text-align: right; text-decoration: none; }
+.ui-datepicker .ui-datepicker-buttonpane { background-image: none; margin: .7em 0 0 0; padding:0 .2em; border-left: 0; border-right: 0; border-bottom: 0; }
+.ui-datepicker .ui-datepicker-buttonpane button { float: right; margin: .5em .2em .4em; cursor: pointer; padding: .2em .6em .3em .6em; width:auto; overflow:visible; }
+.ui-datepicker .ui-datepicker-buttonpane button.ui-datepicker-current { float:left; }
+
+/* with multiple calendars */
+.ui-datepicker.ui-datepicker-multi { width:auto; }
+.ui-datepicker-multi .ui-datepicker-group { float:left; }
+.ui-datepicker-multi .ui-datepicker-group table { width:95%; margin:0 auto .4em; }
+.ui-datepicker-multi-2 .ui-datepicker-group { width:50%; }
+.ui-datepicker-multi-3 .ui-datepicker-group { width:33.3%; }
+.ui-datepicker-multi-4 .ui-datepicker-group { width:25%; }
+.ui-datepicker-multi .ui-datepicker-group-last .ui-datepicker-header { border-left-width:0; }
+.ui-datepicker-multi .ui-datepicker-group-middle .ui-datepicker-header { border-left-width:0; }
+.ui-datepicker-multi .ui-datepicker-buttonpane { clear:left; }
+.ui-datepicker-row-break { clear:both; width:100%; font-size:0em; }
+
+/* RTL support */
+.ui-datepicker-rtl { direction: rtl; }
+.ui-datepicker-rtl .ui-datepicker-prev { right: 2px; left: auto; }
+.ui-datepicker-rtl .ui-datepicker-next { left: 2px; right: auto; }
+.ui-datepicker-rtl .ui-datepicker-prev:hover { right: 1px; left: auto; }
+.ui-datepicker-rtl .ui-datepicker-next:hover { left: 1px; right: auto; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane { clear:right; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane button { float: left; }
+.ui-datepicker-rtl .ui-datepicker-buttonpane button.ui-datepicker-current { float:right; }
+.ui-datepicker-rtl .ui-datepicker-group { float:right; }
+.ui-datepicker-rtl .ui-datepicker-group-last .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
+.ui-datepicker-rtl .ui-datepicker-group-middle .ui-datepicker-header { border-right-width:0; border-left-width:1px; }
+
+/* IE6 IFRAME FIX (taken from datepicker 1.5.3 */
+.ui-datepicker-cover {
+    display: none; /*sorry for IE5*/
+    display/**/: block; /*sorry for IE5*/
+    position: absolute; /*must have*/
+    z-index: -1; /*must have*/
+    filter: mask(); /*must have*/
+    top: -4px; /*must have*/
+    left: -4px; /*must have*/
+    width: 200px; /*must have*/
+    height: 200px; /*must have*/
+}

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!-- saved from url=(0067)http://www.eran.io/the-dot-factory-an-lcd-font-and-image-generator/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    
+    <title>The Dot Factory: An LCD Font and Image Generator</title>
+    <meta name="description" content="">
+
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="http://www.eran.io/assets/favicon.png?v=8c0930c351">
+
+    
+    <link rel="stylesheet" type="text/css" href="./The Dot Factory_ An LCD Font and Image Generator_files/screen.css">
+    <link href="./The Dot Factory_ An LCD Font and Image Generator_files/css" rel="stylesheet" type="text/css">
+
+    
+    <meta name="generator" content="Ghost 0.4">
+<link rel="alternate" type="application/rss+xml" title="eran.io" href="http://www.eran.io/rss/">
+<link rel="canonical" href="http://www.eran.io/the-dot-factory-an-lcd-font-and-image-generator/">
+
+    <link href="./The Dot Factory_ An LCD Font and Image Generator_files/font-awesome.css" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="./The Dot Factory_ An LCD Font and Image Generator_files/prism.css">
+
+    <script async="" src="./The Dot Factory_ An LCD Font and Image Generator_files/analytics.js.Без названия"></script><script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-4018862-4', 'auto');
+  ga('send', 'pageview');
+
+</script>
+
+<script type="text/javascript" async="" src="./The Dot Factory_ An LCD Font and Image Generator_files/embed.js.Без названия"></script><style id="fit-vids-style">.fluid-width-video-wrapper{width:100%;position:relative;padding:0;}.fluid-width-video-wrapper iframe,.fluid-width-video-wrapper object,.fluid-width-video-wrapper embed {position:absolute;top:0;left:0;width:100%;height:100%;}</style><link rel="preload" as="style" href="https://c.disquscdn.com/next/embed/styles/lounge.d49f53e192b9080ef8880a7c9b24f1c3.css"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/common.bundle.725e5c32c7072b4c17f23bf9fff6ac9a.js"><link rel="preload" as="script" href="https://c.disquscdn.com/next/embed/lounge.bundle.cc94b29f9dce7c0ab5182ca581ac27bb.js"><link rel="preload" as="script" href="https://disqus.com/next/config.js"></head>
+
+<body class="post-template tag-iot tag-tools" style="">
+
+    <div id="sidebar">
+        <div id="sidebar-content" class="inner">
+            <a class="blog-logo" href="http://www.eran.io/"><img src="./The Dot Factory_ An LCD Font and Image Generator_files/Brain-Spawn-1.png" alt="Blog Logo"></a>
+            <h2 class="blog-title"><a href="http://www.eran.io/">eran.io</a></h2>
+            <h3 class="blog-description">If only these articles existed before I became enraged enough to write them. A tech journal by Eran Duchan.</h3>
+
+            <div id="sidebar-links">
+                <ul id="sidebar-internal">
+                    <!-- For 'About' and other pages -->
+                </ul>
+                <ul id="sidebar-external">
+                    <li class="external-link"><a href="https://github.com/pavius"><i class="fa fa-github"></i> GitHub</a></li>
+<li class="external-link"><a href="https://www.linkedin.com/in/eranduchan"><i class="fa fa-linkedin"></i> LinkedIn</a></li>
+<li class="external-link"><a target="_blank" href="mailto:pavius@gmail.com"><i class="fa fa-envelope"></i> Contact</a></li>
+
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <section id="results"></section>
+        
+
+
+
+<article class="post tag-iot tag-tools">
+
+    
+    
+
+        <div class="post-meta">
+    <span class="post-time">
+        <i class="fa fa-calendar"></i>
+        <time datetime="2009-07-23" class="timeago">10 years ago</time>
+        <time datetime="2009-07-23" class="fulldate">July 23rd, 2009</time>
+    </span>
+    <span class="post-tags">
+        <i class="fa fa-tag"></i> <a href="http://www.eran.io/tag/iot/">IoT</a> · <a href="http://www.eran.io/tag/tools/">Tools</a>
+    </span>
+</div>
+
+
+        <h1 class="post-title">The Dot Factory: An LCD Font and Image Generator</h1>
+
+        <section class="post-content">
+            <p>The Dot Factory is a small open source tool (MIT licensed) intended to generate the required C language information to store many fonts and images, as efficiently as possible, on a microcontroller. These fonts are then uploaded via the LCD driver (see the Drivers and Modules page for a few) to the actual dot matrix LCD. It is written in C# for Visual Studio 2008 and has been tested on Windows XP, 2003, Vista, 7 and Linux via Mono.</p>
+
+<p>Working with dot matrix LCDs with microcontrollers, while not difficult, is tedious. The actual LCD controller allows us to upload simple visual data (dot on or dot off) into the LCD’s dot matrix, but not much else. It is up to our software to decide what to upload when we want to draw lines, circles and more importantly – text.</p>
+
+<p><img src="./The Dot Factory_ An LCD Font and Image Generator_files/main-screen005.png" alt="" class="full-img"></p>
+
+<p>While there are software graphic libraries that allow us to generate a character “on the fly” using vector graphics (the character is described as a series of drawing commands that allow scaling and decoration) – these are much too complex and large to integrate in a microcontroller environment. Consequently, we must store the exact appearance of a character as a series of 1s and 0s, equivalent to a “dot on” “dot off” on the LCD, and upload this as a bitmap when we want to display text. While it is possible to generate this manually, it is desired to have a tool to do our grunt work by converting windows fonts (given a size and decoration) into a series of bitmaps.</p>
+
+<h3 id="usingthedotfactory">Using The Dot Factory</h3>
+
+<p>TDF is comprised of two panes – the input pane on the left (what you want to generate) and the output pane on the right (the generated output, in C code). The input pane can accept either a font of your choice (for writing text to the LCD) or an image. When generating a font, you have the option of either generating all the available letters (by selecting “All” in the Insert Text box and clicking the plus button) or by typing in which letters, numbers or symbols you are actually using in your application (for example: 0123abcd). If you are writing a simple application that has only a few sentences, you can type them wholly in this box without fear of duplicating letters – TDF takes care of that by discarding any duplicates. This way only the letters you use will take up space.</p>
+
+<p>Once you have completed setting up what it is you’d like to generate (be it an image or font), select the output method in the output pane. If you are using the LCD drivers on this website, you want it to generate an MSb first output, otherwise images will come out wrong. If you have a compiler that supports the “0b” binary specifier, you can select “binary” rather than “hex”. This will allow you to visually see the pixels you will set and allow for manual touch up by the user without having to calculate hex and experimentation. Click generate and your C code will be outputted to the text box below. Copy paste this into your application (it is recommended to put this in a separate module, not your LCD driver module, for organizational reasons).</p>
+
+<p>Note that 5×7 and 5×8 fonts cannot be generated using this tool. While some TTF fonts can render characters this small they are usually distorted to the point of uselessness. You can download a ready made five by seven font <a href="http://www.eran.io/content/static/dot-factory/fiveBySevenFont.7z">here</a>. I ripped this font from text file a while ago, so apologies to the uncredited author.</p>
+
+<p>What does it generate? <br>
+For font generation, three entities are generated. <br>
+<img src="./The Dot Factory_ An LCD Font and Image Generator_files/howto.jpg" alt="" class="full-img"></p>
+
+<ul>
+<li>The character bitmap array: This holds the actual characters as a bitmap (only the characters selected in the input pane). Each byte represents a single vertical page sent to the LCD. All vertical padding is removed from the characters</li>
+<li>The character descriptor array: Allows O(1) mapping between a character’s ASCII value and required meta information about the character – namely its width in bits and its offset into the character bitmap array. When the LCD driver needs to find where character X is located in the bitmap array, it will jump to index [X - font.startCharacter] in the descriptor array. The startCharacter is the first character (that is, the character with the lowest ASCII value) used for this font. By defining a startCharacter we can reduce the number of elements in the descriptor array.</li>
+<li>The font information: This element is essentially the font descriptor for this font. It holds information regarding this font like the name of the character bitmap and descriptor arrays, the font start character and how many pixels wide a space character is for this font. The LCD driver will replace the space character with empty pixels (this saves both processing time, space in the character bitmap array and space in the character descriptor array – since the space is the first ASCII character and is commonly used).</li>
+</ul>
+
+<p>The generated structures are generated with documentation, but you may want to see a <a href="http://www.eran.io/content/static/dot-factory/bitmap_db.h">sample bitmapDb</a> header file for detailed info on the character descriptor array and font information structures. For image generation, only the image’s bitmap array and size descriptors are generated. Note that the height value is pixels (bits) and width values are in pages.</p>
+
+<h3 id="revisionhistory">Revision history</h3>
+
+<p>I usually release versions according to user demand. If you think TDF can use whatever feature, drop me a line. When enough users request something I invest the time to add it.</p>
+
+<ul>
+<li>Version 0.1.4 (2jun12): Support for “Column Major” mode where each byte represents a column rather than a row – contribution by Paul Ryland</li>
+<li>Version 0.1.3 (31mar12): Linux support with Mono – contribution by mru00</li>
+<li>Version 0.1.2 (29may11): Fixed width/height being swapped. Added support for configuring image descriptor format (bits/bytes). Thanks geo for the heads up and suggestion</li>
+<li>Version 0.1.1 (25may11): Added support for multiple descriptor arrays with a double lookup. Before this version TheDotFactory could generate Unicode characters but the lookup tables were usually too huge to be of any use. Using this feature, a double lookup is employed, allowing for fast lookups for characters residing at disparate ranges. See the video for an explanation (will be posted in the next few days). In addition to this, added support for specifying character ranges instead of inputing the actual characters. For example, &lt;&lt;100-120&gt;&gt; will generate characters for ASCII characters 100 to 120. Thanks a bunch to Archis Bhave for inputs and testing. Source is now distributed via github.</li>
+<li>Version 0.1.0 (15dec10): Added support to format the generated variable names (thanks SpiralBrain), added end character indication to font information (thanks Nick Jensen), added the ability to save to clipboard from File menu and added the ability to save the source/header to file via file menu (don’t remember who, but someone wondered why this wasn’t in. I personally think all fonts should be in a single module and so I opted for copy/paste, but to each his own)</li>
+<li>Version 0.0.9 (06jun10): Fixed a bug that prevents the space character from being generated (broken in 0.0.8 – thanks Thomas Kibalo)</li>
+<li>Version 0.0.8 (29may10): Fixed two unreported crashes (clicking generate without entering any text and when a newline existed in generated text), added the ability to copy the outputted text by using a context menu
+Version 0.0.7 (28may10): Added ability to select whether character descriptor array is to be created and which character will be used to visualize the font (thanks Christian Treczoks), syntax coloring automatically disabled when generating large amounts of text (will be fixed properly next version), properly handled bitmaps with no black pixels in them (displays error instead of a crash), some minor cosmetics  </li>
+<li>Version 0.0.6 (03mar10): Bug fix for image generation (tried to save a temporary file for debugging in a custom directory) – thanks to Nir Shemeshfor pointhing this out!</li>
+<li>Version 0.0.5 (23dec09): Added support for rotation (90 degree increments), space character generation, width (bit/byte) selection of character width and font height, optional generation of character height/width and font height, structures are now generated with documention, input text and font is persisted throughout invokations of the application, persistent preset management – add, edit, delete output configuration presets</li>
+<li>Version 0.0.4 (31jul09): Added a space to end of comments in the char descriptor array to prevent preprocessor misinterpreting ‘\’ as a newline</li>
+<li>Version 0.0.3 (30jul09): Added output configuration: hex/binary, MSb First/LSb first, configurable padding removal, comment control, flip X/Y and more</li>
+<li>Version 0.0.2 (28jul09): Vista support</li>
+<li>Version 0.0.1 (25jul09): Initial release (flip not supported, output format not supported, not tested on Vista)</li>
+</ul>
+
+<h3 id="download">Download</h3>
+
+<p>To run this executable, you must have the .NET framework installed. The stable binary has been in the wild for a month at least with no major bugs reported. Non stable binary contains new features and bug fixes (see revision history).</p>
+
+<ul>
+<li><a href="http://www.eran.io/content/static/dot-factory/TheDotFactory-0.1.4.7z">Latest binary (0.1.4)</a>: Windows 7/Vista/XP/2003, requires .NET framework 3.5</li>
+</ul>
+
+<p>Up to date source can be found <a href="https://github.com/pavius/the-dot-factory">at Github</a>.</p>
+        </section>
+
+        <footer class="post-footer">
+
+            <section class="author">
+                <div class="author-image">
+                     <img src="./The Dot Factory_ An LCD Font and Image Generator_files/eran-duchan.jpg" alt="Eran Duchan"> 
+                </div>
+                <div class="author-text">
+                    <h4>Eran Duchan</h4>
+                    <p>Big scale stuff is my comfort zone. Custom hardware, embedded software, front-end, back-end - it doesn't matter. With my hands always in the dirt, projects consistently happen when I work on them.</p>
+                    <div class="author-meta clearfix">
+                        <p>Tel Aviv, Israel</p>
+                        
+                    </div>
+                </div>
+            </section>
+
+            <section class="share">
+                <h4>Share this post</h4>
+                <div class="share-icons">
+                    <a class="fa fa-twitter-square" href="https://twitter.com/share?text=The%20Dot%20Factory%3A%20An%20LCD%20Font%20and%20Image%20Generator&amp;url=http://www.eran.io/the-dot-factory-an-lcd-font-and-image-generator/" onclick="window.open(this.href, &#39;twitter-share&#39;, &#39;width=550,height=235&#39;);return false;">
+                        <span class="hidden">Twitter</span>
+                    </a>
+                    <a class="fa fa-facebook-square" href="https://www.facebook.com/sharer/sharer.php?u=http://www.eran.io/the-dot-factory-an-lcd-font-and-image-generator/" onclick="window.open(this.href, &#39;facebook-share&#39;,&#39;width=580,height=296&#39;);return false;">
+                        <span class="hidden">Facebook</span>
+                    </a>
+                    <a class="fa fa-google-plus-square" href="https://plus.google.com/share?url=http://www.eran.io/the-dot-factory-an-lcd-font-and-image-generator/" onclick="window.open(this.href, &#39;google-plus-share&#39;, &#39;width=490,height=530&#39;);return false;">
+                        <span class="hidden">Google+</span>
+                    </a>
+                </div>
+            </section>
+
+        </footer>
+
+        <section class="post-comments">
+            <div id="disqus_thread"><iframe id="dsq-app2799" name="dsq-app2799" allowtransparency="true" frameborder="0" scrolling="no" tabindex="0" title="Disqus" width="100%" src="./The Dot Factory_ An LCD Font and Image Generator_files/saved_resource.html" style="width: 1px !important; min-width: 100% !important; border: none !important; overflow: hidden !important; height: 8713px !important;" horizontalscrolling="no" verticalscrolling="no"></iframe></div>
+            <script type="text/javascript">
+                /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+                var disqus_shortname = 'eranio'; // required: replace example with your forum shortname
+
+
+                /* * * DON'T EDIT BELOW THIS LINE * * */
+                (function() {
+                    var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+                    dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+                    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+                })();
+            </script>
+            <noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+            
+        </section>
+
+    
+
+</article>
+    </main>
+
+    
+    <script src="./The Dot Factory_ An LCD Font and Image Generator_files/jquery.js.Без названия"></script>
+
+    <script type="text/javascript" src="./The Dot Factory_ An LCD Font and Image Generator_files/jquery.fitvids.js.Без названия"></script>
+    <script type="text/javascript" src="./The Dot Factory_ An LCD Font and Image Generator_files/index.js.Без названия"></script>
+    <script type="text/javascript" src="./The Dot Factory_ An LCD Font and Image Generator_files/prism.js.Без названия"></script>
+
+    <script src="./The Dot Factory_ An LCD Font and Image Generator_files/jquery.ghostHunter.min.js.Без названия"></script>
+    <script>
+        $("#search-field").ghostHunter({
+            results : "#results",
+            onKeyUp : true,
+            zeroResultsInfo : false
+        });
+    </script>
+
+
+
+<iframe style="display: none;" src="./The Dot Factory_ An LCD Font and Image Generator_files/saved_resource(1).html"></iframe></body></html>
