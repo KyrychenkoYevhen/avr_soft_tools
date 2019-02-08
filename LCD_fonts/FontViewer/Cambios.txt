@@ -1,0 +1,144 @@
+Version 3.86
+------------
+- Ahora se pueden copiar los archivos asociados a una fuente instalada a una carpeta tambien desde
+  la ventana de la lista de fuentes.
+- Hechos algunos pequeños ajustes en las operaciones de copiar/mover archivos de fuente.
+- Algunos otros pequeños cambios y correcciones.
+
+Version 3.85
+------------
+- Añadida la opción de de exportar la lista de categorias a una carpeta.
+- Añadida la opción de copiar los archivos asociados a una fuente instalada a una carpeta.
+- Las categorias son ahora guardadas en el perfil de cada usuario de Windows, de manera de cada
+  usuario puede tener su propia lista de categorias. Esto soluciona tambien el problema que
+  impedia a usuarios limitados guardar las categorias.
+- Algunos otros pequeños cambios y correcciones.
+
+Version 3.82
+------------
+- Corregido: Al desinstalar una fuente, si estaba marcada la opción de hacer una copia, el programa
+  preguntaba por la carpeta de destino en vez de usar la que esta marcada en las opciones.
+- Corregido: Algunas de las ventanas del programa no eran reescaladas correctamente cuando Windows
+  esta configurado para usar DPI altos (fuentes grandes).
+- Algunos otros pequeños cambios y correcciones.
+
+Version 3.81
+------------
+- Corregido: Al imprimir una lista de fuentes el nombre de la fuente aparece siempre como texto de
+  ejemplo.
+- Corregido: El texto de ejemplo por defecto aparece siempre al iniciar el programa incluso si se
+  ha cambiado en las opciones.
+- Corregido: El texto de ejemplo desaparece cuando se cambia a la ventana de lista de fuentes.
+- Corregido: El programa no puede ser minimizado al ver una lista de fuentes no instaladas.
+- Algunos otros pequeños cambios y correcciones.
+
+Version 3.80
+------------
+- La lista con fuentes no instaladas ahora puede ser impresa desde la ventana "Ver carpeta".
+- Opcion de hacer una copia de los archivos de fuente antes de desinstalar (borrar) una fuente.
+- Añadidas opciones para copiar y renombrar los archivos de fuentes no instaladas.
+- Ahora se pueden borrar/mover/copiar todas las fuentes seleccionadas de una vez desde la ventana
+  "Ver lista de fuentes".
+- Ahora se pueden instalar fuentes temporalmente desde la ventana "Ver carpeta"
+- Añadidos varios menús contextuales.
+- Mejor deteccion y tratamiento de fuentes no soportadas (por ejemplo, fuentes de bitmap)
+- La ventana de impresion ahora permente seleccionar entre centímetros y puldas para los margenes.
+- La previsualizacion de carpetas con fuentes ahora puede ser cancelada (para carpetas con muchas
+  fuentes puede ser una operación muy larga)
+- La barra de estado muestra ahora los caracteres del texto seleccionado en el cuadro de ejemplo
+  (util para fuentes de símbolos).
+- Algunos otros pequeños cambios y correcciones.
+
+Version 3.70
+------------
+- Añadido soporte para fuentes Type 1 (*.pfm & *.pfb) (Windows 2000/XP requerido).
+- Mejorado el soporte para fuentes TrueType.
+- Añdida mas informacion sobre la fuente en las pestañas Fuentes instaladas y
+  Fuentes no instaladas.
+- Ahora se puede ver un ejemplo de la fuente seleccionada en la ventana Organizar
+  categorias.
+- Las fuentes son borradas a la Papelera de reciclaje por defecto (se puede desactivar
+  en las opciones).
+- Añadida la opción de borrar fuentes marcadas como sólo lectura (como las copiadas
+  desde un CD).
+- Corregido: El manejo incorrecto de ciertas fuentes causaba que el programa terminara
+  súbitamente.
+- Algunos otros pequeños cambios y correcciones.
+
+Version 3.61
+------------
+- Corregido: El programa arranca ahora correctamente cuando no hay ninguna impresora
+  instalada.
+
+Version 3.60
+------------
+- Soporte completo para Temas de Escritorio de Windows XP (usando
+  Windows XP Theme Manager by Mike Lischke).
+- Los textos de ejemplo por defecto son ahora configurables.
+- El programa puede manejar ahora fuentes PostScript OpenType (*.otf).
+- Añadidos el Escritorio y Mis documentos al arbol de carpetas de la
+  solapa "Fuentes no instaladas".
+- Arreglado: Mover y borrar fuentes no instaladas desde la ventana Ver
+  Carpeta funcionan ahora con las fuentes seleccionadas en vez de solo
+  con la fuente actual.
+- Arreglado: Imprimir la lista de fuentes funciona ahora con "cero"
+  columnas selecionadas.
+- Algunos otros pequeños cambios y correcciones.
+
+Versión 3.50
+------------
+- El código para gestionar fuentes ha sido reescrito, ahora es mas
+  escalable y estable.
+- Añadida una opcion para importar archivos de categorias (*.LST).
+- Mejoradas las opciones de busqueda de fuentes.
+- La opción de mostrar caracteres ASCII ha sido mejorada para mostrar
+  caracteres ANSI (32-255 en vez de 32-128).
+- Nuevo acceso directo de teclado para intercambiar ventanas (F2).
+- Las fuentes de símbolos son mostradas ahora correctamente en Windows
+  2000/XP.
+- Arreglado un fallo que evitaba que se mostraran algunos iconos en el
+  cuadro de seleccion de carpeta. Además, ahora se guarda el ultimo
+  directorio usado para otras sesiones.
+- Arreglado el problema de fallos ocasionales en el borrado de fuentes.
+- Algunos otros pequeños cambios y correcciones.
+
+Versión 3.0
+-----------
+- Interfaz mejorado: Las ventanas de fuentes instaladas y no instaladas
+  son ahora una sola ventana con dos solapas. También ahora, la ventana
+  principal puede cambiada de tamaño.
+- Añadida la opción de borrar fuentes instaladas.
+- Añadida la opción de instalar fuentes temporalmente.
+- Mas opciones para el manejo de categorías: combinar categorias,
+  mostrar fuentes sin categoría, buscar fuentes en categorías.
+- Nuevas opciones de manejo de archivos para las fuentes no instaladas:
+  Borrar los archivos de fuente o moverlos a una carpeta.
+- Arreglados varias fallos en la rutina de instalación de fuentes.
+- Arreglados algunos otros pequeños fallos.
+
+Versión 2.55
+------------
+- Arreglado un bug con la opcion de Configurar impresora
+- Arreglados algunos errores de lenguaje.
+- Añadida la opcion de ver el contenido de un directorio y las fuentes
+  instaladas al mismo tiempo.
+
+Versión 2.50
+------------
+- Arreglados algunos fallos en la instalación de fuentes.
+- Opción de organizar las fuentes en categorías.
+- Opción de seleccionar las fuentes a imprimir en vez de imprimir todas.
+- Opción de seleccionar las fuentes a instalar en vez de instalar todas
+  las fuentes del directorio.
+- Mejor soporte para Windows NT.
+- Arreglados algunos pequeños fallos.
+- Añadido un fichero Leeme con información y sugerencias.
+
+Versión 2.35 beta
+-----------------
+- Arreglados algunos errores de lenguage.
+- Añadidas teclas rápidas standard para usuarios ingleses.
+
+Versión 2.30 beta
+-----------------
+- Primera versión publicada en Internet.

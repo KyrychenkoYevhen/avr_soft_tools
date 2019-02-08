@@ -1,0 +1,130 @@
+Version 3.86
+------------
+- Now you can copy the files associated with installed fonts to a folder also from the font
+  list window.
+- Made some minor adjustments in the font file copy/move operations.
+- Some other minor changes and fixes.
+
+Version 3.85
+------------
+- Added the option of exporting the list of categories to a folder.
+- Added the option of copying the files associated with an installed font to a folder.
+- The categories are now stored in each Windows user profile, so each user can have this own set of
+  categories. This fix also the problem that prevented limited users to save categories.
+- Some other minor changes and fixes.
+
+Version 3.82
+------------
+- Fixed: When uninstalling a font, if the option of making a copy of the font file was checked,
+  the program asked for a destination folder instead of using the one selected in the options.
+- Fixed: Some of the application windows were not properly scaled when Windows is configured to
+  use high DPI settings (large fonts).
+- Some other minor changes and fixes.
+
+Version 3.81
+------------
+- Fixed: When printing a list of fonts the name of the font appeared always as the sample text.
+- Fixed: The default sample always appear at program start even if it's changed in the options.
+- Fixed: The sample text disappear when you change to the font list window.
+- Fixed: The application couldn't be minimized when viewing a list of not installed fonts.
+- Some other minor changes and fixes.
+
+Version 3.80
+------------
+- The list of not installed fonts can be printed now from the "View folder" window.
+- Option of make a copy of the font files before uninstalling (deleting) a font.
+- Added options for coping and renaming not installed font files.
+- Now you can delete/move/copy the selected fonts at once from the "View font list" window.
+- Now you can install fonts temporarily from the "View folder" window.
+- Added several context menus.
+- Better detection and handling of unsupported fonts (e.g. bitmap fonts).
+- The printer dialog now allows selecting between centimeters and inches for margin settings.
+- The preview of the fonts of a folder can be aborted now (for folders with many fonts it can
+  be a lengthy operation).
+- The status bar now shows the characters of the selected text of the sample box
+  (useful for symbolic fonts).
+- Some other minor changes and fixes.
+
+Version 3.70
+------------
+- Added support for Type 1 (*.pfm & *.pfb) fonts (Windows 2000/XP required).
+- Improved support for TrueType fonts.
+- Added more font information to the Installed fonts and Non installed fonts tabs.
+- Now you can view a font sample of the selected font in the Organize categories window.
+- The fonts are deleted to the Recycle Bin by default (it can be disabled in the options).
+- Added an option for deleting fonts marked as read-only (like the ones copied from CD's).
+- Fix: Improper handling of some fonts caused the program to terminate abruptly.
+- Some other minor changes and fixes.
+
+Version 3.61
+------------
+- Fix: The program now starts properly when there is no printer installed.
+
+Version 3.60
+------------
+- Full support of Windows XP Desktop Themes (using Windows XP Theme
+  Manager by Mike Lischke).
+- The default sample texts are now configurable.
+- The program can handle now PostScript OpenType (*.otf) fonts.
+- Added the Desktop and My Documents to the folder tree of the "Not
+  installed fonts" tab.
+- Fix: Moving and deleting not installed font files from the View Folder
+  window works now with the selected fonts instead of only with the
+  current font.
+- Fix: Printing the font list works now with "zero" columns selected.
+- Some other minor changes and fixes.
+
+Version 3.50
+------------
+- The code for managing fonts have been rewrited, now it is more
+  scalable and stable.
+- Added an option for importing categories files (*.LST).
+- Improved find font options.
+- The option of show ASCII characters has been updated to show ANSI
+  characters (32-255 instead of 32-128).
+- New keyboard shortcut for interchange windows (F2).
+- The symbol fonts are now shown properly in Windows 2000/XP.
+- Fixed a bug that prevent displaying some icons in the folder selection
+  box. Also, now the last directory used is saved for future sessions.
+- Fixed the problem of occasional fails in the deletion of font files.
+- Some other minor changes and fixes.
+
+Version 3.0
+-----------
+- Improved interface: The windows for installed and not installed fonts
+  are now a unique window with two tabs. Also, the main window can now
+  be resized.
+- Added an option for deleting installed fonts.
+- Added an option for installing fonts temporally.
+- More options for categories management: combine categories, show fonts with
+  no category, search font in categories.
+- Some new file management options for the not installed fonts: delete font
+  files or move them to a folder.
+- Fixed several bugs in the font installation routine.
+- Fixed some other minor bugs.
+
+Version 2.55
+------------
+- Fixed a bug with the Configure printer option.
+- Fixed some language mistakes.
+- Added option to view directory contents and installed fonts at the same time
+
+Version 2.50
+------------
+- Fixed some bugs in the installation of fonts.
+- Option of organize the fonts in categories.
+- Option to select the fonts to print instead of print all fonts.
+- Option to select the fonts to install instead of install all fonts in
+  the directory.
+- Better support for Windows NT.
+- Fixed some minor bugs.
+- Added a Readme file with information and tips.
+
+Version 2.35 beta
+-----------------
+- Fixed some language mistakes.
+- Added standard key shortcuts for English users.
+
+Version 2.30 beta
+-----------------
+- First version published in Internet.
