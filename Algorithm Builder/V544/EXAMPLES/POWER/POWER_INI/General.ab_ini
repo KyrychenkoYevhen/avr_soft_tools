@@ -80,10 +80,10 @@ Deceleration=0
 [Control]
 Read only=0
 [MainWindow]
-Left=0
-Top=0
-Width=1920
-Height=1056
+Left=-8
+Top=-8
+Width=1456
+Height=876
 [Pages]
 Page1=Ctrl.alg
 Page2=Status.alg
