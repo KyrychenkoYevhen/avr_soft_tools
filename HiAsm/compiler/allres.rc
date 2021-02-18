@@ -1,8 +1,4 @@
 ICON0 ICON ICON0.ico
-STREAM0 100 STREAM0.dat
-STREAM1 100 STREAM1.dat
-STREAM2 100 STREAM2.dat
-STREAM3 100 STREAM3.dat
 BITMAP0 BITMAP BITMAP0.bmp
 BITMAP1 BITMAP BITMAP1.bmp
 BITMAP2 BITMAP BITMAP2.bmp
@@ -10,29 +6,6 @@ BITMAP3 BITMAP BITMAP3.bmp
 BITMAP4 BITMAP BITMAP4.bmp
 BITMAP5 BITMAP BITMAP5.bmp
 BITMAP6 BITMAP BITMAP6.bmp
-BITMAP7 BITMAP BITMAP7.bmp
-BITMAP8 BITMAP BITMAP8.bmp
-BITMAP9 BITMAP BITMAP9.bmp
-BITMAP10 BITMAP BITMAP10.bmp
-BITMAP11 BITMAP BITMAP11.bmp
-BITMAP12 BITMAP BITMAP12.bmp
-BITMAP13 BITMAP BITMAP13.bmp
-BITMAP14 BITMAP BITMAP14.bmp
-BITMAP15 BITMAP BITMAP15.bmp
-BITMAP16 BITMAP BITMAP16.bmp
-BITMAP17 BITMAP BITMAP17.bmp
-BITMAP18 BITMAP BITMAP18.bmp
-BITMAP19 BITMAP BITMAP19.bmp
-BITMAP20 BITMAP BITMAP20.bmp
-BITMAP21 BITMAP BITMAP21.bmp
-BITMAP22 BITMAP BITMAP22.bmp
-BITMAP23 BITMAP BITMAP23.bmp
-BITMAP24 BITMAP BITMAP24.bmp
-BITMAP25 BITMAP BITMAP25.bmp
-BITMAP26 BITMAP BITMAP26.bmp
-BITMAP27 BITMAP BITMAP27.bmp
-BITMAP28 BITMAP BITMAP28.bmp
-BITMAP29 BITMAP BITMAP29.bmp
 1 VERSIONINFO
  FILEVERSION 1,0,0,1
  PRODUCTVERSION 1,0,0,1
@@ -45,13 +18,13 @@ BEGIN
     BEGIN
         BLOCK "041904b0"
         BEGIN
-            VALUE "FileDescription", "AVRdude HEX-file uploader shell"
-            VALUE "FileVersion", "3.0"
-            VALUE "InternalName", "gcUploader"
+            VALUE "FileDescription", "tetstterminal"
+            VALUE "FileVersion", "1.0"
+            VALUE "InternalName", ""
             VALUE "LegalCopyright", "Copyright (C) 2007"
-            VALUE "OriginalFilename", "gcUploader"
-            VALUE "ProductName", "gcUploader"
-            VALUE "ProductVersion", "3.0"
+            VALUE "OriginalFilename", "stepper_test"
+            VALUE "ProductName", ""
+            VALUE "ProductVersion", "1.0"
             VALUE "E-mail", "getchipblog@gmail.com"
         END
     END
