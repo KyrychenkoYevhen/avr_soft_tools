@@ -1,0 +1,244 @@
+Make(delphi)
+ver(4.05 build 186)
+Add(MainForm,6723529,70,462)
+{
+ Width=511
+ Height=444
+ Caption="ColorInCells_MtStrTbl"
+ Position=1
+ link(onCreate,5210249:doEnum,[(114,482)(114,468)])
+}
+Add(MTStrTbl,342579,98,294)
+{
+ Left=40
+ Top=70
+ Width=420
+ Height=320
+ Name="myTable"
+ Columns=#8:Название|3:Вес|10:Количество|9:Позиция Х|9:Позиция Y|
+ ColorItems=0
+ Grid=0
+ DrawManager="draw"
+ Point(ItemAtPos)
+ link(onClick,3633074:doAdd,[])
+ link(FormatCell,13332854:GetData,[])
+}
+Add(MST_RowAction,10435767,210,399)
+{
+ MSTControl="myTable"
+}
+Add(StrList,3112473,112,399)
+{
+ Strings=#18:Стол;12,3;1;123;12|19:Диван;34,7;1;200;20|17:Ваза;3,4;1;221;15|19:Тарелка;0,3;1;31;12|17:Стул;7,4;1;150;23|20:Цветок;0,45;5;225;15|18:Ковер;12,2;1;12;12|
+}
+Add(ArrayEnum,5210249,126,462)
+{
+ link(onItem,1965424:doMT,[(163,468)(163,412)])
+ link(onEndEnum,11945622:doCalc,[])
+ link(Array,3112473:Array,[])
+}
+Add(MT_String,1965424,168,399)
+{
+ link(onResult,10435767:doRowAction,[])
+}
+Add(EventFromData,13332854,112,196)
+{
+ link(onEvent,6289078:doValue,[])
+}
+Add(RedrawManager,11201372,651,308)
+{
+ ControlManager="myTable"
+}
+Add(MatrixRW,3249515,469,357)
+{
+ link(Matrix,14374875:Var3,[(475,173)])
+ link(X,2567468:Value2,[])
+ link(Y,2567468:Value1,[(496,345)(482,345)])
+}
+Add(Hub,3975851,623,301)
+{
+ link(onEvent1,3249515:doWrite,[(698,307)(698,400)(457,400)(457,370)])
+ link(onEvent2,11201372:doRedraw,[])
+}
+Add(MT_MultiMem,2567468,476,301)
+{
+ Point(Data)
+ link(onData,3231102:doNumber,[])
+ link(Data,6221645:Var3,[(482,273)])
+}
+Add(MatrixRW,5346286,196,196)
+{
+ link(onRead,13332854:doData,[(236,202)(236,165)(104,165)(104,202)])
+ link(Matrix,14374875:Var1,[(202,173)])
+ link(X,6289078:Value2,[(216,183)(247,183)(247,234)(167,234)])
+ link(Y,6289078:Value1,[(223,192)(240,192)(240,241)(160,241)])
+}
+Add(MST_DrawManager,10020943,49,294)
+{
+ Name="draw"
+ SingleString=0
+ TabGrid=0
+ TabGridFrame=0
+ GutterStyle=1
+ LightTextSel=1
+ StyleGrid3D=1
+ ColorRowSel=0
+ FrameColor=-16777211
+ BkFrameColor=-16777201
+ GutterColor=-16777211
+}
+Add(MT_MultiMem,6289078,154,196)
+{
+ From=1
+ link(onData,5346286:doRead,[])
+}
+Add(GetDataEx,14374875,357,168)
+{
+ link(Data,13338805:Matrix,[])
+}
+Add(FontBox,8518274,588,210)
+{
+ Left=245
+ Top=15
+ Width=145
+ Height=24
+ SelFont="MS Sans Serif"
+}
+Add(ColorBox,11097918,581,168)
+{
+ Left=145
+ Top=15
+ Width=95
+ Height=24
+ DefColor=255
+}
+Add(Edit,13163071,595,245)
+{
+ Left=400
+ Top=15
+ Text="8"
+ DataType=2
+}
+Add(FormatStr,2969162,574,301)
+{
+ DataCount=5
+ Mask="%1,%2,%3,%4,%5"
+ Point(FString)
+ link(onFString,3975851:doEvent1,[])
+ link(Str1,11254634:CurrentColor,[])
+ link(Str2,11097918:CurrentColor,[])
+ link(Str3,8518274:CurrentFont,[])
+ link(Str4,13163071:Text,[])
+}
+Add(ColorBox,11254634,574,126)
+{
+ Left=45
+ Top=15
+ Width=95
+ Height=24
+ DefColor=-16777211
+}
+Add(CheckBox,10677294,518,119)
+{
+ Left=45
+ Top=45
+ Width=65
+ Font=[MS Reference Sans Serif,8,1,0,204]
+ TabOrder=-1
+ Checked=0
+ Caption="Bold"
+}
+Add(CheckBox,14654181,525,161)
+{
+ Left=135
+ Top=45
+ Width=70
+ Font=[MS Reference Sans Serif,8,2,0,204]
+ TabOrder=-1
+ Caption="Italic"
+}
+Add(CheckBox,12649705,532,196)
+{
+ Left=235
+ Top=45
+ Width=80
+ Font=[MS Reference Sans Serif,8,4,0,204]
+ TabOrder=-1
+ Caption="Underline"
+}
+Add(BitsToInt,3231102,518,301)
+{
+ link(onNumber,2969162:doString,[])
+ link(Bit1,10677294:Checked,[])
+ link(Bit2,14654181:Checked,[])
+ link(Bit3,12649705:Checked,[])
+ link(Bit4,9033521:Checked,[])
+}
+Add(CheckBox,9033521,539,238)
+{
+ Left=355
+ Top=45
+ Width=100
+ Font=[MS Reference Sans Serif,8,8,0,204]
+ TabOrder=-1
+ Caption="StrikeOut"
+}
+Add(InfoTip,15148645,42,364)
+{
+ Info=#58:Добавляем строки в таблицу и устанавливаем размер матрицы |
+ Frame=2
+ Width=218
+ Height=151
+}
+Add(InfoTip,10009675,427,105)
+{
+ Info=#22:Запись данных о ячейки|
+ Frame=2
+ Width=316
+ Height=326
+}
+Add(InfoTip,1438607,63,119)
+{
+ Info=#63:При рисовании каждой ячейки подаются значения из таблицы данных|
+ Frame=2
+ Width=197
+ Height=137
+}
+Add(Matrix,13338805,357,91)
+{
+ @Hint=#37:Матрица для хранения данных о ячейках|
+ MatrixType=2
+ AddHint(-79,-42,182,26,@Hint)
+}
+Add(MathParse,11945622,210,469)
+{
+ DataCount=1
+ MathStr="5 + 65536 * %1"
+ link(onResult,13338805:doSize,[(300,475)(300,97)])
+ link(X1,10435767:Count,[])
+}
+Add(Message,16361925,252,294)
+{
+ Caption="ColorInCells_MtStrTbl"
+ Type=1
+ Icon=3
+ DefButton=1
+ Point(onOK)
+ link(onOK,2567468:doValue,[])
+}
+Add(FormatStr,4138097,210,294)
+{
+ Mask="Изменить цвет и шрифт ячейки   %1 - %2 ?"
+ link(onFString,16361925:doMessage,[])
+}
+Add(MT_Add,3633074,161,294)
+{
+ InputMT=2
+ link(onAdd,4138097:doString,[])
+ link(Data,6221645:Var2,[])
+}
+Add(GetDataEx,6221645,161,268)
+{
+ Angle=3
+ link(Data,342579:ItemAtPos,[(153,273)(153,334)(132,334)])
+}

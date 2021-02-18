@@ -1,0 +1,318 @@
+Make(modules)
+ver(4.02 build 180)
+Add(hcDoData,6469327,805,238)
+{
+ Data=String((нет))
+ link(onEventData,7979176:doWork2,[])
+}
+Add(hcTplForm,2953706,721,406)
+{
+ Width=392
+ Height=376
+ Visible=1
+ Caption="Добавление нового параметра"
+ BorderStyle=3
+ Point(doShowModal)
+}
+Add(hcTplLabel,15698263,413,98)
+{
+ Left=10
+ Top=17
+ Width=70
+ Height=17
+ Caption="Кодовое имя"
+}
+Add(hcTplLabel,10012582,427,112)
+{
+ Left=25
+ Top=47
+ Width=54
+ Height=17
+ Caption="Название"
+}
+Add(hcTplEdit,244690,322,140)
+{
+ Left=85
+ Top=15
+ Width=280
+ Text=""
+}
+Add(hcTplEdit,5685322,217,140)
+{
+ Left=85
+ Top=45
+ Width=280
+ Text=""
+}
+Add(hcTplMemo,6878164,266,140)
+{
+ Left=85
+ Top=135
+ Width=280
+ Height=155
+ ScrollBars=2
+}
+Add(hcTplButton,11687820,105,98)
+{
+ Left=300
+ Top=300
+ Width=65
+ Height=25
+ Caption="OK"
+ link(onClick,6920045:doEvent1,[])
+}
+Add(hcTplButton,7554104,420,413)
+{
+ Left=225
+ Top=300
+ Width=65
+ Height=25
+ Caption="Отмена"
+ link(onClick,9076321:doWork2,[])
+}
+Add(hcTplLabel,6559221,441,126)
+{
+ Left=52
+ Top=78
+ Width=23
+ Height=17
+ Caption="Тип"
+}
+Add(hcTplComboBox,1096348,763,364)
+{
+ Left=85
+ Top=75
+ Width=110
+ Height=21
+ Strings=#5:(нет)|5:Целое|14:Действительное|6:Строка|4:Цвет|6:Список|
+ ReadOnly=0
+ Point(doSelectByIndex)
+ Point(Index)
+}
+Add(hcTplLabel,1342882,476,126)
+{
+ Left=200
+ Top=78
+ Width=41
+ Height=17
+ Caption="Список"
+}
+Add(hcTplEdit,9377685,350,266)
+{
+ Left=250
+ Top=76
+ Width=115
+ Text=""
+}
+Add(hcDS_SQLite,8982745,714,322)
+{
+ Name="mainds"
+ FileName="int\hiasm.db"
+ link(onOpen,8552328:doWork3,[(753,328)])
+}
+Add(hcMessage,3841379,420,364)
+{
+ Caption="Ошибка добавления параметра"
+ Icon=3
+}
+Add(hcDSC_QueryScalar,6230093,266,98)
+{
+ DSManager="mainds"
+ link(onQuery,1476804:doValue,[])
+}
+Add(hcTplLabel,3248157,455,140)
+{
+ Left=33
+ Top=108
+ Width=39
+ Height=17
+ Caption="Группа"
+}
+Add(hcTplComboBox,11082512,875,175)
+{
+ Left=85
+ Top=105
+ Width=280
+ Height=21
+ ReadOnly=0
+ Point(doClear)
+ Point(doSelectByIndex)
+ Point(EditText)
+}
+Add(hcHiAsmTrasmitter,2360387,602,322)
+{
+ link(onInit,10824060:doEvent1,[])
+}
+Add(hcDSC_Query,405287,812,245)
+{
+ SQL="SELECT name FROM params WHERE type = 0"
+ DSManager="mainds"
+ link(onQuery,7979176:doWork3,[(851,251)])
+ AddHint(-36,41,200,26,SQL)
+}
+Add(hcButton,8574195,616,406)
+{
+ link(onClick,2953706:doShow,[])
+}
+Add(hcDoData,3440417,714,364)
+{
+ Data=Integer(0)
+ link(onEventData,1096348:doSelectByIndex,[(754,370)(754,377)])
+}
+Add(hcFormatStr,2897043,315,322)
+{
+ DataCount=6
+ Mask="INSERT INTO params(pid, name, title_id, info_id, type, list) VALUES(%1, '%2', %3, %4, %5, '%6')"
+ link(onFString,14806602:doExec,[])
+ link(Str1,1476804:Value,[])
+ link(Str2,244690:Text,[])
+ link(Str3,3884850:RowID,[])
+ link(Str4,15770944:RowID,[])
+ link(Str5,1096348:Index,[(349,309)(803,309)(803,408)(776,408)])
+ link(Str6,9377685:Text,[])
+ AddHint(-102,43,182,39,Mask)
+}
+Add(hcFormatStr,12056989,217,98)
+{
+ DataCount=1
+ Mask="SELECT id FROM params WHERE name = '%1'"
+ link(onFString,6230093:doQuery,[])
+ link(Str1,11082512:EditText,[(223,86)(917,86)(917,215)(888,215)])
+}
+Add(hcMemory,1476804,315,98)
+{
+ Default=Integer(0)
+}
+Add(hcButton,1023497,546,273)
+{
+ link(onClick,16082850:doWork1,[(690,279)])
+}
+Add(hcButton,5704443,679,154)
+{
+ link(onClick,8552328:doWork1,[(753,160)])
+}
+Add(hcHub,9957467,770,231)
+{
+ OutCount=4
+ link(onEvent1,11082512:doClear,[(791,237)(791,188)])
+ link(onEvent2,6469327:doData,[])
+ link(onEvent3,405287:doQuery,[])
+ link(onEvent4,11082512:doSelectByIndex,[(798,258)(798,195)])
+}
+Add(hcHub,10824060,658,322)
+{
+ OutCount=3
+ link(onEvent1,16082850:doWork2,[(672,328)(672,328)])
+ link(onEvent2,3440417:doData,[(693,335)(693,370)])
+ link(onEvent3,2953706:doShowModal,[(696,342)(696,426)])
+}
+Add(hcHub,921206,567,322)
+{
+ link(onEvent1,2360387:doReturn,[])
+ link(onEvent2,9076321:doWork1,[(592,335)])
+}
+Add(hcDSC_Exec,14806602,371,322)
+{
+ DSManager="mainds"
+ link(onExec,921206:doEvent1,[])
+ link(onError,3841379:doMessage,[(411,335)(411,370)])
+}
+Add(hcDSC_Exec,3884850,329,182)
+{
+ DSManager="mainds"
+}
+Add(hcFormatStr,3296837,217,182)
+{
+ DataCount=1
+ Mask="INSERT INTO info_id_ru(info) VALUES('%1')"
+ link(onFString,3884850:doExec,[])
+ link(Str1,5685322:Text,[])
+}
+Add(hcDSC_Exec,15770944,336,224)
+{
+ DSManager="mainds"
+}
+Add(hcFormatStr,8882641,266,224)
+{
+ DataCount=1
+ Mask="INSERT INTO info_id_ru(info) VALUES('%1')"
+ link(onFString,15770944:doExec,[])
+ link(Str1,6878164:Text,[])
+}
+Add(hcHub,6920045,154,98)
+{
+ OutCount=4
+ link(onEvent1,12056989:doString,[(168,104)])
+ link(onEvent2,3296837:doString,[(204,111)(204,188)])
+ link(onEvent3,8882641:doString,[(192,118)(192,230)])
+ link(onEvent4,2897043:doString,[(182,125)(182,328)])
+}
+Add(HubEx,7979176,847,238)
+{
+ Angle=3
+ link(onEvent,11082512:doAdd,[(851,181)])
+}
+Add(hcTplLabel,473973,469,154)
+{
+ Left=25
+ Top=135
+ Width=54
+ Height=17
+ Caption="Описание"
+}
+Add(HubEx,16082850,686,322)
+{
+ link(onEvent,8982745:doOpen,[])
+}
+Add(HubEx,8552328,749,231)
+{
+ link(onEvent,9957467:doEvent1,[])
+}
+Add(HubEx,9076321,588,413)
+{
+ link(onEvent,2953706:doClose,[])
+}
+Add(hcDS_SQLite,5560948,182,511)
+{
+ Name="create_consts"
+ FileName="int\hiasm.db"
+ link(onOpen,8109041:doEvent1,[])
+}
+Add(hcDSC_Query,13029619,259,511)
+{
+ SQL="SELECT name, id FROM params WHERE type > 0"
+ DSManager="create_consts"
+ link(onQuery,1172108:doString,[])
+}
+Add(hcButton,8101027,77,511)
+{
+ link(onClick,16694172:doEvent1,[])
+}
+Add(hcFormatStr,1172108,308,511)
+{
+ Mask="GP_%1 = %2;\r\n"
+ link(onFString,5471291:doStrCat,[])
+}
+Add(hcClipboard,8682364,343,574)
+{
+ link(Text,7900769:Var2,[])
+}
+Add(hcHub,16694172,147,511)
+{
+ link(onEvent1,5560948:doOpen,[])
+ link(onEvent2,5560948:doClose,[])
+}
+Add(hcHub,8109041,231,511)
+{
+ link(onEvent1,13029619:doQuery,[])
+ link(onEvent2,8682364:doPutText,[(253,524)(253,580)])
+}
+Add(hcStrCat,5471291,357,511)
+{
+ link(Str1,7900769:Var3,[(363,499)(349,499)])
+}
+Add(GetDataEx,7900769,343,546)
+{
+ Angle=1
+ link(Data,5471291:Result,[(363,551)])
+}

@@ -1,0 +1,11 @@
+if (sys.gvarfind('re_is_set') = -1)
+  gvar (re_is_set)
+  fvar(cur)
+  cur = block.select(BLK_OBJ)
+  println('Dim re')
+  println('Set re = New RegExp')
+  println('')
+  block.select(BLK_NOTH)
+  println('Set re = Nothing')
+  block.select(cur)
+end

@@ -1,0 +1,23 @@
+func doLeft(_data)
+  if(isset(Handle))
+    println(Handle,'.Left = ', Left)
+  end
+end
+
+func doTop(_data)
+  if(isset(Handle))
+    println(Handle,'.Top = ', Top)
+  end
+end
+
+func CurrentLeft()
+  if(isset(Handle))
+    return(Handle && '.Left')
+  end
+end
+
+func CurrentTop()
+  if(isset(Handle))
+    return(Handle && '.Top')
+  end
+end

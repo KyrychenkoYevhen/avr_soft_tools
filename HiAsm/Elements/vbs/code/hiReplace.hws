@@ -1,0 +1,26 @@
+func MakeCode(dt)
+  fvar(r)
+  r = 'Replace(' + SrcStr + ', ' + SubStr + ', ' + DestStr
+  if(isndef(Start) or isndef(Count) or isndef(Compare))
+    r += ', ' + Start + ', ' + `Count` + ', ' + Compare
+  end
+  r += ')'
+  return(r)
+end
+  
+func doReplace(_data)
+  if(linked(Result))
+    println(res, ' = ', MakeCode(_data))
+    event(onReplace, res)
+  else
+    event(onReplace, MakeCode(_data))
+  end
+end
+
+func Result(_data)
+  if(linked(doReplace))
+    return(res)
+  else
+    return(MakeCode())
+  end
+end

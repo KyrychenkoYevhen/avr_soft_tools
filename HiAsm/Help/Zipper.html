@@ -1,0 +1,257 @@
+<html>
+<head>
+<title>Zipper</title>
+ <meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+ <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<BODY>
+<TABLE class=mes_table width="100%" border=1>
+  <TBODY>
+  <TR>
+    <TD width=24><IMG src="Zipper_files/Zipper.ico"></TD>
+    <TD class=tabs>Zipper</TD></TR></TBODY></TABLE>
+<TABLE width="100%">
+  <TBODY>
+  <TR>
+    <TD>
+      <HR>
+    </TD></TR></TBODY></TABLE>
+<TABLE class=mes_table width="100%" border=1>
+  <TBODY>
+  <TR>
+    <TD class=tabs colSpan=2>Точки входа</TD></TD>
+  <TR>
+    <TD align=left colSpan=2><B>Действия:</B></TD></TR>
+  <TR>
+    <TD><FONT color=red><B>doCreate</B></FONT></TD>
+    <TD>Создаёт новый архив</TD></TR>
+  <TR>
+    <TD><FONT color=red><B>doOpen</B></FONT></TD>
+    <TD>Открывает существующий архив</TD></TR>
+  <TR>
+    <TD><FONT color=red><B>doList</B></FONT></TD>
+    <TD>Получить список файлов в архиве</TD></TR>
+  <TR>
+    <TD><FONT color=red><B>doOrder</B></FONT></TD>
+    <TD>Добавляет файл в список на упаковку в архив</TD></TR>
+  <TR>
+    <TD><FONT color=red><B>doOrderMulti</B></FONT></TD>
+    <TD>Добавляет файл в список на упаковку в архив по маске множественного 
+      выделения</TD></TR>
+  <TR>
+    <TD><FONT color=red><B>doCompress</B></FONT></TD>
+    <TD>Упаковывает файлы списка в архив</TD></TR>
+  <TR>
+    <TD><FONT color=red><B>doExtractOne</B></FONT></TD>
+    <TD>Извлекает файл из архива с индексом полученным с верхней точки</TD></TR>
+  <TR>
+    <TD><FONT color=red><B>doExtractAll</B></FONT></TD>
+    <TD>Распаковать всё содержимое архива</TD></TR>
+  <TR>
+    <TD><FONT color=red><B>doDelete</B></FONT></TD>
+    <TD>Удаляет файл из архива с индексом полученным из потока</TD></TR>
+  <TR>
+    <TD><FONT color=red><B>doClose</B></FONT></TD>
+    <TD>Закрывает архив</TD></TR>
+  <TR>
+    <TD><FONT color=red><B>doCancel</B></FONT></TD>
+    <TD>Вызывается для прерывания операций упаковки или распаковки архива</TD></TR>
+  <TR>
+    <TD align=left colSpan=2><B>События:</B></TD></TR>
+  <TR>
+    <TD><FONT color=green><B>onProgress</B></FONT></TD>
+    <TD>Ежесекундное событие для отображения выполнения процесса работы</TD></TR>
+  <TR>
+    <TD><FONT color=green><B>onError</B></FONT></TD>
+    <TD>Происходит после выполнения любого метода элемента и возвращает код 
+      завершения операции, если не равен 0 - произошла <A href="#refError">ошибка</A></TD></TR>
+  <TR>
+    <TD align=left colSpan=2><B>Свойства:</B></TD></TR>
+  <TR>
+    <TD><FONT color=blue><B>Count</B></FONT></TD>
+    <TD>Содержит количество файлов в архиве</TD></TR>
+  <TR>
+    <TD><FONT color=blue><B>List</B></FONT></TD>
+    <TD>Содержит список файлов, полученных из архива методом doList</TD></TR>
+  <TR>
+    <TD align=left colSpan=2><B>Данные:</B></TD></TR>
+  <TR>
+    <TD><FONT color=brown><B>ZipFileName</B></FONT></TD>
+    <TD>Определяет имя файла архива</TD></TR>
+  <TR>
+    <TD><FONT color=brown><B>BasePath</B></FONT></TD>
+    <TD>Путь для распаковки или множественной упаковки</TD></TR>
+  <TR>
+    <TD><FONT color=brown><B>FileMask</B></FONT></TD>
+    <TD>Маска множественного поиска файлов, например: *.TXT (только для 
+      упаковки с использованием множественной маски поиска)</TD></TR>
+  <TR>
+    <TD><FONT color=brown><B>Index</B></FONT></TD>
+    <TD>Индекс файла в архиве, начиная с нуля, для операции извлечения из 
+      архива</TD></TR>
+  <TR>
+    <TD></TD>
+    <TD><BR></TD></TR>
+  <TR>
+    <TD class=tabs colSpan=2>Значения параметров</TD></TD>
+  <TR>
+    <TD><FONT color=gray>FileMask</FONT></TD>
+    <TD>Маска множественного поиска файлов, например: *.TXT (только для 
+      упаковки с использованием множественной маски поиска)</TD></TD>
+  <TR>
+    <TD><FONT color=gray>ZipFileName</FONT></TD>
+    <TD>Определяет имя файла архива</TD></TD>
+  <TR>
+    <TD><FONT color=gray>BasePath</FONT></TD>
+    <TD>Путь для распаковки или множественной упаковки</TD></TD>
+  <TR>
+    <TD><FONT color=gray>Password</FONT></TD>
+    <TD>Если указан пароль, то файлы в архиве будут шифроваться при упаковке 
+      или дешифровываться при распаковке</TD></TD>
+  <TR>
+    <TD><FONT color=gray>Method</FONT></TD>
+    <TD>"NoCompression" - сохранять в архиве без упаковки; "Fast" - быстрая 
+      упаковка при низком коэффициенте сжатия; "Normal" - оптимальное 
+      соотношение скорость/сжатие; "Max" - максимальный коэффициент сжатия при 
+      низкой скорости упаковки</TD></TD>
+  <TR>
+    <TD><FONT color=gray>UpdateMode</FONT></TD>
+    <TD>"Add&amp;Replace" - если файла нет в архиве, то будет добавлен, иначе 
+      - заменён; "Freshen" - файл будет добавлен если только он уже есть в 
+      архиве и добавляемый файл новее архивного; "Update" - файл будет добавлен 
+      в архив даже если его там нет, если он там есть, то только если он новее 
+      архивного </TD></TD>
+  <TR>
+    <TD><FONT color=gray>ResetAttr</FONT></TD>
+    <TD>Если True, то атрибут "Archive", упаковываемого файла, будет сброшен 
+      после помещения в архив</TD></TD>
+  <TR>
+    <TD><FONT color=gray>CheckAttr</FONT></TD>
+    <TD>Если True, упаковываться будут только файлы у которых установлен 
+      атрибут "Archive" (только для упаковки с использованием множественной 
+      маски поиска)</TD></TD>
+  <TR>
+    <TD><FONT color=gray>TestOnly</FONT></TD>
+    <TD>Если True, режим тестирования архива без распаковки</TD></TD>
+  <TR>
+    <TD><FONT color=gray>IncludeSubfolders</FONT></TD>
+    <TD>Если True, поиск файлов будет производиться и в подкаталогах (только 
+      для упаковки с использованием множественной маски поиска)</TD></TD>
+  <TR>
+    <TD><FONT color=gray>SpanSize</FONT></TD>
+    <TD>-1 - без разбивки на части; 0 - автоматическая разбивка по заполнению 
+      (только для сменных носителей); N - разбика на части размером N байт 
+      (только не для сменных носителей)</TD></TD>
+  <TR>
+    <TD><FONT color=gray>Comment</FONT></TD>
+    <TD>Комментарий - если указан, то будет добавлен в архив</TD></TD>
+  <TR>
+    <TD><FONT color=gray>OverwriteExisting</FONT></TD>
+    <TD>Если True, при распаковке любые существующие файлы будут перезаписаны, 
+      иначе будут пропущены</TD></TD>
+  <TR>
+    <TD><FONT color=gray>SkipOlder</FONT></TD>
+    <TD>Если True, при распаковке более новые файлы не будут 
+    перезаписаны</TD></TD>
+  <TR>
+    <TD><FONT color=gray>UseFolders</FONT></TD>
+    <TD>Если True, при распаковке, файлы будут помещаться согласно хранящейся 
+      информации о подкаталогах</TD></TD></TR></TBODY></TABLE>
+<TABLE class=mes_table border=1>
+  <TBODY>
+  <TR class=prop_cap>
+    <TD align=middle>Дополнительная информация и рекомендации</TD></TR>
+  <TR>
+    <TD style="PADDING-RIGHT: 20px; PADDING-LEFT: 20px">
+      <P align=justify>&nbsp;&nbsp;&nbsp;&nbsp; Zipper - инструмент для работы с 
+      файлами архивов в ZIP-формате. Пожалуй это самый распространённый формат 
+      архивов на сегодня. Невысокая степень сжатия компенсируется хорошей 
+      скоростью и широкой известностью (как говорят поклонники других форматов, 
+      во многом незаслуженной). Zip-архивы могут включать в себя комментарии и 
+      быть зашифрованными с использованием пароля. Поддержка многотомных архивов 
+      в самом формате Zip ограничена: их можно создавать только на дискетах, так 
+      как Zipper меняет метку диска, указывая в ней номер тома. Кроме того, 
+      Zipper позволяет разбивать архивы на части. Используемая библиотека bszip.dll версии 3.02 содержит ограничение на объём создаваемого архива, которое находится между 15 и 18 мегабайтами.
+      <P></P>
+      <P></P>
+      <P align=center><FONT color=blue><B><a name="refError">Коды ошибок</a></B></FONT> </P>
+      <P align=center>
+    
+    
+     <table class="mes_table" align="justify" border="1">
+        <TBODY>
+      <tr>
+       <td width="100">
+            <p align=center><b>Возвращаемое значение</b></p></td>
+       <td align="centre" width="200">
+            <p align=center><b>Описание ошибки</b></p></td>
+      </tr><tr>
+       <td>
+            <p align=center>1</p></td>
+       <td>Не правильная структура архива</td>
+      </tr><tr>
+       <td>
+            <p align=center>2</p></td>
+       <td>Устаревший метод компрессии</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>3</p></td>
+       <td>Не возможно прочитать файл</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>4</p></td>
+       <td>Невозможно открыть файл</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>5</p></td>
+       <td>Невозможно записать файл</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>6</p></td>
+       <td>Невозможно создать новый файл</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>7</p></td>
+       <td>Ошибка выполнения функции</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>8</p></td>
+       <td>Остановка пользователем</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>9</p></td>
+       <td>Файл уже существует</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>10</p></td>
+       <td>Невозможно удалить старый ZIP файл</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>11</p></td>
+       <td>Невозможно переименовать временный файл</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>12</p></td>
+       <td>Невозможно создать временный файл</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>13</p></td>
+       <td>Не правильный путь для создания архива</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>14</p></td>
+       <td>Невозможно открыть временный файл</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>15</p></td>
+       <td>Это первый том многотомного архива, а нужен последний</td>
+      </tr></TR><tr>
+       <td>
+            <p align=center>16</p></td>
+       <td>Невозможно найти том многотомного архива</td>
+      </tr></TBODY>
+     </TABLE></P>
+  <TR>
+    <TD class=down_sel colSpan=2>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+      Примеры:&nbsp;&nbsp;<A 
+      href="file:///C:/Hiasm/Help/*Example*example/system/zipper.sha">Zipper</A><BR></TD></TR></TBODY></TABLE></BODY></html>

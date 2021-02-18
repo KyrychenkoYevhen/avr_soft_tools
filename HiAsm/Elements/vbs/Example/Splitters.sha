@@ -1,0 +1,73 @@
+Make(vbs)
+ver(4.04 build 182)
+Add(Edit,6578602,217,84)
+{
+ Left=110
+ Width=414
+ Height=201
+ Align=5
+ Alignment=2
+ ES_MULTILINE=0
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Edit,6464313,217,182)
+{
+ Top=221
+ Width=644
+ Height=202
+ Align=4
+ Alignment=2
+ ES_MULTILINE=0
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Edit,7476393,119,133)
+{
+ Width=90
+ Height=201
+ Align=1
+ ES_MULTILINE=0
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Edit,11642055,315,133)
+{
+ Left=544
+ Width=100
+ Height=201
+ Align=3
+ Alignment=1
+ ES_MULTILINE=0
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Splitter,15652425,266,133)
+{
+ Left=524
+ Width=20
+ Height=201
+ Align=3
+}
+Add(MainForm,2953706,21,105)
+{
+ Width=652
+ Height=450
+}
+Add(Splitter,14590989,217,133)
+{
+ Top=201
+ Width=644
+ Align=4
+}
+Add(Splitter,71291,168,133)
+{
+ Left=55
+ Width=20
+ Height=201
+ Align=1
+}

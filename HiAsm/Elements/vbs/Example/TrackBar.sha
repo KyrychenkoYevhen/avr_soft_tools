@@ -1,0 +1,113 @@
+Make(vbs)
+ver(4.04 build 182)
+Add(MainForm,2953706,238,56)
+{
+ Height=130
+ Text="TrackBar range select"
+}
+Add(KeyMask,1150608,364,98)
+{
+ Key=17
+ link(onTrue,6430688:doOn,[])
+}
+Add(TrackBar,14951436,308,98)
+{
+ Left=35
+ Top=45
+ Width=315
+ TickFrequency=5
+ EnableSelRange=0
+ SelStart=25
+ SelEnd=75
+ Point(onKeyDown)
+ Point(onKeyUp)
+ Point(onChange)
+ Point(doSelStart)
+ Point(doSelEnd)
+ Point(doRepaint)
+ link(onKeyDown,1150608:doCheckMask,[])
+ link(onKeyUp,8826325:doCheckMask,[(355,111)(355,139)])
+ link(onChange,13735594:doEvent,[(348,118)(348,188)])
+}
+Add(Label,2317786,308,56)
+{
+ Left=30
+ Top=10
+ Width=330
+ Text="To change seletion: down CTRL key, move slider, up CTRL key"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(KeyMask,8826325,364,133)
+{
+ Key=17
+ link(onTrue,16516102:doEvent1,[])
+}
+Add(IndexToChanel,13735594,441,182)
+{
+ link(Index,6430688:State,[])
+ link(Data,5750326:Var2,[])
+ link(onEvent2,8927063:doWork3,[(480,195)(480,230)(291,230)])
+}
+Add(Hub,16516102,406,140)
+{
+ OutCount=3
+ link(onEvent1,6430688:doReset,[(427,146)(427,104)])
+ link(onEvent2,11837805:doData,[(431,153)(431,264)(226,264)(226,230)])
+ link(onEvent3,12409383:doData,[(426,160)(426,192)(230,192)(230,160)])
+}
+Add(DoData,12409383,238,154)
+{
+ link(onEventData,8927063:doWork2,[])
+ link(Data,4020592:Var1,[(244,145)])
+}
+Add(GetDataEx,4020592,308,140)
+{
+ link(Data,14951436:vPosition,[])
+}
+Add(Memory,1079570,490,182)
+{
+ link(onData,3851154:doEvent1,[(530,188)(530,272)(219,272)(219,118)])
+ link(Data,5750326:Var3,[(496,173)])
+}
+Add(GetDataEx,5750326,448,168)
+{
+ Angle=3
+ link(Data,4020592:Var2,[(314,173)])
+}
+Add(DoData,11837805,238,224)
+{
+ link(onEventData,16211793:doWork3,[(284,230)])
+ link(Data,1079570:Value,[(244,219)(496,219)])
+}
+Add(HubEx,8927063,287,154)
+{
+ Angle=3
+ link(onEvent,10279976:doWork3,[])
+}
+Add(Switch,6430688,441,91)
+{
+ DataOn=Integer(1)
+ DataOff=Integer(0)
+ Point(doOn)
+ Point(State)
+ Point(onOn)
+ Point(onOff)
+ link(onOn,1079570:doValue,[(481,104)(481,188)])
+}
+Add(Hub,3851154,252,112)
+{
+ OutCount=3
+ link(onEvent1,16211793:doWork2,[])
+ link(onEvent2,10279976:doWork2,[])
+ link(onEvent3,14951436:doRepaint,[])
+}
+Add(HubEx,16211793,280,112)
+{
+ link(onEvent,14951436:doSelStart,[])
+}
+Add(HubEx,10279976,287,119)
+{
+ link(onEvent,14951436:doSelEnd,[])
+}

@@ -1,0 +1,109 @@
+ func flgStyle()
+  fvar(cfStyle)
+  cfStyle = 0
+  if(isdef(ScreenFonts))
+    cfStyle += 1  //  0x00000001L
+  end
+  if(isndef(PrinterFonts))
+    cfStyle += 2  //  0x00000002L
+  end
+  if(isndef(ShowHelp))
+    cfStyle += 4  //  0x00000004L
+  end
+  if(isdef(Effects))
+    cfStyle += 256  //  0x00000100L
+  end
+  if(isndef(Apply))
+    cfStyle += 512  //  0x00000200L
+  end
+  if(isndef(AnsiOnly))
+    cfStyle += 1024  //  0x00000400L
+  end
+  if(isndef(NoVectorFonts))
+    cfStyle += 2048  //  0x00000800L
+  end
+  if(isndef(FixedPitchOnly))
+    cfStyle += 16384  //  0x00004000L
+  end
+  if(isndef(WYSIWYG))
+    cfStyle += 32768  //  0x00008000L
+  end
+  if(isndef(ForceFontExist))
+    cfStyle += 65536  //  0x00010000L
+  end
+  if(isndef(ScalableOnly))
+    cfStyle += 131072  //  0x00020000L
+  end
+  if(isndef(TTOnly))
+    cfStyle += 262144  //  0x00040000L
+  end
+  if(isndef(NoFaceSel))
+    cfStyle += 524288  //  0x00080000L
+  end
+  if(isndef(NoStyleSel))
+    cfStyle += 1048576  //  0x00100000L
+  end
+  if(isndef(NoSizeSel))
+    cfStyle += 2097152  //  0x00200000L
+  end
+  if(isndef(NoVertFonts))
+    cfStyle += 16777216  //  0x01000000L
+  end
+  return(cfStyle)
+end
+
+func Init()
+  var(id)
+  id = FontDialog_
+  stack &= block.select(BLK_BODY)
+  println('Set ', id, ' = ', frm, '.CreateFontDialog()')
+  println('WScript.ConnectObject ', id, ', "', id,'_"')
+  println(id, '.Flags = ', flgStyle())
+  if(linked(onHelp))
+    lng.begin_func(id + '_OnHelp(Sender)\'' + code(id))
+      event(onHelp)
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onApply) or isndef(Apply))
+    lng.begin_func(id + '_OnApply(Sender)\'' + code(id))
+      if(linked(onApply))
+        event(onApply, 'Sender.Font')
+      end
+      if(linked(FontEx))
+        println(FontEx, ' = Sender.Font')
+      end
+    lng.end_func(BLK_EVENTS)
+  end
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doDialog()
+  if(linked(FontEx))
+    println(id, '.Font = ', FontEx)
+  end
+  println(id, '.Execute()')
+  if(linked(onFont))
+    event(onFont, id + '.Font')
+  end
+  if(linked(FontEx))
+    println(FontEx, ' = ', id, '.Font')
+  end
+end
+
+func doFlags(_data)
+  println(id, '.Flags = ', _data)
+end
+
+func doOnHelp(_data)
+  println(id, '.OnHelp = GetRef(', _data, ')')
+end
+
+func doOnApply(_data)
+  println(id, '.OnApply = GetRef(', _data, ')')
+end
+
+func vFont()
+  return(id + '.Font')
+end
+

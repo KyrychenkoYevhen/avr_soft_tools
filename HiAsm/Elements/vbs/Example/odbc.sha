@@ -1,0 +1,97 @@
+Make(vbs)
+ver(4.04 build 185)
+Add(MainForm,11530810,133,112)
+{
+ Width=614
+ Height=411
+ link(onCreate,16700282:doEvent1,[])
+}
+Add(odbc,9520002,203,112)
+{
+ ConnStr="Provider=Microsoft.Jet.OLEDB.4.0;Data Source='C:\HiAsm\Elements\Delphi\Example\DataBase\ALL_TYPES.mdb';User Id=admin;Password=;"
+ link(onResult,8394957:doExec,[])
+ link(onError,4015763:doWork2,[(248,125)(248,153)])
+ AddHint(-113,-68,382,39,ConnStr)
+}
+Add(Hub,16700282,175,112)
+{
+ link(onEvent1,9520002:doOpen,[])
+ link(onEvent2,9520002:doClose,[])
+}
+Add(Echo,5855892,350,217)
+{
+ link(onEcho,1277254:doPrompt,[])
+ link(Message,7571554:Text,[])
+}
+Add(odbc_exec,8394957,259,112)
+{
+ SQLquery="Select * FROM ALL_TYPES_FIELD"
+ link(onResult,7571554:doEnum,[])
+ link(onError,4015763:doWork1,[(305,125)])
+}
+Add(odbc_enumRS,7571554,350,112)
+{
+ Delimiter=";"
+ link(onColumns,9759238:doEvent1,[(390,118)(390,160)])
+ link(onResult,16241914:doEvent1,[])
+}
+Add(Message,12781624,315,147)
+{
+}
+Add(HubEx,4015763,301,147)
+{
+ link(onEvent,12781624:doMessage,[])
+}
+Add(Prompt,1277254,392,217)
+{
+ Message="Save Record Set into file:"
+ Default="RecordSet.txt"
+ link(onPromptOk,3318000:doSave,[])
+}
+Add(StrList,3318000,434,182)
+{
+}
+Add(StringTable,5519611,518,119)
+{
+ Left=15
+ Top=5
+ Width=570
+ Height=325
+ Color=16777215
+ Grid=0
+ Point(doAddColumn)
+ link(StrDelimiter,2851783:Value,[])
+}
+Add(Button,876864,308,217)
+{
+ Left=530
+ Top=340
+ Text="Save"
+ Point(onClick)
+ link(onClick,5855892:doEcho,[])
+}
+Add(Hub,9759238,399,154)
+{
+ link(onEvent1,1652068:doReplace,[])
+ link(onEvent2,16157952:doWork2,[])
+}
+Add(Hub,16241914,399,119)
+{
+ link(onEvent1,5519611:doAdd,[])
+ link(onEvent2,16157952:doWork1,[(424,132)])
+}
+Add(Replace,1652068,476,154)
+{
+ SubStr=";"
+ DestStr="=80=3:1;"
+ link(onReplace,5519611:doAddColumn,[])
+}
+Add(HubEx,16157952,420,161)
+{
+ Angle=1
+ link(onEvent,3318000:doAdd,[(424,188)])
+}
+Add(Memory,2851783,525,70)
+{
+ Default=String(;)
+}

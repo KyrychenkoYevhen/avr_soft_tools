@@ -1,0 +1,65 @@
+*Программа для дозвона по модему к выбранному провайдеру.
+Make(delphi)
+ver(4.05 build 186)
+Add(MainForm,42776,21,105)
+{
+ Left=312
+ Top=234
+ Width=323
+ Height=293
+}
+Add(ListBox,68351,294,84)
+{
+ Left=70
+ Top=20
+ Width=240
+ Height=65
+ Font=[Arial,8,0,0,1]
+ Point(String)
+}
+Add(DoData,41310,154,147)
+{
+ link(onEventData,58502:doDial,[(193,153)(193,97)])
+ link(Data,68351:String,[(160,138)(321,138)])
+}
+Add(Button,22330,147,210)
+{
+ Left=5
+ Top=130
+ Font=[Arial,8,0,0,1]
+ Hint="Бросить трубку"
+ Caption="Close"
+ link(onClick,58502:doHandUp,[(200,216)(200,104)])
+}
+Add(ModemDial,58502,210,84)
+{
+ link(onEnum,68351:doAdd,[])
+ link(onStatus,48725:doAdd,[(261,97)(261,195)])
+}
+Add(Button,64701,147,84)
+{
+ Left=5
+ Top=20
+ Font=[Arial,8,0,0,1]
+ Hint="Обновить список подключений"
+ Caption="Enum"
+ link(onClick,58502:doEnum,[])
+}
+Add(Button,45180,98,147)
+{
+ Left=5
+ Top=105
+ Font=[Arial,8,0,0,1]
+ Hint="Дозвон"
+ Caption="Dial"
+ link(onClick,41310:doData,[])
+}
+Add(RichEdit,48725,294,189)
+{
+ Left=70
+ Top=95
+ Width=240
+ Height=170
+ Font=[Arial,8,0,0,1]
+ ScrollBars=3
+}

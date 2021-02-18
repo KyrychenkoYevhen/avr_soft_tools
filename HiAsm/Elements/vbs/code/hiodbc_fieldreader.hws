@@ -1,0 +1,6 @@
+func doRead(_data)
+  if(isset(rsHandle) and linked(onRead))
+    event(onRead, rsHandle && '.Fields(' && Index && ').Value')
+  end
+end
+

@@ -1,0 +1,98 @@
+include("object")
+include("control")
+
+func Init()
+  var(id)
+  id = StatusBar_
+  stack &= block.select(BLK_BODY)
+
+  println('Set ', id, ' = ', get_parent(), '.CreateStatusBar()')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(isndef(SizeGrip))
+    println(id, '.SizeGrip = False')
+  end
+  if(isndef(Simple))
+    println(id, '.Simple = True')
+    if(isndef(Text))
+      println(id, '.Text = ', Text)
+    end
+  else
+    if(_arr.count(Elements)>0)
+      fvar(i, s, t, p)
+      for(i=0; i<_arr.count(Elements); i++)
+        s = Elements[i]
+        p = pos('=', s)
+        if(p > 0)
+          t = copy(s, 1, p-1)
+          s = delete(s, 1, p)
+          s = replace(s, "=", '","')
+        end
+        println(id, '.Add(', s, ').Text = ', t)
+      end
+    end
+  end  
+  if(linked(Images))
+    println(id, '.Images = ', Images)
+  end
+  if(linked(Array))
+    if (sys.gvarfind('elementstoarray') = -1)
+      gvar(elementstoarray)
+      lng.begin_func('ElementsToArray()')
+        println('Dim ret()')
+        println('If ', id, '.Count = 0 Then')
+        block.inclvl()
+          println('ElementsToArray = Null')
+          println('Exit Function')
+        block.declvl()
+        println('End If')
+        println('If ', id, '.Count = 1 Then')
+        block.inclvl()
+          println('ReDim ret(0)')
+          println('Set ret(0) = ', id, '.Item(0)')
+          println('ElementsToArray = ret')
+          println('Exit Function')
+        block.declvl()
+        println('End If')
+        println('ReDim ret(', id, '.Count-1)')
+        println('For i = 0 To ', id, '.Count-1')
+        block.inclvl()
+          println('Set ret(i) = ', id, '.Item(i)')
+        block.declvl()
+        println('Next')
+        println('ElementsToArray = ret')
+      lng.end_func(BLK_FUNC)
+    end
+  end
+  block.select(_arr.pop(stack))
+end
+
+func doAdd(_data)
+  println(id, '.Add(', _arr.mt_pop(_data), ', ', _arr.mt_pop(_data), ').Text = ', _data)
+end
+
+func doRemove(_data)
+  println(id, '.Remove(', _data, ')')
+end
+
+func doClear()
+  println(id, '.Clear()')
+end
+
+func doExChange(_data)
+  println(id, '.ExChange ', _arr.mt_pop(_data), ', ', _data)
+end
+
+func Count()
+  return(id && '.Count')
+end
+
+func Array()
+  return('ElementsToArray()')
+end
+

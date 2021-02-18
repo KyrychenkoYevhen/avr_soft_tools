@@ -1,0 +1,28 @@
+func Init()
+  include('dwx')
+  stack &= block.select(BLK_OBJ)
+  println('dwx.Register "user32", "FindWindow", "i=', (isset(ClassName) ? 's' : 'n'), (isset(Caption) ? 's' : 'n'), '", "r=h"')
+  block.select(_arr.pop(stack))
+end
+
+func MakeCode(dt)
+  return('dwx.FindWindow(' + (isset(ClassName) ? ClassName : 0) + ', ' + (isset(Caption) ? Caption : 0) + ')')
+end
+
+func doFind(_data)
+  if(linked(WindowID))
+    println(res, ' = ', MakeCode(_data))
+    event(onFound, res)
+  else
+    event(onFound, MakeCode(_data))
+  end
+end
+
+func WindowID()
+  if(linked(doFind))
+    return(res)
+  else
+    return(MakeCode())
+  end
+end
+

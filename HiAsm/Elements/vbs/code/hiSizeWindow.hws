@@ -1,0 +1,15 @@
+func doWidth(_data)
+  println(Handle,'.Width = ', _data)
+end
+
+func doHeight(_data)
+  println(Handle,'.Height = ', _data)  
+end
+
+func CurrentWidth()
+  return(Handle && '.Width')
+end
+
+func CurrentHeight()
+  return(Handle && '.Height')
+end

@@ -1,0 +1,102 @@
+Make(modules)
+ver(4.03 build 180)
+Add(MainForm,14307157,63,161)
+{
+ Width=352
+ Height=181
+ Caption="Element installation"
+ BorderStyle=3
+}
+Add(Image,12828461,112,84)
+{
+ @Hint=#4:icon|
+ Left=15
+ Top=10
+ Width=24
+ Height=24
+}
+Add(Label,1190853,91,63)
+{
+ Left=125
+ Top=15
+ Width=35
+ Height=17
+ Caption="Name:"
+}
+Add(Label,6267585,97,105)
+{
+ Left=70
+ Top=40
+ Width=86
+ Height=17
+ Caption="Short description:"
+}
+Add(Label,4177342,140,112)
+{
+ Left=130
+ Top=90
+ Width=26
+ Height=17
+ Caption="Tab:"
+}
+Add(Label,3833107,133,105)
+{
+ Left=125
+ Top=65
+ Width=32
+ Height=17
+ Caption="Pack:"
+}
+Add(Label,5694383,210,70)
+{
+ @Hint=#4:name|
+ Left=165
+ Top=15
+ Width=34
+ Height=17
+ Caption="(none)"
+}
+Add(Label,3671680,231,112)
+{
+ @Hint=#4:info|
+ Left=165
+ Top=40
+ Width=34
+ Height=17
+ Caption="(none)"
+}
+Add(ComboBox,13004140,203,105)
+{
+ @Hint=#4:pack|
+ Left=165
+ Top=60
+ Width=170
+ ReadOnly=0
+}
+Add(ComboBox,4676652,203,147)
+{
+ @Hint=#3:tab|
+ Left=165
+ Top=90
+ Width=170
+}
+Add(Button,12155224,273,224)
+{
+ @Hint=#6:cancel|
+ Left=180
+ Top=125
+ Width=70
+ Height=25
+ Font=[Arial,8,0,0,1]
+ Caption="Cancel"
+}
+Add(Button,1738035,343,224)
+{
+ @Hint=#2:ok|
+ Left=260
+ Top=125
+ Width=70
+ Height=25
+ Font=[Arial,8,0,0,1]
+ Caption="Œ "
+}

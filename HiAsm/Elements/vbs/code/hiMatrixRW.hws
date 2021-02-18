@@ -1,0 +1,25 @@
+func doRead(_data)
+  event(onRead,Matrix && '(' && X && ', ' && Y && ')')
+end
+
+func doWrite(_data)
+  println(Matrix,'(',X,', ',Y,') = ',Value)
+end
+
+func doSize(_data)
+  println('\'MatrixRW - doSize')
+  // todo
+end
+
+func doClear(_data)
+  println('Erase ',Matrix)
+end
+
+
+func CountCol()
+  return('Ubound(',Matrix,'1)')
+end
+
+func CountRow()
+  return('Ubound(',Matrix,'2)')
+end

@@ -1,0 +1,29 @@
+func Init()
+  fvar(old)
+  if((isndef(Default) and (linked(doValue) or linked(doClear))) or (linked(doValue) or linked(doClear)))
+    old = block.select(BLK_GLOB)
+    println('Dim ', Memory)
+    if(isndef(Default))
+      println(isndef(IsObject) ? 'Set ' : '', Memory, ' = ', Default)
+    end
+    block.select(old)
+  end 
+end
+
+func doValue(_data)
+  println(isndef(IsObject) ? 'Set ' : '', Memory,' = ',Data)
+  event(onData,Memory)
+end
+
+func doClear()
+ println(isndef(IsObject) ? 'Set ' : '', Memory,' = ',Default)
+ event(onData,Default)
+end
+
+func Value()
+  if(linked(doValue) or linked(doClear))
+    return(Memory)
+  else
+    return(Default)
+  end
+end

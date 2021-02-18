@@ -1,0 +1,50 @@
+include("object")
+include("control")
+
+func SetArc()
+  println('Set ', id, ' = ', get_parent(), '.Arc(', Left, ', ', Top, ', ', Width, ', ', Height, ', ', XStartArc_, ', ', YStartArc_, ', ', XEndArc_, ', ', YEndArc_, ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+end
+
+func Init()
+  var(id)
+  id = Arc_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', XStartArc_, ', ', YStartArc_, ', ', XEndArc_, ', ', YEndArc_)
+  println(XStartArc_, ' = ', XStartArc)
+  println(YStartArc_, ' = ', YStartArc)
+  println(XEndArc_, ' = ', XEndArc)
+  println(YEndtArc_, ' = ', YEndArc)
+  block.select(BLK_BODY)
+  
+  SetArc()
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doRedraw()
+  println('If Not (', id, ' Is Nothing) Then Set ', id, ' = Nothing')
+  SetArc()
+end
+
+func doXStartArc(_data)
+  println(XStartArc_, ' = ', _data)
+end
+
+func doYStartArc(_data)
+  println(YStartArc_, ' = ', _data)
+end
+
+func doXEndArc(_data)
+  println(XEndArc_, ' = ', _data)
+end
+
+func doYEndArc(_data)
+  println(YEndArc_, ' = ', _data)
+end

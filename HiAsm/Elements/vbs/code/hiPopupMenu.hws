@@ -1,0 +1,192 @@
+func MakeMenu()
+  fvar(i,l,s)
+  l = 0
+  if(linked(onSelectNum) or linked(vArray))
+    println('ReDim AllPopupActions(0)')
+  end
+  for(i = 0; i < _arr.count(Menu); i++)
+    if(Menu[i]="(")
+      l++
+    elseif(Menu[i]=")")
+      l--
+    elseif(l=0)
+      if(Menu[i+1]<>"(")
+        if(Menu[i]="-")
+          println('Set l0 = ', id, '.NewLine()')
+        else
+          s = Menu[i]
+          if(pos(',', s) > 0)
+            s = replace(s, ",", '","')
+          end
+          println('Set l0 = ', id, '.Add(', s, ')')
+          println('l0.OnExecute = GetRef("', PopupMenu_, '_OnEvent")')
+          if(linked(onSelectNum) or linked(vArray))
+            println('ReDim Preserve AllPopupActions(UBound(AllPopupActions)+1)')
+            println('Set AllPopupActions(UBound(AllPopupActions)-1) = ', 'l0')
+          end
+        end
+      else
+        println('Set l0 = ', id, '.Add(', Menu[i], ')')
+      end
+    elseif(l>0)
+      if(Menu[i+1]="(")
+        println('Set l', l, ' = l', l-1, '.Add(', Menu[i], ')')
+      elseif(Menu[i]="-")
+        println('Set ', x, ' = l', l-1, '.NewLine()')
+      else
+        s = Menu[i]
+        if(pos(',', s) > 0)
+          s = replace(s, ",", '","')
+        end
+        println('Set ', x, ' = l', l-1, '.Add(', s, ')')
+        println(x, '.OnExecute = GetRef("', PopupMenu_, '_OnEvent")')
+        if(linked(onSelectNum) or linked(vArray))
+          println('ReDim Preserve AllPopupActions(UBound(AllPopupActions)+1)')
+          println('Set AllPopupActions(UBound(AllPopupActions)-1) = ', x)
+        end
+      end
+    end
+  end
+  if(linked(onSelectNum) or linked(vArray))
+    println('ReDim Preserve AllPopupActions(UBound(AllPopupActions)-1)')
+  end
+end
+
+func Init()
+  if(linked(PopupMenu))
+    fvar(old)
+    var(id)
+    id = PopupMenu
+
+    if(isndef(Menu))
+      MakeMenu()
+    end
+    if(linked(Images))
+      println(id, '.Images = ', Images)
+    end
+    println('')
+    old = block.select(BLK_GLOB)
+    if(linked(Sender))
+      println('Dim vSender')
+    end
+    if(linked(onSelectNum) or linked(vArray))
+      println('Dim AllPopupActions()')
+    end
+    block.select(BLK_LABELS)
+    println('Function ', PopupMenu_, '_OnEvent(Sender)\'', code(id))
+    block.inclvl()
+      if(linked(Sender))
+        println('Set vSender = Sender')
+      end
+      if(linked(onSelectStr))
+        event(onSelectStr, 'Sender.Text')
+      end
+      if(linked(onSelectNum))
+        println('For i = 0 To UBound(AllPopupActions)-1')
+        block.inclvl()
+          println('If AllPopupActions(i).Text=Sender.Text Then Exit For')
+          block.declvl()
+        println('Next')
+        event(onSelectNum, 'i')
+      end
+    block.declvl()
+    println('End Function')
+    println('')
+    if(linked(doInit))
+      block.select(BLK_FUNC)
+      if(pos('Sub MakePopupMenuRT(arrMenu)', block.astext())=0)
+        println('Sub MakePopupMenuRT(arrMenu)')
+        block.inclvl()
+          println('On Error Resume Next')
+          println('Dim i,l,x')
+          println('l = 0')
+          if(linked(onSelectNum) or linked(vArray))
+            println('ReDim AllPopupActions(0)')
+          end
+          println('For i = 0 To UBound(arrMenu)')
+          block.inclvl()
+            println('If(arrMenu(i)="(") Then')
+            block.inclvl()
+              println('l = l + 1')
+            block.declvl()
+            println('ElseIf(arrMenu(i)=")") Then')
+            block.inclvl()
+              println('l = l - 1')
+            block.declvl()
+            println('ElseIf(l=0) Then')
+            block.inclvl()
+              println('If arrMenu(i+1)<>"(" Then')
+              block.inclvl()
+                println('If arrMenu(i)="-" Then')
+                block.inclvl()
+                  println('Set l0 = ', id, '.NewLine()')
+                block.declvl()
+                println('Else')
+                block.inclvl()
+                  println('If InStr(arrMenu(i), ",")>0 Then arrMenu(i) = Replace(arrMenu(i), ",", """,""")')
+                  println('Execute "Set l0 = ', id, '.Add(""" + arrMenu(i) + """)"')
+                  println('l0.OnExecute = GetRef("', PopupMenu_, '_OnEvent")')
+                  if(linked(onSelectNum) or linked(vArray))
+                    println('ReDim Preserve AllPopupActions(UBound(AllPopupActions)+1)')
+                    println('Set AllPopupActions(UBound(AllPopupActions)-1) = l0')
+                  end
+                block.declvl()
+                println('End If')
+              block.declvl()
+              println('Else')
+              block.inclvl()
+                println('Set l0 = ', id, '.Add(arrMenu(i))')
+              block.declvl()
+              println('End If')
+            block.declvl()
+            println('ElseIf(l>0) Then')
+            block.inclvl()
+              println('If arrMenu(i+1)="(" Then')
+              block.inclvl()
+                println('Execute "Set l" + CStr(l) + " = l" + CStr(l-1) + ".Add(""" + arrMenu(i) + """)"')
+              block.declvl()
+              println('ElseIf arrMenu(i)="-" Then')
+              block.inclvl()
+                println('Execute "Set x = l" + CStr(l-1) + ".NewLine()"')
+              block.declvl()
+              println('Else')
+              block.inclvl()
+                println('If InStr(arrMenu(i), ",")>0 Then arrMenu(i) = Replace(arrMenu(i), ",", """,""")')
+                println('Execute "Set x = l" + CStr(l-1) + ".Add(""" + arrMenu(i) + """)"')
+                println('x.OnExecute = GetRef("', PopupMenu_, '_OnEvent")')
+                if(linked(onSelectNum) or linked(vArray))
+                  println('ReDim Preserve AllPopupActions(UBound(AllPopupActions)+1)')
+                  println('Set AllPopupActions(UBound(AllPopupActions)-1) = x')
+                end
+              block.declvl()
+              println('End If')
+            block.declvl()
+            println('End If')
+          block.declvl()
+          println('Next')
+          if(linked(onSelectNum) or linked(vArray))
+            println('ReDim Preserve AllPopupActions(UBound(AllPopupActions)-1)')
+          end
+        block.declvl()
+        println('End Sub')
+        println('')
+    end
+    block.select(old)
+  end
+  event(onCreate)
+end
+
+
+func doInit(_data)
+  if(isset(Array))
+    println('MakePopupMenuRT ', Array)
+  end
+end
+
+func Sender()
+  return('vSender')
+end
+
+func vArray()
+  return('AllPopupActions')
+end

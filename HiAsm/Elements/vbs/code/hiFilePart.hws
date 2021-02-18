@@ -1,0 +1,17 @@
+func Init
+  include('fso')
+end
+
+func doPart(_data)
+  fvar(fn)
+  fn=FileName
+  if(linked(onPath))
+   event(onPath,'fso.GetParentFolderName(' && fn && ')')
+  end
+  if(linked(onName))
+    event(onName,'fso.' && isdef(NameWOExt) ? 'GetBaseName' : 'GetFileName' && '(' && fn && ')')
+  end
+  if(linked(onExt))
+      event(onExt,isndef(ExtPoint) ? '.' : '' & 'fso.GetExtensionName(' && fn && ')')
+  end
+end

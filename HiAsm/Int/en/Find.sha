@@ -1,0 +1,73 @@
+Make(modules)
+ver(4.03 build 180)
+Add(MainForm,9291782,119,133)
+{
+ Width=389
+ Height=255
+ Caption="Search"
+}
+Add(ChildPanel,15867947,259,112)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,5211661,3,3)
+  {
+  }
+  Add(Panel,7421105,35,133)
+  {
+   Width=381
+   Height=75
+   Align=2
+   BevelInner=0
+  }
+  Add(Button,7828761,231,63)
+  {
+   @Hint=#6:Search|
+   Left=300
+   Top=40
+   Width=70
+   Caption="Search..."
+  }
+  Add(Edit,12740961,91,7)
+  {
+   @Hint=#4:What|
+   Left=70
+   Top=10
+   Width=300
+   Text=""
+  }
+  Add(ComboBox,7685837,91,56)
+  {
+   @Hint=#5:Where|
+   Left=70
+   Top=40
+   Width=215
+   Strings=#15:In element name|20:In element propertys|18:In element comment|
+   ReadOnly=0
+  }
+  Add(Label,10625530,7,7)
+  {
+   Left=35
+   Top=15
+   Width=28
+   Height=17
+   Caption="Text:"
+  }
+  Add(Label,11887167,7,56)
+  {
+   Left=5
+   Top=45
+   Width=59
+   Height=17
+   Caption="Where find:"
+  }
+END_SDK
+Add(StringTable,1995266,259,154)
+{
+ @Hint=#10:ResultList|
+ Width=381
+ Height=230
+ Align=5
+ Color=-16777211
+ Columns=#3:Имя|5:Текст|11:Комментарий|
+}

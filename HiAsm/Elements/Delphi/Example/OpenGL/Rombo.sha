@@ -1,0 +1,331 @@
+Make(delphi)
+ver(4.05 build 186)
+Add(MainForm,15261923,-243,49)
+{
+ Left=20
+ Top=105
+ Width=440
+ Height=421
+ Point(MouseX)
+ Point(MouseY)
+ Point(onResize)
+ Point(Handle)
+ link(onCreate,16299401:doEvent1,[(-185,69)(-185,195)])
+ link(onResize,14551396:doWork1,[(-113,76)])
+}
+Add(GL_Main,12986311,-103,189)
+{
+ Color=0
+ link(onInit,12198675:doInit,[])
+ link(onViewPort,3410847:doPerspective,[(-55,202)(-55,244)])
+ link(Handle,15261923:Handle,[(-97,167)(-223,167)])
+}
+Add(Timer,9506849,-215,273)
+{
+ Interval=10
+ Enable=1
+ link(onTimer,1049454:doEvent1,[])
+}
+Add(GL_GTools,771925,-103,273)
+{
+ ClearColor=1
+ Point(doClear)
+ Point(doPushMatrix)
+ Point(doPopMatrix)
+}
+Add(Hub,1049454,-166,273)
+{
+ OutCount=5
+ link(onEvent1,771925:doClear,[])
+ link(onEvent2,771925:doPushMatrix,[])
+ link(onEvent3,3468357:doColor,[(-102,293)(-102,125)])
+ link(onEvent4,771925:doPopMatrix,[(-114,300)(-114,293)])
+ link(onEvent5,12986311:doFlip,[(-118,307)(-118,209)])
+}
+Add(Hub,16299401,-173,189)
+{
+ OutCount=3
+ link(onEvent1,12986311:doInit,[])
+ link(onEvent2,14551396:doWork2,[])
+ link(onEvent3,9506849:doTimer,[(-130,209)(-130,254)(-224,254)(-224,279)])
+}
+Add(HubEx,14551396,-117,196)
+{
+ link(onEvent,12986311:doViewPort,[])
+}
+Add(GL_Vertex3D,3652044,305,189)
+{
+ X=-2
+ Y=-2
+ Z=-0.4
+ link(onVertex,13810871:doVertex,[])
+}
+Add(GL_Perspective,3410847,-40,238)
+{
+ Fovy=20
+}
+Add(GL_Color,4481422,254,119)
+{
+ Color=65535
+ link(onColor,2511151:doVertex,[])
+}
+Add(GL_GluTools,12198675,-40,189)
+{
+ Texture=0
+ link(onInit,14089482:doEnabled,[])
+}
+Add(GL_End,15710943,401,119)
+{
+ link(onEnd,11987895:doOperation,[])
+}
+Add(GL_Options,10513853,107,189)
+{
+ Flag=1
+ link(onEvent,8884538:doEnabled,[])
+}
+Add(GL_Color,14898325,107,119)
+{
+ Color=255
+ link(onColor,2477089:doVertex,[])
+}
+Add(GL_Options,5809249,58,189)
+{
+ Flag=2
+ link(onEvent,10513853:doEnabled,[])
+}
+Add(GL_Vertex3D,2511151,303,119)
+{
+ Z=0.5
+ link(onVertex,14750180:doVertex,[])
+ link(Y,2493153:Result,[(316,112)(407,112)])
+}
+Add(GL_Vertex3D,12413379,205,119)
+{
+ Z=0.5
+ link(onVertex,4481422:doColor,[])
+ link(X,12637387:Var2,[])
+}
+Add(Memory,11330819,352,7)
+{
+ Default=Integer(0)
+}
+Add(GL_Options,8884538,156,189)
+{
+ Flag=6
+ link(onEvent,10286315:doBeginList,[])
+}
+Add(GL_CallList,7836071,8,119)
+{
+ Index=2
+ link(onCallList,5640110:doBegin,[])
+}
+Add(GL_Options,14089482,9,189)
+{
+ Flag=8
+ link(onEvent,5809249:doEnabled,[])
+}
+Add(GL_Vertex3D,2477089,156,119)
+{
+ Z=0.5
+ link(onVertex,12413379:doVertex,[])
+ link(Y,11613390:Result,[(169,107)(456,107)])
+}
+Add(GL_Color,3468357,-41,119)
+{
+ Color=0
+ Alpha=0.06
+ link(onColor,7836071:doCallList,[])
+}
+Add(GL_Vertex3D,13810871,354,189)
+{
+ X=2
+ Y=-2
+ Z=-0.4
+ link(onVertex,1499599:doVertex,[])
+}
+Add(GL_Vertex3D,1499599,403,189)
+{
+ X=2
+ Y=2
+ Z=-0.4
+ link(onVertex,875687:doVertex,[])
+}
+Add(GL_Begin,5640110,58,119)
+{
+ BlockType=2
+ link(onBegin,14898325:doColor,[])
+}
+Add(GL_EndList,258936,550,189)
+{
+ link(onEndList,16037297:doEnabled,[])
+}
+Add(GL_Options,16037297,597,189)
+{
+ Flag=8
+}
+Add(GL_End,6901366,501,189)
+{
+ link(onEnd,258936:doEndList,[])
+}
+Add(GL_Vertex3D,875687,452,189)
+{
+ X=-2
+ Y=2
+ Z=-0.4
+ link(onVertex,6901366:doEnd,[])
+}
+Add(GL_Begin,7222455,256,189)
+{
+ BlockType=7
+ link(onBegin,3652044:doVertex,[])
+}
+Add(GL_BeginList,10286315,207,189)
+{
+ Index=2
+ link(onBiginList,7222455:doBegin,[])
+}
+Add(Memory,5274919,205,63)
+{
+ Default=Integer(0)
+ link(onData,6787263:doOperation,[])
+}
+Add(Math,11987895,450,119)
+{
+ link(onResult,4659987:doEvent1,[])
+ link(Op1,13972912:Var2,[])
+ link(Op2,13842437:Var1,[(463,100)])
+}
+Add(GetDataEx,12637387,205,102)
+{
+ link(Data,5274919:Value,[])
+}
+Add(Memory,14566898,688,56)
+{
+ Default=Real(0.02)
+}
+Add(If_else,4065055,548,126)
+{
+ Type=2
+ Op2=Integer(1)
+ link(onTrue,2639752:doWork2,[])
+ link(onFalse,9309244:doCompare,[])
+ link(Op1,13972912:Var3,[(554,107)])
+}
+Add(Hub,4659987,499,119)
+{
+ OutCount=3
+ link(onEvent1,5274919:doValue,[(543,125)(543,97)(193,97)(193,69)])
+ link(onEvent2,4065055:doCompare,[])
+ link(onEvent3,12877615:doNext,[(589,139)(589,181)])
+}
+Add(Math,2774333,695,126)
+{
+ OpType=1
+ link(onResult,14566898:doValue,[(739,132)(739,97)(676,97)(676,62)])
+ link(Op2,13842437:Var3,[(708,100)])
+}
+Add(GetDataEx,13842437,688,95)
+{
+ link(Data,14566898:Value,[])
+}
+Add(GetDataEx,13972912,450,102)
+{
+ Angle=3
+ link(Data,12637387:Var3,[])
+}
+Add(DoData,7448446,653,126)
+{
+ link(onEventData,2774333:doOperation,[])
+}
+Add(If_else,9309244,597,133)
+{
+ Type=1
+ Op2=Integer(0)
+ link(onTrue,2639752:doWork3,[(643,139)])
+}
+Add(HubEx,2639752,639,126)
+{
+ link(onEvent,7448446:doData,[])
+}
+Add(GL_Vertex3D,14750180,352,119)
+{
+ Z=0.5
+ link(onVertex,15710943:doEnd,[])
+ link(X,6787263:Result,[])
+}
+Add(Math,2493153,401,63)
+{
+ Op1=1
+ link(onResult,11613390:doOperation,[])
+}
+Add(Math,6787263,352,63)
+{
+ OpType=1
+ link(onResult,2493153:doOperation,[])
+ link(Op1,12236949:Var2,[])
+}
+Add(Math,11613390,450,63)
+{
+ OpType=1
+ link(Op1,12236949:Var3,[(456,51)])
+}
+Add(GetDataEx,12236949,352,46)
+{
+ link(Data,11330819:Value,[])
+}
+Add(GL_Begin,8214061,793,175)
+{
+ BlockType=2
+ link(onBegin,5140389:doVertex,[])
+}
+Add(GL_Vertex3D,5140389,842,175)
+{
+ X=-1
+ Z=0.5
+ link(onVertex,7346834:doVertex,[])
+}
+Add(GL_Vertex3D,7346834,891,175)
+{
+ X=1
+ Z=0.5
+ link(onVertex,7183129:doEnd,[])
+}
+Add(GL_End,7183129,940,175)
+{
+ link(onEnd,11479337:doBegin,[(984,181)(984,214)(784,214)(784,230)])
+}
+Add(Counter,12877615,646,175)
+{
+ Max=360
+ link(onNext,4696799:doRotate,[])
+}
+Add(GL_Rotate,4696799,695,175)
+{
+ Z=1
+ link(onRotate,9054629:doColor,[])
+}
+Add(GL_Color,9054629,744,175)
+{
+ Color=8421376
+ link(onColor,8214061:doBegin,[])
+}
+Add(GL_Begin,11479337,793,224)
+{
+ BlockType=2
+ link(onBegin,11227886:doVertex,[])
+}
+Add(GL_Vertex3D,11227886,842,224)
+{
+ Y=1
+ Z=0.5
+ link(onVertex,5427404:doVertex,[])
+}
+Add(GL_Vertex3D,5427404,891,224)
+{
+ Y=-1
+ Z=0.5
+ link(onVertex,9680692:doEnd,[])
+}
+Add(GL_End,9680692,940,224)
+{
+}

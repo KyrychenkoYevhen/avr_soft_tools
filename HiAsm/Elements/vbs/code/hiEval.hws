@@ -1,0 +1,17 @@
+func doEval(_data)
+  if(linked(Result))
+    println(evl, ' = Eval(' && Text && ')' )
+    event(onEval, evl)
+  else
+    event(onEval, 'Eval(' && Text && ')')
+  end
+end
+
+func Result()
+  if(linked(doEval))
+    return(evl)
+  else
+    return('Eval(' && Text && ')')
+  end
+end
+

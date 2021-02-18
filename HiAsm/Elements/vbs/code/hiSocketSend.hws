@@ -1,0 +1,5 @@
+func doSend(_data)
+  if(isset(Socket))
+    println(Socket, '.Send', DataType, '(', Data, ')')
+  end
+end

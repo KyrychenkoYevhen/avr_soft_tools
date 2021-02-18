@@ -1,0 +1,91 @@
+<html>
+	<head>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<link type="text/css" rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<table class="mes_table" border="1">
+			<tr>
+				<td class="prop_cap" align="center">Как использовать элементы-контейнеры?</td>
+			</tr>
+			<tr>
+				<td>
+					<P>Компонент EditMulti - является компонентом-редактором всех элементов, которые 
+						могут содержать в себе&nbsp;собственные схемы( например ChildPanel, ChildForm, 
+						GroupBox и MultiElement ).&nbsp;Этот элемент обладает всего четырмя главными 
+						свойствами, которые позволяют осуществить связь элементов внешней схемы с 
+						элементами внутренней схемы компонента-контейнера. Эти свойства соответственно: 
+						EventCount, WorkCount, DataCount и VarCount. Они указывают на кол-во точек 
+						соответствующего типа, которые вам необходимо иметь.
+					</P>
+					<P>&nbsp;Вот небольшая задачка на использование компонента MultiElement: необходимо 
+						при нажатие на кнопку главной формы, вызывать сообщение с надписью внутри 
+						компонента MultiElement. Сделать это очень просто:</P>
+					<OL>
+						<LI>
+						Ставим на форму компоненты Button и MultiElement.
+						<LI>
+							Выделяем компонент MultiElement, кликнув по нему мышкой, и нажимаем кнопку <img src="../int/icons/forward.ico">
+						на панели инструментов сверху, чтобы попасть внутрь компонента.
+						<LI>
+						После этого перед нами откроется пустая схема с одним элементом&nbsp;- 
+						EditMulti. Выделив его, переходим к окну редактирования св-тв(справа)
+						<LI>
+						В окне редактирования св-тв устанавливаем св-во WorkCount=1. Как видите у 
+						елемента EditMulti слева появилать точка doWork1.
+						<LI>
+						После этого добавте в редактор компонент Message и соедините его точку 
+						doMessage с точкой doWork1 елемента EditMulti.
+						<LI>
+							Вернитесь назад в главную форму, нажав кнопку <img src="../int/icons/back.ico">
+						.
+						<LI>
+							Теперь соедините точку onClick елемента Button с точкой doWork1 елемента 
+							MultiElement и запустите проект <img src="../int/icons/run.ico">.
+						</LI>
+					</OL>
+					&nbsp;Если вы всё сделали правильно, то при нажатие на кнопку вылезет пустое 
+					сообщение с одной кнопкой ОК. Вот полученный код, который вы можете 
+					скопировать(Ctrl+C) и вставить(Ctrl+V) в среду:<br>
+					<pre>
+Add(Button,511,133,91)
+{
+ Left=133
+ Top=91
+ Width=55
+ Height=20
+ Align=0
+ TabOrder=0
+ Caption=Push
+ Data=Null()
+ link(onClick,47377:doWork1,[])
+}
+Add(MultiElement,47377,196,91)
+{
+}
+BEGIN_SDK
+Pos(0,0)
+  Add(EditMulti,73606,3,3)
+  {
+   EventCount=0
+   WorkCount=1
+   DataCount=0
+   VarCount=0
+   Width=300
+   Height=200
+   link(doWork1,18561:doMessage,[(68,9)(68,76)])
+  }
+  Add(Message,18561,133,70)
+  {
+   Message=
+   Caption=
+   Type=0
+   Icon=0
+  }
+END_SDK
+                    </pre>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

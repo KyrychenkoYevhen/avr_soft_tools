@@ -1,0 +1,17 @@
+func doRandom(_data)
+  if(linked(Result))
+    println(rnd, ' = Rnd()')
+    event(onRandom, rnd)    
+  else
+    event(onRandom, 'Rnd()')
+  end
+end
+
+func Result()
+  if(linked(doRandom))
+    return(rnd)
+  else
+    return('Rnd()')
+  end
+end
+

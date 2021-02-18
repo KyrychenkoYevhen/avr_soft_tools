@@ -1,0 +1,61 @@
+include("object")
+include("control")
+
+func SetBevel()
+  println('Set ', id, ' = ', get_parent(), '.Bevel(', Left, ', ', Top, ', ', Width, ', ', Height, ', ', BevelOuter_, ', ', BevelInner_, ', ', BorderWidth_, ', ', BevelWidth_, ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+end
+
+func Init()
+  var(id)
+  id = Bevel_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', BevelOuter_, ', ', BevelInner_, ', ', BorderWidth_, ', ', BevelWidth_)
+  fvar(x)
+  switch(BevelOuter)
+    case 0: x = 0
+    case 1: x = -1
+    case 2: x = 1
+  end
+  println(BevelOuter_, ' = ', x)
+  switch(BevelInner)
+    case 0: x = 0
+    case 1: x = -1
+    case 2: x = 1
+  end
+  println(BevelInner_, ' = ', x)
+  println(BorderWidth_, ' = ', BorderWidth)
+  println(BevelWidth_, ' = ', BevelWidth)
+  block.select(BLK_BODY)
+
+  SetBevel()
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doRedraw()
+  println('If Not (', id, ' Is Nothing) Then Set ', id, ' = Nothing')
+  SetBevel()
+end
+
+func doBevelOuter(_data)
+  println(BevelOuter_, ' = ', _data)
+end
+
+func doBevelInner(_data)
+  println(BevelInner_, ' = ', _data)
+end
+
+func doBorderWidth(_data)
+  println(BorderWidth_, ' = ', _data)
+end
+
+func doBevelWidth(_data)
+  println(BevelWidth_, ' = ', _data)
+end

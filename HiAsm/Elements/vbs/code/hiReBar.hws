@@ -1,0 +1,134 @@
+include("object")
+include("control")
+include("frame")
+
+func Init()
+  var(id)
+  fvar(frm_above)
+  id = ReBar_
+  set_parent_id()
+  stack &= block.select(BLK_BODY)
+
+  fvar(rbsStyle)
+  rbsStyle = 0
+  if(isndef(Vertical))
+    rbsStyle += 128
+  end
+  if(isdef(VarHeight))
+    rbsStyle += 512
+  end
+  if(isndef(BandBorders))
+    rbsStyle += 1024
+  end
+  if(isndef(FixedOrder))
+    rbsStyle += 2048
+  end
+  if(isdef(AutoLayout))
+    rbsStyle += 8192
+  end
+  if(isndef(VerticalGripper))
+    rbsStyle += 16384
+  end
+  if(isndef(DblClkToggle))
+    rbsStyle += 32768
+  end
+  
+  println('Set ', id, ' = ', frm, '.CreateReBar(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(', rbsStyle, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  frm_above = frm
+  frm = id
+  Object_Init(id)
+  Control_Init(id)
+  Frame_Init(id)
+
+  // Local  methods and properties
+  if(isndef(InsertNewRow))
+    println(id, '.InsertNewRow = False')
+  end
+  if(isndef(Locked))
+    println(id, '.Locked = True')
+  end
+  if(linked(Images))
+    println(id, '.Images = ', Images)
+  end
+  if(linked(Image))
+    println(id, '.Image = ', Image)
+  end
+  println('')
+  frm = frm_above
+  block.select(_arr.pop(stack))
+end
+
+func doAutoLayout(_data)
+  println(id, '.AutoLayout = ', (_data='') ? 'False' : _data)
+end
+
+func doBandBorders(_data)
+  println(id, '.BandBorders = ', (_data='') ? 'False' : _data)
+end
+
+func doDblClkToggle(_data)
+  println(id, '.DblClkToggle = ', (_data='') ? 'False' : _data)
+end
+
+func doFixedOrder(_data)
+  println(id, '.FixedOrder = ', (_data='') ? 'False' : _data)
+end
+
+func doVarHeight(_data)
+  println(id, '.VarHeight = ', (_data='') ? 'False' : _data)
+end
+
+func doVerticalGripper(_data)
+  println(id, '.VerticalGripper = ', (_data='') ? 'False' : _data)
+end
+
+func doInsertNewRow(_data)
+  println(id, '.InsertNewRow = ', (_data='') ? 'False' : _data)
+end
+
+func doLocked(_data)
+  println(id, '.Locked = ', (_data='') ? 'False' : _data)
+end
+
+func Band()
+  return(id + '.Band')
+end
+
+func vAutoLayout()
+  return(id + '.AutoLayout')
+end
+
+func vBandBorders()
+  return(id + '.BandBorders')
+end
+
+func vDblClkToggle()
+  return(id + '.DblClkToggle')
+end
+
+func vFixedOrder()
+  return(id + '.FixedOrder')
+end
+
+func vVarHeight()
+  return(id + '.VarHeight')
+end
+
+func vVertical()
+  return(id + '.Vertical')
+end
+
+func vVerticalGripper()
+  return(id + '.VerticalGripper')
+end
+
+func vInsertNewRow()
+  return(id + '.InsertNewRow')
+end
+
+func vLocked()
+  return(id + '.Locked')
+end

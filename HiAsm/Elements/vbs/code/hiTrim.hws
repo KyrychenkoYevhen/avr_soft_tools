@@ -1,0 +1,21 @@
+func doTrim(_data)
+  fvar(f)
+  f = isdef(Place) ? '' : 'l'
+  if(linked(Result))
+    println(rslt, ' = ' + f + 'Trim(', Value, ')')
+    event(onTrim, rslt)
+  else
+    event(onTrim, f + 'Trim(' && Value && ')')
+  end 
+end
+
+func Result()
+  fvar(f)
+  f = isdef(Place) ? '' : 'l'
+  if(linked(doTrim))
+    return(rslt)
+  else
+    return(f + 'Trim(' && Value && ')')
+  end
+end
+

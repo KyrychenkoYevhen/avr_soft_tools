@@ -1,0 +1,47 @@
+Make(modules)
+ver(4.03 build 180)
+Add(MainForm,5278753,49,119)
+{
+ Width=210
+ Height=327
+ Caption="Move to"
+}
+Add(ListBox,3075537,161,105)
+{
+ @Hint=#4:list|
+ Width=204
+ Height=304
+ Align=5
+}
+Add(ChildPanel,8502445,161,175)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,3959404,3,3)
+  {
+  }
+  Add(Panel,4085574,35,105)
+  {
+   Top=272
+   Width=202
+   Height=30
+   Align=4
+   BevelInner=0
+  }
+  Add(Button,12198243,168,91)
+  {
+   @Hint=#2:ok|
+   Left=85
+   Top=5
+   Width=75
+   Caption="OK"
+  }
+  Add(Button,7993717,112,91)
+  {
+   @Hint=#6:cancel|
+   Left=5
+   Top=5
+   Width=75
+   Caption="Cancel"
+  }
+END_SDK

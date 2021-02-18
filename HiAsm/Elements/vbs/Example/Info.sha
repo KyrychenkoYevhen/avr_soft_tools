@@ -1,0 +1,47 @@
+*Первая программа
+Make(vbs)
+ver(4.04 build 185)
+Add(Button,41171,315,161)
+{
+ Left=125
+ Top=85
+ Font=[Arial,8,0,0,1]
+ Data=String(Hello world!)
+ Point(onClick)
+ link(onClick,8814138:doMessageBox,[])
+}
+Add(InfoTip,2504,84,21)
+{
+ Info=#205:HiAsm позволяет очень быстро и очень легко создавать программы для Windows  без единой строчки кода! И при всем при этом HiAsm прост и удобен в освоении, а так же всячески помогает Вам встроенной справкой.|
+ Font=[Times New Roman,10,1,8388608,1]
+ Width=393
+ Height=74
+}
+Add(InfoTip,31043,98,105)
+{
+ Info=#47:Это главная форма интерфейсного проекта в HiAsm|
+ Font=[Times New Roman,9,0,0,1]
+ Width=183
+ Height=109
+}
+Add(InfoTip,66559,294,119)
+{
+ Info=#40:Пример программы "Hello world!!" в HiAsm|
+ Font=[Times New Roman,9,0,0,1]
+ Width=162
+ Height=81
+}
+Add(MainForm,93199,111,140)
+{
+ Left=312
+ Top=234
+ Width=312
+ Height=232
+ Text="Eorm"
+ Font=[Arial,8,0,0,1]
+}
+Add(MessageBox,8814138,399,161)
+{
+ Caption="First program"
+ Icon=4
+}

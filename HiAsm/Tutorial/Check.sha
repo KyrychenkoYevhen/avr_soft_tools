@@ -1,0 +1,153 @@
+Pos(0,0)
+Add(Check,60427,203,364)
+{
+ Check=1
+ link(onEvent,79324:doMessage,[])
+}
+Add(Message,22022,301,231)
+{
+}
+Add(Button,40143,140,231)
+{
+ Left=119
+ Top=140
+ Font=[Arial,8,0,0]
+ link(onClick,60649:doWork,[])
+}
+Add(Check,60649,203,231)
+{
+ link(onEvent,22022:doMessage,[])
+}
+Add(Button,64115,378,231)
+{
+ Left=350
+ Top=91
+ Font=[Arial,8,0,0]
+ link(onClick,16420:doMessage,[])
+}
+Add(Message,16420,469,231)
+{
+}
+Add(InfoTip,5452826,105,176)
+{
+ Info=''
+ Font=[Arial,8,0,0]
+ Width=456
+ Height=123
+ @Group=45230236
+}
+Add(Message,79324,301,364)
+{
+}
+Add(Button,15881,140,364)
+{
+ Left=119
+ Top=140
+ Font=[Arial,8,0,0]
+ link(onClick,60427:doWork,[])
+}
+Add(Shape,14680652,105,309)
+{
+ Width=456
+ Height=25
+ Text="Поток разорван"
+ Font=[Arial,12,1,0]
+ Color=12639424
+ @Group=45445652
+}
+Add(Button,44228,378,364)
+{
+ Left=350
+ Top=91
+ Font=[Arial,8,0,0]
+}
+Add(Message,54933,469,364)
+{
+}
+Add(MainForm,10641,21,119)
+{
+ Left=21
+ Top=105
+ Font=[MS Sans Serif,8,0,0]
+}
+Add(InfoTip,14116923,85,119)
+{
+ Info=' Иногда при построение схем бывает полезно добавить некий фоажок, при изменение состояния которого включаются или отключаются какие то части схемы. Особенно это полезно в проектах, где нет визуального оформления.'
+ Font=[Arial,10,0,0]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=498
+ Height=53
+ @Freez=True
+}
+Add(InfoTip,16464751,77,14)
+{
+ Info=''
+ Font=[MS Sans Serif,10,0,0]
+ Width=508
+ Height=438
+ @Freez=True
+}
+Add(Shape,14299916,77,98)
+{
+ Width=508
+ Height=18
+ Text="Примеры работы"
+ Font=[Times New Roman,12,1,8388608]
+ Color=12639424
+ @Freez=True
+}
+Add(Shape,6712503,77,14)
+{
+ Width=508
+ Height=25
+ Text="Как работает компонент Check"
+ Font=[Times New Roman,14,1,0]
+ Color=10789024
+ @Freez=True
+}
+Add(InfoTip,5050909,85,49)
+{
+ Info=' Check - служит для построения схем с возможностью конфигурации связей на этапе построения.'
+ Font=[Arial,10,0,0]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=491
+ Height=39
+ @Freez=True
+}
+Add(Shape,2562225,105,176)
+{
+ Width=456
+ Height=25
+ Text="Поток существует"
+ Font=[Arial,12,1,0]
+ Color=12639424
+ @Group=45230236
+}
+Add(InfoTip,992612,105,309)
+{
+ Info=''
+ Font=[Arial,8,0,0]
+ Width=456
+ Height=123
+ @Group=45445652
+}
+Add(InfoTip,15132858,343,238)
+{
+ Info='=>'
+ Font=[MS Sans Serif,14,1,0]
+ Frame=1
+ Width=29
+ Height=18
+}
+Add(InfoTip,3139154,343,371)
+{
+ Info='=>'
+ Font=[MS Sans Serif,14,1,0]
+ Frame=1
+ Width=29
+ Height=18
+}

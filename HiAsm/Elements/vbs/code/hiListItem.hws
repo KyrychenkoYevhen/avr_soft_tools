@@ -1,0 +1,131 @@
+func Init()
+  if(isset(Handle))
+    var(id, lst)
+    id = Handle
+    stack &= block.select(BLK_GLOB)
+    if(linked(SubItems))
+      println('Dim ', Items_, '()')
+    end
+    if(linked(SubItemImage))
+      println('Dim ', IdxItems_, '()')
+    end
+    block.select(BLK_BODY)
+    if(isndef(Index))
+      if(isndef(Text))
+        println(id, '.Item(', Index, ').Text = ', Text)
+      end
+      if(isndef(ImageIndex))
+        println(id, '.Item(', Index, ').ImageIndex = ', ImageIndex)
+      end
+      if(isndef(Selected))
+        println(id, '.Item(', Index, ').Selected = True')
+      end
+      if(isndef(Checked))
+        println(id, '.Item(', Index, ').Checked = True')
+      end
+      if(isndef(UserData))
+        println(id, '.Item(', Index, ').UserData = ', `UserData`)
+      end
+      if(isndef(SubItems))
+        fvar(i, s)
+        for(i = 0; i < _arr.count(SubItems); i++)
+          s = SubItems[i]
+          println(id, '.Item(', Index, ').SubItems(', i, ') = ', s)
+        end
+      end
+      if(isndef(SubItemImage))
+        fvar(i, s)
+        for(i = 0; i < _arr.count(SubItemImage); i++)
+          s = SubItemImage[i]
+          println(id, '.Item(', Index, ').SubItemImage(', i, ') = ', s)
+        end
+      end
+      println('')
+    end
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doIndex(_data)
+  println(Index, ' = ', _data)
+end
+
+func doText(_data)
+  println(id, '.Item(', Index, ').Text = ', _data)
+end
+
+func doImageIndex(_data)
+  println(id, '.Item(', Index, ').ImageIndex = ', _data)
+end
+
+func doSelected(_data)
+  println(id, '.Item(', Index, ').Selected = ', (_data='') ? 'False' : _data)
+end
+
+func doChecked(_data)
+  println(id, '.Item(', Index, ').Checked = ', (_data='') ? 'False' : _data)
+end
+
+func doSubItems(_data)
+  fvar(i, c)
+  c = _arr.mt_count(_data)
+  for(i = 0; i < c; i++)
+    println(id, '.Item(', Index, ').SubItems(', i, ') = ', _arr.mt_pop(_data))
+  end
+end
+
+func doSubItemImage(_data)
+  fvar(i, c)
+  c = _arr.mt_count(_data)
+  for(i = 0; i < c; i++)
+    println(id, '.Item(', Index, ').SubItemImage(', i, ') = ', _arr.mt_pop(_data))
+  end
+end
+
+func doUserData(_data)
+  println(id, '.Item(', Index, ').UserData = ', _data)
+end
+
+func Text()
+  return(id + '.Item(' + Index + ').Text')
+end
+
+func ImageIndex()
+  return(id + '.Item(' + Index + ').ImageIndex')
+end
+
+func Selected()
+  return(id + '.Item(' + Index + ').Selected')
+end
+
+func Checked()
+  return(id + '.Item(' + Index + ').Checked')
+end
+
+func SubItems()
+  println('Erase ', Items_)
+  println(count_, ' = ', id, '.Columns.Count-2')
+  println('ReDim ', Items_, '(', count_, ')')
+  println('For ', j, ' = 0 To ', count_)
+    block.inclvl()
+    println(Items_, '(', j, ') = ', id, '.Item(', Index, ').SubItems(', j, ')')
+    block.declvl()
+  println('Next')
+  return(Items_)
+end
+
+func SubItemImage()
+  println('Erase ', IdxItems_)
+  println(count_, ' = ', id, '.Columns.Count-2')
+  println('ReDim ', IdxItems_, '(', count_, ')')
+  println('For ', j, ' = 0 To ', count_)
+    block.inclvl()
+    println(IdxItems_, '(', j, ') = ', id, '.Item(', Index, ').SubItemImage(', j, ')')
+    block.declvl()
+  println('Next')
+  return(IdxItems_)
+end
+
+func UserData()
+  return(id + '.Item(' + Index + ').UserData')
+end

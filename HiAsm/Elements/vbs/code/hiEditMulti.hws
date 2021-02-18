@@ -1,0 +1,18 @@
+func onEvent(_data, index)
+  sys.selectelement(cgt.el_get_parent_id())
+  if(isset(frm_above))
+    frm = frm_above
+  end
+  event("onEvent" + (index + 1), _data)
+  if(isset(id))
+    frm = id
+  end
+end
+
+func Data(_data, index)
+  sys.selectelement(cgt.el_get_parent_id())
+  if(isset(frm_above))
+    frm = frm_above
+  end
+  return(point("Data" + (index + 1)))
+end

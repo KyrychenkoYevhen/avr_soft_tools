@@ -1,0 +1,47 @@
+// ************************************************
+// hiStatusItem.hws for Vbs packet
+// WSO methods, properties and constants
+// Control element of StatusBar panel
+// Last modification: 03.08.2009
+// ************************************************
+
+// Common methods
+func doText(_data)
+  println(Item, '.Text = ', _data)
+end
+
+func doImageIndex(_data)
+  println(Item, '.ImageIndex = ', _data)
+end
+
+func doBorder(_data)
+  println(Item, '.Border = ', _data)
+end
+
+func doWidth(_data)
+  println(Item, '.Width = ', _data)
+end
+
+func doAutoSize(_data)
+  println(Item, '.AutoSize = ', _data)
+end
+
+func Text()
+  return(Item && '.Text')
+end
+
+func ImageIndex()
+  return(Item && '.ImageIndex')
+end
+
+func Border()
+  return(Item && '.Border')
+end
+
+func Width()
+  return(Item && '.Width')
+end
+
+func AutoSize()
+  return(Item && '.AutoSize')
+end

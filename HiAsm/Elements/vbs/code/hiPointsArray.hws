@@ -1,0 +1,27 @@
+func Init
+  if(isndef(Numbers)and (linked(Array) or linked(PointsList)))
+    fvar(n, i, old)
+    var(s)
+    
+    s = Numbers
+    if(_arr.count(s))
+      for(i = 0; i < _arr.count(s); i++)
+          n &= '' + code(s[i][1]) + ',' + s[i][0]
+      end  
+      s = _arr.join(n, ',')
+    else
+      s = ''
+    end
+    old = block.select(BLK_GLOB)
+    println(arr, ' = Array(', code(s), ')')
+    block.select(old)
+  end
+end
+
+func Array()
+  return(arr)
+end
+
+func PointsList()
+  return(s)
+end

@@ -1,0 +1,711 @@
+*Демонстрация игровых возможностей пакета VBS. Игра Арканоид.
+Make(vbs)
+ver(4.04 build 185)
+Add(ChildPanel,9967315,133,126)
+{
+ link(onEvent1,4455781:doEvent1,[])
+ link(onEvent2,6209797:doActive,[(173,139)(173,216)])
+}
+BEGIN_SDK
+  Add(EditMulti,6129699,21,21)
+  {
+   EventCount=2
+   WorkCount=2
+   Height=305
+   link(doWork1,7618313:doWork1,[(172,27)])
+   link(doWork2,10326033:doText,[(49,34)(49,281)])
+  }
+  Add(Panel,16459615,70,35)
+  {
+   Left=292
+   Width=100
+   Height=273
+   Align=3
+   BevelInner=0
+  }
+  Add(Label,6550632,133,42)
+  {
+   Left=15
+   Top=10
+   Width=75
+   Height=25
+   Text="Options"
+   AutoSize=1
+   Alignment=2
+   Point(doText)
+  }
+  Add(Button,9603575,133,84)
+  {
+   Left=15
+   Top=40
+   Width=75
+   Height=25
+   Text="Pause (P)"
+   Point(onClick)
+   link(onClick,7618313:doWork2,[])
+   AddHint(-78,6,61,13,Text)
+  }
+  Add(Label,7622131,133,128)
+  {
+   Left=15
+   Top=82
+   Width=75
+   Text="Level:"
+   AutoSize=1
+   Alignment=2
+   Point(doText)
+  }
+  Add(ComboBox,13904611,133,175)
+  {
+   Left=15
+   Top=100
+   Width=75
+   Height=21
+   Text=""
+   ItemIndex=2
+   Mode=2
+   Strings=#1:1|1:2|1:3|1:4|1:5|1:6|1:7|1:8|1:9|2:10|
+   ReadOnly=0
+   Point(onChange)
+   Point(vText)
+   link(onChange,6129699:onEvent1,[(296,181)(296,27)])
+  }
+  Add(MathParse,2045330,189,84)
+  {
+   DataCount=1
+   MathStr="Not CBool( %1 )"
+   link(onResult,140149:doEvent1,[])
+   link(X1,5046:Value,[])
+  }
+  Add(Memory,5046,189,42)
+  {
+   Default=Integer(-1)
+  }
+  Add(Hub,140149,231,84)
+  {
+   link(onEvent1,6129699:onEvent2,[(271,90)(271,34)])
+   link(onEvent2,5046:doValue,[(257,97)(257,34)(177,34)(177,48)])
+  }
+  Add(HubEx,7618313,168,84)
+  {
+   link(onEvent,2045330:doCalc,[])
+  }
+  Add(Label,10807442,133,226)
+  {
+   Left=15
+   Top=130
+   Width=75
+   Text="Score:"
+   AutoSize=1
+   Alignment=2
+   Point(doText)
+  }
+  Add(Label,10326033,133,275)
+  {
+   Left=15
+   Top=160
+   Width=75
+   Text="0"
+   Color=255
+   AutoSize=1
+   Alignment=2
+   Point(doText)
+  }
+END_SDK
+Add(ChildPanel,1099377,301,189)
+{
+ link(onEvent1,9989147:doWork3,[(369,195)])
+ link(onEvent2,7169091:doWork3,[(356,202)])
+ link(onEvent3,6209797:doStop,[(355,209)(355,241)(170,241)(170,209)])
+ link(onEvent4,2953706:doClose,[(350,216)(350,258)(16,258)(16,223)])
+ link(onEvent5,12462952:doWork3,[(345,223)(345,249)(158,249)])
+ link(onEvent6,9967315:doWork2,[(340,230)(340,266)(121,266)(121,139)])
+ link(Data1,5174847:Var1,[(307,117)])
+ link(Data2,14306843:Var1,[(314,110)])
+}
+BEGIN_SDK
+  Add(EditMulti,6129699,21,21)
+  {
+   EventCount=6
+   WorkCount=3
+   DataCount=2
+   Width=783
+   Height=711
+   link(doWork1,9780565:doCalc,[(51,69)])
+   link(doWork2,1420458:doEvent1,[(39,125)])
+   link(doWork3,1121357:doWidth,[(73,524)])
+  }
+  Add(Panel,16459615,175,504)
+  {
+   Left=230
+   Top=45
+   Width=400
+   Height=300
+   Align=5
+   Color=0
+   BevelOuter=2
+   BevelInner=1
+   Point(ClientWidth)
+   Point(onMouseMove)
+   Point(ClientHeight)
+   Point(MouseX)
+   Point(MouseY)
+   link(onMouseMove,10135237:doEvent1,[(214,510)(214,496)(126,496)(126,622)])
+  }
+  Add(Circle,5375171,245,56)
+  {
+   @Color=16777130
+   Left=10
+   Top=50
+   Width=10
+   Height=10
+   Point(doLeft)
+   Point(doTop)
+   Point(vLeft)
+   Point(vTop)
+   Point(vWidth)
+   Point(vHeight)
+  }
+  Add(MathParse,9780565,175,63)
+  {
+   @Hint=#2:CX|
+   @Color=16777130
+   DataCount=1
+   MathStr="( %1 - 1 ) * Rnd"
+   link(onResult,10171789:doWork2,[])
+   link(X1,474301:Var2,[(181,54)(155,54)])
+  }
+  Add(MathParse,8028299,189,560)
+  {
+   @Hint=#21:n = x - (r.Width / 2)|
+   @Color=11206655
+   MathStr="(%1 - (%2 / 2))"
+   link(X1,16459615:MouseX,[])
+   link(X2,4508072:Var1,[(202,545)])
+   AddHint(-141,6,104,13,@Hint)
+  }
+  Add(GetDataEx,15752996,175,546)
+  {
+   link(Data,16459615:ClientWidth,[])
+  }
+  Add(GetDataEx,4508072,252,540)
+  {
+   link(Data,1121357:vWidth,[])
+  }
+  Add(If_else,8285824,189,616)
+  {
+   @Hint=#14:if (n<0) z = 0|
+   @Color=11206655
+   Type=1
+   Op2=Integer(0)
+   link(onTrue,10145164:doClear,[])
+   link(onFalse,10171802:doCompare,[])
+   link(Op1,10456534:Var2,[])
+   AddHint(-136,20,73,13,@Hint)
+  }
+  Add(Memory,10145164,336,609)
+  {
+   @Hint=#1:Z|
+   @Color=11206655
+   Default=Integer(0)
+   AddHint(5,-20,22,13,@Hint)
+  }
+  Add(If_else,10171802,238,623)
+  {
+   @Hint=#14:if (n>m) z = m|
+   @Color=11206655
+   Type=2
+   link(onTrue,8262213:doData,[])
+   link(onFalse,11494561:doData,[(276,636)(276,671)(156,671)(156,699)])
+   link(Op1,10456534:Var3,[(244,600)])
+   link(Op2,10495462:Var2,[])
+   AddHint(55,84,77,13,@Hint)
+  }
+  Add(GetDataEx,10456534,189,595)
+  {
+   link(Data,8028299:Result,[])
+  }
+  Add(Hub,10135237,140,616)
+  {
+   @Color=11206655
+   link(onEvent1,8285824:doCompare,[])
+   link(onEvent2,14285503:doData,[(181,629)(181,664)])
+  }
+  Add(DoData,8262213,280,623)
+  {
+   @Color=11206655
+   link(onEventData,798004:doWork2,[])
+   link(Data,10495462:Var3,[(286,600)])
+  }
+  Add(GetDataEx,10495462,245,595)
+  {
+   link(Data,16748769:Result,[])
+  }
+  Add(DoData,14285503,336,658)
+  {
+   @Color=11206655
+   link(onEventData,1121357:doLeft,[(401,664)(401,496)(238,496)(238,517)])
+   link(Data,6504594:Var2,[])
+  }
+  Add(MathParse,16748769,245,560)
+  {
+   @Hint=#27:m = v.ClientWidth - r.Width|
+   @Color=11206655
+   MathStr="( %1 - %2 )"
+   link(X1,15752996:Var3,[(251,551)])
+   link(X2,4508072:Var2,[])
+   AddHint(66,6,141,13,@Hint)
+  }
+  Add(DoData,11494561,168,693)
+  {
+   @Color=11206655
+   link(onEventData,798004:doWork3,[(325,699)])
+   link(Data,10456534:Var1,[(174,600)])
+  }
+  Add(HubEx,798004,321,623)
+  {
+   Angle=3
+   link(onEvent,10145164:doValue,[(325,615)])
+  }
+  Add(RoundRect,1121357,252,504)
+  {
+   @Color=11206655
+   Left=10
+   Top=280
+   Width=70
+   Height=10
+   Align=13
+   Color=255
+   nWidth=10
+   nHeight=10
+   Point(vWidth)
+   Point(doLeft)
+   Point(vHeight)
+   Point(vLeft)
+   Point(vTop)
+   Point(doWidth)
+  }
+  Add(GetDataEx,6504594,336,644)
+  {
+   link(Data,10145164:Value,[])
+  }
+  Add(Math,9858971,245,126)
+  {
+   @Color=16777130
+   link(onResult,12143676:doWork1,[(284,132)])
+   link(Op1,10896636:Var2,[])
+   link(Op2,161707:Var2,[])
+  }
+  Add(Hub,1420458,91,119)
+  {
+   @Color=16777130
+   OutCount=5
+   link(onEvent1,9072887:doOperation,[])
+   link(onEvent2,9858971:doOperation,[])
+   link(onEvent3,11404145:doCompare,[(142,139)(142,237)])
+   link(onEvent4,12715997:doCompare,[(130,146)(130,307)])
+   link(onEvent5,3698973:doCompare,[(121,153)(121,412)])
+  }
+  Add(Math,9072887,301,119)
+  {
+   @Color=16777130
+   link(onResult,1232449:doWork3,[(347,125)])
+   link(Op1,6462564:Var3,[(307,103)])
+   link(Op2,12161192:Var2,[])
+  }
+  Add(HubEx,10171789,217,63)
+  {
+   link(onEvent,5375171:doLeft,[])
+  }
+  Add(If_else,12715997,287,301)
+  {
+   @Hint=#7:c.Top<0|
+   @Color=16777130
+   Type=1
+   Op2=Integer(0)
+   link(onTrue,5756710:doWork2,[])
+   link(Op1,8253532:Var2,[])
+   AddHint(-79,-18,55,13,@Hint)
+  }
+  Add(GetDataEx,6462564,287,98)
+  {
+   Angle=3
+   link(Data,5375171:vTop,[(258,103)])
+  }
+  Add(MathParse,5220843,350,301)
+  {
+   @Color=16777130
+   DataCount=1
+   MathStr="-%1"
+   link(onResult,6129699:onEvent1,[(693,307)(693,27)])
+   link(X1,12161192:Var3,[(356,103)])
+  }
+  Add(GetDataEx,12161192,308,98)
+  {
+   link(Data,6129699:Data2,[(314,57)])
+  }
+  Add(If_else,3698973,224,406)
+  {
+   @Hint=#23:c.Left>v.ClientWidth-10|
+   @Color=16777130
+   Type=2
+   link(onTrue,11556627:doWork2,[])
+   link(onFalse,9346315:doCompare,[])
+   link(Op1,1485943:Var2,[])
+   link(Op2,13450392:Result,[])
+   AddHint(-150,14,126,13,@Hint)
+  }
+  Add(GetDataEx,10896636,245,105)
+  {
+   link(Data,5375171:vLeft,[])
+  }
+  Add(MathParse,13450392,231,343)
+  {
+   @Color=16777130
+   DataCount=1
+   MathStr="( %1 - 10 )"
+   link(X1,474301:Var3,[(237,334)])
+  }
+  Add(GetDataEx,474301,149,329)
+  {
+   Angle=2
+   link(Data,15752996:Var1,[(155,551)])
+  }
+  Add(If_else,9346315,273,413)
+  {
+   @Hint=#8:c.Left<0|
+   @Color=16777130
+   Type=1
+   Op2=Integer(0)
+   link(onTrue,11556627:doWork3,[(319,419)])
+   link(Op1,1485943:Var3,[(279,390)])
+   AddHint(-96,32,54,13,@Hint)
+  }
+  Add(GetDataEx,1485943,224,385)
+  {
+   link(Data,7994230:Var2,[])
+  }
+  Add(MathParse,16281350,336,406)
+  {
+   @Color=16777130
+   DataCount=1
+   MathStr="-%1"
+   link(onResult,6129699:onEvent2,[(708,412)(708,34)])
+   link(X1,161707:Var3,[(342,110)])
+  }
+  Add(HubEx,11556627,315,406)
+  {
+   link(onEvent,16281350:doCalc,[])
+  }
+  Add(GetDataEx,161707,252,105)
+  {
+   link(Data,6129699:Data1,[(258,105)])
+  }
+  Add(If_else,11404145,175,231)
+  {
+   @Hint=#7:c.Top>z|
+   @Color=16777130
+   Type=2
+   link(onTrue,8211814:doEvent1,[])
+   link(Op1,8253532:Var1,[(181,222)])
+   link(Op2,3388933:Result,[])
+   AddHint(-145,8,54,13,@Hint)
+  }
+  Add(GetDataEx,8253532,287,217)
+  {
+   link(Data,6462564:Var2,[])
+  }
+  Add(MathParse,3388933,182,175)
+  {
+   @Hint=#34:z=v.ClientHeight-c.Height-r.Height|
+   @Color=16777130
+   DataCount=3
+   MathStr="( %1 - %2 - %3 )"
+   link(X1,16459615:ClientHeight,[(188,165)(165,165)(165,543)(188,543)])
+   link(X2,5375171:vHeight,[(195,119)(272,119)])
+   link(X3,1121357:vHeight,[(202,166)(326,166)(326,554)(265,554)])
+   AddHint(-190,8,175,13,@Hint)
+  }
+  Add(HubEx,5756710,329,301)
+  {
+   link(onEvent,5220843:doCalc,[])
+  }
+  Add(If_else,277913,385,231)
+  {
+   @Hint=#16:c.Left+20<r.Left|
+   @Color=11206570
+   Type=1
+   link(onTrue,13426031:doWork1,[(480,237)])
+   link(onFalse,13448673:doCompare,[])
+   link(Op1,1995781:Result,[])
+   link(Op2,8753567:Var1,[(398,222)])
+   AddHint(75,51,90,13,@Hint)
+  }
+  Add(MathParse,1995781,385,182)
+  {
+   @Color=11206570
+   DataCount=1
+   MathStr="( %1 + 20 )"
+   link(X1,4919384:Var2,[])
+  }
+  Add(MathParse,16131469,434,182)
+  {
+   @Color=11206570
+   DataCount=1
+   MathStr="( %1 - 0 )"
+   link(X1,4919384:Var3,[(440,173)])
+  }
+  Add(GetDataEx,7994230,224,168)
+  {
+   link(Data,10896636:Var1,[(230,110)])
+  }
+  Add(GetDataEx,4919384,385,168)
+  {
+   Angle=3
+   link(Data,11346801:Var3,[])
+  }
+  Add(Hub,8211814,238,231)
+  {
+   @Color=16777130
+   OutCount=4
+   link(onEvent1,277913:doCompare,[])
+   link(onEvent2,15697661:doOperation,[])
+   link(onEvent3,5756710:doWork1,[(333,251)])
+   link(onEvent4,7590622:doNext,[(270,258)(270,356)])
+  }
+  Add(If_else,13448673,434,238)
+  {
+   @Hint=#24:c.Left-20>r.Left+r.Width|
+   @Color=11206570
+   Type=2
+   link(onTrue,13426031:doWork2,[])
+   link(Op1,16131469:Result,[])
+   link(Op2,1778763:Result,[(447,226)(489,226)])
+   AddHint(80,-25,127,13,@Hint)
+  }
+  Add(MathParse,1778763,483,182)
+  {
+   @Color=11206570
+   MathStr="( %1 + %2 )"
+   link(X1,8753567:Var2,[(489,163)(424,163)])
+   link(X2,4508072:Var3,[(496,170)(521,170)(521,545)])
+  }
+  Add(GetDataEx,8753567,418,217)
+  {
+   Angle=2
+   link(Data,1121357:vLeft,[(424,550)(272,550)])
+  }
+  Add(HubEx,13426031,476,238)
+  {
+   link(onEvent,4900415:doEvent1,[])
+  }
+  Add(Hub,4900415,490,238)
+  {
+   @Color=11206570
+   link(onEvent1,6129699:onEvent3,[(720,244)(720,41)])
+   link(onEvent2,16287526:doMessageBox,[])
+  }
+  Add(MessageBox,16287526,532,245)
+  {
+   @Color=11206570
+   Text="Continue?"
+   Caption="GAME OVER"
+   Buttons=4
+   Icon=2
+   link(onResult,8223681:doCompare,[])
+  }
+  Add(If_else,8223681,574,245)
+  {
+   @Color=11206570
+   Op2=Integer(7)
+   link(onTrue,6129699:onEvent4,[(734,251)(734,48)])
+   link(onFalse,1224109:doData,[])
+  }
+  Add(Hub,11790001,665,252)
+  {
+   @Color=11206570
+   OutCount=5
+   link(onEvent1,1232449:doWork2,[(687,258)(687,93)])
+   link(onEvent2,6129699:onEvent5,[(746,265)(746,55)])
+   link(onEvent3,7201824:doWork2,[])
+   link(onEvent4,7590622:doReset,[(687,279)(687,394)(345,394)(345,370)])
+   link(onEvent5,912237:doPrint,[])
+  }
+  Add(HubEx,1232449,343,87)
+  {
+   Angle=2
+   link(onEvent,5375171:doTop,[(233,93)(233,76)])
+  }
+  Add(DoData,1224109,616,252)
+  {
+   @Color=11206570
+   Data=Integer(0)
+   link(onEventData,11790001:doEvent1,[])
+  }
+  Add(Math,15697661,273,238)
+  {
+   @Color=16777130
+   Op2=3
+   link(onResult,12143676:doWork2,[(317,244)(317,161)])
+   link(Op1,11346801:Var2,[])
+   link(Op2,8039620:Random,[])
+  }
+  Add(GetDataEx,11346801,273,168)
+  {
+   Angle=3
+   link(Data,7994230:Var3,[])
+  }
+  Add(HubEx,12143676,280,155)
+  {
+   Angle=2
+   link(onEvent,10171789:doWork3,[(221,161)])
+  }
+  Add(Random,8039620,280,182)
+  {
+   @Color=16777130
+   Min=-5
+   Max=5
+  }
+  Add(Counter,7590622,357,350)
+  {
+   @Color=16777130
+   Max=1000000
+   link(onNext,7201824:doWork3,[(758,356)])
+  }
+  Add(HubEx,7201824,754,266)
+  {
+   Angle=3
+   link(onEvent,6129699:onEvent6,[(758,62)])
+  }
+  Add(Shape,5825101,630,630)
+  {
+   Width=137
+   Color=16777088
+  }
+  Add(Shape,2550126,630,665)
+  {
+   Width=137
+   Color=8454143
+  }
+  Add(Shape,4102108,630,595)
+  {
+   Width=137
+   Color=8454016
+  }
+  Add(InfoTip,10987859,637,637)
+  {
+   @Color=11206655
+   Info=#13:circle moving|
+   Frame=1
+   Width=127
+   Height=18
+  }
+  Add(InfoTip,9711252,637,672)
+  {
+   @Color=11206655
+   Info=#14:racket control|
+   Frame=1
+   Width=127
+   Height=18
+  }
+  Add(InfoTip,10236208,637,602)
+  {
+   @Color=11206655
+   Info=#10:game over?|
+   Frame=1
+   Width=127
+   Height=18
+  }
+  Add(InlineCode,912237,714,280)
+  {
+   @Hint=#4:Exit|
+   Lines=#13:Exit Function|
+   AddHint(-2,37,32,13,@Hint)
+  }
+END_SDK
+Add(MainForm,2953706,28,189)
+{
+ ClientWidth=500
+ ClientHeight=300
+ Text="Arkanoid"
+ BorderWidth=10
+ Point(onKeyDown)
+ link(onCreate,952187:doEvent1,[])
+ link(onKeyDown,4849586:doCheckMask,[(72,216)(72,125)])
+}
+Add(Timer,6209797,182,196)
+{
+ Interval=10
+ Point(doActive)
+ link(onExecute,1099377:doWork2,[])
+}
+Add(Memory,16751058,315,70)
+{
+ @Hint=#2:CX|
+ Default=Integer(-3)
+ AddHint(0,-27,29,13,@Hint)
+}
+Add(Memory,13952471,378,63)
+{
+ @Hint=#2:CY|
+ Default=Integer(-3)
+ AddHint(-3,-23,29,13,@Hint)
+}
+Add(Hub,4455781,182,126)
+{
+ OutCount=3
+ link(onEvent1,15824971:doCalc,[])
+ link(onEvent2,9780565:doCalc,[])
+ link(onEvent3,2095625:doCalc,[])
+}
+Add(MathParse,9780565,315,133)
+{
+ @Hint=#2:CX|
+ MathStr="Sgn( %1 ) * ( %2 + 1 )"
+ link(onResult,7169091:doWork2,[])
+ link(X1,5174847:Var2,[])
+}
+Add(MathParse,15824971,378,126)
+{
+ MathStr="Sgn( %1 ) * ( %2 + 1 )"
+ link(onResult,9989147:doWork1,[(422,132)(422,118)])
+ link(X1,14306843:Var2,[])
+}
+Add(GetDataEx,14306843,378,105)
+{
+ link(Data,13952471:Value,[])
+}
+Add(GetDataEx,5174847,315,112)
+{
+ link(Data,16751058:Value,[])
+}
+Add(KeyMask,4849586,84,119)
+{
+ Key=80
+ link(onTrue,9967315:doWork1,[])
+}
+Add(Hub,952187,84,189)
+{
+ link(onEvent1,1099377:doWork1,[])
+ link(onEvent2,12462952:doWork2,[])
+}
+Add(HubEx,9989147,365,112)
+{
+ Angle=3
+ link(onEvent,13952471:doValue,[(369,69)])
+}
+Add(HubEx,7169091,352,133)
+{
+ Angle=3
+ link(onEvent,16751058:doValue,[(356,125)(303,125)(303,76)])
+}
+Add(HubEx,12462952,154,196)
+{
+ link(onEvent,6209797:doStart,[])
+}
+Add(MathParse,2095625,238,140)
+{
+ DataCount=1
+ MathStr="100 - %1 * 10"
+ link(onResult,1099377:doWork3,[(286,146)(286,209)])
+}

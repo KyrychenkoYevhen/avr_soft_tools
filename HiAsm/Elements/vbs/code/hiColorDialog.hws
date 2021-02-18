@@ -1,0 +1,55 @@
+func Init()
+  if(linked(vColor))
+    stack &= block.select(BLK_GLOB)
+    println('Dim ', color_)
+    if(isset(Color))
+      block.select(BLK_BODY)
+      println(color_, ' = ', Color)
+    end
+    block.select(_arr.pop(stack))
+  end
+end
+
+func flgStyle()
+  fvar(ccStyle)
+  ccStyle = 0
+  if(isndef(FullOpen))
+    ccStyle += 2  //  0x00000002L
+  end
+  if(isndef(PreventFullOpen))
+    ccStyle += 4  //  0x00000004L
+  end
+  if(isndef(ShowHelp))
+    ccStyle += 8  //  0x00000008L
+  end
+  if(isndef(SoliColor))
+    ccStyle += 128  //  0x00000080L
+  end
+  if(isndef(AnyColor))
+    ccStyle += 256  //  0x00000100L
+  end
+  return(ccStyle)
+end
+
+func doDialog(_data)
+  if(linked(vColor))
+    println(color_, ' = ', frm, '.ColorDialog(', Color, ', Clng(', flgStyle(), '))')
+    if(linked(onColor))
+      event(onColor, color_)
+    end
+  else
+    if(linked(onColor))
+      event(onColor, frm + '.ColorDialog(' + Color + ', Clng(' + flgStyle() + '))')
+    else
+      println(frm, '.ColorDialog ', Color, ', Clng(', flgStyle(), ')')
+    end
+  end
+end
+
+func vColor()
+  if(linked(doDialog))
+    return(color_)
+  else
+    return(frm + '.ColorDialog(' + Color + ', Clng(' + flgStyle() + '))')
+  end
+end

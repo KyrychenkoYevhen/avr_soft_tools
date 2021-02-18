@@ -1,0 +1,147 @@
+Make(vbs)
+ver(4.03 build 180)
+Add(MainForm,2953706,63,126)
+{
+ Width=252
+ Height=229
+ Text="Lines example"
+ link(onCreate,13485877:doStart,[])
+}
+Add(Line,3047525,581,119)
+{
+ Left=15
+ Top=30
+ Width=200
+ Height=135
+ Point(Pen)
+ Point(onMouseMove)
+ Point(doX1)
+ Point(doY1)
+ Point(doX2)
+ Point(doY2)
+}
+Add(Pen,16592392,581,231)
+{
+ Point(doColor)
+ Point(doWidth)
+ Point(doStyle)
+ link(Pen,3047525:Pen,[])
+}
+Add(Random,6898897,238,126)
+{
+ Min=15
+ Max=215
+ link(onRandom,3047525:doX1,[])
+}
+Add(Timer,13485877,112,126)
+{
+ Interval=250
+ link(onExecute,301083:doEvent1,[])
+}
+Add(Hub,301083,161,126)
+{
+ OutCount=8
+ link(onEvent1,6898897:doRandom,[])
+ link(onEvent2,8770909:doRandom,[(224,139)(224,174)])
+ link(onEvent3,6087549:doRandom,[(224,146)(224,216)])
+ link(onEvent4,1951039:doRandom,[(224,153)(224,258)])
+ link(onEvent5,12895679:doRandom,[(224,160)(224,300)])
+ link(onEvent6,5082816:doRandom,[(224,167)(224,342)])
+ link(onEvent7,13790300:doRandom,[(224,174)(224,384)])
+ link(onEvent8,3047525:doRedraw,[(196,181)(196,125)])
+}
+Add(Random,8770909,238,168)
+{
+ Min=30
+ Max=165
+ link(onRandom,3047525:doY1,[(285,174)(285,139)])
+}
+Add(Random,6087549,238,210)
+{
+ Min=15
+ Max=215
+ link(onRandom,3047525:doX2,[(285,216)(285,146)])
+}
+Add(Random,1951039,238,252)
+{
+ Min=30
+ Max=165
+ link(onRandom,3047525:doY2,[(285,258)(285,153)])
+}
+Add(Random,12895679,238,294)
+{
+ Max=7
+ link(onRandom,534079:doEvent1,[])
+}
+Add(Random,5082816,238,336)
+{
+ Min=1
+ Max=7
+ link(onRandom,16592392:doWidth,[(566,342)(566,244)])
+}
+Add(Random,13790300,238,378)
+{
+ Max=4
+ link(onRandom,16592392:doStyle,[(573,384)(573,251)])
+}
+Add(Color,332900,301,161)
+{
+ vbsColor=1
+ wsoColor=255
+}
+Add(Color,10785322,371,161)
+{
+ vbsColor=4
+ wsoColor=16711680
+}
+Add(Color,7446618,336,161)
+{
+ vbsColor=2
+ wsoColor=65280
+}
+Add(GetIndexData,6983184,308,259)
+{
+ Count=8
+ link(Data1,332900:wColor,[])
+ link(Data2,7446618:wColor,[(321,226)(349,226)])
+ link(Data3,10785322:wColor,[(328,226)(384,226)])
+ link(Data4,2635172:wColor,[(335,226)(419,226)])
+ link(Data5,2888899:wColor,[(342,226)(454,226)])
+ link(Data6,14191804:wColor,[(349,226)(489,226)])
+ link(Data7,11262739:wColor,[(356,226)(524,226)])
+ link(Data8,15573027:wColor,[(363,226)(559,226)])
+}
+Add(DoData,16047650,308,301)
+{
+ link(onEventData,16592392:doColor,[(559,307)(559,237)])
+ link(Data,6983184:Var,[])
+}
+Add(Hub,534079,280,294)
+{
+ link(onEvent1,6983184:doIndex,[(301,300)(301,265)])
+ link(onEvent2,16047650:doData,[])
+}
+Add(Color,2635172,406,161)
+{
+ vbsColor=3
+ wsoColor=65535
+}
+Add(Color,2888899,441,161)
+{
+ vbsColor=5
+ wsoColor=16711935
+}
+Add(Color,11262739,511,161)
+{
+ wsoColor=0
+}
+Add(Color,15573027,546,161)
+{
+ vbsColor=7
+ wsoColor=16777215
+}
+Add(Color,14191804,476,161)
+{
+ vbsColor=6
+ wsoColor=16776960
+}

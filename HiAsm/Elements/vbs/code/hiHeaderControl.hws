@@ -1,0 +1,62 @@
+func Init()
+  if(isset(Item))
+    var(id)
+    id = Item
+   end
+end
+
+func doOnClick(_data)
+  println(id, '.OnClick = GetRef(', _data, ')')
+end
+
+func doOnResize(_data)
+  println(id, '.OnResize = GetRef(', _data, ')')
+end
+
+func doText(_data)
+  println(id, '.Text = ', _data)
+end
+
+func doWidth(_data)
+  println(id, '.Width = ', _data)
+end
+
+func doTextAlign(_data)
+  println(id, '.TextAlign = ', _data)
+end
+
+func doImageIndex(_data)
+  println(id, '.ImageIndex = ', _data)
+end
+
+func doDataType(_data)
+  println(id, '.DataType = ', _data)
+end
+
+func doSortType(_data)
+  println(id, '.SortType = ', _data)
+end
+
+func Text()
+  return(id + '.Text')
+end
+
+func Width()
+  return(id + '.Width')
+end
+
+func TextAlign()
+  return(id + '.TextAlign')
+end
+
+func ImageIndex()
+  return(id + '.ImageIndex')
+end
+
+func DataType()
+  return(id + '.DataType')
+end
+
+func SortType()
+  return(id + '.SortType')
+end

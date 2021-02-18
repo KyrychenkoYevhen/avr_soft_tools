@@ -1,0 +1,108 @@
+include("object")
+override("control", "onChange")
+
+func Init()
+  var(id)
+  fvar(frm_above)
+  id = TabControl_
+  set_parent_id()
+  stack &= block.select(BLK_BODY)
+
+  fvar(tcsStyle)
+  tcsStyle = 0
+  if(isndef(FlatButtons))
+    tcsStyle += 8 // 0x0008
+  end
+  if(isdef(HotTrack))
+    tcsStyle += 64 // 0x0040
+  end
+  if(isndef(Buttons))
+    tcsStyle += 256 // 0x0100
+  end
+  if(isdef(MultiLine))
+    tcsStyle += 512 // 0x0200
+  end
+  if(isndef(RaggedRight))
+    tcsStyle += 2048 // 0x0800
+  end
+  
+  println('Set ', id, ' = ', frm, '.CreateTabControl(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(', tcsStyle, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  frm_above = frm
+  frm = id
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(linked(onChange))
+    lng.begin_func(id + '_OnChange(Sender)\'' + code(id))
+      event(onChange, 'Sender.ItemIndex')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(isndef(TabWidth))
+    println(id, '.TabWidth = ', TabWidth)
+  end
+  if(isndef(ItemIndex))
+    println(id, '.ItemIndex = ', ItemIndex)
+  end
+  if(linked(Images))
+    println(id, '.Images = ', Images)
+  end
+  println('')
+  frm = frm_above
+  block.select(_arr.pop(stack))
+end
+
+func doCreateTab(_data)
+  if(linked(onCreateTab))
+    event(onCreateTab, id && '.CreateTab(' && _data && ')')
+  else
+    println(id, '.CreateTab ', _data)
+  end
+end
+
+func doActiveControl(_data)
+  println(id, '.ActiveControl = ', _data)
+end
+
+func Controls()
+  return(id + '.Controls')
+end
+
+func ActiveControl()
+  return(id + '.ActiveControl')
+end
+
+func vButtons()
+  return(id + '.Buttons')
+end
+
+func vMultiLine()
+  return(id + '.MultiLine')
+end
+
+func vHotTrack()
+  return(id + '.HotTrack')
+end
+
+func vFlatButtons()
+  return(id + '.FlatButtons')
+end
+
+func vRaggedRight()
+  return(id + '.RaggedRight')
+end
+
+func vTabsVisible()
+  return(id + '.TabsVisible')
+end
+
+func vTabWidth()
+  return(id + '.TabWidth')
+end
+
+func vItemIndex()
+  return(id + '.ItemIndex')
+end

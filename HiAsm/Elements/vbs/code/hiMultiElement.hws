@@ -1,0 +1,19 @@
+func doWork(_data, index)
+  if(isset(id))
+    frm = id
+  end
+  sys.selectelement(cgt.el_get_child_id(0))
+  event("doWork" + (index + 1), _data)
+  sys.selectelement(cgt.el_get_parent_id())
+  if(isset(frm_above))
+    frm = frm_above
+  end
+end
+
+func Var(_data, index)
+  if(isset(frm_above))
+    frm = frm_above
+  end
+  sys.selectelement(cgt.el_get_child_id(0))
+  return(point("Var" + (index + 1)))
+end

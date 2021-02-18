@@ -1,0 +1,299 @@
+Make(delphi)
+ver(4.04 build 185)
+Add(MainForm,2953706,21,105)
+{
+ Width=402
+ Height=167
+ Caption="BASS test"
+ Position=1
+ Point(Handle)
+ link(onCreate,4252681:doInit,[])
+}
+Add(BASS_Init,4252681,98,119)
+{
+ link(onInit,10183901:doCheck,[])
+ link(onError,11232751:doMessage,[(142,132)(142,174)])
+ link(Handle,2953706:Handle,[(118,107)(72,107)(72,149)(27,149)])
+}
+Add(BASS_Version,10183901,154,119)
+{
+ link(onCheckFailed,109118:doMessage,[(198,132)(198,174)])
+}
+Add(Message,11232751,154,168)
+{
+ Message="Error BASS initialization"
+ Caption="Error"
+ Icon=1
+}
+Add(Message,109118,210,168)
+{
+ Message="Incorrect version of BASS library "
+ Caption="Error"
+ Icon=1
+}
+Add(Edit,12373576,497,28)
+{
+ Left=15
+ Top=15
+ Width=350
+ Text=""
+}
+Add(Button,13708268,315,133)
+{
+ Left=15
+ Top=40
+ Caption="Play"
+ link(onClick,14335271:doWork,[])
+}
+Add(Button,13089460,315,28)
+{
+ Left=365
+ Top=15
+ Width=20
+ Caption="..."
+ link(onClick,4225408:doExecute,[])
+}
+Add(ODialog,4225408,357,28)
+{
+ Filter="Аудио-файлы MO3, IT, XM, S3M, MTM, MOD, UMX|*.mo3;*.it;*.xm;*.s3m;*.mtm;*.mod;*.umx|Все файлы (*.*)|*.*"
+ Title="Выберите аудио-файл"
+ FileName=""
+ link(onExecute,10183690:doEvent1,[])
+}
+Add(Message,12393418,609,161)
+{
+ Caption="Error"
+ Icon=1
+}
+Add(StrCat,13951091,560,161)
+{
+ Str1="Error opening file name: "
+ link(onStrCat,12393418:doMessage,[])
+}
+Add(BASS_ChannelPlay,10701583,616,91)
+{
+ Channel="MainSound"
+ Restart=0
+ link(onPlay,10254337:doEvent1,[])
+}
+Add(BASS_ChannelPosition,9802659,875,84)
+{
+ Channel="MainSound"
+ Mode=2
+}
+Add(Timer,3915133,826,196)
+{
+ Enable=1
+ link(onTimer,12272575:doData,[])
+}
+Add(Label,4539506,1029,196)
+{
+ Left=350
+ Top=65
+ Width=10
+ Height=17
+ Caption="0"
+}
+Add(DoData,12272575,875,196)
+{
+ link(onEventData,10482012:doEvent1,[])
+ link(Data,9802659:CurPosition,[])
+}
+Add(BASS_ChannelAttribute,3018529,343,378)
+{
+ Channel="MainSound"
+ Attrib=1
+}
+Add(Label,2006297,126,329)
+{
+ Left=15
+ Top=90
+ Width=39
+ Height=17
+ Caption="Volume"
+}
+Add(Label,4751666,126,427)
+{
+ Left=15
+ Top=110
+ Width=43
+ Height=17
+ Caption="Balance"
+}
+Add(ScrollBar,2661636,196,329)
+{
+ Left=65
+ Top=90
+ Width=280
+ Position=100
+ link(onPosition,15138911:doOperation,[])
+}
+Add(ScrollBar,12172482,196,427)
+{
+ Left=65
+ Top=110
+ Width=280
+ Max=100
+ Min=-100
+ link(onPosition,15100795:doOperation,[])
+}
+Add(Label,4641453,343,329)
+{
+ Left=350
+ Top=90
+ Width=10
+ Height=17
+ Caption="0"
+}
+Add(Label,11822151,343,427)
+{
+ Left=350
+ Top=110
+ Width=10
+ Height=17
+ Caption="0"
+}
+Add(Math,15138911,245,329)
+{
+ OpType=3
+ Op2=100
+ link(onResult,15216955:doEvent1,[])
+}
+Add(Hub,15216955,294,329)
+{
+ link(onEvent1,4641453:doText,[])
+ link(onEvent2,3018529:doAttribute,[(334,342)(334,384)])
+}
+Add(Math,15100795,245,427)
+{
+ OpType=3
+ Op2=100
+ link(onResult,6863995:doEvent1,[])
+}
+Add(Hub,6863995,294,427)
+{
+ link(onEvent1,11822151:doText,[])
+ link(onEvent2,6637138:doAttribute,[(334,440)(334,482)])
+}
+Add(BASS_ChannelAttribute,6637138,343,476)
+{
+ Channel="MainSound"
+ Attrib=2
+}
+Add(DoData,14122420,749,91)
+{
+ link(onEventData,884648:doMax,[])
+ link(Data,9802659:Length,[(755,79)(733,79)(733,139)(888,139)])
+}
+Add(Hub,10482012,931,196)
+{
+ InCount=2
+ link(onEvent1,2432569:doConvert,[])
+ link(onEvent2,884648:doPosition,[(958,209)(958,63)(797,63)(797,90)])
+}
+Add(ScrollBarEx,884648,819,84)
+{
+ Left=65
+ Top=65
+ Width=280
+ ScrollMode=1
+ Point(doMax)
+ link(onPosition,9802659:doPosition,[])
+}
+Add(BASS_MusicLoad,10573726,497,91)
+{
+ Flags=131072
+ Name="MainSound"
+ link(onCreate,10701583:doPlay,[])
+ link(onEndPlay,4538403:doWork,[])
+ link(onError,13951091:doStrCat,[(537,111)(537,167)])
+ link(FileName,12373576:Text,[])
+}
+Add(Hub,10254337,686,91)
+{
+ link(onEvent1,14122420:doData,[])
+ link(onEvent2,3915133:doTimer,[(720,104)(720,202)])
+}
+Add(Button,8928144,315,189)
+{
+ Left=75
+ Top=40
+ Caption="Stop"
+ link(onClick,2918801:doWork,[])
+}
+Add(Label,11850748,987,84)
+{
+ Left=15
+ Top=65
+ Width=41
+ Height=17
+ Caption="Position"
+}
+Add(BASS_ChannelStop,16334672,560,266)
+{
+ Channel="MainSound"
+ link(onStop,4808181:doWork,[])
+}
+Add(LineBreakEx,4808181,609,266)
+{
+ Caption="end"
+}
+Add(LineBreakEx,16131393,728,231)
+{
+ Caption="end"
+ Type=1
+ link(OnEvent,15210022:doEvent1,[])
+}
+Add(LineBreakEx,4538403,553,98)
+{
+ Caption="end"
+}
+Add(Hub,15210022,784,231)
+{
+ link(onEvent1,3915133:doStop,[(812,237)(812,209)])
+ link(onEvent2,10482012:doEvent2,[(917,244)(917,209)])
+}
+Add(Hub,10183690,420,28)
+{
+ link(onEvent1,12373576:doText,[])
+ link(onEvent2,12509385:doWork,[])
+}
+Add(Hub,13758950,406,84)
+{
+ link(onEvent1,11302594:doWork,[])
+ link(onEvent2,10573726:doCreate,[])
+}
+Add(LineBreakEx,7177845,504,266)
+{
+ Caption="stop"
+ Type=1
+ link(OnEvent,16334672:doStop,[])
+}
+Add(LineBreakEx,2918801,364,189)
+{
+ Caption="stop"
+}
+Add(LineBreakEx,11302594,441,84)
+{
+ Caption="stop"
+}
+Add(LineBreakEx,7142637,350,84)
+{
+ Caption="play"
+ Type=1
+ link(OnEvent,13758950:doEvent1,[])
+}
+Add(LineBreakEx,12509385,448,35)
+{
+ Caption="play"
+}
+Add(LineBreakEx,14335271,364,133)
+{
+ Caption="play"
+}
+Add(DateConvertor,2432569,980,196)
+{
+ Mode=16
+ Format="HH:mm:ss"
+ link(onResult,4539506:doText,[])
+}

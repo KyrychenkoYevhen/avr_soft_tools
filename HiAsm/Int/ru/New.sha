@@ -1,0 +1,66 @@
+Make(Modules)
+ver(4.04 build 184)
+Add(MainForm,1770522,35,70)
+{
+ Left=20
+ Top=105
+ Width=451
+ Height=307
+ Caption="Создать новый проект"
+ BorderStyle=3
+}
+Add(ListBox,15512064,112,49)
+{
+ @Hint=#4:list|
+ Left=5
+ Top=5
+ Width=115
+ Height=185
+ Color=-16777211
+}
+Add(Button,1566404,189,203)
+{
+ @Hint=#4:help|
+ Left=125
+ Top=245
+ Width=90
+ Height=25
+ Caption="Помощь"
+}
+Add(StringTable,7557132,217,49)
+{
+ @Hint=#8:projects|
+ Left=130
+ Top=5
+ Width=305
+ Height=185
+ Color=-16777211
+}
+Add(Button,11827000,301,203)
+{
+ @Hint=#2:ok|
+ Left=345
+ Top=245
+ Width=90
+ Height=25
+ Caption="OK"
+}
+Add(Button,10018887,245,203)
+{
+ @Hint=#6:cancel|
+ Left=245
+ Top=245
+ Width=90
+ Height=25
+ Caption="Отмена"
+}
+Add(Memo,9207647,112,133)
+{
+ @Hint=#4:info|
+ Left=5
+ Top=195
+ Width=430
+ Height=40
+ Color=-16777211
+ Ctl3D=1
+}

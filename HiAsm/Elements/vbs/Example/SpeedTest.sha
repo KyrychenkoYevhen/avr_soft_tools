@@ -1,0 +1,72 @@
+*Цикл из 100 000 итераций#13#10Аналог схемы Dеlphi,#13#10сравнивающей скорость FTCG и Classic
+Make(vbs)
+ver(4.04 build 185)
+Add(MainForm,2953706,21,105)
+{
+ Width=239
+ Height=126
+ Text="Speed test"
+}
+Add(Button,6997520,126,105)
+{
+ Left=85
+ Top=65
+ Text="vbs"
+ Point(onClick)
+ link(onClick,11168319:doStart,[])
+}
+Add(MultiElementEx,4649866,238,105)
+{
+ link(onStop,11168319:doStop,[(280,111)(280,144)(172,144)(172,118)])
+}
+BEGIN_SDK
+  Add(EditMultiEx,16173786,21,21)
+  {
+   WorkCount=#6:doWork|
+   EventCount=#6:onStop|
+   Width=244
+   Height=179
+   link(doWork,1073837:doFor,[(39,27)(39,90)])
+  }
+  Add(StrCat,5161981,126,84)
+  {
+   Str2="*"
+   link(Str1,13303495:Var1,[(132,72)(115,72)(115,128)])
+  }
+  Add(For,1073837,56,84)
+  {
+   End=10000
+   link(onEvent,5161981:doStrCat,[])
+   link(onStop,15555639:doData,[(104,97)(104,153)])
+  }
+  Add(DoData,15555639,126,147)
+  {
+   link(onEventData,16173786:onStop,[(212,153)(212,27)])
+   link(Data,13303495:Var2,[])
+  }
+  Add(GetDataEx,13303495,126,123)
+  {
+   link(Data,5161981:Result,[])
+  }
+END_SDK
+Add(TimeCounter,11168319,182,105)
+{
+ Precision=0
+ link(onStart,4649866:doWork,[])
+ link(onStop,8171178:doMessageBox,[(226,118)(226,160)])
+}
+Add(Label,4934633,126,62)
+{
+ Left=5
+ Top=10
+ Width=216
+ Height=52
+ Text="Цикл из 10 000 итераций \r\nАналог схемы Dеlphi,\r\nсравнивающей скорость FTCG и Classic "
+ Point(doText)
+}
+Add(MessageBox,8171178,238,154)
+{
+ Caption="Result"
+ Icon=4
+ TopMost=0
+}

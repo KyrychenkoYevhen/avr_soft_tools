@@ -1,0 +1,9 @@
+Splitter
+Hide
+Remove
+Remove at the left
+Remove on the right
+Panel name
+Enter a name for the new panel
+*new*
+To fix

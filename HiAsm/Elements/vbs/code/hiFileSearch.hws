@@ -1,0 +1,137 @@
+func Init()
+  include("fso")
+  include("regexp")
+  var(item_name, item_size, cnt)
+  item_name = fname_
+  item_size = fsize_
+  cnt = fcnt_
+  fvar(old)
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', item_name)
+  if(linked(Count))
+    println('Dim ', cnt)
+  end
+  if(linked(Size))
+   println('Dim ', item_size)
+  end
+  block.select(BLK_BODY)
+  if(sys.gvarfind('fsearch_set') = -1)
+    gvar(fsearch_set)
+    lng.begin_func('FSearch(fld, bsfld)')
+      if((Include<>'Files') or isndef(SubFolders))
+        println('Dim SubFolders, SubFolder')
+        println('Set SubFolders = fld.SubFolders')
+      end
+      if((Include='All') or (Include='Folders'))
+        println('If SubFolders.Count Then')
+        block.inclvl()
+          println('For Each SubFolder In SubFolders')
+          block.inclvl()
+            println(item_name, ' = SubFolder.', FormatName)
+            if(linked(Size))
+              println(item_size, ' = SubFolder.Size')
+            end
+            if(isset(Exp))
+              println('If RegExpTest(', Exp, ', ', item_name, ') Then')
+              block.inclvl()
+            end
+            if(linked(Count))
+              println(cnt, ' = ', cnt, ' + 1')
+            end
+            event(onMatch, item_name)
+            if(isset(Exp) and linked(onNotMatch))
+              block.declvl()
+              println('Else')
+              block.inclvl()
+              event(onNotMatch, item_name)
+            end
+            if(isset(Exp))
+              block.declvl()
+              println('End If')
+            end
+          block.declvl()
+          println('Next')
+        block.declvl()
+        println('End If')
+      end
+      if((Include='All') or (Include='Files'))
+        println('Dim Files, File')
+        println('Set Files = fld.Files')
+        println('If Files.Count Then')
+        block.inclvl()
+          println('For Each File in Files')
+          block.inclvl()
+            println(item_name,' = File.',FormatName)
+            if(linked(Size))
+              println(item_size,' = File.Size')
+            end
+            if(isset(Exp))
+              println('If RegExpTest(',Exp,',',item_name,') Then')
+              block.inclvl()
+            end
+            if(linked(Count))
+              println(cnt,' = ',cnt,' + 1')
+            end
+            event(onMatch, item_name)
+            if(isset(Exp) and linked(onNotMatch))
+              block.declvl()
+              println('Else')
+              block.inclvl()
+              event(onNotMatch,item_name)
+            end
+            if(isset(Exp))
+              block.declvl()
+              println('End If')
+            end
+          block.declvl()
+          println('Next')
+        block.declvl()
+        println('End If')
+      end
+      if(isndef(SubFolders))
+        println('If bsfld Then')
+        println('  If IsObject(SubFolders) Then') 
+        println('    If SubFolders.Count Then')
+        println('      For Each SubFolder in SubFolders')
+        println('        FSearch SubFolder, True')
+        println('      Next')
+        println('    End If')
+        println('  End If')
+        println('End If')
+      end
+    lng.end_func(BLK_EVENTS)
+  end
+  if(isset(Exp))
+    if(sys.gvarfind('regexptest_set') = -1)
+      gvar(regexptest_set)
+      lng.begin_func('RegExpTest(patrn, strng)')
+        println('With re')
+        println('  .Pattern = patrn')
+        println('  .IgnoreCase = True')
+        println('  RegExpTest = .Test(strng)')
+        println('End With')
+      lng.end_func(BLK_FUNC)
+    end
+  end
+  block.select(_arr.pop(stack))
+end
+
+func doSearch(_data)
+  if(linked(Count))
+    println(cnt, ' = 0')
+  end
+  println('FSearch fso.GetFolder(', Folder, '), ', isndef(SubFolders) ? 'True' : 'False')
+  event(onEndSearch)
+end
+
+func Count()
+  return(cnt)
+end
+
+func Size()
+  return(item_size)
+end
+
+func ItemName()
+  return(item_name)
+end

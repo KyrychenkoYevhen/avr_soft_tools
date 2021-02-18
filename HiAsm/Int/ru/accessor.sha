@@ -1,0 +1,150 @@
+Make(Modules)
+ver(4.03 build 180)
+Add(hcTplForm,14566895,497,224)
+{
+ Left=20
+ Top=105
+ Width=414
+ Height=281
+ Visible=1
+ Caption="Попытка доступа к данным на диске"
+ BorderStyle=3
+ Point(doShowModal)
+}
+Add(hcTplLabel,8552815,448,273)
+{
+ Left=10
+ Top=15
+ Width=385
+ Height=35
+ Font=[MS Sans Serif,8,1,255,1]
+ Caption=""
+ AutoSize=1
+ Point(doCaption)
+}
+Add(hcTplLabel,1553816,133,133)
+{
+ Left=10
+ Top=55
+ Width=159
+ Height=17
+ Caption="Какое действие предпринять?"
+}
+Add(hcTplLabel,9845912,133,175)
+{
+ Left=10
+ Top=78
+ Width=73
+ Height=17
+ Font=[MS Sans Serif,8,1,0,1]
+ Caption="Разрешить:"
+}
+Add(hcTplButton,12073631,182,217)
+{
+ Left=50
+ Top=100
+ Width=305
+ Height=25
+ Caption="Только в этот раз"
+ Data=Integer(1)
+ link(onClick,7826730:doWork2,[])
+}
+Add(hcTplButton,12519383,182,259)
+{
+ Left=50
+ Top=130
+ Width=305
+ Height=25
+ Caption="В этот и во все последующие"
+ Data=Integer(2)
+ link(onClick,6610511:doWork2,[])
+}
+Add(hcTplLabel,3640658,133,301)
+{
+ Left=8
+ Top=158
+ Width=85
+ Height=17
+ Font=[MS Sans Serif,8,1,0,1]
+ Caption="Блокировать:"
+}
+Add(hcTplButton,2247083,182,378)
+{
+ Left=50
+ Top=210
+ Width=305
+ Height=25
+ Caption="В этот и во все последующие"
+ Data=Integer(4)
+ link(onClick,4297872:doWork2,[])
+}
+Add(hcTplButton,2518060,182,336)
+{
+ Left=50
+ Top=180
+ Width=305
+ Height=25
+ Caption="Только в этот раз"
+ Data=Integer(3)
+ link(onClick,7278204:doWork2,[])
+}
+Add(hcHub,9949619,238,217)
+{
+ OutCount=3
+ link(onEvent1,7605908:doValue,[])
+ link(onEvent2,4865124:doReturn,[(289,230)(289,272)])
+ link(onEvent3,14566895:doClose,[])
+}
+Add(HubEx,7826730,224,217)
+{
+ link(onEvent,9949619:doEvent1,[])
+}
+Add(HubEx,6610511,224,259)
+{
+ Angle=3
+ link(onEvent,7826730:doWork3,[])
+}
+Add(HubEx,7278204,224,336)
+{
+ Angle=3
+ link(onEvent,6610511:doWork3,[])
+}
+Add(hcHiAsmTrasmitter,4865124,308,266)
+{
+ link(onInit,3359883:doEvent1,[])
+ link(Arg1,7605908:Value,[])
+}
+Add(hcMemory,7605908,308,217)
+{
+ Default=Integer(0)
+}
+Add(hcHub,3359883,364,266)
+{
+ OutCount=3
+ link(onEvent1,7605908:doClear,[(387,272)(387,210)(296,210)(296,230)])
+ link(onEvent2,8552815:doCaption,[])
+ link(onEvent3,1110207:doSearch,[(388,286)(388,328)])
+}
+Add(hcStrPos,1110207,399,322)
+{
+ Target="http://hiasm.com"
+ ZeroPos=0
+ link(onSearch,6493815:doCompare,[])
+}
+Add(hcIf_else,6493815,448,322)
+{
+ Type=2
+ Op2=Integer(0)
+ link(onTrue,863139:doData,[])
+ link(onFalse,14566895:doShowModal,[(488,335)(488,244)])
+}
+Add(HubEx,4297872,224,378)
+{
+ Angle=3
+ link(onEvent,7278204:doWork3,[])
+}
+Add(hcDoData,863139,497,322)
+{
+ Data=Integer(2)
+ link(onEventData,4297872:doWork1,[(549,328)(549,384)])
+}

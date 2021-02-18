@@ -1,0 +1,36 @@
+func Init()
+  if(isset(Handle))
+    var(obj, x1, x2, x3, x4, res)
+    obj = Handle
+    x1 = x1_
+    x2 = x2_
+    x3 = x3_
+    x4 = x4_
+    res = res_
+    stack &= block.select(BLK_GLOB)
+    println('Dim ', x1, ', ', x2, ', ', x3, ', ', x4, ', ', res)
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doGetUsage()
+  if(linked(onGetUsage))
+    println('On Error Resume Next')
+    println('Set ', objShare_, ' = ', obj, '.Get("Win32_PerfRawData_PerfOS_Processor.Name=\'', code(Processor), '\'")')
+    println('If Err.Number = 0 Then')
+    block.inclvl()
+      println(x3, ' = ', x1)
+      println(x4, ' = ', x2)
+      println(x2, ' = ', objShare_, '.PercentProcessorTime')
+      println(x1, ' = ', objShare_, '.TimeStamp_Sys100NS')
+      // Result = ( 1 - ( ( X2 - X4 ) / ( X1 - X3 ) ) ) * 100
+      println(res, ' = Fix(( 1 - ( (', x2, ' - ', x4, ' ) / ( ', x1, ' - ', x3, ' ) ) ) * 100)')
+      event(onGetUsage, res)
+    block.declvl()
+    println('Else')
+    block.inclvl()
+      event(onError, 'Err.Number')
+    block.declvl()
+    println('End If')
+  end
+end

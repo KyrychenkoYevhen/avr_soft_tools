@@ -1,0 +1,22 @@
+func doEnum(_data)
+  var(i, item, dt, c)
+  dt = _data
+  c = _arr.mt_count(dt)
+  for(i = 0; i < c; i++)
+    event(onItem, _arr.mt_pop(dt))
+  end
+  event(onEndEnum)
+end
+
+func doStop(_data)
+  i = c
+end
+
+func Item()
+  return(item)
+end
+
+func Index()
+  return(i)
+end
+

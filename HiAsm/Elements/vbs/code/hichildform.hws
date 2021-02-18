@@ -1,0 +1,278 @@
+include("object")
+include("control")
+include("frame")
+
+func Init()
+  var(id)
+  fvar(frm_above)
+  id = child_dlg_form_
+  set_parent_id()
+  stack &= block.select(BLK_BODY)
+
+  fvar(wsStyle)
+  wsStyle = 0
+  if(isdef(wsCaption))
+    wsStyle += 12582912 //  0x00C00000L
+  end
+  if(isdef(wsSysMenu))
+    wsStyle += 524288 //  0x00080000L
+  end
+  if(isdef(wsThickFrame))
+    wsStyle += 262144 //  0x00040000L
+  end
+  if(isdef(wsMinimizeBox))
+    wsStyle += 131072 //  0x00020000L
+  end
+  if(isdef(wsMaximizeBox))
+    wsStyle += 65536 //  0x00010000L
+  end
+
+  println('Set ', id, ' = ', frm, '.CreateForm(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(', wsStyle, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  frm_above = frm
+  frm = id
+  Object_Init(id)
+  Control_Init(id)
+  Frame_Init(id)
+
+  // Local  methods and properties
+  if(isndef(IconPath) or isndef(KeyPreview) or isndef(MaximizeBox) or isndef(MinimizeBox) or isndef(ControlBox) or isndef(SizeGrip) or isndef(TopMost) or isndef(ToolWindow) or isndef(Caption) or isndef(CanClose) or isdef(Position))
+    println('With ', id)
+    block.inclvl()
+  end
+  if(isndef(IconPath))
+    println('.Icon = ', IconPath)
+  end
+  if(isndef(KeyPreview))
+    println('.KeyPreview = False')
+  end
+  if(isndef(MaximizeBox))
+    println('.MaximizeBox = False')
+  end
+  if(isndef(MinimizeBox))
+    println('.MinimizeBox = False')
+  end
+  if(isndef(ControlBox))
+    println('.ControlBox = False')
+  end
+  if(isndef(SizeGrip))
+    println('.SizeGrip = False')
+  end
+  if(isndef(TopMost))
+    println('.TopMost = True')
+  end
+  if(isndef(ToolWindow))
+    println('.ToolWindow = True')
+  end
+  if(isndef(Caption))
+    println('.Caption = False')
+  end
+  if(isndef(CanClose))
+    println('.CanClose = True')
+  end
+  if(isdef(Position))
+    println('.CenterControl()')
+  end
+  if(isndef(IconPath) or isndef(KeyPreview) or isndef(MaximizeBox) or isndef(MinimizeBox) or isndef(ControlBox) or isndef(SizeGrip) or isndef(TopMost) or isndef(ToolWindow) or isndef(Caption) or isndef(CanClose) or isdef(Position))
+    block.declvl()
+    println('End With')
+  end
+  println('')
+
+  // Local events
+  if(linked(Close))
+    lng.begin_func(id + '_OnCloseQuery(Sender, ResultPtr)')
+      println('If ', Close, ' Then')
+      block.inclvl()
+        println('ResultPtr.Put False')
+      block.declvl()
+      println('Else')
+      block.inclvl()
+        println('ResultPtr.Put True')
+      block.declvl()
+      println('End If')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onCloseQuery))
+    lng.begin_func(id + '_OnCloseQuery(Sender, ResultPtr)')
+      event(onCloseQuery, 'ResultPtr.Put False')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onClose))
+    lng.begin_func(id + '_OnClose(Sender)')
+      event(onClose)
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onActiveControlChange))
+    lng.begin_func(id + '_OnActiveControlChange(Sender)')
+      event(onActiveControlChange)
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onHitTest))
+    lng.begin_func(id + '_OnHitTest(Sender, X, Y, ResultPtr)')
+      if(linked(MouseX))
+        println('MouseX = X')
+      end
+      if(linked(MouseY))
+        println('MouseY = Y')
+      end
+      event(onHitTest, 'ResultPtr.Value')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onHint))
+    lng.begin_func(id + '_OnHint(Sender, Object)')
+      println('If IsObject(Object) Then')
+      block.inclvl()
+        event(onHint, 'Object')
+      block.declvl()
+      println('End If')
+    lng.end_func(BLK_EVENTS)
+  end
+  event(onCreate, _data_)
+  frm = frm_above
+  block.select(_arr.pop(stack))
+end
+
+// Local methods
+func doMinimize()
+  println(id, '.Minimize()')
+end
+
+func doMaximize()
+  println(id, '.Maximize()')
+end
+
+func doShowModal()
+  println(id, '.ShowModal()')
+end
+
+func doRestore()
+  println(id, '.Restore()')
+end
+
+func doClose()
+  println(id, '.Close()')
+end
+
+func doAcceptButton(_data)
+  println(id, '.AcceptButton = ', _data)
+end
+
+func doCancelButton(_data)
+  println(id, '.CancelButton = ', _data)
+end
+
+func doHelpButton(_data)
+  println(id, '.HelpButton = ', _data)
+end
+
+func doActiveControl(_data)
+  println(id, '.ActiveControl = ', _data)
+end
+
+func doRegion(_data)
+  println(id, '.Region = ', _data)
+end
+
+func doOnCloseQuery(_data)
+  println(id, '.OnCloseQuery = ', _data)
+end
+
+func doOnClose(_data)
+  println(id, '.OnClose = ', _data)
+end
+
+func doOnActiveControlChange(_data)
+  println(id, '.OnActiveControlChange = ', _data)
+end
+
+func doOnHitTest(_data)
+  println(id, '.OnHitTest = ', _data)
+end
+
+func doOnHint(_data)
+  println(id, '.OnHint = ', _data)
+end
+
+func doIconPath(_data)
+  println(id, '.Icon = ', _data)
+end
+
+func doKeyPreview(_data)
+  println(id, '.KeyPreview = ', (_data='') ? 'False' : _data)
+end
+
+func doMaximizeBox(_data)
+  println(id, '.MaximizeBox = ', (_data='') ? 'False' : _data)
+end
+
+func doMinimizeBox(_data)
+  println(id, '.MinimizeBox = ', (_data='') ? 'False' : _data)
+end
+
+func doControlBox(_data)
+  println(id, '.ControlBox = ', (_data='') ? 'False' : _data)
+end
+
+func doSizeGrip(_data)
+  println(id, '.SizeGrip = ', (_data='') ? 'False' : _data)
+end
+
+func doTopMost(_data)
+  println(id, '.TopMost = ', (_data='') ? 'False' : _data)
+end
+
+func doToolWindow(_data)
+  println(id, '.ToolWindow = ', (_data='') ? 'False' : _data)
+end
+
+func doCaption(_data)
+  println(id, '.Caption = ', (_data='') ? 'False' : _data)
+end
+
+func doCanClose(_data)
+  println(id, '.CanClose = ', (_data='') ? 'False' : _data)
+end
+
+// Local vars
+func Menu()
+  return(id + '.Menu')
+end
+
+func KeyPreview()
+  return(id + '.KeyPreview')
+end
+
+func MaximizeBox()
+  return(id + '.MaximizeBox')
+end
+  
+func MinimizeBox()
+  return(id + '.MinimizeBox')
+end
+
+func ControlBox()
+  return(id + '.ControlBox')
+end
+
+func SizeGrip()
+  return(id + '.SizeGrip')
+end
+
+func TopMost()
+  return(id + '.TopMost')
+end
+
+func ToolWindow()
+  return(id + '.ToolWindow')
+end
+
+func Caption()
+  return(id + '.Caption')
+end
+
+func CanClose()
+  return(id + '.CanClose')
+end

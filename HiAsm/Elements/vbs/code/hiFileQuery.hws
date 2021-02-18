@@ -1,0 +1,17 @@
+func doSearch(_data)
+  include("filequery")
+  println('FileQuery.FileSpec = ', FileSpec)
+  if(linked(onEndSearch))
+    event(onEndSearch, 'FileQuery')
+  end
+end
+
+func Count()
+  include("filequery")
+  return('FileQuery.Count')
+end
+
+func Array()
+  include("filequery")
+  return('FileQuery')
+end

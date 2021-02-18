@@ -1,0 +1,7 @@
+func vColor()
+  return('vb' && code(vbsColor))
+end
+
+func wColor()
+  return(wsoColor)
+end

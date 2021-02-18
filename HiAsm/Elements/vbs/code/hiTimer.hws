@@ -1,0 +1,66 @@
+include("object")
+
+func Init()
+  if(linked(onExecute))
+    var(id)
+    id = Timer_
+    stack &= block.select(BLK_BODY)
+
+    println('Set ', id, ' = wso.CreateTimer()')
+    println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+    // Common methods and properties
+    Object_Init(id)
+
+    // Local  methods and properties
+    if(isndef(Interval))
+      println(id, '.Interval = ', Interval)
+    end
+    println('')
+    lng.begin_func(id + '_OnExecute(Sender)\'' + code(id))
+      event(onExecute)
+    lng.end_func(BLK_EVENTS)
+    println('')
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doStart()
+  println(id, '.Active = True')
+end
+
+func Stop()
+  if(linked(onStop))
+    println('If Not ' id, '.Active Then')
+    block.inclvl()
+      event(onStop)
+    block.declvl()
+    println('End If')
+  end
+end
+
+func doStop()
+  println(id, '.Active = False')
+  Stop()
+end
+
+func doActive(_data)
+  println(id, '.Active = ', (_data='') ? 'False' : _data)
+  Stop()
+end
+
+func doInterval(_data)
+  println(id, '.Interval = ', _data)
+end
+
+func doOnExecute(_data)
+  println(id, '.OnExecute = GetRef(', _data, ')')
+end
+
+func Active()
+  return(id + '.Active')
+end
+
+func Interval()
+  return(id + '.Interval')
+end

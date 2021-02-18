@@ -1,0 +1,10 @@
+func doSendMessage(_data)
+  if(isset(Handle))
+    include("wsoe")
+    if(linked(onSend))
+      event(onSend, 'wsoe.SendMessage(' + Handle + ', ' + Message + ', ' + WParam + ', ' + LParam + ')')
+    else
+      println('wsoe.SendMessage ', Handle, ', ', Message, ', ', WParam, ', ', LParam)
+    end
+  end
+end

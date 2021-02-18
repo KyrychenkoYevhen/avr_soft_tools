@@ -1,0 +1,4 @@
+function run(){
+sys.addcompiler("FPC","\'\"%fname%\"\' -Sd -Mdelphi \'\"-FE%opath%\"\' \'\"-FU%upath%\\units\"\' -FDtools\\ -CX -dF_P","%curdir%compiler\\fpc\\fpc.exe","pas");
+sys.setcompiler("delphi","FPC");
+}

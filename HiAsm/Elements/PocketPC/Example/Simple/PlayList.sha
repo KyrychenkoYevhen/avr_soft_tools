@@ -1,0 +1,59 @@
+Make(PocketPC)
+Pos(0,0)
+Add(MainForm,7039795,42,182)
+{
+ Left=20
+ Top=105
+ link(onCreate,3353306:doData,[])
+}
+Add(Edit,13491884,252,35)
+{
+ Left=5
+ Top=5
+ Width=225
+ Text=""
+}
+Add(Button,7734078,112,119)
+{
+ Left=175
+ Top=35
+ link(onClick,3209755:doSearch,[])
+}
+Add(FileSearch,3209755,175,119)
+{
+ Ext=""
+ link(onSearch,10639583:doAdd,[])
+ link(onEndSearch,10639583:doSave,[(229,132)(229,160)])
+ link(Ext,3480706:Text,[])
+ link(Dir,13491884:Text,[(188,86)(258,86)])
+}
+Add(Edit,3480706,175,35)
+{
+ Left=30
+ Top=30
+ Text=""
+}
+Add(Label,436457,112,35)
+{
+ Left=5
+ Top=35
+ Width=19
+ Height=17
+ Caption="Ext"
+}
+Add(ListBox,10639583,252,119)
+{
+ Left=5
+ Top=60
+ Width=225
+ Height=230
+ FileName="list.lst"
+}
+Add(DoData,3353306,112,217)
+{
+ link(onEventData,13491884:doText,[(220,223)(220,41)])
+ link(Data,9892649:CurrentDir,[])
+}
+Add(Dir,9892649,112,168)
+{
+}

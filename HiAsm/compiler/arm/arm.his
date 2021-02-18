@@ -1,0 +1,4 @@
+function run(){
+sys.addcompiler("ARM","\"%fname%\" /I \"%upath%\\\" /I \"%curdir%compiler\\arm\\Inc\" /D \"DEBUG\" /D \"ARM\" /D \"_ARM_\" /D\"ARMV4\" /D \"_M_ARM\" /D UNDER_CE=300 /D_WIN32_WCE=300 /D \"UNICODE\" /D \"_UNICODE\" /link \"%upath%allres.res\" commctrl.lib coredll.lib winsock.lib ws2.lib wininet.lib icmplib.lib aygshell.lib CPQUtil.lib /subsystem:windowsce,3.00 /MACHINE:ARM /libpath:\"%curdir%compiler\\arm\\Lib\" /out:\"%oname%\"","%curdir%compiler\\arm\\CLARM.EXE","cpp");
+sys.setcompiler("pocketpc","ARM");
+}

@@ -1,0 +1,254 @@
+Make(Modules)
+ver(4.04 build 182)
+Add(hcTplForm,3431049,378,301)
+{
+ Left=20
+ Top=105
+ Width=464
+ Height=340
+ Visible=1
+ Caption="Редактор строк"
+ Point(doShowModal)
+}
+Add(hcChildPanel,1626527,105,119)
+{
+ link(onOK,1557768:doEvent1,[(149,125)(149,209)])
+ link(onClear,5275072:doClear,[])
+ link(onSetSyntax,5275072:doLanguage,[(173,139)(173,160)])
+ link(onSave,5275072:doSave,[(173,146)(173,153)])
+ link(onOpen,5275072:doLoad,[(173,153)(173,146)])
+}
+BEGIN_SDK
+  Add(EditMultiEx,1077625,21,21)
+  {
+   EventCount=#4:onOK|7:onClear|11:onSetSyntax|6:onSave|6:onOpen|
+   Width=272
+   Height=333
+  }
+  Add(hcTplPanel,16175052,42,147)
+  {
+   Width=456
+   Height=25
+   Align=2
+   BevelInner=0
+  }
+  Add(hcTplBitBtn,15262612,133,84)
+  {
+   Left=25
+   Width=25
+   Height=25
+   Hint="Загрузить список из файла"
+   Caption=""
+   Bitmap=[ZIP3604000078DA8D922D0F83301086BB64627212B9B9ED0F90CC2297CC4C6227919358241259CB4F40D62291486C2512D9DD958FDCE0283479D21E77EF4BAF6DF0F28FC20E1FB801E78183B8F489214F8731C6E2C57217633DC5CBCAFDCC3C3C595A24ACA37A9BBB54E2F4CD17FA5877D623D60E1A2382A259E8AF79251EAAB6FAA475001E816A17FAA0D0D6238738EBDCBC9516A1AA260FD4635F38A75DDF838BB0041F98A93E19F4916AA67D75CC3D21D88399EBA1B767A9A7B3DC03D54BE82B6560DF8AFC7F03181BA64F7AB76B63F4C0B3E7FE436321242A7A3E7D4CF3E841E1F63E7930FA659D64BE0FB90D3DADE5E235FFB57D70F563FC03A73D1FF4]
+   link(onClick,7225229:doExecute,[])
+  }
+  Add(hcTplBitBtn,3277180,133,42)
+  {
+   Left=50
+   Width=25
+   Height=25
+   Hint="Сохранить список в файле"
+   Caption=""
+   Bitmap=[ZIP3604000078DACD90AD0EC32010806FC91E608F30395BD3A4B6B2C94C5FA18F50393B5959C92B2091582472128B9D434CB03B5A9A8A9690345946F209B8FBEE87FA5E9E219C12B9219799135CA7C01C5F1FEFFD5FF0A82A604D03ACAE4108B1092B8A09CA43A22B9F3DE8AE0BD03B670C54DF8341E7FDF1E09C036BEDE2C7BC3D5F53BFB605390C608C596AE4FA5629E0B807C71968EE5823D7375A831EC73007E73CD478E15B8E9FCB9E4F3BA748F914A73D53C41A295FE1FF6D91EB1FED2FA5FC797FBA536C6FF708E5ACDDA37C017AD94051]
+   link(onClick,1311155:doExecute,[])
+  }
+  Add(hcTplBitBtn,1592811,42,28)
+  {
+   Width=25
+   Height=25
+   Hint="Очистить список"
+   Caption=""
+   Bitmap=[ZIP3604000078DA95912D6EC430104667A51EA04758D813EC010A2BF5240B03971A0606861A061A9A1A0E340C35749941813B4E1CCB7F59752D3D258AF5BE7C1E7F7EDFDE605B37E283788F5CE0BA6FC4FD7C79EF3704632F73B801C567F05683330ADC2A09014E2F04078B3331259C9E9FF8486ECCD022F3F38C8EBF70F20DF9BD8CA5CA38F15DE66FE750F11C6D46EDA358E8E9B20ECF7BD4BE26FFE797DE9D2DCF917AC834CF40E34B117D1733D6938CBDC7995F6674E619E641D4FE9AF92983FCA2C71A7BE88EAF4ABFCED8D160C857B2ED6F3A7E9A27113A284EF7368D2046F66F7FCBA07B358820C701AC20F81728762F7C8BF2D40F188DA0A6077835004E43E11EFF4F73EF10FE1F7C9C59E31EBEC592F0EDF81EEE57B247E3FD01BD0196AF]
+   link(onClick,1077625:onClear,[])
+  }
+  Add(hcTplBitBtn,7824962,189,280)
+  {
+   Left=190
+   Width=25
+   Height=25
+   Hint="Принять изменения"
+   Caption=""
+   Bitmap=[ZIP3604000078DA73F235636100033320D600620128666450804840E591C1FFFFFF698299CBD829D22BB6489B6C3328D10FD263743A854171AD131893620648ADC3CD623006B1493503A61FA69E143340F2BE4F1BC018A6161406D657F2C0FE21C60D2035E8EA407C52CCC0652E35CC00850DB96680C2023D7CC8710335CCA0246F501B030018BC85DD]
+   link(onClick,1077625:onOK,[(263,286)(263,27)])
+  }
+  Add(hcChildPanel,4744934,42,105)
+  {
+  }
+  BEGIN_SDK
+    Add(EditMultiEx,216273,21,21)
+    {
+    }
+    Add(hcTplPanel,14918830,35,105)
+    {
+     Left=76
+     Top=-1
+     Width=3
+     Height=27
+     BevelInner=0
+     BevelOuter=1
+    }
+  END_SDK
+  Add(hcChildPanel,7913430,189,238)
+  {
+  }
+  BEGIN_SDK
+    Add(EditMultiEx,216273,21,21)
+    {
+    }
+    Add(hcTplPanel,14918830,35,105)
+    {
+     Left=176
+     Top=-1
+     Width=3
+     Height=27
+     BevelInner=0
+     BevelOuter=1
+    }
+  END_SDK
+  Add(hcTplComboBox,13381242,189,168)
+  {
+   Left=80
+   Top=1
+   Width=95
+   Height=21
+   Strings=#4:none|3:C++|6:Delphi|3:PHP|5:Basic|10:JavaScript|3:ASM|3:HWS|3:SHA|5:MySQL|3:INI|
+   ReadOnly=0
+   link(onClick,1077625:onSetSyntax,[(276,181)(276,41)])
+  }
+  Add(hcSaveDialog,1311155,182,42)
+  {
+   link(onExecute,1077625:onSave,[])
+  }
+  Add(hcOpenDialog,7225229,182,84)
+  {
+   link(onExecute,1077625:onOpen,[(254,90)(254,55)])
+  }
+END_SDK
+Add(hcTplSynEdit,5275072,210,119)
+{
+ Width=456
+ Height=313
+ Align=5
+ Font=[Courier New,8,0,0,204]
+ Point(doLanguage)
+ link(onChange,10505461:doData,[])
+ link(onCaretXY,779913:doCaretXY,[])
+}
+Add(hcChildPanel,779913,315,119)
+{
+}
+BEGIN_SDK
+  Add(EditMultiEx,5839226,21,21)
+  {
+   WorkCount=#7:doCount|9:doCaretXY|10:doEditProp|
+   Width=447
+   Height=326
+   link(doCount,13895233:doCaption,[(168,27)(168,69)])
+   link(doCaretXY,9906198:doString,[(126,34)(126,167)])
+   link(doEditProp,8650105:doCaption,[(119,41)(119,251)])
+  }
+  Add(hcTplPanel,6664062,35,105)
+  {
+   Top=296
+   Width=456
+   Height=17
+   Align=4
+   BevelInner=0
+   BevelOuter=1
+  }
+  Add(hcTplLabel,9254533,266,77)
+  {
+   Left=5
+   Top=1
+   Width=37
+   Caption="Строк:"
+  }
+  Add(hcTplLabel,13895233,315,63)
+  {
+   Left=45
+   Top=1
+   Width=10
+   Caption="0"
+   Point(doCaption)
+  }
+  Add(hcTplLabel,8430613,266,203)
+  {
+   Left=70
+   Top=1
+   Width=49
+   Caption="Каретка:"
+  }
+  Add(hcTplLabel,4396265,315,161)
+  {
+   Left=125
+   Top=1
+   Width=19
+   Caption="0:0"
+   Point(doCaption)
+  }
+  Add(hcFormatStr,9906198,266,161)
+  {
+   Mask="%1:%2"
+   link(onFString,4396265:doCaption,[])
+  }
+  Add(hcTplLabel,8081335,266,259)
+  {
+   Left=170
+   Top=1
+   Width=83
+   Caption="Редактируется:"
+  }
+  Add(hcTplLabel,8650105,315,245)
+  {
+   Left=255
+   Top=1
+   Width=11
+   Font=[MS Sans Serif,8,1,0,1]
+   Caption="--"
+   Point(doCaption)
+  }
+END_SDK
+Add(hcHiAsmTrasmitter,6352522,210,203)
+{
+ link(onInit,1936873:doGet,[])
+ link(Arg1,9537242:Var2,[])
+}
+Add(hcMT_Get,1936873,259,203)
+{
+ link(onData,16225915:doEvent1,[])
+ link(onGet,779913:doEditProp,[(302,216)(302,139)])
+}
+Add(hcHub,16225915,308,203)
+{
+ OutCount=4
+ link(onEvent1,3509494:doValue,[])
+ link(onEvent3,3431049:doShowModal,[(370,223)(370,321)])
+ link(onEvent4,2894705:doCompare,[(359,230)(359,258)])
+}
+Add(hcHub,1557768,161,203)
+{
+ InCount=2
+ link(onEvent1,6352522:doReturn,[])
+ link(onEvent2,3431049:doClose,[(204,216)(204,314)])
+}
+Add(hcDoData,10505461,266,119)
+{
+ @Hint=#4:test|3:123|
+ link(onEventData,779913:doCount,[])
+ link(Data,5275072:Count,[(272,107)(248,107)(248,172)(223,172)])
+}
+Add(hcMemory,3509494,378,203)
+{
+ link(onData,5275072:doText,[(424,209)(424,103)(198,103)(198,139)])
+}
+Add(hcIf_else,2894705,378,252)
+{
+ Type=5
+ link(onTrue,1557768:doEvent2,[(422,258)(422,346)(149,346)(149,216)])
+ link(Op1,3509494:Value,[])
+ link(Op2,9537242:Var3,[(391,184)])
+}
+Add(GetDataEx,9537242,210,179)
+{
+ link(Data,5275072:Text,[])
+}

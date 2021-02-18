@@ -1,0 +1,26 @@
+func Init()
+  fvar (old)
+  var (rs_id)
+  rs_id = rs_
+  old = block.select(BLK_GLOB)
+  println('Dim ',rs_id)
+  block.select(old)
+end
+
+func doExec(_data)
+  println('Set ',rs_id,' = ',dbHandle,'.ExecuteSQL(',SQLquery,')')
+  if(linked(onResult))
+   event(onResult,rs_id)
+  end
+  if(linked(onError))
+   println('If ',linked(dbHandle) ? dbHandle : _data,'.ErrorMessage() <> "" Then')
+   block.inclvl()
+    event(onError,linked(dbHandle) ? dbHandle : _data && '.ErrorMessage()')
+   block.declvl()
+   println('End If')
+  end
+end
+
+func rsHandle()
+  return(rs_id)
+end

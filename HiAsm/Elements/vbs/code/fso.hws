@@ -1,0 +1,11 @@
+if(sys.gvarfind('fso_is_set') = -1)
+  gvar(fso_is_set)
+  fvar(cur)
+  cur = block.select(BLK_OBJ)
+  println('Dim fso')
+  println('Set fso = CreateObject("Scripting.FileSystemObject")')
+  println('')
+  block.select(BLK_NOTH)
+  println('Set fso = Nothing')
+  block.select(cur)
+end

@@ -1,0 +1,4 @@
+func doInfo(_data)
+  event(onInfo, Data)
+  event(onContinue, _data_)
+end

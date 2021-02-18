@@ -1,0 +1,12 @@
+  if(isndef(Left))
+    println(id, '.left = ', Left)
+  end
+  if(isndef(Top))
+    println(id, '.top = ', Top)
+  end
+  if(isndef(Width))
+    println(id, '.width = ', Width)
+  end
+  if(isndef(Height))
+    println(id, '.height = ', Height)
+  end

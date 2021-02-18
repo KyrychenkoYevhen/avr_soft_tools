@@ -1,0 +1,39 @@
+include("GraphicObject")
+
+func Init()
+  if(linked(Pen))
+    var(id)
+    id = Pen
+    stack &= block.select(BLK_BODY)
+
+    // Common methods and properties
+    GraphicObject_Init(id)
+
+    // Local  methods and properties
+    if(isndef(Width))
+      println(id, '.Width = ', Width)
+    end
+    if(isndef(Style))
+      println(id, '.Style = ', Style)
+    end
+    println('')
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doWidth(_data)
+  println(id, '.Width = ', _data)
+end
+
+func doStyle(_data)
+  println(id, '.Style = ', _data)
+end
+
+func vWidth()
+  return(id + '.Width')
+end
+
+func vStyle()
+  return(id + '.Style')
+end
+

@@ -1,0 +1,313 @@
+Make(vbs)
+ver(4.04 build 182)
+Add(MainForm,2953706,56,140)
+{
+ Width=264
+ Height=450
+ Text="Chord example"
+ link(onCreate,9897771:doData,[])
+}
+Add(Chord,15927122,413,112)
+{
+ Left=25
+ Top=45
+ Width=200
+ Height=135
+ XRadial1=25
+ YRadial1=180
+ XRadial2=125
+ YRadial2=45
+ Point(onMouseMove)
+ Point(Brush)
+ Point(Pen)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ Point(doDestroy)
+ Point(doXRadial1)
+ Point(doYRadial1)
+ Point(doXRadial2)
+ Point(doYRadial2)
+ link(onMouseMove,7121171:doString,[(460,118)(460,181)])
+}
+Add(FormatStr,7121171,469,175)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,9521271:doText,[])
+ link(Str1,15927122:MouseX,[(475,166)(433,166)])
+ link(Str2,15927122:MouseY,[(482,166)(440,166)])
+ link(Str3,15927122:Flags,[(489,166)(447,166)])
+}
+Add(Label,9521271,511,175)
+{
+ Left=25
+ Top=30
+ Width=200
+ Text="Chord"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(TrackBar,7710678,56,70)
+{
+ Left=25
+ Top=190
+ Width=145
+ Max=1000
+ Position=25
+ Point(onChange)
+ link(onChange,9950178:doEvent1,[])
+}
+Add(Edit,15702097,189,63)
+{
+ Left=175
+ Top=193
+ Text="25"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Hub,9950178,98,70)
+{
+ OutCount=5
+ link(onEvent1,15702097:doText,[(158,76)(158,69)])
+ link(onEvent2,10553834:doWork2,[])
+ link(onEvent3,15927122:doXRadial1,[(378,90)(378,132)])
+ link(onEvent4,5371172:doWork2,[(144,97)(144,118)])
+ link(onEvent5,4764227:doWork1,[(123,104)])
+}
+Add(Brush,7363234,287,175)
+{
+ Color=255
+ Style=5
+ Point(doColor)
+ Point(doStyle)
+ Point(vColor)
+ link(Brush,15927122:Brush,[(293,166)(419,166)])
+}
+Add(DoData,15598180,245,175)
+{
+ link(onEventData,7363234:doColor,[])
+ link(Data,14422519:vColor,[])
+}
+Add(DoData,12334739,189,182)
+{
+ link(onEventData,7363234:doStyle,[])
+ link(Data,12209079:ItemIndex,[])
+}
+Add(Pen,2512969,420,217)
+{
+ Color=65535
+ Point(doColor)
+ Point(vColor)
+ link(Pen,15927122:Pen,[])
+}
+Add(DoData,2402003,336,217)
+{
+ link(onEventData,2512969:doColor,[])
+ link(Data,5386691:vColor,[])
+}
+Add(TrackBar,13316892,56,238)
+{
+ Left=25
+ Top=230
+ Width=145
+ Max=1000
+ Position=180
+ Point(onChange)
+ link(onChange,4668597:doEvent1,[])
+}
+Add(Edit,9813248,189,238)
+{
+ Left=175
+ Top=233
+ Text="180"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Hub,4668597,98,238)
+{
+ OutCount=5
+ link(onEvent1,9813248:doText,[])
+ link(onEvent2,7520720:doWork2,[])
+ link(onEvent3,15927122:doYRadial1,[(379,258)(379,139)])
+ link(onEvent4,11095309:doWork2,[])
+ link(onEvent5,2522461:doWork2,[])
+}
+Add(HubEx,5371172,399,112)
+{
+ link(onEvent,15927122:doRedraw,[])
+}
+Add(Hub,11535521,147,175)
+{
+ OutCount=3
+ link(onEvent1,15598180:doData,[])
+ link(onEvent2,12334739:doData,[])
+ link(onEvent3,2402003:doData,[(170,195)(170,223)])
+}
+Add(TrackBar,12443736,56,280)
+{
+ Left=25
+ Top=270
+ Width=145
+ Max=1000
+ Position=125
+ Point(onChange)
+ link(onChange,1610172:doEvent1,[])
+}
+Add(Edit,9381936,189,280)
+{
+ Left=175
+ Top=273
+ Text="125"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Hub,1610172,98,280)
+{
+ OutCount=5
+ link(onEvent1,9381936:doText,[])
+ link(onEvent2,15996549:doWork2,[])
+ link(onEvent3,15927122:doXRadial2,[(386,300)(386,146)])
+ link(onEvent4,12326701:doWork2,[])
+ link(onEvent5,3950489:doWork2,[])
+}
+Add(HubEx,11095309,399,259)
+{
+ Angle=3
+ link(onEvent,5371172:doWork3,[])
+}
+Add(HubEx,2522461,119,266)
+{
+ Angle=3
+ link(onEvent,4764227:doWork3,[])
+}
+Add(TrackBar,15656932,56,322)
+{
+ Left=25
+ Top=310
+ Width=145
+ Max=1000
+ Position=45
+ Point(onChange)
+ link(onChange,1859620:doEvent1,[])
+}
+Add(Edit,8857932,189,322)
+{
+ Left=175
+ Top=313
+ Text="45"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Hub,1859620,98,322)
+{
+ OutCount=5
+ link(onEvent1,8857932:doText,[])
+ link(onEvent2,15996549:doWork3,[(179,335)])
+ link(onEvent3,15927122:doYRadial2,[(396,342)(396,153)])
+ link(onEvent4,12326701:doWork3,[(403,349)])
+ link(onEvent5,3950489:doWork3,[(123,356)])
+}
+Add(HubEx,10553834,175,77)
+{
+ link(onEvent,15927122:doDestroy,[(385,83)(385,125)])
+}
+Add(HubEx,15996549,175,287)
+{
+ Angle=3
+ link(onEvent,7520720:doWork3,[])
+}
+Add(HubEx,7520720,175,245)
+{
+ Angle=3
+ link(onEvent,10553834:doWork3,[])
+}
+Add(HubEx,3950489,119,308)
+{
+ Angle=3
+ link(onEvent,2522461:doWork3,[])
+}
+Add(HubEx,12326701,399,301)
+{
+ Angle=3
+ link(onEvent,11095309:doWork3,[])
+}
+Add(HubEx,4764227,119,175)
+{
+ link(onEvent,11535521:doEvent1,[])
+}
+Add(ComboBox,12209079,182,140)
+{
+ Left=105
+ Top=345
+ Width=115
+ Height=21
+ Text=""
+ Strings=#5:Clear|5:Solid|8:Diagonal|5:Cross|9:DiagCross|9:FDiagonal|10:Horizontal|8:Vertical|
+ ReadOnly=0
+ Point(onChange)
+ Point(vText)
+ Point(ItemIndex)
+ Point(doItemIndex)
+ link(onChange,5456019:doWork1,[(221,146)])
+}
+Add(Label,12379275,56,196)
+{
+ Left=35
+ Top=363
+ Width=60
+ Height=40
+ Text="Style:"
+ Font=[MS Sans Serif,18,0,0,1]
+ AutoSize=1
+ Alignment=1
+ Point(doText)
+}
+Add(ColorDialog,14422519,245,133)
+{
+ link(onColor,7471580:doWork1,[(284,139)])
+ link(Color,7363234:vColor,[(251,121)(279,121)(279,215)(307,215)])
+}
+Add(Button,2714246,56,364)
+{
+ Left=105
+ Top=370
+ Width=115
+ Text="Brush color"
+ Point(onClick)
+ link(onClick,14422519:doDialog,[(233,370)(233,139)])
+}
+Add(HubEx,5456019,217,154)
+{
+ Angle=2
+ link(onEvent,4764227:doWork2,[(114,160)(114,181)])
+}
+Add(DoData,9897771,133,140)
+{
+ link(onEventData,12209079:doItemIndex,[])
+ link(Data,7363234:vStyle,[(139,132)(128,132)(128,219)(293,219)])
+}
+Add(ColorDialog,5386691,336,175)
+{
+ link(onColor,7471580:doWork2,[(374,181)(374,160)])
+ link(Color,2512969:vColor,[(342,163)(391,163)(391,261)(440,261)])
+}
+Add(Button,1836785,56,406)
+{
+ Left=105
+ Top=395
+ Width=115
+ Text="Pen color"
+ Point(onClick)
+ link(onClick,5386691:doDialog,[(327,412)(327,181)])
+}
+Add(HubEx,7471580,280,154)
+{
+ Angle=2
+ link(onEvent,5456019:doWork2,[])
+}

@@ -1,0 +1,38 @@
+func doNext(_data)
+  fvar(old)
+  old=block.select(BLK_GLOB)
+    println('Dim ',counter)
+      println(counter,' = ',Default)
+  block.select(old)
+    
+  if (type=0) //Inc
+    println('If ', counter,' >= ',Max,' Then ', counter,' = ',Min)
+    println(counter,' = ',counter,' + ',Step)
+  else //Dec
+    println('If ', counter,' <= ',Min,' Then ', counter,' = ',Max)
+    println(counter,' = ',counter,' - ',Step)
+  end
+  event(onNext,counter)
+end
+
+func doPrev(_data)
+  if (type=0) //Inc
+    println(counter,' = ',counter,' - ',Step)
+    println('If ', counter,' <= ',Min,' Then ', counter,' = ',Max)
+  else //Dec
+    println(counter,' = ',counter,' + ',Step)
+    println('If ', counter,' >= ',Max,' Then ', counter,' = ',Min)
+  end
+end
+
+func doReset(_data)
+  println(counter,' = ',Default)
+end
+
+func doValue(_data)
+  println(counter,' = ',_data)
+end
+
+func Count()
+  return(counter)
+end

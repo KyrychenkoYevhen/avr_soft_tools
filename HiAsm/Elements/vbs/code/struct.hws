@@ -1,0 +1,34 @@
+if(sys.gvarfind('struct_is_set') = -1)
+  gvar(struct_is_set)
+  gvar(BLK_DBG,BLK_HEAD,BLK_GLOB,BLK_CLASS,BLK_OBJ,BLK_BODY,BLK_LABELS,BLK_EVENTS,BLK_FUNC,BLK_NOTH,BLK_FOOTER)
+  gvar(stack)
+  gvar(heap)
+  BLK_DBG = "debuggers" // external debugger
+  BLK_HEAD = "head"
+  //Option Explicit
+  BLK_GLOB = "globals"
+  BLK_CLASS = "class"
+  //type
+  BLK_OBJ = "objects" //Fso, Re, ...
+  BLK_BODY = "body"
+  BLK_LABELS = "labels"
+  BLK_EVENTS = "events" // On...
+  BLK_FUNC = "functions"
+  BLK_NOTH = "Nothing"
+  //Error
+  BLK_FOOTER = "footer"
+  block.reg(BLK_DBG)
+  block.reg(BLK_HEAD)
+  block.reg(BLK_GLOB)
+  block.reg(BLK_CLASS)
+  block.reg(BLK_OBJ)
+  block.reg(BLK_BODY)
+  block.reg(BLK_LABELS)
+  block.reg(BLK_EVENTS)
+  block.reg(BLK_FUNC)
+  block.reg(BLK_NOTH)
+  block.reg(BLK_FOOTER)
+  block.select(BLK_FOOTER)
+  println('\'Generated with VBS pack for HiAsm Studio, www.hiasm.com')
+  block.select(BLK_BODY)
+end

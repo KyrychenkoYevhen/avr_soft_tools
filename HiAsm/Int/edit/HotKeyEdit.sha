@@ -1,0 +1,181 @@
+*Create by Nic
+Make(Modules)
+ver(4.04 build 182)
+Add(hcTplEdit,5908842,497,56)
+{
+ Left=220
+ Top=15
+ TabOrder=4
+ Hint="A..Z"
+ Text="0"
+}
+Add(hcTplForm,15167743,168,203)
+{
+ Width=330
+ Height=101
+ Visible=1
+ Caption="Hot Key Editor"
+ Point(doShowModal)
+}
+Add(hcHiAsmTrasmitter,2963275,77,182)
+{
+ link(onInit,6684674:doEvent1,[])
+}
+Add(hcHub,6684674,126,182)
+{
+ link(onEvent1,601704:doConvert,[(147,188)(147,62)])
+ link(onEvent2,15167743:doShowModal,[(151,195)(151,223)])
+}
+Add(hcHub,7310988,126,245)
+{
+ link(onEvent1,11865545:doOperation,[])
+ link(onEvent2,15167743:doClose,[(157,258)(157,216)])
+}
+Add(hcTplButton,3639436,77,245)
+{
+ Left=135
+ Top=45
+ Width=65
+ TabOrder=5
+ Caption="OK"
+ link(onClick,7310988:doEvent1,[])
+}
+Add(hcHub,14638239,210,56)
+{
+ OutCount=4
+ link(onEvent1,4787136:doCopy,[])
+ link(onEvent2,4152690:doCopy,[(276,69)(276,111)])
+ link(onEvent3,4374780:doCopy,[(256,76)(256,160)])
+ link(onEvent4,15613734:doCopy,[(234,83)(234,209)])
+}
+Add(hcMath,11865545,336,245)
+{
+ OpType=9
+ Op2=30
+ ResultType=0
+ link(onResult,16420533:doOperation,[])
+ link(Op1,9826485:Checked,[])
+}
+Add(hcMath,16420533,378,245)
+{
+ OpType=9
+ Op2=29
+ ResultType=0
+ link(onResult,8286969:doOperation,[])
+ link(Op1,950127:Checked,[])
+}
+Add(hcMath,8286969,420,245)
+{
+ OpType=9
+ Op2=28
+ ResultType=0
+ link(onResult,8949795:doConvert,[])
+ link(Op1,535221:Checked,[])
+}
+Add(hcMath,5002881,336,301)
+{
+ OpType=5
+ ResultType=0
+ link(onResult,15253291:doOperation,[])
+ link(Op1,11865545:Result,[])
+ link(Op2,16420533:Result,[(349,289)(384,289)])
+}
+Add(hcMath,15253291,378,301)
+{
+ OpType=5
+ ResultType=0
+ link(onResult,6794642:doOperation,[])
+ link(Op2,8286969:Result,[(391,289)(426,289)])
+}
+Add(hcMath,6794642,420,301)
+{
+ OpType=5
+ ResultType=0
+ link(onResult,2963275:doReturn,[(460,307)(460,340)(67,340)(67,188)])
+ link(Op2,8949795:Result,[(433,289)(468,289)])
+}
+Add(hcConvertor,601704,168,56)
+{
+ Mode=8
+ Digits=32
+ link(onResult,14638239:doEvent1,[])
+}
+Add(hcCopy,4787136,371,56)
+{
+ Position=25
+ Count=8
+ link(onCopy,3663328:doConvert,[])
+}
+Add(hcConvertor,3663328,413,56)
+{
+ Mode=7
+ link(onResult,16716620:doConvert,[])
+}
+Add(hcConvertor,16716620,455,56)
+{
+ Mode=4
+ link(onResult,5908842:doText,[])
+}
+Add(hcCopy,4152690,329,105)
+{
+ Position=4
+ Count=1
+ link(onCopy,2395152:doConvert,[])
+}
+Add(hcConvertor,2395152,371,105)
+{
+ Mode=7
+ link(onResult,535221:doCheck,[])
+}
+Add(hcCopy,4374780,287,154)
+{
+ Position=3
+ Count=1
+ link(onCopy,13145274:doConvert,[])
+}
+Add(hcConvertor,13145274,329,154)
+{
+ Mode=7
+ link(onResult,950127:doCheck,[])
+}
+Add(hcCopy,15613734,245,203)
+{
+ Position=2
+ Count=1
+ link(onCopy,15600067:doConvert,[])
+}
+Add(hcConvertor,15600067,287,203)
+{
+ Mode=7
+ link(onResult,9826485:doCheck,[])
+}
+Add(hcConvertor,8949795,462,245)
+{
+ Mode=3
+ link(onResult,5002881:doOperation,[(502,251)(502,283)(324,283)(324,307)])
+ link(Data,5908842:Text,[(468,167)(503,167)])
+}
+Add(hcTplCheckBox,535221,420,105)
+{
+ Left=55
+ Top=15
+ TabOrder=1
+ Caption="Shift"
+ Flat=0
+}
+Add(hcTplCheckBox,950127,378,154)
+{
+ Left=110
+ Top=15
+ TabOrder=2
+ Caption="Ctrl"
+ Flat=0
+}
+Add(hcTplCheckBox,9826485,336,203)
+{
+ Left=165
+ Top=15
+ TabOrder=3
+ Caption="Alt"
+ Flat=0
+}

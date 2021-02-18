@@ -1,0 +1,36 @@
+func Init()
+  var(id)
+  id = index_
+  if(linked(Index))
+    stack &= block.select(BLK_GLOB)
+    println('Dim ', id)
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doEnum(_data)
+  if(linked(Index))
+    println(id, ' = 0')
+  end
+  println('For Each ', item_, ' In ', Array)
+    block.inclvl()
+    event(onEnum, item_)
+    if(linked(Index))
+      println(id, ' = ', id, ' + 1')
+    end
+    block.declvl()
+  println('Next')
+  event(onEndEnum)
+end
+
+func Item(Index)
+  return(item_)
+end
+
+func Index()
+  return(id)
+end
+
+func doStop()
+  println('Exit For')
+end

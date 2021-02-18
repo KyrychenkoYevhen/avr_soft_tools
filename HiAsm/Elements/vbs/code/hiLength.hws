@@ -1,0 +1,18 @@
+func doLength
+  fvar(s)
+  s = 'Len(' && Text && ')'
+  if(linked(Result))
+    println(res, ' = ', s)
+    event(onLength, res)
+  else
+    event(onLength, s)
+  end
+end
+
+func Result
+  if(linked(doLength))
+    return(res)
+  else
+    return('Len(' && Text && ')')  
+  end
+end

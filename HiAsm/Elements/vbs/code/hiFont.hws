@@ -1,0 +1,16 @@
+//пока нерабочая заготовка
+func doFont(_data)
+  //todo
+  println('\'Font = ',Font[0])
+  println('\'Color = ',Font[1])
+  println('\'Size = ',Font[2])
+  println('\'Style = ',Font[3])
+end
+
+func Name()
+  return(Font[0])
+end
+
+func Font()
+  return(Font)
+end

@@ -1,0 +1,112 @@
+Make(vbs)
+ver(4.03 build 180)
+Add(MainForm,8821364,28,196)
+{
+ Left=20
+ Top=105
+ Width=341
+ Height=449
+}
+Add(Button,6876505,105,217)
+{
+ Left=10
+ Top=10
+ Width=130
+ Text="Получить новую строку"
+ Point(onClick)
+ link(onClick,15143440:doEvent1,[])
+}
+Add(Hub,15143440,154,217)
+{
+ OutCount=3
+ link(onEvent1,33728:doRandomize,[])
+ link(onEvent2,4991060:doOperation,[])
+ link(onEvent3,33728:doRandom,[(202,237)(202,216)])
+}
+Add(Hub,12780119,350,210)
+{
+ link(onEvent1,7328487:doString,[])
+ link(onEvent2,5444772:doText,[(374,223)(374,265)])
+}
+Add(Math,4991060,231,224)
+{
+ OpType=1
+ Op2=2
+ ResultType=0
+ link(onResult,33728:doMax,[])
+ link(Op1,7328487:Count,[(237,212)(276,212)(276,256)(391,256)])
+}
+Add(RichEdit,3100809,560,210)
+{
+ Left=165
+ Top=35
+ Width=155
+ Height=370
+ ReadFormat=0
+ WriteFormat=0
+ Point(Handle)
+}
+Add(Label,5444772,392,259)
+{
+ Left=165
+ Top=10
+ Width=154
+ Height=19
+ Text=""
+ Alignment=2
+ Point(doText)
+}
+Add(FormatStr,4933030,434,210)
+{
+ Mask="%1 - %2"
+ link(onFString,8903179:doAdd,[])
+ link(Str2,33728:Random,[(447,198)(426,198)(426,252)(300,252)])
+}
+Add(MT_Add,8903179,476,210)
+{
+ Data=Integer(1)
+ InputMT=1
+ link(onAdd,7849854:doAdd,[])
+}
+Add(MT_Add,7849854,518,210)
+{
+ InputMT=1
+ link(onAdd,3100809:doAdd,[])
+ link(Data,63282:vColor,[])
+}
+Add(Color,63282,518,161)
+{
+ Color=4
+}
+Add(EditControl,5167070,560,252)
+{
+ ScrollBars=3
+ link(Handle,3100809:Handle,[])
+}
+Add(StringsControl,7328487,385,210)
+{
+ Point(Count)
+ Point(doString)
+ Point(onString)
+ link(Handle,16206240:Handle,[])
+ link(onString,4933030:doString,[])
+}
+Add(Random,33728,294,210)
+{
+ Point(doMax)
+ Point(doMin)
+ link(onRandom,12780119:doEvent1,[])
+}
+Add(Edit,16206240,378,161)
+{
+ Left=10
+ Top=35
+ Width=155
+ Height=370
+ Text="Туз червей\r\nКороль червей\r\nДама червей\r\nВалет червей\r\n10 червей\r\n9 червей\r\n8 червей\r\n7 червей\r\n6 червей\r\nТуз бубен\r\nКороль бубен\r\nДама бубен\r\nВалет бубен\r\n10 бубен\r\n9 бубен\r\n8 бубен\r\n7 бубен\r\n6 бубен\r\nТуз крестей\r\nКороль крестей\r\nДама крестей\r\nВалет крестей\r\n10 крестей\r\n9 крестей\r\n8 крестей\r\n7 крестей\r\n6 крестей\r\nТуз пик\r\nКороль пик\r\nДама пик\r\nВалет пик\r\n10 пик\r\n9 пик\r\n8 пик\r\n7 пик\r\n6 пик\r\n"
+ ES_MULTILINE=0
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+ Point(Handle)
+}

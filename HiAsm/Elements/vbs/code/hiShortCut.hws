@@ -1,0 +1,24 @@
+func Init
+  include("shell")
+end
+
+func doCreate(_data)
+  fvar(lnk)
+  lnk = link_
+  if(linked(onCreate))
+   println('Set ',lnk,' = shell.CreateShortcut(',ShortcutName,')')
+   println('With ',lnk)
+   block.inclvl()
+    println('.Arguments = ',Arguments)
+    println('.Description = ',Description)
+    println('.HotKey = ',HotKey)
+    println('.IconLocation = ',IconLocation)
+    println('.TargetPath = ',TargetPath)
+    println('.WindowStyle = ',WindowStyle)
+    println('.WorkingDirectory = ',WorkingDirectory)
+    println('.Save')
+   block.declvl()
+   println('End With')
+   event(onCreate)
+  end
+end

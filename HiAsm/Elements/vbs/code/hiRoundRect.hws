@@ -1,0 +1,40 @@
+include("object")
+include("control")
+
+func SetRoundRect()
+  println('Set ', id, ' = ', get_parent(), '.RoundRect(', Left, ', ', Top, ', ', Width, ', ', Height, ', ', nWidth_, ', ', nHeight_, ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+end
+
+func Init()
+  var(id)
+  id = RoundRect_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', nWidth_, ', ', nHeight_)
+  println(nWidth_, ' = ', nWidth)
+  println(nHeight_, ' = ', nHeight)
+  block.select(BLK_BODY)
+
+  SetRoundRect()
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doRedraw()
+  println('If Not (', id, ' Is Nothing) Then Set ', id, ' = Nothing')
+  SetRoundRect()
+end
+
+func donWidth(_data)
+  println(nWidth_, ' = ', _data)
+end
+
+func donHeight(_data)
+  println(nHeight_, ' = ', _data)
+end

@@ -1,0 +1,73 @@
+func Init()
+  var(iMsg, iConf, Flds)
+  iMsg = msg_
+  iConf = cnf_
+  Flds = fld_
+  stack &= block.select(BLK_OBJ)
+  println('Dim ', iMsg, ', ', iConf, ', ', Flds)
+  println('Set ', iMsg, ' = CreateObject("CDO.Message")')
+  println('Set ', iConf, ' = CreateObject("CDO.Configuration")')
+  println('Set ', Flds, ' = ', iConf, '.Fields')
+  println('')
+  block.select(BLK_NOTH)
+  println('Set ', Flds, ' = Nothing')
+  println('Set ', iConf, ' = Nothing')
+  println('Set ', iMsg, ' = Nothing')
+  block.select(_arr.pop(stack))
+end
+
+func doSend(Data)
+  fvar(sch, dsn)
+  dsn = 0
+  if(isndef(None))
+    dsn += 1
+  end
+  if(isndef(Failure))
+    dsn += 2
+  end
+  if(isndef(Success))
+    dsn += 4
+  end
+  if(isndef(Delay))
+    dsn += 8
+  end
+  sch = 'http://schemas.microsoft.com/cdo/configuration/'
+  println('With ', Flds)
+  block.inclvl()
+    println('.Item("', sch, 'sendusing") = ', UsingMethod + 1)
+    println('.Item("', sch, 'smtpauthenticate") = ', Authenticate)
+    if(isndef(UserName))
+      println('.Item("', sch, 'sendusername") = ', UserName)
+    end
+    if(isndef(Password))
+      println('.Item("', sch, 'sendpassword") = ', Password)
+    end
+    println('.Item("', sch, 'smtpserver") = ', SMTPServer)
+    println('.Item("', sch, 'smtpserverport") = ', Port)
+    if(isndef(Timeout))
+      println('.Item("', sch, 'smtpconnectiontimeout") = ', Timeout)
+    end
+    if(isndef(UseSSL))
+      println('.Item("', sch, 'smtpusessl") = False')
+    end
+    println('.Update')
+  block.declvl()
+  println('End With')
+  println('With ', iMsg)
+  block.inclvl()
+    println('.Configuration = ', iConf)
+    println('.To = ', To)
+    println('.From = ', From)
+    println('.Subject = ', Subject)
+    println('.TextBody = ', TextBody)
+    if(isndef(Attachment))
+      println('.AddAttachment ', Attachment)
+    end
+    if(dsn)
+      println('.DSNOptions = ', dsn)
+    end
+    println('.Send')
+  block.declvl()
+  println('End With')
+  event(onSend)
+end

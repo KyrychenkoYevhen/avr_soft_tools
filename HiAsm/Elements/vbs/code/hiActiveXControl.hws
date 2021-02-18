@@ -1,0 +1,27 @@
+include("object")
+include("control")
+
+func Init()
+  var(id)
+  id = OCX_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', id)
+  block.select(BLK_BODY)
+
+  println('Set ', id, ' = ', get_parent(), '.CreateActiveXControl(', Left, ', ', Top, ', ', Width, ', ', Height, ', ', IdOCX, isdef(Licensed) ? '': (', ' + LicKey), ')')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties  
+  block.select(_arr.pop(stack))
+end
+
+func Control()
+  return(id + '.Control')
+end
+
+func Events()
+  return(id + '.Events')
+end

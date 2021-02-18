@@ -1,0 +1,18 @@
+func Init()
+  if(isset(Stream))
+    var(obj, res)
+    obj = Stream
+  end
+end
+
+func doLoad(_data)
+  if(isset(Stream))
+    println(obj, '.LoadFromFile ', FileName)
+  end
+end
+
+func doSave(_data)
+  if(isset(Stream))
+    println(obj, '.SaveToFile ', FileName, isndef(SaveOptions) ? (', ' + (SaveOptions + 1)) : '')
+  end
+end

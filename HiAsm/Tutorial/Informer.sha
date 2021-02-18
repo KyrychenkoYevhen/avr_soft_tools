@@ -1,0 +1,194 @@
+Make(delphi)
+ver(4.04 build 185)
+Add(MainForm,4846576,259,273)
+{
+ Left=20
+ Top=105
+ Width=476
+ Height=201
+ Font=[Arial,8,0,0,1]
+}
+Add(Informer,13791210,161,203)
+{
+ Data="Show message"
+ link(onContinue,13914286:doMessage,[])
+ link(onInfo,13342642:doWork1,[(298,216)])
+}
+Add(InfoTip,12252066,85,371)
+{
+ Info=#122: Кроме логов на базе данного компонента удобно строить визуальное оповещение пользователя о длительном процессе. Например:|
+ Font=[Arial,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=498
+}
+Add(Shape,6712503,77,14)
+{
+ @Freez=True
+ Width=508
+ Height=25
+ Text="Отчет о протекание потока"
+ Font=[Times New Roman,14,1,0,1]
+ Color=10789024
+}
+Add(Shape,14299916,77,98)
+{
+ @Freez=True
+ Width=508
+ Height=18
+ Text="Примеры работы"
+ Font=[Times New Roman,12,1,8388608,1]
+ Color=12639424
+}
+Add(InfoTip,16464751,77,14)
+{
+ @Freez=True
+ Info=#
+ Font=[MS Sans Serif,10,0,0,1]
+ Width=508
+ Height=529
+}
+Add(InfoTip,14116923,85,119)
+{
+ Info=#280: Как видно из примера ниже, компонент при передаче управления на метод doInfo сначало вызывает событие onInfo со строкой статуса, а только затем onContinue с данными, переданными ему из потока. Это позволяет очень эффективно организовать протоколирование событий внутри программы.|
+ Font=[Arial,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=498
+ Height=67
+}
+Add(InfoTip,5050909,85,49)
+{
+ @Freez=True
+ Info=#85: Informer - предназначен для ведения логов программы или вывода статусной информации.|
+ Font=[Arial,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=491
+ Height=39
+}
+Add(Button,3063451,105,203)
+{
+ Left=10
+ Top=10
+ link(onClick,13791210:doInfo,[])
+}
+Add(Message,13914286,217,203)
+{
+}
+Add(ListBox,2306594,343,259)
+{
+ Left=5
+ Top=90
+ Width=210
+ AddType=1
+}
+Add(CheckBox,11761355,105,259)
+{
+ Left=10
+ Top=40
+ Width=115
+ link(onCheck,1601271:doInfo,[])
+}
+Add(Edit,15442338,105,315)
+{
+ Left=130
+ Top=5
+ Width=85
+ Point(doEnabled)
+ link(onChange,15390038:doInfo,[])
+}
+Add(Informer,1601271,161,259)
+{
+ Data="Enabled\disabled edit box"
+ link(onContinue,15442338:doEnabled,[(203,265)(203,299)(95,299)(95,335)])
+ link(onInfo,13342642:doWork2,[(216,272)(216,265)])
+}
+Add(Informer,15390038,161,315)
+{
+ Data="Change form caption"
+ link(onContinue,4846576:doCaption,[(226,321)(226,279)])
+ link(onInfo,13342642:doWork3,[(298,328)])
+}
+Add(HubEx,13342642,294,259)
+{
+ link(onEvent,2306594:doAdd,[])
+}
+Add(ChildPanel,11689839,343,315)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,7553045,3,3)
+  {
+  }
+  Add(Panel,6891750,35,105)
+  {
+   Left=225
+   Top=10
+   Width=5
+   Height=155
+  }
+END_SDK
+Add(Button,955487,105,434)
+{
+ Left=245
+ Top=10
+ Width=60
+ link(onClick,7836465:doInfo,[])
+}
+Add(Label,5595751,343,483)
+{
+ Left=320
+ Top=15
+ Width=130
+}
+Add(Informer,7836465,161,434)
+{
+ Data="Please wait..."
+ link(onContinue,1024061:doTimer,[])
+ link(onInfo,12065988:doWork2,[(209,447)(209,489)])
+}
+Add(Message,13157044,343,434)
+{
+ Message="Work complite!"
+ Caption="Info"
+}
+Add(Informer,13333519,273,434)
+{
+ Data="OK"
+ link(onContinue,13157044:doMessage,[])
+ link(onInfo,12065988:doWork1,[(326,447)])
+}
+Add(HubEx,12065988,322,483)
+{
+ link(onEvent,5595751:doText,[])
+}
+Add(Timer,1024061,224,434)
+{
+ Interval=4000
+ Enable=1
+ AutoStop=1
+ link(onTimer,13333519:doInfo,[])
+}
+Add(InfoTip,2256537,84,189)
+{
+ Info=#
+ Width=491
+ Height=172
+}
+Add(InfoTip,1270923,329,210)
+{
+ Info=#33:пример протоколирования программы|
+ Frame=1
+ Width=211
+ Height=18
+}
+Add(InfoTip,9529593,84,413)
+{
+ Info=#
+ Width=491
+ Height=116
+}

@@ -1,0 +1,33 @@
+include("object")
+override("control","doText")
+
+func Init()
+  var(id)
+  id = Label_
+  fvar(old)
+  old = block.select(BLK_BODY)
+  fvar(dtAlign)
+  switch(Alignment)
+    case 0: dtAlign = Alignment
+    case 1: dtAlign = 2
+    case 2: dtAlign = 1
+  end 
+  if(AutoSize ='True')
+    dtAlign += 256
+  end
+  
+  println('Set ', id, ' = ', get_parent(), '.TextRect(', Left, ', ', Top, ', ', Width, ', ', Height, ', ', replace(Text, '\r\n', '" & vbCrLf & "'), ', CLng(', dtAlign, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  println('')
+  block.select(old)
+end
+
+func doText(_data)
+  println(id, '.Text = Replace(', Data, ', "\r\n", vbCrLf)')
+end

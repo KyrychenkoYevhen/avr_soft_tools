@@ -1,0 +1,18 @@
+func doExecute(_data)
+  include('wso')
+  fvar(old)
+  old = block.cur()
+  println(file, ' = ', frm, '.Form.SaveDialog(', '""', ', ', Filter, ',', FileName, ')')
+  println('If Len(', file, ') Then')
+  block.inclvl()
+    event(onExecute, file)
+    if(linked(onCancel))
+      block.declvl()
+      println('Else')
+      block.inclvl()
+      event(onCancel)
+    end
+  block.declvl()
+  println('End If')    
+  block.select(old)
+end

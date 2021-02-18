@@ -1,0 +1,28 @@
+include("object")
+include("control")
+
+func SetEllipse()
+  println('Set ', id, ' = ', get_parent(), '.Ellipse(', Left, ', ', Top, ', ', Width, ', ', Height, ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+end
+
+func Init()
+  var(id)
+  id = Ellipse_
+  stack &= block.select(BLK_BODY)
+  
+  SetEllipse()
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doRedraw()
+  println('If Not (', id, ' Is Nothing) Then Set ', id, ' = Nothing')
+  SetEllipse()
+end

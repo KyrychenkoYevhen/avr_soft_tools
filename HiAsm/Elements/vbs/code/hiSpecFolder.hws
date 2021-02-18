@@ -1,0 +1,92 @@
+func Init
+  include("fso")
+  include("shell")
+end
+
+func doCurrent(_data)
+  println('shell.CurrentDirectory = ',_data) 
+  if(linked(onCurrent))
+   event(onCurrent,shell.CurrentDirectory)
+  end
+end
+
+func Current()
+  return('shell.CurrentDirectory') 
+end
+
+func Desktop()
+  return('shell.SpecialFolders("Desktop")')
+end
+
+func Temporary()
+  return('fso.GetSpecialFolder(2)')
+end
+
+func Startup()
+  return('shell.SpecialFolders("Startup")')
+end
+
+func Windows()
+  return('fso.GetSpecialFolder(0)')
+end
+
+func System()
+  return('fso.GetSpecialFolder(1)')
+end
+
+func AllUsersDesktop()
+  return('shell.SpecialFolders("AllUsersDesktop")')
+end
+
+func AllUsersStartMenu()
+  return('shell.SpecialFolders("AllUsersStartMenu")')
+end
+
+func AllUsersPrograms()
+  return('shell.SpecialFolders("AllUsersPrograms")')
+end
+
+func AllUsersStartup()
+  return('shell.SpecialFolders("AllUsersStartup")')
+end
+
+func Favorites()
+  return('shell.SpecialFolders("Favorites")')
+end
+
+func Fonts()
+  return('shell.SpecialFolders("Fonts")')
+end
+
+func MyDocuments()
+  return('shell.SpecialFolders("MyDocuments")')
+end
+
+func PrintHood()
+  return('shell.SpecialFolders("PrintHood")')
+end
+
+func NetHood()
+  return('shell.SpecialFolders("NetHood")')
+end
+
+func Programs()
+  return('shell.SpecialFolders("Programs")')
+end
+
+func Recent()
+  return('shell.SpecialFolders("Recent")')
+end
+
+func SendTo()
+  return('shell.SpecialFolders("SendTo")')
+end
+
+func StartMenu()
+  return('shell.SpecialFolders("StartMenu")')
+end
+
+func Templates()
+  return('shell.SpecialFolders("Templates")')
+end
+

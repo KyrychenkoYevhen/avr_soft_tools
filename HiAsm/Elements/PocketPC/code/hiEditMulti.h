@@ -1,0 +1,9 @@
+#ifndef _EDITMULTI_
+#define _EDITMULTI_
+
+//#include "share.h"
+#include "hiMultiElement.h"
+
+///////////////////////////////////////////////////////////////////////////////
+
+#endif

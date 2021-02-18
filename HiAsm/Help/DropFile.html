@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<LINK href="style.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+		<table class="mes_table" border="1">
+			<tr class="prop_cap">
+				<td width="10%"><IMG src="../elements/delphi/icon/DropFile.ico"></td>
+				<td align="center">DropFile</td>
+			</tr>
+			<tr>
+				<td style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px" colSpan="2">
+					<P align="justify">&nbsp;Компонент&nbsp;DropFile - применяется в случае 
+						необходимости принятия сброшенных файлов на форму или другой компонент 
+						контейнер. Причем, если компонент стоит на форме, то сбрасывать файлы можно в 
+						любом её месте(о чем свидетельствует изменяющийся значек курсора), в то время 
+						как установка компонента внутрь элемента контейнера приведет к тому, что файлы 
+						будут успешно приняты программой только при сбросе их в область этого 
+						контейнера(под контейнером понимается Панель(Panel)&nbsp;и&nbsp;Группа 
+						элементов(GroupBox)).</P>
+					<P align="justify">&nbsp;В случае, когда необходимо запретить прием файлов 
+						элементом, применяется метод doAccept. От прямого запрета в программе(т.е. 
+						когда например прием файлов осуществляется только после прохождения некоторого 
+						условия) использование этого метода отличается тем, что при попытке сброса 
+						файлов пользователь будет видеть стандартный значет запрета операции в Windows.</P>
+					<P align="justify">&nbsp;Поскольку операция приема файлов является внутренним 
+						событием компонента, то для выполнения некоторых начальных действий(если 
+						таковые необходимы) можно использовать скрытое по-умолчанию событие 
+						onStartDrop.</P>
+				</td>
+			</tr>
+			<tr>
+				<td class="down_sel" colSpan="2">&nbsp;Примеры: <a href="*Example*example/Forms/DragDrop.sha">
+						DragDrop </a>, <a href="*Example*example/Forms/Notepad.sha">Notepad</a>, <a href="*Example*example/Image/Image.sha">
+						Image</a></td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,80 @@
+Make(modules)
+ver(4.0 build 173)
+Add(hcTplForm,2953706,21,105)
+{
+ Visible=1
+}
+Add(hcCommanHandler,2326032,154,217)
+{
+ link(onCommand,10136795:doCompare,[])
+ link(onCmdEnabled,6580308:doEnum,[(196,230)(196,254)(93,254)(93,223)])
+}
+Add(hcStrList,6040617,105,140)
+{
+ Strings=#11:paste_debug|12:paste_dodata|12:paste_strcat|9:paste_hub|
+}
+Add(hcArrayEnum,6580308,105,217)
+{
+ link(onItem,2326032:doCmdEnabled,[])
+ link(Array,6040617:Array,[(111,201)(125,201)])
+}
+Add(hcIf_else,10136795,203,217)
+{
+ Op2=String(paste_debug)
+ link(onTrue,3153599:doData,[])
+ link(onFalse,5242842:doCompare,[(244,230)(244,252)(191,252)(191,265)])
+}
+Add(hcCommander,9957065,322,217)
+{
+}
+Add(hcDoData,3153599,252,217)
+{
+ Data=String(dodata Debug)
+ link(onEventData,580312:doWork2,[])
+}
+Add(hcIf_else,5242842,203,259)
+{
+ Op2=String(paste_dodata)
+ link(onTrue,15530612:doData,[])
+ link(onFalse,6094311:doCompare,[(247,272)(247,290)(191,290)(191,307)])
+}
+Add(hcDoData,15530612,252,259)
+{
+ Data=String(dodata DoData)
+ link(onEventData,7206536:doWork2,[])
+}
+Add(HubEx,580312,301,210)
+{
+ link(onEvent,9957065:doCall,[])
+}
+Add(hcIf_else,6094311,203,301)
+{
+ Op2=String(paste_strcat)
+ link(onTrue,12360745:doData,[])
+ link(onFalse,3445841:doCompare,[(247,314)(247,332)(191,332)(191,349)])
+}
+Add(hcDoData,12360745,252,301)
+{
+ Data=String(dodata StrCat)
+ link(onEventData,883377:doWork2,[])
+}
+Add(HubEx,7206536,301,252)
+{
+ Angle=3
+ link(onEvent,580312:doWork3,[])
+}
+Add(hcIf_else,3445841,203,343)
+{
+ Op2=String(paste_hub)
+ link(onTrue,16482257:doData,[])
+}
+Add(hcDoData,16482257,252,343)
+{
+ Data=String(dodata Hub)
+ link(onEventData,883377:doWork3,[(305,349)])
+}
+Add(HubEx,883377,301,294)
+{
+ Angle=3
+ link(onEvent,7206536:doWork3,[])
+}

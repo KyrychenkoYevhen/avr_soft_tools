@@ -1,0 +1,146 @@
+Make(vbs)
+ver(4.04 build 184)
+Add(MainForm,2953706,35,133)
+{
+ Width=551
+ Height=353
+ Text="Task Manager"
+ TopMost=0
+ link(onCreate,2186310:doEvent1,[])
+}
+Add(ProcessEnumWMI,12726699,224,84)
+{
+ Point(ProcessId)
+ Point(ThreadCount)
+ Point(Priority)
+ Point(Owner)
+ link(onEvent,7437582:doString,[(291,90)(291,129)(205,129)(205,146)])
+ link(HandleWMI,12655904:Var2,[])
+}
+Add(StringTable,3418195,287,140)
+{
+ Width=543
+ Height=326
+ Align=5
+ Columns=#11:ProcessName|9:ProcessID|11:ThreadCount|8:Priority|5:Owner|
+ Point(Handle)
+ Point(onClick)
+ link(onClick,13115457:doSplit,[])
+}
+Add(FormatStr,7437582,217,140)
+{
+ DataCount=5
+ Mask="%1;%2;%3;%4;%5"
+ link(onFString,3418195:doAdd,[])
+ link(Str2,12726699:ProcessId,[])
+ link(Str3,12726699:ThreadCount,[])
+ link(Str4,12726699:Priority,[])
+ link(Str5,12726699:Owner,[])
+}
+Add(MultiStrData,13115457,336,140)
+{
+ Count=1
+ link(StrData,3418195:Select,[(342,128)(327,128)(327,188)(300,188)])
+ link(onPart1,7936391:doValue,[])
+}
+Add(StrCat,13979817,441,140)
+{
+ Str1="Terminate process <"
+ link(onStrCat,5216434:doStrCat,[])
+}
+Add(StrCat,5216434,490,140)
+{
+ Str2=">?"
+ link(onStrCat,4636402:doMessage,[])
+}
+Add(Message,4636402,539,140)
+{
+ Caption="Terminate process"
+ Buttons=4
+ Icon=2
+ link(onMessage,6295756:doCompare,[])
+}
+Add(If_else,6295756,588,140)
+{
+ Op2=Integer(6)
+ link(onTrue,11839455:doEvent1,[])
+}
+Add(ProcessControlWMI,13012335,672,133)
+{
+ link(Handle,12655904:Var3,[(678,75)])
+ link(Process,7936391:Value,[(692,121)(530,121)(530,184)(391,184)])
+}
+Add(Memory,7936391,385,140)
+{
+ link(onData,13979817:doStrCat,[])
+}
+Add(Hub,11839455,637,140)
+{
+ OutCount=3
+ link(onEvent1,13012335:doTerminate,[])
+ link(onEvent2,6003352:doWork3,[(666,153)(666,202)(275,202)])
+ link(onEvent3,1021433:doWork1,[(660,160)(660,209)])
+}
+Add(HubEx,15866127,189,84)
+{
+ link(onEvent,12726699:doEnum,[])
+}
+Add(ProcessEventsWMI,8875586,112,147)
+{
+ link(onEvent,5054919:doEvent1,[])
+ link(Handle,9012034:Var2,[])
+}
+Add(ProcessEventsWMI,10208402,105,196)
+{
+ EventType=1
+ link(onEvent,15132678:doEvent1,[])
+ link(Handle,9012034:Var1,[(111,131)])
+}
+Add(Hub,5054919,154,147)
+{
+ link(onEvent1,16449431:doWork2,[])
+ link(onEvent2,813959:doWork2,[])
+}
+Add(Hub,15132678,154,196)
+{
+ link(onEvent1,16449431:doWork3,[(179,202)])
+ link(onEvent2,1021433:doWork2,[])
+}
+Add(Hub,2186310,77,133)
+{
+ OutCount=4
+ link(onEvent1,6787978:doConnect,[(98,139)(98,41)])
+ link(onEvent2,15866127:doWork2,[(141,146)(141,90)])
+ link(onEvent3,8875586:doMonitoring,[])
+ link(onEvent4,10208402:doMonitoring,[(98,160)(98,202)])
+}
+Add(HubEx,6003352,271,175)
+{
+ Angle=3
+ link(onEvent,3418195:doClear,[(275,153)])
+}
+Add(HubEx,16449431,175,147)
+{
+ link(onEvent,6003352:doWork2,[(205,153)(205,181)])
+}
+Add(HubEx,813959,189,154)
+{
+ Angle=3
+ link(onEvent,15866127:doWork3,[])
+}
+Add(HubEx,1021433,189,203)
+{
+ Angle=3
+ link(onEvent,813959:doWork3,[])
+}
+Add(ConnectWMI,6787978,224,35)
+{
+}
+Add(GetDataEx,12655904,224,70)
+{
+ link(Data,6787978:Handle,[])
+}
+Add(GetDataEx,9012034,112,126)
+{
+ link(Data,12655904:Var1,[(118,75)])
+}

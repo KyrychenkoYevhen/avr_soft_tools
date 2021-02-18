@@ -1,0 +1,28 @@
+include("object")
+include("control")
+
+func SetCircle()
+  println('Set ', id, ' = ', get_parent(), '.Circle(', (Left + Width / 2), ', ', (Top + Height / 2), ', ', (((Width < Height) ? Width : Height) / 2), ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+end
+
+func Init()
+  var(id)
+  id = Circle_
+  stack &= block.select(BLK_BODY)
+  
+  SetCircle()
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doRedraw()
+  println('If Not (', id, ' Is Nothing) Then Set ', id, ' = Nothing')
+  SetCircle()
+end

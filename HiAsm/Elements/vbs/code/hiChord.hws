@@ -1,0 +1,50 @@
+include("object")
+include("control")
+
+func SetChord()
+  println('Set ', id, ' = ', get_parent(), '.Chord(', Left, ', ', Top, ', ', Width, ', ', Height, ', ', XRadial1_, ', ', YRadial1_, ', ', XRadial2_, ', ', YRadial2_, ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+end
+
+func Init()
+  var(id)
+  id = Chord_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', XRadial1_, ', ', YRadial1_, ', ', XRadial2_, ', ', YRadial2_)
+  println(XRadial1_, ' = ', XRadial1)
+  println(YRadial1_, ' = ', YRadial1)
+  println(XRadial2_, ' = ', XRadial2)
+  println(YRadial2_, ' = ', YRadial2)
+  block.select(BLK_BODY)
+
+  SetChord()
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doRedraw()
+  println('If Not (', id, ' Is Nothing) Then Set ', id, ' = Nothing')
+  SetChord()
+end
+
+func doXRadial1(_data)
+  println(XRadial1_, ' = ', _data)
+end
+
+func doYRadial1(_data)
+  println(YRadial1_, ' = ', _data)
+end
+
+func doXRadial2(_data)
+  println(XRadial2_, ' = ', _data)
+end
+
+func doYRadial2(_data)
+  println(YRadial2_, ' = ', _data)
+end

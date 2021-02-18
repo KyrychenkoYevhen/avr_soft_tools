@@ -1,0 +1,98 @@
+include("object")
+include("control")
+
+func Init()
+  var(id, lst)
+  id = HeaderView_
+  lst = HVList_
+  stack &= block.select(BLK_BODY)
+
+  println('Set ', id, ' = ', get_parent(), '.CreateHeader(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(', Style+1, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  println('With ', id)
+  block.inclvl()
+    if(isset(Images))
+      println('.Images = ', Images)
+    end
+    if(isndef(HotTrack))
+      println('.HotTrack = True')
+    end
+    if(isndef(Flat))
+      println('.Flat = True')
+    end
+    if(isndef(Columns))
+      fvar(i, s)
+      for(i = 0; i < _arr.count(Columns); i++)
+      s = Columns[i]
+        print('.Add ')
+        if(pos('=', s) > 0)
+          s = replace(s, "=", '","')
+        end
+        println(s)
+      end
+    end
+  block.declvl()
+  println('End With')
+  println('')
+  if(linked(onColumnClick))
+    lng.begin_func(id + '_OnColumnClick(Sender, colItem)\'' + code(id))
+      event(onColumnClick, 'colItem.' + code(ColumnClick))
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onColumnResize))
+    lng.begin_func(id + '_OnColumnResize(Sender, colItem)\'' + code(id))
+      event(onColumnResize, 'colItem.' + code(ColumnClick))
+    lng.end_func(BLK_EVENTS)
+  end
+  block.select(BLK_GLOB)
+  if(linked(Array))
+    println('Dim ', lst, '()')
+  end
+  block.select(_arr.pop(stack))
+end
+
+func doAdd(_data)
+  println(id, '.Add ', _arr.mt_pop(_data), ', ', _arr.mt_pop(_data), ', ', _data)
+end
+
+func doClear(_data)
+  println(id, '.Clear')
+end
+
+func doRemove(_data)
+  println(id, '.Remove ', _data)
+end
+
+func doOnColumnClick(_data)
+  println(id, '.OnColumnClick = GetRef(', _data, ')')
+end
+
+func doOnColumnResize(_data)
+  println(id, '.OnColumnResize = GetRef(', _data, ')')
+end
+
+func doHotTrack(_data)
+  println(id, '.HotTrack = ', (_data='') ? 'False' : _data)
+end
+
+func doFlat(_data)
+  println(id, '.Flat = ', (_data='') ? 'False' : _data)
+end
+
+func Count()
+  return(id + '.Count')
+end
+
+func HotTrack()
+  return(id + '.HotTrack')
+end
+
+func Flat()
+  return(id + '.Flat')
+end

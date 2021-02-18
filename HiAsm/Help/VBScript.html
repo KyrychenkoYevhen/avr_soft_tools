@@ -1,0 +1,81 @@
+<html>
+	<head>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<LINK href="style.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+		<table class="mes_table" border="1">
+			<tr class="prop_cap">
+				<td width="10%"><IMG src="../elements/delphi/icon/vbscript.ico"></td>
+				<td align="center">VBScript</td>
+			</tr>
+			<tr>
+				<td style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px" colSpan="2">
+					<P align="justify">
+						&nbsp;Компонент&nbsp;VBScript - позволяет выполнять скрипты на языке Visual 
+						Basic. Подробная справка по синтаксису языка и операциям можно найти в 
+						дополнительной справки&nbsp; <A href="HiAsm.chm">HiAsm.chm</A></P>
+					<P align="justify">&nbsp;Как и любой компонент в HiAsm VBScript умеет обрабатывать 
+						вызовы методов, инициировать события, получать внешние данные и предоставлять 
+						свои данные во вне(или содержать св-ва):</P>
+					<OL>
+						<LI>
+							<DIV align="justify">
+								Обработчик методов должен быть помещен в ф-цию: <STRONG>function</STRONG> doWork(Data,Index), 
+								где Data - данные, переданные методу из потока, Index - индекс вызванного 
+								метода(начиная с 0) для UseName = False и имя метода, заданное в св-ве 
+								WorkPoints для UseName = True.</DIV>
+						<LI>
+							<DIV align="justify">
+								<DIV align="justify">Обработчик&nbsp;св-тв должен быть помещен в ф-цию: <STRONG>function</STRONG>
+									GetVar(Data,Index), где&nbsp;Data - данные, переданные методу из потока, Index 
+									- индекс вызванного метода(начиная с 0) для UseName = False и имя метода, 
+									заданное в св-ве WorkPoints для UseName = True. Значение, которое вернет ф-ция 
+									будет передано в поток.</DIV>
+							</DIV>
+						<LI>
+							<DIV align="justify">
+								<DIV align="justify">Для вызова событий из скрипта используется ф-ция: 
+									onEvent(Index,Data), где Index - индекс или имя события, Data - данные, которые 
+									необходимо записать в поток.</DIV>
+							</DIV>
+						<LI>
+							<DIV align="justify">
+								<DIV align="justify">Для получения внешних данных используется ф-ция: GetData( 
+									Index ), где Index - индекс или имя точки с данными. В качестве результата 
+									ф-ция вернет данные, переданные точке "сверху" из потока.</DIV>
+							</DIV>
+						</LI>
+					</OL>
+					<P align="justify">&nbsp;Для получения некорорых параметров компонента и обращения 
+						к его св-ам используются зарезервированные имена:</P>
+					<P align="justify">
+						<table class="mes_table" border="1">
+							<tr class="down_sel">
+								<td>Имя
+								</td>
+								<td>Тип</td>
+								<td>Описание</td>
+							</tr>
+							<TR>
+								<TD>##SetScript</TD>
+								<TD>DATA</TD>
+								<TD>&nbsp;Устанавливает текст скрипта из данных в потоке</TD>
+							</TR>
+							<TR>
+								<TD>##Errors</TD>
+								<TD>VAR</TD>
+								<TD>&nbsp;Содержит текст ошибок после последней сборки скрипта(или пустую строку в 
+									случае успешной сборки)</TD>
+							</TR>
+						</table>
+					</P>
+				</td>
+			</tr>
+			<tr>
+				<td class="down_sel" colSpan="2">&nbsp;Примеры: <A href="*Example*example/VBScript/Simple.sha">
+						Simple</A>, <A href="*Example*example/VBScript/VBDebug.sha">VBDebug</A></td>
+			</tr>
+		</table>
+	</body>
+</html>

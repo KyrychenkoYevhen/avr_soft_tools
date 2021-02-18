@@ -1,0 +1,122 @@
+func Init()
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', letter_)
+  if(linked(DriveType))
+    println('Dim ', type_)
+  end
+  if(linked(FileSystem))
+    println('Dim ', fsys_)
+  end
+  if(linked(AvailableSpace))
+    println('Dim ', aspc_)
+  end
+  if(linked(FreeSpace))
+    println('Dim ', free_)
+  end
+  if(linked(SerialNumber))
+    println('Dim ', snum_)
+  end
+  if(linked(RootFolder))
+    println('Dim ', root_)
+  end
+  if(linked(TotalSize))
+    println('Dim ', size_)
+  end
+  if(linked(ShareName))
+    println('Dim ', shar_)
+  end
+  if(linked(VolumeName))
+    println('Dim ', name_)
+  end
+  block.select(_arr.pop(stack))
+end
+
+func GetParam()
+  println(letter_, ' = d.DriveLetter + ":"')
+  if(linked(DriveType))
+    println(type_, ' = d.DriveType')
+  end
+  if(linked(FileSystem))
+    println('If d.IsReady Then ', fsys_, ' = d.FileSystem Else ', fsys_, ' = "unknown"')
+  end
+  if(linked(AvailableSpace))
+    println('If d.IsReady Then ', aspc_, ' = d.AvailableSpace Else ', aspc_, ' = "unknown"')
+  end
+  if(linked(FreeSpace))
+    println('If d.IsReady Then ', free_, ' = d.FreeSpace Else ', free_, ' = "unknown"')
+  end
+  if(linked(SerialNumber))
+    println('If d.IsReady Then ', snum_, ' = d.SerialNumber Else ', snum_, ' = "unknown"')
+  end
+  if(linked(RootFolder))
+    println('If d.IsReady Then ', root_, ' = d.RootFolder Else ', root_, ' = "unknown"')
+  end
+  if(linked(TotalSize))
+    println('If d.IsReady Then ', size_, ' = d.TotalSize Else ', size_, ' = "unknown"')
+  end
+  if(linked(ShareName))
+    println('If d.DriveType = 3 Then ', shar_, ' = d.ShareName Else ', shar_, ' = "unknown"')
+  end
+  if(linked(VolumeName))
+    println('If d.IsReady Then ', name_, ' = d.VolumeName Else ', name_, ' = "unknown"')
+  end
+end
+
+func doEnum()
+  include('fso')
+  println('Set ', dc, ' = fso.Drives')
+  println('For Each d In ', dc)
+  block.inclvl()
+    GetParam()
+    event(onResult, letter_)
+  block.declvl()
+  println('Next')
+end
+
+func doDriveInfo(_data)
+  include('fso')
+  println('Set d = fso.GetDrive(fso.GetDriveName(', Path, '))')
+  GetParam()
+  event(onResult, letter_)
+end
+//0: "Unknown"
+//1: "Removable"
+//2: "Fixed"
+//3: "Network"
+//4: "CD-ROM"
+//5: "RAM Disk"
+func DriveType()
+  return(type_)
+end
+
+func FileSystem()
+  return(fsys_)
+end
+
+func AvailableSpace()
+  return(aspc_)
+end
+
+func FreeSpace()
+  return(free_)
+end
+
+func SerialNumber()
+  return(snum_)
+end
+
+func RootFolder()
+  return(root_)
+end
+
+func TotalSize()
+  return(size_)
+end
+
+func ShareName()
+  return(shar_)
+end
+
+func VolumeName()
+  return(name_)
+end

@@ -1,0 +1,31 @@
+func Init()
+  include('fso')
+  include('shell')
+  fvar (old,classpath)
+  old = block.select(BLK_FUNC)
+  if (sys.gvarfind('execglobal_is_set') = -1)
+    gvar (execglobal_is_set)
+   classpath=replace(sys.codedir() & 'classes\ExecGlobal.vbs','\\','\\\\')
+   println(code(file2str(classpath)))
+  end
+  block.select(BLK_GLOB)
+  println('Dim ',arrReturn)
+  block.select(old)
+end
+
+func doExec(_data)
+  println(arrReturn,' = ExecGlobal(', FileName, ')')
+  if(linked(onExec))
+   println('If ', arrReturn, '(0)=0 Then')
+   block.inclvl()
+    event(onExec)
+    if(linked(onError))
+    block.declvl()
+   println('Else')
+    block.inclvl()
+     event(onError, arrReturn && '(1)')
+    end
+   block.declvl()
+   println('End If')
+  end
+end

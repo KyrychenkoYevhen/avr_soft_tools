@@ -1,0 +1,95 @@
+Make(modules)
+Add(MainForm,7261545,56,161)
+{
+ Left=20
+ Top=105
+ Width=299
+ Height=128
+ Font=[Arial,8,0,0,1]
+ Caption="Редактор звука"
+ BorderStyle=3
+}
+Add(Button,7550472,133,140)
+{
+ @Hint=#4:Open|
+ Left=30
+ Top=75
+ Width=75
+ Height=25
+ Font=[Arial,8,0,0,1]
+ Caption="Открыть"
+}
+Add(ChildGroupBox,12031179,133,91)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,11741593,3,3)
+  {
+  }
+  Add(GroupBox,8284065,35,105)
+  {
+   Left=5
+   Top=5
+   Width=275
+   Height=60
+   Font=[Arial,8,0,0,1]
+   Caption="Параметры"
+  }
+  Add(Label,179773,7,21)
+  {
+   Left=10
+   Top=20
+   Width=38
+   Height=13
+   Font=[Arial,8,0,0,1]
+   Caption="Размер:"
+  }
+  Add(Label,6317981,49,14)
+  {
+   @Hint=#4:Size|
+   Left=55
+   Top=20
+   Width=40
+   Font=[Arial,8,0,0,1]
+  }
+  Add(BitBtn,13447326,210,21)
+  {
+   @Hint=#7:sndPlay|
+   Left=215
+   Top=35
+   Width=20
+   Font=[Arial,8,0,0,1]
+   Caption=""
+   Bitmap=[ZIP3604000078DA73F235636100033320D600620128666450804840E55140C320C40C54D0CF4005FD0C54D0CF4005FD0C54D0CF30C0FA072AFC062AFD340C0D0C00272B6C6D]
+  }
+  Add(BitBtn,135255,217,28)
+  {
+   @Hint=#8:sndPause|
+   Left=240
+   Top=35
+   Width=20
+   Font=[Arial,8,0,0,1]
+   Caption=""
+   Bitmap=[ZIP3604000078DA73F235636100033320D600620128666450804840E55140C320C4E86E23D5ADA3FA47F50F65FD74C40069D1696D]
+  }
+END_SDK
+Add(Button,9984434,231,140)
+{
+ @Hint=#5:Close|
+ Left=200
+ Top=75
+ Width=75
+ Height=25
+ Font=[Arial,8,0,0,1]
+ Caption="Закрыть"
+}
+Add(Button,8450456,182,140)
+{
+ @Hint=#5:Clear|
+ Left=115
+ Top=75
+ Width=75
+ Height=25
+ Font=[Arial,8,0,0,1]
+ Caption="Отчистить"
+}

@@ -1,0 +1,135 @@
+include("object")
+override("control", "onChange")
+include("statuscontrol")
+
+func Init()
+  var(id)
+  id = Track_
+  stack &= block.select(BLK_BODY)
+
+  fvar(tbsStyle)
+  tbsStyle = 0
+  if(isndef(Vertical))
+    tbsStyle += 2
+  end
+  if(isndef(TickMarks))
+    switch(TickMarks)
+      case 1: tbsStyle += 16
+      case 2: tbsStyle += 4
+      case 3: tbsStyle += 8
+    end
+  end
+
+  println('Set ', id, ' = ', get_parent(), '.CreateTrackBar(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(', tbsStyle, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+   // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+  StatusControl_Init(id)
+
+  // Local  methods and properties
+  if(isndef(ThumbLength))
+    println(id, '.ThumbLength = ', ThumbLength)
+  end
+  if(isndef(TickFrequency))
+    println(id, '.TickFrequency = ', TickFrequency)
+  end
+  if(isndef(SmallChange))
+    println(id, '.SmallChange = ', SmallChange)
+  end
+  if(isndef(LargeChange))
+    println(id, '.LargeChange = ', LargeChange)
+  end
+  if(isndef(EnableSelRange))
+    println(id, '.EnableSelRange = True')
+  end
+  if(isndef(SelStart))
+    println(id, '.SelStart = ', SelStart)
+  end
+  if(isndef(SelEnd))
+    println(id, '.SelEnd = ', SelEnd)
+  end
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doSelectAll()
+  println(id, '.SelectAll()')
+end
+
+func doClearSelection()
+  println(id, '.ClearSelection()')
+end
+
+func doVertical(_data)
+  println(id, '.Vertical = ', (_data='') ? 'False' : _data)
+end
+
+func doThumbLength(_data)
+  println(id, '.ThumbLength = ', _data)
+end
+
+func doTickFrequency(_data)
+  println(id, '.TickFrequency = ', _data)
+end
+
+func doTickMarks(_data)
+  println(id, '.TickMarks = ', _data)
+end
+
+func doSmallChange(_data)
+  println(id, '.SmallChange = ', _data)
+end
+
+func doLargeChange(_data)
+  println(id, '.LargeChange = ', _data)
+end
+
+func doEnableSelRange(_data)
+  println(id, '.EnableSelRange = ', (_data='') ? 'False' : _data)
+end
+
+func doSelStart(_data)
+  println(id, '.SelStart = ', _data)
+end
+
+func doSelEnd(_data)
+  println(id, '.SelEnd = ', _data)
+end
+
+func vVertical()
+  return(id + '.Vertical')
+end
+
+func vThumbLength()
+  return(id + '.ThumbLength')
+end
+
+func vTickFrequency()
+  return(id + '.TickFrequency')
+end
+
+func vTickMarks()
+  return(id + '.TickMarks')
+end
+
+func vSmallChange()
+  return(id + '.SmallChange')
+end
+
+func vLargeChange()
+  return(id + '.LargeChange')
+end
+
+func vEnableSelRange()
+  return(id + '.EnableSelRange')
+end
+
+func vSelStart()
+  return(id + '.SelStart')
+end
+
+func vSelEnd()
+  return(id + '.SelEnd')
+end

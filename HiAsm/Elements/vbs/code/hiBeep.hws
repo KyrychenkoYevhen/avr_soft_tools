@@ -1,0 +1,7 @@
+func doBeep(_data)
+  include("shell")
+  println('shell.Run "%comspec% /c @echo " & Chr(7), 0')
+  if(linked(onBeep))
+    event(onBeep)
+  end
+end

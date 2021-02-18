@@ -1,0 +1,20 @@
+func MakeCode(_data)
+  return('Split(' && String && ', ' && Delimiter && ')')
+end
+
+func doSplit(_data)
+  if(linked(Array))
+    println(res, ' = ', MakeCode(_data))
+    event(onSplit, res)
+  else
+    event(onSplit, MakeCode(_data))
+  end
+end
+
+func Array()
+  if(linked(doSplit))
+    return(res)
+  else
+    return(MakeCode())
+  end
+end

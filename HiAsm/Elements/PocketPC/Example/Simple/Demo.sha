@@ -1,0 +1,114 @@
+Make(PocketPC)
+Pos(0,0)
+Add(MainForm,12563103,21,105)
+{
+ Left=20
+ Top=105
+}
+Add(Label,15284167,77,14)
+{
+ Left=15
+ Top=10
+ Width=35
+ Height=17
+ Font=[MS Sans Serif,8,1,255,1]
+}
+Add(Edit,13538376,77,56)
+{
+ Left=15
+ Top=30
+ Point(onSetFocus)
+ Point(onKillFocus)
+ link(onSetFocus,11122885:doUp,[])
+ link(onKillFocus,11122885:doDown,[])
+}
+Add(Button,2818272,77,98)
+{
+ Left=15
+ Top=60
+ link(onClick,10618253:doMessage,[(121,104)(121,125)])
+}
+Add(ScrollBar,8619582,133,182)
+{
+ Left=15
+ Top=90
+ link(onPosition,6040755:doPosition,[])
+}
+Add(ListBox,14528778,224,35)
+{
+ Left=170
+ Top=10
+ Strings=#4:test|6:string|4:best|
+}
+Add(Memo,9971401,224,105)
+{
+ Left=170
+ Top=95
+}
+Add(RadioButton,9675353,77,140)
+{
+ Left=15
+ Top=110
+ Width=100
+}
+Add(CheckBox,16139850,77,224)
+{
+ Left=15
+ Top=165
+ Width=100
+}
+Add(ProgressBar,6040755,189,182)
+{
+ Left=15
+ Top=195
+ Width=105
+ Ctl3D=1
+}
+Add(UpDown,7993925,77,266)
+{
+ Left=15
+ Top=225
+ Height=25
+}
+Add(RadioButton,13144501,77,182)
+{
+ Left=15
+ Top=135
+ Width=100
+}
+Add(InputPanel,11122885,126,70)
+{
+}
+Add(Message,10618253,133,119)
+{
+ Message="Hello from HiAsm!"
+ Caption="Message"
+}
+Add(ChildGroupBox,1594321,189,259)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,7921417,3,3)
+  {
+  }
+  Add(GroupBox,6969425,35,105)
+  {
+   Left=140
+   Top=185
+   Width=85
+  }
+  Add(RadioButton,15572657,7,14)
+  {
+   Left=5
+   Top=15
+   Width=75
+   Height=15
+  }
+  Add(RadioButton,10259461,0,35)
+  {
+   Left=5
+   Top=30
+   Width=75
+   Height=15
+  }
+END_SDK

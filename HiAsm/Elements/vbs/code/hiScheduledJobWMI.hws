@@ -1,0 +1,39 @@
+func Init()
+  if(isset(Handle))
+    var(obj, res, job)
+    obj = Handle
+    res = res_
+    job = job_
+    stack &= block.select(BLK_GLOB)
+    println('Dim ', res, ', ', job)
+    block.select(_arr.pop(stack))
+  end
+end
+
+// RunTime:
+// Coordinated Universal Time (UTC) time to run a job. 
+// The form must be: "YYYYMMDDHHMMSS.MMMMMM(+-)OOO", 
+// where "YYYYMMDD" must be replaced by "********". 
+// For example: "********143000.000000-420" specifies 14.30 (2:30 P.M.) PST with daylight savings time in effect.
+
+func doCreate(Data)
+  println('Set ', regEx_, ' = New RegExp')
+  println(regEx_, '.Pattern = "(\d(\d|)):(\d(\d|)):(\d(\d|))"')
+  println('Set ', Matches_, ' = ', regEx_, '.Execute(DateAdd("n", ', Interval,', Now()))')
+  println('For Each ', Match_, ' in ', Matches_)
+  block.inclvl()
+    println(RunTime_, ' =  "********" & Replace(', Match_, '.Value, ":", "") & ".000000+" & ', TimeZone)
+  block.declvl()
+  println('Next')
+  println('Set ', objShare_, ' = ', obj, '.Get("Win32_ScheduledJob")')
+  println(res, ' = ', objShare_, '.Create(', Command, ', ', RunTime_, ', False, 0, 0, True, ', job, ')')
+  println('If ', res, ' <> 0 Then')
+  block.inclvl()
+    event(onError, res)
+  block.declvl()
+  println('Else')
+  block.inclvl()
+    event(onCreate, job)
+  block.declvl()
+  println('End If')
+end

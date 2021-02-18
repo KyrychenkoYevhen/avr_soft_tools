@@ -1,0 +1,36 @@
+func Init()
+  if(isset(Handle))
+    var(obj, res)
+    obj = Handle
+    res = res_
+    stack &= block.select(BLK_GLOB)
+    println('Dim ', res)
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doExit(_data)
+  fvar(lvl)
+  lvl = ExitLevel
+  if(ExitLevel > 2)
+  lvl += 5
+  end
+  if(isndef(Force))
+    lvl += 4
+  end
+  println('Set ', obj_, ' = ', obj, '.ExecQuery("Select * From Win32_OperatingSystem",,0)')
+  println('For Each ', item_, ' In ', obj_)
+  block.inclvl()
+    println(res, ' = ', item_, '.Win32ShutDown(', lvl, ')')
+  block.declvl()
+  println('Next')
+  println('If ', res, ' Then')
+  block.inclvl()
+    event(onError, res)
+  block.declvl()
+  println('Else')
+  block.inclvl()
+    event(onExit)
+  block.declvl()
+  println('End If')
+end

@@ -1,0 +1,16 @@
+func Init()
+  include("regions")
+  var(id)
+  id = CombineRgn_
+end
+
+func doRegion(_data)
+  println ('Set ', id, ' = rgn.CombineRgn(', Rgn1, ', ', Rgn2, ', wso.Translate("', Mode, '"))')
+  if(linked(onCreate))
+    event(onCreate, id + '.Value')
+  end
+end
+
+func Result()
+  return(id + '.Value')
+end

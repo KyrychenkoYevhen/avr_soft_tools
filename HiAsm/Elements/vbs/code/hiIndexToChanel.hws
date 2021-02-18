@@ -1,0 +1,18 @@
+func doEvent(_data)
+  fvar(ind, dt, i)
+  ind = Index
+  dt = Data
+  println('Select Case ', ind)
+  block.inclvl()
+  for(i = 0; i < _event_count_; i++)
+    if(cgt.pt_get_rlink_point(cgt.pt_arr_event(i)))
+      println('Case ' + i)
+      block.inclvl()
+        event(cgt.pt_get_name_byid(cgt.pt_arr_event(i)), dt)
+      block.declvl()
+    end
+  end
+  block.declvl()
+  println('End Select')
+end
+

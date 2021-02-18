@@ -1,0 +1,7 @@
+func doData
+  if(linked(Data) or isndef(Data))
+    event(onEventData, Data)
+  else
+    event(onEventData)
+  end
+end

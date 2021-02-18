@@ -1,0 +1,90 @@
+Make(vbs)
+ver(4.04 build 185)
+Add(MainForm,2953706,21,105)
+{
+ Width=304
+ Height=137
+}
+Add(Ping,15727053,224,133)
+{
+ Name=""
+ link(onFind,5403074:doWork2,[])
+ link(onFailed,11378442:doData,[(272,146)(272,153)])
+ link(Data,4118782:vText,[])
+}
+Add(Edit,4118782,224,91)
+{
+ Left=70
+ Top=30
+ Width=100
+ Text="www.hiasm.com"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Button,11119413,175,224)
+{
+ Left=10
+ Top=70
+ Text="Ping"
+ Point(onClick)
+ link(onClick,6487717:doNsLookup,[])
+}
+Add(IPAddress,6560480,224,182)
+{
+ Left=70
+ Top=70
+ Value=2130706433
+ Point(onChange)
+ Point(sValue)
+}
+Add(Label,8840476,357,224)
+{
+ Left=190
+ Top=72
+ Width=90
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(Button,12843666,175,133)
+{
+ Left=10
+ Top=30
+ Text="Ping"
+ Point(onClick)
+ link(onClick,15727053:doPing,[])
+}
+Add(Label,9044758,357,133)
+{
+ Left=190
+ Top=32
+ Width=90
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(DoData,11378442,287,147)
+{
+ Data=String(Host not found!)
+ link(onEventData,5403074:doWork3,[(340,153)])
+}
+Add(HubEx,5403074,336,133)
+{
+ link(onEvent,9044758:doText,[])
+}
+Add(DoData,652077,287,238)
+{
+ Data=String(Host not found!)
+ link(onEventData,13608972:doWork3,[(340,244)])
+}
+Add(HubEx,13608972,336,224)
+{
+ link(onEvent,8840476:doText,[])
+}
+Add(NsLookup,6487717,224,224)
+{
+ link(onFind,13608972:doWork2,[])
+ link(onFailed,652077:doData,[(272,237)(272,244)])
+ link(Data,6560480:sValue,[])
+}

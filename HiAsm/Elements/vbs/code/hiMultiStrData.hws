@@ -1,0 +1,47 @@
+func Init()
+  var(s)
+  s = rest_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', s)
+  block.select(BLK_FUNC)
+  if(!Pos('LeftSplitStr', block.astext()))
+    lng.begin_func('LeftSplitStr(ByRef strSplit, charSplit)')
+      println('i = InStr(strSplit, charSplit)')
+      println('If i > 0 Then')
+      block.inclvl()
+        println('LeftSplitStr = Left(strSplit, i - 1)')
+        println('strSplit = Right(strSplit,Len(strSplit) - i - Len(charSplit) + 1)')
+      block.declvl()
+      println('Else')
+      block.inclvl()
+        println('LeftSplitStr = strSplit')
+      block.declvl()
+      println('End If')
+    lng.end_func(BLK_FUNC)
+  end
+  block.select(_arr.pop(stack))
+end
+
+func doSplit(_data)
+  fvar(i, p)
+  println(s, ' = ', linked(StrData) ? StrData : _data)
+  if((From > 0) and (_event_count_ > From))
+    println('For ', j, ' = 0 To ', From, ' - 1')
+    block.inclvl()
+      println('LeftSplitStr ', s, ', ', Delimiter)
+    block.declvl()
+    println('Next')
+  end
+  for(i = 1; i <= _event_count_; i++)
+    p = 'onPart' + i
+    if(cgt.pt_get_link_point(cgt.get_point_id(p)))
+      event(p, 'LeftSplitStr(' && s && ', ' && Delimiter && ')')
+    else
+      println('LeftSplitStr ', s, ', ', Delimiter)
+    end
+  end
+end
+
+func RemaindStr()
+  return(s)
+end

@@ -1,0 +1,153 @@
+func Init()
+  if(isset(Handle))
+    var(id)
+    id = Action_
+    stack &= block.select(BLK_BODY)
+    println('Set ', id, ' = ', Handle, '.Add(', `Text`, ')')
+    println(id, '.OnExecute = GetRef("', id, '_OnEvent")')
+    if(isndef(Enabled))
+      println(id, '.Enabled = False')
+    end
+    if(isndef(Visible))
+      println(id, '.Visible = False')
+    end
+    if(isndef(CheckBox))
+      println(id, '.CheckBox = True')
+    end
+    if(isndef(Checked))
+      println(id, '.Checked = False')
+    end
+    if(isndef(RadioCheck))
+      println(id, '.RadioCheck = True')
+    end
+    if(isndef(AllowAllUp))
+      println(id, '.AllowAllUp = False')
+    end
+    if(isndef(Default))
+      println(id, '.Default = True')
+    end
+    if(isndef(Break))
+      println(id, '.Break = True')
+    end
+    if(isndef(Hint))
+      println(id, '.Hint = ', `Hint`)
+    end
+    if(isndef(Key))
+      println(id, '.Hint = ', `Key`)
+    end
+    if(isndef(ImageIndex))
+      println(id, '.ImageIndex = ', `ImageIndex`)
+    end
+    println('')
+    lng.begin_func(id + '_OnEvent(Sender)\'' + code(id))
+      if(linked(onAction))
+        event(onAction, 'Sender')
+      end
+    lng.end_func(BLK_EVENTS)
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doOnExecute(_data)
+  println(id, '.OnExecute = GetRef(', _data, ')')
+end
+
+func doOnUpdate (_data)
+  println(id, '.OnUpdate = GetRef(', _data, ')')
+end
+
+func doEnabled(_data)
+  println(id, '.Enabled = ', _data)
+end
+
+func doVisible(_data)
+  println(id, '.Visible = ', _data)
+end
+
+func doChecked(_data)
+  println(id, '.Checked = ', _data)
+end
+
+func doCheckBox(_data)
+  println(id, '.CheckBox = ', _data)
+end
+
+func doRadioCheck(_data)
+  println(id, '.RadioCheck = ', _data)
+end
+
+func doAllowAllUp(_data)
+  println(id, '.AllowAllUp = ', _data)
+end
+
+func doDefault(_data)
+  println(id, '.Default = ', _data)
+end
+
+func doBreak(_data)
+  println(id, '.Break = ', _data)
+end
+
+func doText(_data)
+  println(id, '.Text = ', _data)
+end
+
+func doHint(_data)
+  println(id, '.Hint = ', _data)
+end
+
+func doKey(_data)
+  println(id, '.Key = ', _data)
+end
+
+func doImageIndex(_data)
+  println(id, '.ImageIndex = ', _data)
+end
+
+func Enabled()
+  return(id && '.Enabled')
+end
+
+func Visible()
+  return(id && '.Visible')
+end
+
+func Checked()
+  return(id && '.Checked')
+end
+
+func CheckBox()
+  return(id && '.CheckBox')
+end
+
+func RadioCheck()
+  return(id && '.RadioCheck')
+end
+
+func AllowAllUp()
+  return(id && '.AllowAllUp')
+end
+
+func Default()
+  return(id && '.Default')
+end
+
+func Break()
+  return(id && '.Break')
+end
+
+func Text()
+  return(id && '.Text')
+end
+
+func Hint()
+  return(id && '.Hint')
+end
+
+func Key()
+  return(id && '.Key')
+end
+
+func ImageIndex()
+  return(id && '.ImageIndex')
+end

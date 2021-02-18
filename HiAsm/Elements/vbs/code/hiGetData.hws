@@ -1,0 +1,6 @@
+func Data()
+  fvar(i)
+  for(i = 1; i <= _data_count_; i++)
+    return(dData)
+  end
+end

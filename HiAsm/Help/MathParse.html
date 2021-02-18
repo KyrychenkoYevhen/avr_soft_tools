@@ -1,0 +1,253 @@
+<html xmlns:o>
+	<head>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<link type="text/css" rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<table class="mes_table" border="1">
+			<tr class="prop_cap">
+				<td width="10%"><IMG src="../elements/delphi/icon/mathparse.ico"></td>
+				<td align="center">Поддерживаемые функции</td>
+			</tr>
+			<tr>
+				<td style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px" colSpan="2">
+					<P align="justify">&nbsp;&nbsp;<SPAN style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial">Расширены 
+							возможности вычислений введением дополнительных функций и поддержкой обращения 
+							к элементам массивов, матриц, и к функциональным блокам. Пример: %1+2*sh(%2(3)) 
+							- первый аргумент делает вызов с точки X1, отправляя наверх данные типа NULL 
+							(т.е. ничего); второй же аргумент отправляет наверх данные (3.0) типа real и 
+							получает результат работы функционального блока, подключенного к этой точке (а 
+							он уже и используется в вычислениях). Таким функциональным блоком может быть 
+							такой же </SPAN><SPAN lang="EN-US" style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial; mso-ansi-language: EN-US">
+							MathParse</SPAN><SPAN style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial">
+							со своей формулой и подключенный к точке </SPAN><SPAN lang="EN-US" style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial; mso-ansi-language: EN-US">
+							reCalc</SPAN><SPAN style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial">, 
+							либо целая схема на </SPAN><SPAN lang="EN-US" style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial; mso-ansi-language: EN-US">
+							HiAsm</SPAN><SPAN style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial">. 
+							Синтаксис использования массивов и матриц аналогичен, но использует квадратные 
+							скобки: %5[2] – второй элемент массива, подключенного к точке 5; %1[%2*4, %3+1] 
+							– соответствующий элемент матрицы, подключенной к точке 1. Понятно, что в 
+							качестве аргументов функционального вызова могут стоять поноценные выражения.
+							<o:p></o:p></SPAN>
+					</P>
+					<P></P>
+					<P style="TEXT-ALIGN: justify"><SPAN style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial">&nbsp;&nbsp;Поддержана 
+							возможность итеративных вычислений без внешнего элемента Memory. Можно в 
+							формуле обратиться к результату предыдущих вычислений (%0) и сбросить значение 
+							результата (перед началом операций) методом doClear в значение, определяемое 
+							свойством Default.
+							<o:p></o:p></SPAN></P>
+					<P style="TEXT-ALIGN: justify"><SPAN style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial">&nbsp;Возможно 
+							проведение нового вычисления по запросу на нижнюю точку reCalc. При этом 
+							данные, поступившие снизу выполняют роль данных из потока при запуске 
+							вычислений методом doCalc. В общем MathParse-ы можно вертикально каскадировать, 
+							причем верхний MathParse будет вызываться нижним сколько раз, сколько 
+							потребуется в формуле.&nbsp;
+							<o:p></o:p></SPAN></P>
+					<P style="TEXT-ALIGN: justify"><SPAN style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial">&nbsp;При 
+							ошибках в вычислении, кроме ее типа (Синтаксис, Вычисления), доступна позиция в 
+							исходной строке, на которой анализатор элемента отказался продолжать. Это можно 
+							прочитать с нижней точки PosErr. Следует отметить, что при наличии ошибки, 
+							событие onResult не генерируется, но onError - обязательно. После ошибки - с 
+							нижней точки Result читается NULL, а при отсутствии ошибки в предыдущем 
+							вычислении - с нижней точки PosErr читается -1 (несуществующая позиция в 
+							строке). Метод doClear сбрасывает состояние ошибки. Метод doCalc (как и reCalc) 
+							после ошибки автоматически делает doClear.
+							<o:p></o:p></SPAN></P>
+					<P style="TEXT-ALIGN: justify"><SPAN style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial">&nbsp;&nbsp;Внимание! 
+							Изменился порядок вызова верхних точек. Теперь он определяется только только 
+							формулой MathStr. При этом, если какой-то аргумент вызывался один раз, и он не 
+							является функциональным, то вызов производится только один раз. Это же касается 
+							и данных из потока, которые используются в качестве первого же аргумента, у 
+							которого верхняя точка свободна. Ну а функциональные вызовы (как и вызовы 
+							матриц и массивов) осуществляются столько раз, сколько встречаются в формуле. 
+							Поскольку это могут быть, например, элементы массива от разных значений 
+							индекса. Пример, демонстрирующий порядок вызова аргументов: Хотим посчитать 
+							биномальный коэффициент N!/K!/(N-K)! Для этого, например, подключаем к точке X1 
+							- значение N, к точке X2 - значение K, а к точке X3 - функциональный блок, 
+							вычисляющий факториал. Записываем формулу: %3(%1)/%3(%2)/%3(%1-%2) При 
+							вычислении, обращения будут происходить в следующей последовательности (читайте 
+							строку слева направо): [точка X1] =&gt; [точка X3 с соответствующим аргументом] 
+							=&gt; [точка X2] =&gt; [точка X3 с соответствующим аргументом] =&gt; [точка X3 
+							с нужным аргументом, значения с X1 и X2 уже известны]. В общем, поскольку 
+							порядок определяется формулой, которую задал все-таки пользователь, есть 
+							надежда, что это приемлимый вариант.&nbsp;
+							<o:p></o:p></SPAN></P>
+					<P style="TEXT-ALIGN: justify"><SPAN style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial">&nbsp;Свойство 
+							AngleMode, определяющее единицы для тригонометрических функций.
+							<o:p></o:p></SPAN></P>
+					<P style="TEXT-ALIGN: justify"><SPAN style="FONT-SIZE: 10pt; COLOR: black; FONT-FAMILY: Arial">&nbsp;Компонент 
+							"Продвинутая математика" осуществляет разбор математического выражения из 
+							параметра MathStr и предоставляет доступ пользователя к следующим встроенным 
+							функциям и переменным:
+							<o:p></o:p></SPAN>
+					<p>
+					</p>
+					<table class="mes_table" align="center" border="1">
+						<tr class="down_sel">
+							<td><b>Имя в маске</b></td>
+							<td><b>описание ф-ции</b></td>
+						</tr>
+						<tr>
+							<td>x + y</td>
+							<td>сложение</td>
+						</tr>
+						<tr>
+							<td>x - y</td>
+							<td>вычитание</td>
+						</tr>
+						<tr>
+							<td>x * y</td>
+							<td>умножение</td>
+						</tr>
+						<tr>
+							<td>x / y</td>
+							<td>деление</td>
+						</tr>
+						<tr>
+							<td>x ^ y</td>
+							<td>возведение в степень</td>
+						</tr>
+						<tr>
+							<td>x div y</td>
+							<td>целочисленое деление(извлечение целой части)</td>
+						</tr>
+						<tr>
+							<td>x mod y</td>
+							<td>остаток от деления</td>
+						</tr>
+						<tr>
+							<td>cos(x)</td>
+							<td>косинус угла в радианах</td>
+						</tr>
+						<tr>
+							<td>sin(x)</td>
+							<td>синус угла в радианах</td>
+						</tr>
+						<tr>
+							<td>tg(x)</td>
+							<td>тангес угла в радианах</td>
+						</tr>
+						<tr>
+							<td>ctg(x)</td>
+							<td>котангес угла в радианах</td>
+						</tr>
+						<tr>
+							<td>arccos(x)</td>
+							<td>арккосинус</td>
+						</tr>
+						<tr>
+							<td>arcsin(x)</td>
+							<td>арксинус</td>
+						</tr>
+						<tr>
+							<td>ln(x)</td>
+							<td>натуральный логарифм числа</td>
+						</tr>
+						<tr>
+							<td>sqrt(x)</td>
+							<td>квадратный корень числа</td>
+						</tr>
+						<TR>
+							<TD>atan(y,x)
+							</TD>
+							<TD>угол, определяемый точкой с координатами (x,y)</TD>
+						</TR>
+						<TR>
+							<TD>ch(x)
+							</TD>
+							<TD>гиперболический косинус (exp(x)+exp(-x))/2</TD>
+						</TR>
+						<TR>
+							<TD>sh(x)</TD>
+							<TD>гиперболический синус (exp(x)-exp(-x))/2</TD>
+						</TR>
+						<TR>
+							<TD>th(x)</TD>
+							<TD>sh(x)/ch(x)</TD>
+						</TR>
+						<TR>
+							<TD>cth(x)</TD>
+							<TD>ch(x)/sh(x)</TD>
+						</TR>
+						<TR>
+							<TD>arcch(x)</TD>
+							<TD>обратная ch(x)</TD>
+						</TR>
+						<TR>
+							<TD>arcsh(x)</TD>
+							<TD>обратная sh(x)</TD>
+						</TR>
+						<TR>
+							<TD>arcth(x)
+							</TD>
+							<TD>обратная th(x)</TD>
+						</TR>
+						<TR>
+							<TD>arccth(x)</TD>
+							<TD>обратная cth(x)</TD>
+						</TR>
+						<TR>
+							<TD>log(n,x)</TD>
+							<TD>логорифм от x по основанию: n ln(x)/ln(n)</TD>
+						</TR>
+						<TR>
+							<TD>lg(x)</TD>
+							<TD>десятичный логорифм ln(x)/ln(10)</TD>
+						</TR>
+						<TR>
+							<TD>exp(x)</TD>
+							<TD>экспонента: e^x</TD>
+						</TR>
+						<TR>
+							<TD style="HEIGHT: 19px">sqr(x)</TD>
+							<TD style="HEIGHT: 19px">просто квадрат: x*x</TD>
+						</TR>
+						<TR>
+							<TD>abs(x)</TD>
+							<TD>абсолютная величина числа</TD>
+						</TR>
+						<TR>
+							<TD>sign(x)</TD>
+							<TD>знак числа, принимает соответственно значения -1,0,+1</TD>
+						</TR>
+						<TR>
+							<TD>round(x[,y=1])</TD>
+							<TD>округление, round(x,y)=y*round(x/y)</TD>
+						</TR>
+						<TR>
+							<TD>frac(x[,y=1])</TD>
+							<TD>дробная часть, frac(x,y)=y*frac(x/y)</TD>
+						</TR>
+						<TR>
+							<TD>trunc(x[,y])</TD>
+							<TD>отбрасывание дробной, trunc(x,y)=y*trunc(x/y)</TD>
+						</TR>
+						<TR>
+							<TD>min(x[,y,...])</TD>
+							<TD>находим минимум от всех аргументов</TD>
+						</TR>
+						<TR>
+							<TD>max(x[,y,...])</TD>
+							<TD>находим максимум от всех аргументов</TD>
+						</TR>
+						<tr>
+							<td>pi</td>
+							<td>возвращает число ПИ = 3.1415....</td>
+						</tr>
+						<tr>
+							<td>e</td>
+							<td>возвращает число e = 2.17</td>
+						</tr>
+					</table>
+					<p>
+					</p>
+				</td>
+			</tr>
+			<tr>
+				<td class="down_sel" colSpan="2">&nbsp;Примеры: <a href="*Example*example/draw/draw.sha">
+						Draw</a>, <a href="*Example*example/utils/calk.sha">Calk</a></td>
+			</tr>
+		</table>
+	</body>
+</html>

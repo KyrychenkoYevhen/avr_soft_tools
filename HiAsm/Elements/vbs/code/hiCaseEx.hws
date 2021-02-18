@@ -1,0 +1,22 @@
+func doCase(_data)
+  fvar(i)
+  println('Select Case ', code(_data))
+  block.inclvl()
+  for(i = 1; i <= _data_count_; i++)
+    println('Case ', point("Data" + i))
+    block.inclvl()
+      event("onCase" + i, _data)
+    block.declvl()
+  end
+  if(isset(onCaseElse))
+   println('Case Else')
+   block.inclvl()
+    event(onCaseElse, _data)
+   block.declvl()
+  end
+  block.declvl()
+  println('End Select')
+end
+
+
+

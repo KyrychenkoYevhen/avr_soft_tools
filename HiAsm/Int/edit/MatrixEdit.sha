@@ -1,0 +1,210 @@
+*Редактор текстовых регионов
+Make(Modules)
+ver(4.03 build 181)
+Add(hcTplForm,2953706,140,182)
+{
+ Width=300
+ Height=357
+ Visible=1
+ Caption="Matrix editor"
+ Point(doShowModal)
+}
+Add(hcHiAsmTrasmitter,2963275,42,182)
+{
+ link(onInit,6684674:doEvent1,[])
+ link(Arg1,5110546:Text,[])
+}
+Add(hcHub,6684674,84,182)
+{
+ OutCount=4
+ link(onEvent1,3157849:doWork2,[])
+ link(onEvent2,1352309:doEvent1,[(123,195)(123,174)])
+ link(onEvent3,2953706:doShowModal,[])
+ link(onEvent4,2963275:doReturn,[(107,209)(107,226)(30,226)(30,188)])
+}
+Add(hcTplEdit,1964069,273,14)
+{
+ Left=70
+ Top=20
+ TabOrder=1
+ Text="0.0"
+}
+Add(hcTplEdit,380581,280,56)
+{
+ Left=120
+ Top=20
+ TabOrder=2
+ Text="0.0"
+}
+Add(hcTplEdit,9609051,168,14)
+{
+ Left=170
+ Top=20
+ Enabled=1
+ TabOrder=3
+ Text="0.0"
+ ReadOnly=0
+}
+Add(hcTplEdit,11117550,287,98)
+{
+ Left=70
+ Top=40
+ TabOrder=4
+ Text="0.0"
+}
+Add(hcTplEdit,3506143,294,140)
+{
+ Left=120
+ Top=40
+ TabOrder=5
+ Text="0.0"
+}
+Add(hcTplEdit,11203833,168,56)
+{
+ Left=170
+ Top=40
+ Enabled=1
+ TabOrder=6
+ Text="0.0"
+ ReadOnly=0
+}
+Add(hcTplEdit,1088880,301,182)
+{
+ Left=70
+ Top=60
+ TabOrder=7
+ Text="0.0"
+}
+Add(hcTplEdit,2527877,308,224)
+{
+ Left=120
+ Top=60
+ TabOrder=8
+ Text="0.0"
+}
+Add(hcTplEdit,4309441,168,98)
+{
+ Left=170
+ Top=60
+ Enabled=1
+ TabOrder=9
+ Text="1.0"
+ ReadOnly=0
+}
+Add(hcStrList,5110546,42,112)
+{
+}
+Add(hcTplButton,1826761,42,273)
+{
+ Left=120
+ Top=85
+ Width=50
+ TabOrder=10
+ Caption="OK"
+ link(onClick,5369508:doEvent1,[])
+}
+Add(hcTplMemo,1874129,91,112)
+{
+ Left=10
+ Top=110
+ Width=270
+ Height=210
+ Color=-16777201
+ Font=[Fixedsys,8,0,0,204]
+ TabOrder=11
+ Ctl3D=1
+ Strings=#29:     Новые координаты (X,Y)  |29:   определяются через старые |31:  координаты (x,y) по формулам:|0:|32:  X = x * eM11 + y * eM21 + eDx |32:  Y = x * eM12 + y * eM22 + eDy |0:|33:матрица преобразования имеет вид:|0:|25:         | eM11 eM12 0 | |25:         | eM21 eM22 0 | |25:         | eDx  eDy  1 | |
+ ReadOnly=0
+}
+Add(hcFormatStr,9922982,273,273)
+{
+ DataCount=6
+ Mask="%1\r\n%2\r\n%3\r\n%4\r\n%5\r\n%6\r\n"
+ link(onFString,3157849:doWork3,[(330,279)(330,321)(116,321)])
+ link(Str1,1964069:Text,[])
+ link(Str2,380581:Text,[])
+ link(Str3,11117550:Text,[])
+ link(Str4,3506143:Text,[])
+ link(Str5,1088880:Text,[])
+ link(Str6,2527877:Text,[])
+}
+Add(hcArrayRead,5242351,231,14)
+{
+ Index=Integer(0)
+ link(onRead,1964069:doText,[])
+ link(Array,12053245:Var2,[(237,2)(209,2)])
+}
+Add(hcArrayRead,4199522,231,56)
+{
+ Index=Integer(1)
+ link(onRead,380581:doText,[])
+ link(Array,12053245:Var3,[(237,54)])
+}
+Add(hcArrayRead,5171690,231,98)
+{
+ Index=Integer(2)
+ link(onRead,11117550:doText,[])
+ link(Array,6087452:Var3,[(237,89)])
+}
+Add(hcArrayRead,16465430,231,140)
+{
+ Index=Integer(3)
+ link(onRead,3506143:doText,[])
+ link(Array,15452126:Var3,[(237,131)])
+}
+Add(hcArrayRead,4701574,231,182)
+{
+ Index=Integer(4)
+ link(onRead,1088880:doText,[])
+ link(Array,16066630:Var3,[(237,173)])
+}
+Add(hcArrayRead,12898202,231,224)
+{
+ Index=Integer(5)
+ link(onRead,2527877:doText,[])
+ link(Array,16066630:Var2,[(237,215)(209,215)])
+}
+Add(hcHub,1352309,182,168)
+{
+ OutCount=6
+ link(onEvent1,5242351:doRead,[(217,174)(217,20)])
+ link(onEvent2,4199522:doRead,[(217,181)(217,62)])
+ link(onEvent3,5171690:doRead,[(217,188)(217,104)])
+ link(onEvent4,16465430:doRead,[(217,195)(217,146)])
+ link(onEvent5,4701574:doRead,[(217,202)(217,188)])
+ link(onEvent6,12898202:doRead,[(217,209)(217,230)])
+}
+Add(GetDataEx,12053245,203,49)
+{
+ Angle=2
+ link(Data,6087452:Var2,[])
+}
+Add(GetDataEx,3684602,203,161)
+{
+ Angle=3
+ link(Data,5110546:Array,[(62,166)])
+}
+Add(GetDataEx,16066630,203,168)
+{
+ link(Data,3684602:Var2,[])
+}
+Add(HubEx,3157849,112,182)
+{
+ Angle=3
+ link(onEvent,5110546:doText,[(116,172)(29,172)(29,139)])
+}
+Add(GetDataEx,6087452,203,84)
+{
+ Angle=2
+ link(Data,15452126:Var2,[])
+}
+Add(GetDataEx,15452126,203,126)
+{
+ Angle=2
+ link(Data,3684602:Var1,[])
+}
+Add(hcHub,5369508,91,273)
+{
+ link(onEvent1,9922982:doString,[])
+ link(onEvent2,2953706:doClose,[(129,286)(129,195)])
+}

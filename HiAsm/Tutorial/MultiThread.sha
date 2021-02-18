@@ -1,0 +1,251 @@
+Make(delphi)
+Add(MainForm,21324,119,413)
+{
+ Left=21
+ Top=105
+ Point(Close)
+}
+Add(Button,13912630,119,371)
+{
+ Left=30
+ Top=25
+ Caption="Example1"
+ link(onClick,12624675:doAdd,[])
+}
+Add(MT_Add,12624675,168,371)
+{
+ Data=String(Hello world)
+ link(onAdd,5081243:doAdd,[])
+}
+Add(MT_Add,5081243,217,371)
+{
+ Data=String(Title)
+ link(onAdd,6758423:doMessage,[])
+}
+Add(Message,6758423,266,371)
+{
+}
+Add(InfoTip,11345298,315,364)
+{
+ Info=#263: Этот пример показывает, как сформировать поток с двумя строковыми элементами. При этом компонент Message читает сначала первый элемент, значение которого идет в текст сообщения, потом второй - его значение идет в заголовок в соответствие с порядком верхних точек|
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=232
+ Height=102
+}
+Add(InfoTip,5050909,85,49)
+{
+ Info=#106: Многомерные потоки позволяют передавать более чем одни данные в одном потоке между двумя точками элемента|
+ Font=[Arial,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=491
+ Height=39
+}
+Add(Shape,2562225,105,330)
+{
+ Width=456
+ Height=25
+ Text="Пример 1"
+ Font=[Arial,12,1,0,1]
+ Color=12639424
+}
+Add(InfoTip,5452826,105,330)
+{
+ Info=#
+ Font=[Arial,8,0,0,1]
+ Width=456
+ Height=137
+}
+Add(InfoTip,16464751,77,14)
+{
+ Info=#
+ Font=[MS Sans Serif,10,0,0,1]
+ Width=508
+ Height=872
+}
+Add(Shape,14299916,77,98)
+{
+ Width=508
+ Height=18
+ Text="Примеры работы"
+ Font=[Times New Roman,12,1,8388608,1]
+ Color=12639424
+}
+Add(Shape,6712503,77,14)
+{
+ Width=508
+ Height=25
+ Text="Использование многомерных потоков"
+ Font=[Times New Roman,14,1,0,1]
+ Color=10789024
+}
+Add(MT_Add,14759511,91,126)
+{
+}
+Add(MT_Get,9392683,91,175)
+{
+}
+Add(MT_Memory,9883555,91,224)
+{
+}
+Add(MT_Array,7622302,91,273)
+{
+}
+Add(InfoTip,1203859,133,126)
+{
+ Info=#107: Добавляет в поток новый элемент. Кроме того компонент умеет добавлять к одному многомерному потоку другой.|
+ Frame=1
+ HAlign=0
+ Width=442
+}
+Add(InfoTip,16158272,133,175)
+{
+ Info=#46: Извлекает из многомерного потока один элемент|
+ Frame=1
+ HAlign=0
+ Width=442
+}
+Add(InfoTip,7596711,133,224)
+{
+ Info=#103: Аналог компонента Memory, но в отличие от него сохраняет весь поток в памяти, а не только один элемент|
+ Frame=1
+ HAlign=0
+ Width=442
+}
+Add(InfoTip,15396542,133,273)
+{
+ Info=#57: Предоставляет доступ к многомерному потоку как к массиву|
+ Frame=1
+ HAlign=0
+ Width=442
+}
+Add(InfoTip,13984146,119,574)
+{
+ Info=#56: Пример получения из многомерного потока одного элемента|
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=232
+}
+Add(Shape,2754476,105,477)
+{
+ Width=456
+ Height=25
+ Text="Пример 2"
+ Font=[Arial,12,1,0,1]
+ Color=12639424
+}
+Add(InfoTip,13442545,105,477)
+{
+ Info=#
+ Font=[Arial,8,0,0,1]
+ Width=456
+ Height=137
+}
+Add(Button,4772894,119,511)
+{
+ Left=30
+ Top=55
+ Caption="Example2"
+ link(onClick,5641509:doAdd,[])
+}
+Add(MT_Add,5641509,168,511)
+{
+ Data=String(Hello world)
+ link(onAdd,12608765:doAdd,[])
+}
+Add(MT_Add,12608765,217,511)
+{
+ Data=String(Title)
+ link(onAdd,6098146:doGet,[])
+}
+Add(Message,12646837,378,560)
+{
+ Caption="Element 1"
+}
+Add(MT_Get,6098146,322,511)
+{
+ link(onData,8361641:doGet,[])
+ link(onGet,12646837:doMessage,[(366,524)(366,566)])
+}
+Add(MT_Get,8361641,378,511)
+{
+ link(onGet,5548287:doMessage,[(425,524)(425,566)])
+}
+Add(Message,5548287,441,560)
+{
+ Caption="Element 2"
+}
+Add(InfoTip,9130937,119,763)
+{
+ Info=#69: Пример сохранения многомерного потока в памяти с последующим чтением|
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=232
+}
+Add(Shape,6973374,105,624)
+{
+ Width=456
+ Height=25
+ Text="Пример 3"
+ Font=[Arial,12,1,0,1]
+ Color=12639424
+}
+Add(InfoTip,4815068,105,624)
+{
+ Info=#
+ Font=[Arial,8,0,0,1]
+ Width=456
+ Height=193
+}
+Add(MT_Add,9256836,266,658)
+{
+ Data=String(Title)
+ link(onAdd,1379067:doValue,[])
+}
+Add(Message,5809713,420,763)
+{
+ Caption="Element 1"
+}
+Add(MT_Get,9687686,364,714)
+{
+ link(onData,13391606:doGet,[])
+ link(onGet,5809713:doMessage,[(408,727)(408,769)])
+}
+Add(MT_Get,13391606,420,714)
+{
+ link(onGet,5717753:doMessage,[(467,727)(467,769)])
+}
+Add(Message,5717753,483,763)
+{
+ Caption="Element 2"
+}
+Add(Button,1093677,119,658)
+{
+ Left=30
+ Top=85
+ Caption="Example3"
+ link(onClick,10302722:doEvent1,[])
+}
+Add(MT_Add,1377252,217,658)
+{
+ Data=String(Hello world)
+ link(onAdd,9256836:doAdd,[])
+}
+Add(MT_Memory,1379067,315,658)
+{
+}
+Add(Hub,10302722,168,658)
+{
+ link(onEvent1,1377252:doAdd,[])
+ link(onEvent2,8437701:doAdd,[(211,671)(211,720)])
+}
+Add(MT_Add,8437701,315,714)
+{
+ link(onAdd,9687686:doGet,[])
+ link(Data,1379067:Value,[])
+}

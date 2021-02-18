@@ -1,0 +1,125 @@
+func Init()
+  if(linked(Handle))
+    fvar(old)
+    old = block.select(BLK_BODY)
+    if(isndef(PasswordChar) or isndef(DataType) or isndef(DataType) or isndef(ScrollBars) or isndef(WordWrap) or isndef(LeftMargin) or isndef(RightMargin) or isndef(TextAlign) or isndef(ReadOnly) or isndef(AutoSize) or isndef(AcceptsReturn) or isndef(AcceptsTab) or isndef(CanUndo) or isndef(Min) or isndef(Max))
+      println('With ', Handle)
+      block.inclvl()
+    end
+
+    if(isndef(PasswordChar))
+      println('.PasswordChar = ', PasswordChar)
+    end
+
+    if(isndef(DataType))
+      println('.DataType = ', DataType)
+    end
+
+    if(isndef(ScrollBars))
+      println('.ScrollBars = ', ScrollBars)
+    end
+
+    if(isndef(WordWrap))
+      println('.WordWrap = True')
+    end
+
+    if(isndef(LeftMargin))
+      println('.LeftMargin = ', LeftMargin)
+    end
+
+    if(isndef(RightMargin))
+      println('.RightMargin = ', RightMargin)
+    end
+
+    if(isndef(TextAlign))
+      println('.TextAlign = ', TextAlign+1)
+    end
+
+    if(isndef(ReadOnly))
+      println('.ReadOnly = True')
+    end
+
+    if(isndef(AutoSize))
+      println('.AutoSize = False')
+    end
+
+    if(isndef(AcceptsReturn))
+      println('.AcceptsReturn = True')
+    end
+
+    if(isndef(AcceptsTab))
+      println('.AcceptsTab = True')
+    end
+
+    if(isndef(CanUndo))
+      println('.CanUndo = True')
+    end
+
+    if(isndef(Min))
+      println('.Min = ', Min)
+    end
+
+    if(isndef(Max))
+      println('.Max = ', Max)
+    end
+  
+    if(isndef(PasswordChar) or isndef(DataType) or isndef(DataType) or isndef(ScrollBars) or isndef(WordWrap) or isndef(LeftMargin) or isndef(RightMargin) or isndef(TextAlign) or isndef(ReadOnly) or isndef(AutoSize) or isndef(AcceptsReturn) or isndef(AcceptsTab) or isndef(CanUndo) or isndef(Min) or isndef(Max))
+      block.declvl()
+      println('End With')
+      println('')
+    end
+    block.select(old)
+  end
+end
+
+func doSelStart(_data)
+  println (Handle, '.SelStart = ', _data)
+end
+
+func doSelectAll()
+  println (Handle, '.SelectAll()')
+end
+
+func doSelectLength(_data)
+  println (Handle, '.SelLength = ', _data)
+end
+
+func doReplaceSel(_data)
+  println (Handle, '.ReplaceSelection ', _data, ', True')
+end
+
+func doWordWrap(_data)
+  println (Handle, '.WordWrap = ', _data)
+end
+
+func doClearSelection()
+  println (Handle, '.ClearSelection()')
+end
+
+func doCopy()
+  println (Handle, '.Copy()')
+end
+
+func doCut()
+  println (Handle, '.Cut()')
+end
+
+func doPaste()
+  println (Handle, '.Paste()')
+end
+
+func doUndo()
+  println (Handle, '.Undo()')
+end
+
+func LineFromChar()
+  return(Handle && '.LineFromChar(-1)')
+end
+
+func SelStart()
+  return(Handle && '.SelStart')
+end
+
+func SelEnd()
+  return(Handle && '.SelEnd')
+end

@@ -1,0 +1,63 @@
+Make(modules)
+Add(MainForm,14890837,21,112)
+{
+ Left=20
+ Top=105
+ Width=364
+ Height=115
+ Font=[Arial,8,0,0,1]
+ Caption="Добавление команды"
+ BorderStyle=3
+}
+Add(Label,6705742,77,70)
+{
+ Left=5
+ Top=10
+ Width=80
+ Font=[Arial,8,0,0,1]
+ Caption="Имя команды:"
+ AutoSize=1
+}
+Add(Edit,13596736,91,119)
+{
+ @Hint=#4:Name|
+ Left=90
+ Top=5
+ Width=255
+ Font=[Arial,8,0,0,1]
+ Text=""
+}
+Add(Label,12820828,77,168)
+{
+ Left=30
+ Top=35
+ Font=[Arial,8,0,0,1]
+ Caption="Описание:"
+}
+Add(Edit,8919007,91,210)
+{
+ @Hint=#4:Info|
+ Left=90
+ Top=30
+ Width=255
+ Font=[Arial,8,0,0,1]
+ Text=""
+}
+Add(Button,1738035,231,203)
+{
+ @Hint=#2:ok|
+ Left=275
+ Top=60
+ Width=70
+ Font=[Arial,8,0,0,1]
+ Caption="ОК"
+}
+Add(Button,12155224,161,203)
+{
+ @Hint=#6:Cancel|
+ Left=195
+ Top=60
+ Width=70
+ Font=[Arial,8,0,0,1]
+ Caption="Отмена"
+}

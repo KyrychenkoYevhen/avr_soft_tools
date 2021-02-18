@@ -1,0 +1,22 @@
+func Init()
+  var(id)
+  id = Rect_
+end
+
+func doDraw(_data)
+  if(isdef(Point2AsOffset))
+    println('Set ', id, ' = ', Bitmap, '.Rectangle(', Point1[0], ', ', Point1[1], ', ', Point2[0]-Point1[0], ', ', Point2[1]-Point1[1], ')')
+  else
+    println('Set ', id, ' = ', Bitmap, '.Rectangle(', Point1[0], ', ', Point1[1], ', ', Point2[0], ', ', Point2[1], ')')
+  end
+  if(isset(BgColor))
+    println(id, '.Color = ', BgColor)
+  end
+  if(isndef(Color))
+    println(id, '.Pen.Color = ', Color)
+  end
+  if(isset(Size))
+    println(id, '.Pen.Width = ', Size)
+  end
+  event(onDraw, _data)  
+end

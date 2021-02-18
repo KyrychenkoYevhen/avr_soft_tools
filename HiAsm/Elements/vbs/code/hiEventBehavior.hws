@@ -1,0 +1,111 @@
+// ************************************************
+// hiEventBehavior.hws for Vbs packet
+// WSO methods, properties and constants
+// Общие свойства наследников класса Action
+// Last modification: 16.07.2009
+// ************************************************
+
+// Common methods
+func doOnExecute(_data)
+  println(Sender, '.OnExecute = GetRef(', _data, ')')
+end
+
+func doOnUpdate (_data)
+  println(Sender, '.OnUpdate = GetRef(', _data, ')')
+end
+
+func doEnabled(_data)
+  println(Sender, '.Enabled = ', _data)
+end
+
+func doVisible(_data)
+  println(Sender, '.Visible = ', _data)
+end
+
+func doChecked(_data)
+  println(Sender, '.Checked = ', _data)
+end
+
+func doCheckBox(_data)
+  println(Sender, '.CheckBox = ', _data)
+end
+
+func doRadioCheck(_data)
+  println(Sender, '.RadioCheck = ', _data)
+end
+
+func doAllowAllUp(_data)
+  println(Sender, '.AllowAllUp = ', _data)
+end
+
+func doDefault(_data)
+  println(Sender, '.Default = ', _data)
+end
+
+func doBreak(_data)
+  println(Sender, '.Break = ', _data)
+end
+
+func doText(_data)
+  println(Sender, '.Text = ', _data)
+end
+
+func doHint(_data)
+  println(Sender, '.Hint = ', _data)
+end
+
+func doKey(_data)
+  println(Sender, '.Key = ', _data)
+end
+
+func doImageIndex(_data)
+  println(Sender, '.ImageIndex = ', _data)
+end
+
+func Enabled()
+  return(Sender && '.Enabled')
+end
+
+func Visible()
+  return(Sender && '.Visible')
+end
+
+func Checked()
+  return(Sender && '.Checked')
+end
+
+func CheckBox()
+  return(Sender && '.CheckBox')
+end
+
+func RadioCheck()
+  return(Sender && '.RadioCheck')
+end
+
+func AllowAllUp()
+  return(Sender && '.AllowAllUp')
+end
+
+func Default()
+  return(Sender && '.Default')
+end
+
+func Break()
+  return(Sender && '.Break')
+end
+
+func Text()
+  return(Sender && '.Text')
+end
+
+func Hint()
+  return(Sender && '.Hint')
+end
+
+func Key()
+  return(Sender && '.Key')
+end
+
+func ImageIndex()
+  return(Sender && '.ImageIndex')
+end

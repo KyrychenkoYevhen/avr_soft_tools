@@ -1,0 +1,2 @@
+Pascal file(*.pas)=pas
+Text file(*.txt)=text

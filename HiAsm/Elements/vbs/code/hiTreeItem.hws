@@ -1,0 +1,179 @@
+func Init()
+  if(isset(Items))
+    var(id)
+    id = Items
+    stack &= block.select(BLK_GLOB)
+    if(linked(doAdd) or linked(Item))
+      println('Dim ', node_)
+    end
+    block.select(_arr.pop(stack))
+  end
+end
+
+func Properties(node)
+  if(isndef(Text))
+    println(node, '.Text = ', Text)
+  end
+  if(isndef(ImageIndex))
+    println(node, '.ImageIndex = ', ImageIndex)
+  end
+  if(isndef(SelectedImageIndex))
+    println(node, '.SelectedImageIndex = ', SelectedImageIndex)
+  end
+  if(isndef(Selected))
+    println(node, '.Selected = True')
+  end
+  if(isndef(Checked))
+    println(node, '.Checked = True')
+  end
+  if(isndef(Expanded))
+    println(node, '.Expanded = True')
+  end
+  if(isndef(Bold))
+    println(node, '.Bold = True')
+  end
+  if(isset(UserData))
+    println(node, '.UserData = ', UserData)
+  end
+end
+
+func doAdd(_data)
+  fvar(first, second)
+  first = _arr.mt_pop(_data)
+  second = _arr.mt_pop(_data)
+  println('Set ', node_, ' = ', id, '.Add(', (first='')?str(''):first, ', ', (second='')?'-1':second, ', ', (_data='')?'-1':_data, ')')
+  Properties(node_)
+end
+
+func doInsert(_data)
+  fvar(first, second, third)
+  first = _arr.mt_pop(_data)
+  second = _arr.mt_pop(_data)
+  third = _arr.mt_pop(_data)
+  println('Set ', node_, ' = ', id, '.Insert(', first, ', ', (second='')?str(''):second, ', ', (third='')?'-1':third, ', ', (_data='')?'-1':_data, ')')
+  Properties(node_)
+end
+
+func doRemove(_data)
+  println(id, '.Remove(', (_data='')?'-1':_data, ')')
+end
+
+func doClear()
+  println(id, '.Clear()')
+end
+
+func doExpand(_data)
+  println(id, '.Expand(', (_data='') ? 'False' : _data, ')')
+end
+
+func doCollapse(_data)
+  println(id, '.Collapse()')
+end
+
+func doEditLabel(_data)
+  println(id, '.EditLabel()')
+end
+
+func doSort(_data)
+  println(id, '.Sort(', (_data='') ? 'False' : _data, ')')
+end
+
+func doMakeVisible(_data)
+  println(id, '.MakeVisible()')
+end
+
+func doText(_data)
+  println(id, '.Text = ', _data)
+end
+
+func doImageIndex(_data)
+  println(id, '.ImageIndex = ', _data)
+end
+
+func doSelectedImageIndex(_data)
+  println(id, '.SelectedImageIndex = ', _data)
+end
+
+func doSelected(_data)
+  println(id, '.Selected = ', (_data='') ? 'False' : _data)
+end
+
+func doChecked(_data)
+  println(id, '.Checked = ', (_data='') ? 'False' : _data)
+end
+
+func doExpanded(_data)
+  println(id, '.Expanded = ', (_data='') ? 'False' : _data)
+end
+
+func doBold(_data)
+  println(id, '.Bold = ', (_data='') ? 'False' : _data)
+end
+
+func doUserData(_data)
+  println(id, '.UserData = ', _data)
+end
+
+func doSelect(_data)
+  println(id, '.Item(', _data, ').Selected = True')
+end
+
+func Item()
+  return(node_)
+end
+
+func HasChildren()
+  return(id, '.HasChildren')
+end
+
+func Parent()
+  return(id, '.Parent')
+end
+
+func FirstChild()
+  return(id, '.FirstChild')
+end
+
+func NextSibling()
+  return(id, '.NextSibling')
+end
+
+func PrevSibling()
+  return(id, '.PrevSibling')
+end
+
+func LastChild()
+  return(id, '.LastChild')
+end
+
+func Text()
+  return(id, '.Text')
+end
+
+func ImageIndex()
+  return(id, '.ImageIndex')
+end
+
+func SelectedImageIndex()
+  return(id, '.SelectedImageIndex')
+end
+
+func Selected()
+  return(id, '.Selected')
+end
+
+func Checked()
+  return(id, '.Checked')
+end
+
+func Expanded()
+  return(id, '.Expanded')
+end
+
+func Bold()
+  return(id, '.Bold')
+end
+
+func UserData()
+  return(id, '.UserData')
+end

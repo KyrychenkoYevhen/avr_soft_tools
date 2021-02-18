@@ -1,0 +1,58 @@
+Make(modules)
+ver(4.03 build 180)
+Add(MainForm,6820809,21,175)
+{
+ Width=297
+ Height=120
+ Caption="Add template"
+ BorderStyle=3
+}
+Add(Label,11087722,7,77)
+{
+ Left=15
+ Top=15
+ Width=32
+ Height=17
+ Caption="Name"
+}
+Add(Edit,16405065,42,119)
+{
+ @Hint=#4:name|
+ Left=50
+ Top=10
+ Width=220
+ Text=""
+}
+Add(Label,2653686,0,98)
+{
+ Left=10
+ Top=40
+ Width=33
+ Height=17
+ Caption="Group"
+}
+Add(ComboBox,10549781,56,133)
+{
+ @Hint=#5:group|
+ Left=50
+ Top=35
+ Width=220
+}
+Add(Button,9013592,203,133)
+{
+ @Hint=#2:ok|
+ Left=200
+ Top=65
+ Width=70
+ Height=25
+ Caption="OK"
+}
+Add(Button,9261856,119,133)
+{
+ @Hint=#6:cancel|
+ Left=120
+ Top=65
+ Width=70
+ Height=25
+ Caption="Cancel"
+}

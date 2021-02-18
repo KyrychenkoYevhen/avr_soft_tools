@@ -1,0 +1,1 @@
+fpc make.pas -Sd -FDtools\

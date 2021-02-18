@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<LINK href="style.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+		<table class="mes_table" border="1">
+			<tr class="prop_cap">
+				<td width="10%"><IMG src="../elements/delphi/icon/EventFromData.ico"></td>
+				<td align="center">EventFromData</td>
+			</tr>
+			<tr>
+				<td style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px" colSpan="2">
+					<P align="justify">Компонент&nbsp;EventFromData - работает следующим образом:</P>
+					<OL>
+						<LI>
+							<DIV align="justify"><FONT color="#000000">Начинается его работа с запроса данных через 
+									нижнюю точку GetData</FONT></DIV>
+						<LI>
+							<DIV align="justify"><FONT color="#000000">Вызывается событие onEvent c данными, 
+									поступившими на&nbsp;точку&nbsp;GetData из потока снизу(если данных нет, то 
+									onEvent вызывается с пустыми данными)</FONT></DIV>
+						<LI>
+							<DIV align="justify"><FONT color="#000000">Компонент ждет выполнение схемы, идущей 
+									после события onEvent.</FONT></DIV>
+						<LI>
+							<DIV align="justify"><FONT color="#000000">Затем необходимо записать в компонент 
+									данные, вызовом метода doData</FONT></DIV>
+						<LI>
+							<DIV align="justify"><FONT color="#000000">Данные, записанные в компонент на шаге 4 
+									возвращаются через точку GetData, запросившему их компоненту.</FONT></DIV>
+						</LI>
+					</OL>
+					<P align="justify">
+						&nbsp;Применения у компонента два(по крайней мере найденных). Первое, это 
+						реализация своей ф-ции при вычисления выражения в математическом парсере, когда 
+						используется строка вида: %1( 34*6 ) + 5, тут&nbsp;результат 
+						вычисления&nbsp;34*6&nbsp;как раз и будет передан "вверх" на точку %1, так что 
+						при подключенном EventFromData они в итоге окажутся в соответствие с алгоритмом 
+						его работы на выходе события onEvent. Второе применение используется в 
+						ситуациях, когда компонент запрашивает какие-то данные, а они еще не готовы. 
+						Тривиальная и прозрачная иллюстрация этого случая приведена в примере 
+						EventFromData.sha, когда при закрытие окна программа еще не знает, можно ли ей 
+						закрыться, о чем любезно спрашивает у пользователя.<br>
+					</P>
+				</td>
+			</tr>
+			<tr>
+				<td class="down_sel" colSpan="2">&nbsp;Примеры: <a href="*Example*tutorial/EventFromData.sha">
+						EventFromData</a></td>
+			</tr>
+		</table>
+	</body>
+</html>

@@ -1,0 +1,134 @@
+func Init()
+  if(isset(Columns))
+    var(id)
+    id = Columns
+    stack &= block.select(BLK_GLOB)
+    if(linked(Items))
+      println('Dim ', Items_, '()')
+    end
+    block.select(BLK_BODY)
+    if(isndef(Visible))
+      println(id, '.Visible = False')
+    end
+    if(isndef(Flat))
+      println(id, '.Flat = True')
+    end
+    if(isndef(ColNames))
+      fvar(i, s)
+      for(i = 0; i < _arr.count(ColNames); i++)
+        s = ColNames[i]
+        print(id, '.Add(')
+        if(pos('=', s) > 0)
+          s = replace(s, "=", '","')
+        end
+        if(pos(':', s) > 0)
+          println(replace(s, ":", '").DataType = "'))
+        else
+          println(s, ').DataType = 0')
+        end
+      end
+    end
+    println('')
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doAdd(_data)
+  println(Columns_Arr, ' = Split(', _data, ', ";")')
+  println('For ', i, ' = 0 To UBound(', Columns_Arr, ')')
+  block.inclvl()
+    println(s, ' = ', Columns_Arr, '(', i, ')')
+    println('If InStr(', s, ', ":") Then')
+    block.inclvl()
+      println(sort, ' = Mid(', s, ', InStr(', s, ',":") + 1)')
+      println(s, ' = Left(', s, ', InStr(', s, ', ":") - 1)')
+    block.declvl()
+    println('Else')
+    block.inclvl()
+      println(sort, ' = 0')
+    block.declvl()
+    println('End If')
+    println('If InStr(', s, ', "=") Then')
+    block.inclvl()
+      println(name, ' = Left(', s, ', InStr(', s, ', "=") - 1)')
+      println(s, ' = Right(', s, ', Len(', s, ') - InStr(', s, ', "="))')
+      println('If InStr(', s, ', "=") Then')
+      block.inclvl()
+        println(size, ' = Left(', s, ', InStr(', s, ', "=") - 1)')
+        println(s, ' = Right(', s, ', Len(', s, ') - InStr(', s, ', "="))')
+        println(align_, ' = ', s)
+      block.declvl()
+      println('Else')
+      block.inclvl()
+        println(size, ' = ', s)
+        println(align_, ' = 1')
+      block.declvl()
+      println('End If')
+    block.declvl()
+    println('Else')
+    block.inclvl()
+      println(name, ' = ', s)
+      println(size, ' = 100')
+      println(align_, ' = 1')
+    block.declvl()
+    println('End If')
+    println(id, '.Add(', name, ', ', size, ', ', align_, ').DataType = ', sort)
+  block.declvl()
+  println('Next')
+end
+
+func doRemove(_data)
+  println(id, '.Remove ', _data)
+end
+
+func doClear()
+  println(id, '.Clear')
+end
+
+func doInsert(_data)
+  if(linked(StrData))
+    println(arr,' = Split(', _arr.mt_pop(_data), ', ', Delimiter, ')')
+    println(id, '.Insert ', _data, ', ', arr, '(0)')
+    println('For ', j, ' = 1 To UBound(', arr, ')')
+    block.inclvl()
+      println(id, '(', _data, ').Subitems(', j, ' - 1) = ', arr, '(', j, ')')
+    block.declvl()
+    println('Next')
+  end
+end
+
+func doVisible(_data)
+  println(id, '.Visible = ', (_data='') ? 'False' : _data)
+end
+
+func doFlat(_data)
+  println(id, '.Flat = ', (_data='') ? 'False' : _data)
+end
+
+func Array()
+  println('Erase ', Items_)
+  println(count_, ' = ', id, '.Count-1')
+  println('ReDim ', Items_, '(', count_, ')')
+  println('For ', j, ' = 0 To ', count_)
+    block.inclvl()
+    println('Set ', Items_, '(', j, ') = ', id, '.Item(', j, ')')
+    block.declvl()
+  println('Next')
+  return(Items_)
+end
+
+func Items()
+  return(id + '.Item')
+end
+
+func Count()
+  return(id + '.Count')
+end
+
+func Visible()
+  return(id + '.Visible')
+end
+
+func Flat()
+  return(id + '.Flat')
+end

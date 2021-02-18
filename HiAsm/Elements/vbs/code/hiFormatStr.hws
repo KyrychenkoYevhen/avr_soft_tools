@@ -1,0 +1,25 @@
+func MakeCode(_data)
+  fvar(s, i)
+  s = code("\"" + Mask + "\"")
+  for(i = _data_count_; i >= 1; i--) 
+    replace(s, '%' + i, '" & ' + point("Str" + i) + ' & "')
+  end
+  return(s)
+end
+
+func doString(_data)
+  if(linked(Result))
+    println(res, ' = ', MakeCode(_data))
+    event(onFString, res)
+  else
+    event(onFString, MakeCode(_data))
+  end
+end
+
+func Result()
+  if(linked(doString))
+    return(res)
+  else
+    return(MakeCode())
+  end
+end

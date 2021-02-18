@@ -1,0 +1,60 @@
+func Init()
+  var(obj)
+  obj = Dict_
+  stack &= block.select(BLK_OBJ)
+  println('Dim ', obj)
+  println('Set ', obj, ' = CreateObject("Scripting.Dictionary")')
+  if(isndef(Dictionary))
+    fvar(i, s)
+    s = Dictionary
+    if(_arr.count(s))
+      for(i = 0; i < _arr.count(s); i++)
+        println(obj, '.Add ', s[i][1], ', ', str(s[i][0]))
+      end  
+    end
+  end
+  println('')
+  block.select(BLK_NOTH)
+  println('Set ', obj, ' = Nothing')
+  block.select(_arr.pop(stack))
+end
+
+func doAdd(_data)
+  println(obj, '.Add ', _arr.mt_pop(_data), ', ', _data)
+end
+
+func doRead(_data)
+  event(onRead, obj && '.Item(' && Key && ')')
+end
+
+func doWrite(_data)
+  println(obj, '.Key(', Key, ') = ', Value)
+end
+
+func doClear()
+  println(obj, '.RemoveAll')
+end
+
+func doRemove(_data)
+  println(obj, '.Remove(', Key, ')')
+end
+
+func doExixts()
+  event(onExists, obj && '.Exists')
+end
+
+func Keys()
+  return(obj && '.Keys')
+end
+
+func Items()
+  return(obj && '.Items')
+end
+
+func Count()
+  return(obj && '.Count')
+end
+
+func Item()
+  return(obj && '.Item(' && Key && ')')
+end

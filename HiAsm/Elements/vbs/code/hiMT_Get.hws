@@ -1,0 +1,7 @@
+func doGet(_data)
+  fvar(dt)
+  dt = _data
+  event(onGet, _arr.mt_pop(dt))
+  event(onData, dt)
+end
+

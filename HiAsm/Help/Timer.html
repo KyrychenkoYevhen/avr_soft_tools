@@ -1,0 +1,40 @@
+<html>
+	<head>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<LINK href="style.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+		<table class="mes_table" border="1">
+			<tr class="prop_cap">
+				<td width="10%"><IMG src="../elements/delphi/icon/timer.ico"></td>
+				<td align="center">Timer</td>
+			</tr>
+			<tr>
+				<td style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px" colSpan="2">
+					<P align="justify">Компонент&nbsp;Timer - служит для переодической генерации 
+						событий через определенный промежуток времени, одним словом компонент полезен в 
+						ситуациях, когда нужно обновлять некотурую информацию или осуществлять 
+						мониторинг. Интервал между итерациями задается свойством Interval&nbsp; в 
+						милисекундах. Несмотря на то, что можно задать интервал в 1мс таймер же будет 
+						работать с интервалом не менее чем в 15мс, что связано с аппаратными 
+						ограничениями материнской платы.
+					</P>
+					<P align="justify">&nbsp;Свойство Enable компонента служит для запуска(при подаче 
+						на вход 1) и остановки(при подаче на вход 0) таймера.</P>
+					<P align="justify">&nbsp;Свойство AutoStop определяет количество итераций, через 
+						которое таймер выключается сам. Кроме того предусмотрено событие onStop, 
+						которое происходит всякий раз после остановки таймера.</P>
+					<P align="justify">&nbsp;Стоит также учесть, что таймер работает не в отдельном 
+						потоке и каждая его итерация прерывает выполнение основной программы, поэтому 
+						не следует выполнять после метода onTimer&nbsp;операции, требующие&nbsp;от 
+						нескольких секунд и более&nbsp;на их обработку.<br>
+					</P>
+				</td>
+			</tr>
+			<tr>
+				<td class="down_sel" colSpan="2">&nbsp;Примеры: <a href="*Example*example/system/time.sha">
+						Time</a>, <a href="*Example*example/system/mem.sha">Mem</a></td>
+			</tr>
+		</table>
+	</body>
+</html>

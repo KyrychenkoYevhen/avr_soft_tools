@@ -1,0 +1,74 @@
+include("printdialogbase")
+
+func Init()
+  var(id)
+  id = PageSetup_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', id)
+  block.select(_arr.pop(stack))
+end
+
+func flgStyle()
+  fvar(psdStyle)
+  psdStyle = Margins
+  if(isndef(MarginsUnits))
+    psdStyle += MarginsUnits * 4
+  end
+  if(isndef(DisableMargins))
+    psdStyle += 16  //  0x00000010L
+  end
+  if(isndef(DisablePrinter))
+    psdStyle += 32  //  0x00000020L
+  end
+  if(isndef(NoWarning))
+    psdStyle += 128  //  0x00000080L
+  end
+  if(isndef(DisableOrientation))
+    psdStyle += 256  //  0x00000100L
+  end
+  if(isndef(DisablePaper))
+    psdStyle += 512  //  0x00000200L
+  end
+  if(isndef(ShowHelp))
+    psdStyle += 2048  //  0x00000800L
+  end
+  if(isndef(NoNetworkButton))
+    psdStyle += 2097152  //  0x00200000L
+  end
+  return(psdStyle)
+end
+
+func doDialog(_data)
+  println('Set ' + id + ' = ' + frm + '.PageSetupDialog(CLng(' + flgStyle() + '))')
+  if(linked(onDialog))
+    println('If Not ', id, ' Is Nothing Then')
+    block.inclvl()
+      event(onDialog)
+    block.declvl()
+    println('End If')
+  end
+end
+
+func PaperWidth()
+  return(id + '.PaperWidth')
+end
+
+func PaperHeight()
+  return(id + '.PaperHeight')
+end
+
+func LeftMargin()
+  return(id + '.LeftMargin')
+end
+
+func RightMargin()
+  return(id + '.RightMargin')
+end
+
+func TopMargin()
+  return(id + '.TopMargin')
+end
+
+func BottomMargin()
+  return(id + '.BottomMargin')
+end

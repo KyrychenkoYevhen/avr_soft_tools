@@ -1,0 +1,14 @@
+func Init()
+  var(id)
+  fvar(old, classpath)
+  old = block.select(BLK_CLASS)
+  if (block.intext('class cLinkedList') = 0)
+    classpath=replace(sys.codedir() & 'classes\cLinkedList.vbs','\\','\\\\')
+    println(code(file2str(classpath)))
+  end
+  id = LnkList_
+  block.select(BLK_GLOB)
+  println('Dim ', id)
+  println('Set ', id, ' = New cLinkedList')
+  block.select(old)
+end

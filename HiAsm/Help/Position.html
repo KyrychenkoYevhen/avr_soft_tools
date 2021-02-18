@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<LINK href="style.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+		<table class="mes_table" border="1">
+			<tr class="prop_cap">
+				<td width="10%"><IMG src="../elements/delphi/icon/position.ico"></td>
+				<td align="center">Position</td>
+			</tr>
+			<tr>
+				<td style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px" colSpan="2">
+					<P align="justify">
+						&nbsp; омпонент&nbsp;Position - ищет позицию вхождени€ одной строки в другую.</P>
+					<P align="justify">&nbsp;StartPos - это свойство определ€ет с какого символа в 
+						строке будет начинатьс€ поиск. ѕо умолчанию отсчет&nbsp;идет с 1, что означает 
+						поиск по всей строке.</P>
+					<P align="justify">&nbsp;ZeroPos - при установки этого св-ва в True компонент будет 
+						выдавать в поток 0, если&nbsp;не было найдено ни одного вхождени€ подстроки. 
+						“ака€ возможность полезна, когда необходимо произвести поиск всех подстрок в 
+						данной строке. “огда по€вление на выходе 0 будет условием окончани€ поиска.</P>
+					<P align="justify">&nbsp;ShortSearch - последовательный поиск всех подстрок в 
+						строке. Ќапример, есть строка: "ћама мыла раму" и нам необходимо найти позицию 
+						всех подстрок вида: "м" (напомню, что подстрока может быть любой 
+						длинны).&nbsp;“огда последовательно вызыва€ метод doSearch компонента на его 
+						выходе будем иметь следующие числа: 1, 3, 6, 13. ѕосле этого если мы еще раз 
+						вызовем метод, то при св-ве ZeroPos=False никакого событи€ не произойдет, а 
+						при&nbsp;ZeroPos=True на выходе получим 0.</P>
+					<P align="justify">&nbsp;doReset - вызов этого метода сбрасывает в 1 позицию поиска 
+						при&nbsp;ShortSearch=True. Ёто необходимо в том случае,&nbsp;если вы по каким 
+						либо соображени€м прерываете поиск подстрок.</P>
+					<P align="justify">&nbsp;» так.  омбиниру€ значени€ св-тв компонента можно выделить 
+						два основных режима его работы:</P>
+					<OL>
+						<LI>
+							<DIV align="justify">&nbsp;ZeroPos = False, ShortSearch = False - в этом режиме 
+								компонент всегда будет искать вхождение подстроки в строку с начала и выдавать 
+								позицию вхождени€ в случае успешного поиска.</DIV>
+						<LI>
+							<DIV align="justify">&nbsp;ZeroPos = True, ShortSearch =&nbsp;True - в этом режиме 
+								компонент ищет все вхождени€ подстроки и позвол€ет выполнить некоторые дейсви€ 
+								после завершени€ поиска за счет выдачи в поток 0.</DIV>
+						</LI>
+					</OL>
+				</td>
+			</tr>
+			<tr>
+				<td class="down_sel" colSpan="2">&nbsp;ѕримеры: <a href="*Example*example/strings/tag.sha">
+						Tag</a></td>
+			</tr>
+		</table>
+	</body>
+</html>

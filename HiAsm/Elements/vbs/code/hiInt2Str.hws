@@ -1,0 +1,3 @@
+func Text
+  return('str$('&&Value&&')')
+end

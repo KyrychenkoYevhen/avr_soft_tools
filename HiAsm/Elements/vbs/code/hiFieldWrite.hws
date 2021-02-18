@@ -1,0 +1,9 @@
+func doWrite(_data)
+  println(Object, '.', code(Name), ' = ', Data)
+  event(onWrite, _data)
+end
+
+func Value()
+  return(Object + '.' + code(Name))
+end
+

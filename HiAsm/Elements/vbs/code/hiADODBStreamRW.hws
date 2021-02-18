@@ -1,0 +1,54 @@
+func Init()
+  if(isset(Stream))
+    var(obj, res)
+    obj = Stream
+  end
+end
+
+func doRead(_data)
+  if(isset(Stream))
+    event(onRead, obj + '.Read(' + NumChars + ')')
+  end
+end
+
+func doReadText(_data)
+  if(isset(Stream))
+    event(onRead, obj + '.ReadText' + (isndef(NumChars) ? (' ' + NumChars) : ''))
+  end
+end
+
+func doWrite(_data)
+  if(isset(Stream))
+    println(obj, '.Write ', Data)
+  end
+end
+
+func doWriteText(_data)
+  if(isset(Stream))
+   println(obj, '.WriteText ', Data, isndef(LineSeparator) ? (', ' + LineSeparator) : '')
+  end
+end
+
+func doSkipLine()
+  if(isset(Stream))
+    println(obj, '.SkipLine')
+  end
+end
+
+func doPosition(_data)
+  if(isset(Stream))
+    println(obj, '.Position = ', _data)
+  end
+end
+
+func EOS()
+  if(isset(Stream))
+    return(obj + '.EOS')
+  end
+end
+
+func Position()
+  if(isset(Stream))
+    return(obj + '.Position')
+  end
+end

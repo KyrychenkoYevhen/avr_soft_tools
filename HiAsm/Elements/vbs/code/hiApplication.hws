@@ -1,0 +1,48 @@
+func Init()
+  if(linked(PID))
+    if(sys.gvarfind('pid_is_set') = -1)
+      fvar(classpath)
+      stack &= block.select(BLK_FUNC)
+      gvar(pid_is_set)
+      classpath = replace(sys.codedir() & 'classes\PID.vbs','\\','\\\\')
+      println(code(file2str(classpath)))
+      block.select(_arr.pop(stack))
+    end
+  end
+end
+
+func doQuit(_data)
+  println('WScript.Quit ', (_data='') ? 0 : _data)
+end
+
+func ScriptFullName()
+  return('WScript.ScriptFullName')
+end
+
+func Arguments()
+  return('WScript.Arguments')
+end
+
+func PID()
+  return('GetScriptProcessID')
+end
+
+func ScriptName()
+  return('WScript.ScriptName')
+end
+
+func WSHFullName()
+  return('WScript.FullName')
+end
+
+func WSHPath()
+  return('WScript.Path')
+end
+
+func WSHName()
+  return('WScript.Name')
+end
+
+func WSHVersion()
+  return('WScript.Version')
+end

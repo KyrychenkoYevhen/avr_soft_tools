@@ -1,0 +1,32 @@
+func Init()
+  if(isndef(Init))
+    println('Randomize')
+  end
+end
+
+func doRand()
+  fvar(t)
+  t = Min
+  if(linked(dMax))
+    Max=dMax
+  end
+  if(linked(dMin))
+    Min=dMin
+  end
+
+  if(linked(Result))
+    println(rnd, ' = (', Max,(Min=0)? '':(' - '& Min), ' + 1) * Rnd',(Min=0)? '':(' + '& Min))
+    event(onRand, rnd)
+  else
+    event(onRand, '(' + Max + ' - ' + Min + ' + 1) * Rnd + ' + Min)
+  end 
+end
+
+func Result()
+fvar(s)
+  if(linked(doRand))
+    return(rnd)
+  else
+    return('(' & Max & ' - ' & Min & ' + 1) * Rnd + ' & Min)
+  end
+end

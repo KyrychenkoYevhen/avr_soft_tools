@@ -1,0 +1,44 @@
+func Init()
+  var(con)
+  con = wmiConnect_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', con)
+  if(isset(Computer))
+    var(obj)
+    obj = locator_
+    block.select(BLK_OBJ)
+    println('Dim ', obj)
+    println('Set ', obj, ' = CreateObject("WbemScripting.SWbemLocator")')
+    block.select(BLK_NOTH)
+    println('Set ', obj, ' = Nothing')
+    println('')
+  end
+  block.select(_arr.pop(stack))
+end
+
+func doConnect(_data)
+  println('On Error Resume Next')
+  if(isset(Computer))
+    println('Set ', con, ' = ', obj, '.ConnectServer(', Computer, ', ', NameSpace, ', ', UserName, ', ', Password, ', ', str(Locale), ', "ntlmdomain:" & ', Domain, ')')
+  else
+    println('Set ', con, ' = GetObject("winmgmts:{(', Privilege,')}!\\\\.\\', code(NameSpace), '")')
+  end
+  println(con, '.Security_.impersonationlevel = ', Impersonation + 1)
+  println(con, '.Security_.authenticationlevel = ', Authentication)
+  if(linked(onConnect) or linked(onError))
+    println('If Err.Number Then')
+    block.inclvl()
+      event(onError, 'Err.Number')
+    block.declvl()
+    println('Else')
+    block.inclvl()
+      event(onConnect, con)
+    block.declvl()
+    println('End If')
+  end
+  println('On Error GoTo 0')
+end
+
+func Handle()
+  return(con)
+end

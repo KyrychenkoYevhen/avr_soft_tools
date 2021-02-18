@@ -1,0 +1,59 @@
+func Init()
+  var(id)
+  id = Rnd_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', id, 'Max, ', id, 'Min')
+  if(not linked(Min))
+    println(id, 'Min = ', Min)
+  end
+  if(not linked(Max))
+    println(id, 'Max = ', Max)
+  end
+  block.select(_arr.pop(stack))
+end
+
+func doRandom1()
+  if(linked(dMax))
+    Max = dMax
+  end
+  if(linked(dMin))
+    Min = dMin
+  end
+  if(linked(Random))
+    println(id, ' = (', Max, ' - ', Min, ' + 1) * Rnd + ', Min)
+    event(onRandom, id)
+  else
+    event(onRandom, '(' + Max + ' - ' + Min + ' + 1) * Rnd + ' + Min)
+  end 
+end
+
+func doRandom0()
+  if(linked(Max))
+    println(id, 'Max = ', Max)
+  end
+  if(linked(Min))
+    println(id, 'Min = ', Min)
+  end
+  println(id, ' = Int((', id, 'Max - ', id, 'Min + 1) * Rnd + ', id, 'Min)')
+  event(onRandom, id)
+end
+
+func Random0
+  if(linked(doRandom))
+    return(id)
+  else
+    return('CInt((' & id & 'Max - ' & id & 'Min + 1) * Rnd + ' & id & 'Min)')
+  end
+end
+
+func doMax(_data)
+  println(id, 'Max = ', _data)
+end
+
+func doMin(_data)
+  println(id, 'Min = ', _data)
+end
+
+func doRandomize
+  println('Randomize')
+end

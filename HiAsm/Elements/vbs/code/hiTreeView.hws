@@ -1,0 +1,250 @@
+include("object")
+include("control")
+
+func MakeTree()
+  fvar(i,l,s)
+  l = 0
+  for(i = 0; i < _arr.count(Tree); i++)
+    s = Tree[i]
+    if(pos(',', s) > 0)
+      s = replace(s, ",", '","')
+    end
+    if(Tree[i]="(")
+      l++
+    elseif(Tree[i]=")")
+      l--
+    elseif(l=0)
+      println('Set l', l, ' = ', id, '.Items.Add(', s, ')')
+    elseif(l>0)
+      if(Tree[i+1]="(")
+        println('Set l', l, ' = l', l-1, '.Add(', s, ')')
+      else
+        println('Set ', x, ' = l', l-1, '.Add(', s, ')')
+      end
+    end
+  end
+end
+
+func Init()
+  var(id)
+  id = TreeView_
+  stack &= block.select(BLK_BODY)
+
+  fvar(tvsStyle)
+  tvsStyle = 0
+  if(isdef(Has_Buttons))
+    tvsStyle += 1  // 0x0001
+  end
+  if(isdef(Has_Lines))
+    tvsStyle += 2  // 0x0002
+  end
+  if(isdef(Lines_AtRoot))
+    tvsStyle += 4  // 0x0004
+  end
+  if(isndef(Edit_Labels))
+    tvsStyle += 8  // 0x0008
+  end
+  if(isndef(Show_SelAlways))
+    tvsStyle += 32  // 0x0020
+  end
+  if(isndef(Check_Boxes))
+    tvsStyle += 256  // 0x0100
+  end
+  if(isndef(Track_Select))
+    tvsStyle += 512  // 0x0200
+  end
+  if(isndef(Single_Expand))
+    tvsStyle += 1024  // 0x0400
+  end
+  if(isndef(Full_RowSelect))
+    tvsStyle += 4096  // 0x1000
+  end
+
+  println('Set ', id, ' = ', get_parent(), '.CreateTreeView(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(', tvsStyle, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(isndef(Tree))
+    MakeTree()
+  end
+  if(linked(Images))
+    println(id, '.Images = ', Images)
+  end
+  if(linked(StateImages))
+    println(id, '.StateImages = ', StateImages)
+  end
+  if(isndef(HasButtons))
+    println(id, '.HasButtons = False')
+  end
+  if(isndef(HasLines))
+    println(id, '.HasLines = False')
+  end
+  if(isndef(LinesAtRoot))
+    println(id, '.LinesAtRoot = False')
+  end
+  if(isndef(ReadOnly))
+    println(id, '.ReadOnly = True')
+  end
+  if(isndef(CheckBoxes))
+    println(id, '.CheckBoxes = True')
+  end
+  if(isndef(HotTrack))
+    println(id, '.HotTrack = True')
+  end
+  if(isndef(RowSelect))
+    println(id, '.RowSelect = True')
+  end
+  if(isndef(HideSelection))
+    println(id, '.HideSelection = False')
+  end
+  if(isndef(AutoExpand))
+    println(id, '.AutoExpand = True')
+  end
+  println('')
+  if(linked(onEdited))
+    lng.begin_func(id + '_OnEdited(Sender, Item, Result)\'' + code(id))
+      event(onEdited, 'Result')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onExpanding))
+    lng.begin_func(id + '_OnExpanding(Sender, Item)\'' + code(id))
+      event(onExpanding, 'Item')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onExpanded))
+    lng.begin_func(id + '_OnExpanded(Sender, Item)\'' + code(id))
+      event(onExpanded, 'Item')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onCollapsing))
+    lng.begin_func(id + '_OnCollapsing(Sender, Item)\'' + code(id))
+      event(onCollapsing, 'Item')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onCollapsed))
+    lng.begin_func(id + '_OnCollapsed(Sender, Item)\'' + code(id))
+      event(onCollapsed, 'Item')
+    lng.end_func(BLK_EVENTS)
+  end
+  block.select(_arr.pop(stack))
+end
+
+func doHasButtons(_data)
+  println(id, '.HasButtons = ', (_data='') ? 'False' : _data)
+end
+
+func doHasLines(_data)
+  println(id, '.HasLines = ', (_data='') ? 'False' : _data)
+end
+
+func doLinesAtRoot(_data)
+  println(id, '.LinesAtRoot = ', (_data='') ? 'False' : _data)
+end
+
+func doReadOnly(_data)
+  println(id, '.ReadOnly = ', (_data='') ? 'False' : _data)
+end
+
+func doCheckBoxes(_data)
+  println(id, '.CheckBoxes = ', (_data='') ? 'False' : _data)
+end
+
+func doHotTrack(_data)
+  println(id, '.HotTrack = ', (_data='') ? 'False' : _data)
+end
+
+func doRowSelect(_data)
+  println(id, '.RowSelect = ', (_data='') ? 'False' : _data)
+end
+
+func doHideSelection(_data)
+  println(id, '.HideSelection = ', (_data='') ? 'False' : _data)
+end
+
+func doAutoExpand(_data)
+  println(id, '.AutoExpand = ', (_data='') ? 'False' : _data)
+end
+
+func doBeginUpdate()
+  println(id, '.BeginUpdate()')
+end
+
+func doEndUpdate()
+  println(id, '.EndUpdate()')
+end
+
+func doOnEdited(_data)
+  println(id, '.OnEdited = GetRef(', _data, ')')
+end
+
+func doOnExpanding(_data)
+  println(id, '.OnExpanding = GetRef(', _data, ')')
+end
+
+func doOnExpanded(_data)
+  println(id, '.OnExpanded = GetRef(', _data, ')')
+end
+
+func doOnCollapsing(_data)
+  println(id, '.OnCollapsing = GetRef(', _data, ')')
+end
+
+func doOnCollapsed(_data)
+  println(id, '.OnCollapsed = GetRef(', _data, ')')
+end
+
+func Items()
+  return(id + '.Items')
+end
+
+func Count()
+  return(id + '.Count')
+end
+
+func SelectedItem()
+  return(id + '.SelectedItem')
+end
+
+func TopItem()
+  return(id + '.TopItem')
+end
+
+func HasButtons()
+  return(id + '.HasButtons')
+end
+
+func HasLines()
+  return(id + '.HasLines')
+end
+
+func LinesAtRoot()
+  return(id + '.LinesAtRoot')
+end
+
+func ReadOnly()
+  return(id + '.ReadOnly')
+end
+
+func CheckBoxes()
+  return(id + '.CheckBoxes')
+end
+
+func HotTrack()
+  return(id + '.HotTrack')
+end
+
+func RowSelect()
+  return(id + '.RowSelect')
+end
+
+func HideSelection()
+  return(id + '.HideSelection')
+end
+
+func AutoExpand()
+  return(id + '.AutoExpand')
+end

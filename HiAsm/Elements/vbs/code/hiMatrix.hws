@@ -1,0 +1,28 @@
+func Init
+  var(id)
+  fvar(old)
+  id=matrix_
+  old=block.select(BLK_GLOB)
+  println('Dim ',id,'(',Col-1,', ',Row-1,')')
+  block.select(old)
+end
+
+func doSize(_data)
+  println('ReDim Preserve ',id,'(',Col-1,', ',Row-1,')')
+end
+
+func doClear(_data)
+  println('Erase ',id)
+end
+
+func Matrix()
+  return(id)
+end
+
+func CountCol()
+  return('Ubound(',id,'1)')
+end
+
+func CountRow()
+  return('Ubound(',id,'2)')
+end

@@ -1,0 +1,55 @@
+Make(modules)
+ver(4.03 build 180)
+Add(MainForm,3951723,21,105)
+{
+ Width=311
+ Height=131
+ Caption="Project description"
+ BorderStyle=3
+}
+Add(ComboBox,11279289,175,63)
+{
+ @Hint=#5:group|
+ Left=60
+ Top=35
+ Width=230
+ ReadOnly=0
+}
+Add(Label,3422017,133,63)
+{
+ Left=5
+ Top=40
+ Width=33
+ Height=17
+ Caption="Group"
+}
+Add(Button,7871485,252,112)
+{
+ @Hint=#2:ok|
+ Left=235
+ Top=70
+ Caption="OK"
+}
+Add(Button,6990609,203,112)
+{
+ @Hint=#6:cancel|
+ Left=170
+ Top=70
+ Caption="Cancel"
+}
+Add(Label,1767771,133,14)
+{
+ Left=5
+ Top=10
+ Width=32
+ Height=17
+ Caption="Name"
+}
+Add(Edit,11685097,175,14)
+{
+ @Hint=#5:title|
+ Left=60
+ Top=5
+ Width=230
+ Text=""
+}

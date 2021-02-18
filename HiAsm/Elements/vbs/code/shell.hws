@@ -1,0 +1,10 @@
+if (sys.gvarfind('shell_is_set') = -1)
+  gvar(shell_is_set)
+  stack &= block.select(BLK_OBJ)
+  println('Dim shell')
+  println('Set shell = ', (sys.gvarfind('wscript_disable') = -1) ? 'WScript.' : '', 'CreateObject("WScript.Shell")')
+  println('')
+  block.select(BLK_NOTH)
+  println('Set shell = Nothing')
+  block.select(_arr.pop(stack))
+end

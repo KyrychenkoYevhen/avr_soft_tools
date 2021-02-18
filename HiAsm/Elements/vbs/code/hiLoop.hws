@@ -1,0 +1,7 @@
+func doLoop
+  println('do')
+  block.inclvl()
+    event(onLoop)
+  block.declvl()
+  println('loop')
+end

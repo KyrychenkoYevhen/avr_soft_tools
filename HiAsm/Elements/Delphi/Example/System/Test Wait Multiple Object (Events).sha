@@ -1,0 +1,229 @@
+Make(delphi)
+ver(4.04 build 185)
+Add(MainForm,2953706,21,105)
+{
+ Width=237
+ Height=283
+ Caption="Wait for Multiple Objects"
+ Position=1
+}
+Add(Button,3342741,280,112)
+{
+ Left=55
+ Top=15
+ Width=115
+ Caption="Start"
+ Data=String(ABCDEF)
+ link(onClick,1818191:doEvent1,[])
+}
+Add(Memo,13572209,966,119)
+{
+ Left=15
+ Top=45
+ Width=195
+ Height=195
+ ScrollBars=3
+}
+Add(Thread,9400599,441,112)
+{
+ Delay=0
+ FastStop=0
+ link(onExec,8425095:doEvent1,[])
+}
+Add(Sleep,3167843,525,119)
+{
+ Delay=2000000
+ link(onSleep,947473:doEvent1,[])
+}
+Add(DoData,5446928,672,119)
+{
+ Data=String(Thread 1 finished)
+ link(onEventData,13519440:doWork,[])
+}
+Add(LineBreakEx,13519440,714,119)
+{
+ Caption="add"
+}
+Add(LineBreakEx,11023930,854,119)
+{
+ Caption="add"
+ Type=1
+ link(OnEvent,3309773:doSynchronize,[])
+}
+Add(Hub,8425095,490,112)
+{
+ link(onEvent1,904911:doData,[(518,118)(518,76)])
+ link(onEvent2,3167843:doSleepMks,[(514,125)(514,132)])
+}
+Add(DoData,904911,532,70)
+{
+ Data=String(Thread 1 started)
+ link(onEventData,10678639:doWork,[])
+}
+Add(LineBreakEx,10678639,581,70)
+{
+ Caption="add"
+}
+Add(Hub,1818191,329,112)
+{
+ OutCount=4
+ link(onEvent1,9400599:doStart,[])
+ link(onEvent2,2883773:doStart,[(392,125)(392,321)])
+ link(onEvent3,3610323:doStart,[(378,132)(378,496)])
+ link(onEvent4,14099663:doStart,[(363,139)(363,706)])
+}
+Add(Hub,947473,567,119)
+{
+ link(onEvent1,5446928:doData,[])
+ link(onEvent2,5953648:doSet,[(605,132)(605,174)])
+}
+Add(Thread,2883773,441,315)
+{
+ Delay=0
+ FastStop=0
+ link(onExec,10699036:doEvent1,[])
+}
+Add(Sleep,1592813,525,322)
+{
+ Delay=4000000
+ link(onSleep,11214117:doEvent1,[])
+}
+Add(DoData,12841277,672,322)
+{
+ Data=String(Thread 2 finished)
+ link(onEventData,12343489:doWork,[])
+}
+Add(LineBreakEx,12343489,714,322)
+{
+ Caption="add"
+}
+Add(Hub,10699036,490,315)
+{
+ link(onEvent1,7555254:doData,[(518,321)(518,279)])
+ link(onEvent2,1592813:doSleepMks,[(514,328)(514,335)])
+}
+Add(DoData,7555254,532,273)
+{
+ Data=String(Thread 2 started)
+ link(onEventData,8926173:doWork,[])
+}
+Add(LineBreakEx,8926173,581,273)
+{
+ Caption="add"
+}
+Add(Hub,11214117,567,322)
+{
+ link(onEvent1,12841277:doData,[])
+ link(onEvent2,9593067:doSet,[(604,335)(604,370)])
+}
+Add(Thread,3610323,448,490)
+{
+ Delay=0
+ FastStop=0
+ link(onExec,7190319:doEvent1,[])
+}
+Add(Sleep,15303710,532,497)
+{
+ Delay=6000000
+ link(onSleep,9062391:doEvent1,[])
+}
+Add(DoData,16512774,679,497)
+{
+ Data=String(Thread 3 finished)
+ link(onEventData,6526932:doWork,[])
+}
+Add(LineBreakEx,6526932,721,497)
+{
+ Caption="add"
+}
+Add(Hub,7190319,497,490)
+{
+ link(onEvent1,15436954:doData,[(525,496)(525,454)])
+ link(onEvent2,15303710:doSleepMks,[(521,503)(521,510)])
+}
+Add(DoData,15436954,539,448)
+{
+ Data=String(Thread 3 started)
+ link(onEventData,2974438:doWork,[])
+}
+Add(LineBreakEx,2974438,588,448)
+{
+ Caption="add"
+}
+Add(Hub,9062391,574,497)
+{
+ link(onEvent1,16512774:doData,[])
+ link(onEvent2,13923820:doSet,[(608,510)(608,545)])
+}
+Add(LineBreakEx,12358704,672,210)
+{
+ Caption="H1"
+ Type=3
+ link(_Data,5953648:ObjHandle,[])
+}
+Add(LineBreakEx,11815744,672,406)
+{
+ Caption="H2"
+ Type=3
+ link(_Data,9593067:ObjHandle,[])
+}
+Add(LineBreakEx,16371797,679,581)
+{
+ Caption="H3"
+ Type=3
+ link(_Data,13923820:ObjHandle,[])
+}
+Add(LineBreakEx,4797077,588,630)
+{
+ Caption="H1"
+ Type=2
+}
+Add(LineBreakEx,12999161,595,651)
+{
+ Caption="H2"
+ Type=2
+}
+Add(LineBreakEx,777119,602,672)
+{
+ Caption="H3"
+ Type=2
+}
+Add(WaitMultiple,7791455,588,700)
+{
+ Count=3
+ link(onWait,12294071:doData,[])
+ link(Handle1,4797077:getVar,[])
+ link(Handle2,12999161:getVar,[])
+ link(Handle3,777119:getVar,[])
+}
+Add(DoData,12294071,658,700)
+{
+ Data=String(ALL THREADS FINISHED)
+ link(onEventData,9908563:doWork,[])
+}
+Add(LineBreakEx,9908563,700,700)
+{
+ Caption="add"
+}
+Add(Thread,14099663,490,700)
+{
+ Delay=0
+ FastStop=0
+ link(onExec,7791455:doWait,[])
+}
+Add(Events,9593067,672,364)
+{
+ ManualReset=1
+}
+Add(Events,5953648,672,168)
+{
+ ManualReset=1
+}
+Add(Events,13923820,679,539)
+{
+ ManualReset=1
+}
+Add(Synchronize,3309773,910,119)
+{
+ link(onSync,13572209:doAdd,[])
+}

@@ -1,0 +1,106 @@
+Make(modules)
+Add(MainForm,14307157,63,161)
+{
+ Left=20
+ Top=105
+ Width=352
+ Height=181
+ Caption="Установка элемента"
+ BorderStyle=3
+}
+Add(Image,12828461,112,84)
+{
+ @Hint=#4:icon|
+ Left=15
+ Top=10
+ Width=24
+ Height=24
+}
+Add(Label,1190853,91,63)
+{
+ Left=125
+ Top=15
+ Width=29
+ Height=17
+ Caption="Имя:"
+}
+Add(Label,6267585,98,105)
+{
+ Left=55
+ Top=40
+ Width=100
+ Height=17
+ Caption="Краткое описание:"
+}
+Add(Label,4177342,140,112)
+{
+ Left=100
+ Top=90
+ Height=17
+ Caption="Вкладка:"
+}
+Add(Label,3833107,133,105)
+{
+ Left=115
+ Top=65
+ Width=38
+ Height=17
+ Caption="Пакет:"
+}
+Add(Label,5694383,210,70)
+{
+ @Hint=#4:name|
+ Left=165
+ Top=15
+ Width=34
+ Height=17
+ Caption="(none)"
+}
+Add(Label,3671680,231,112)
+{
+ @Hint=#4:info|
+ Left=165
+ Top=40
+ Width=34
+ Height=17
+ Caption="(none)"
+}
+Add(ComboBox,13004140,203,105)
+{
+ @Hint=#4:pack|
+ Left=165
+ Top=60
+ Width=170
+ Height=21
+ Color=-16777211
+ ReadOnly=0
+}
+Add(ComboBox,4676652,203,147)
+{
+ @Hint=#3:tab|
+ Left=165
+ Top=90
+ Width=170
+ Height=21
+ Color=-16777211
+}
+Add(Button,12155224,273,224)
+{
+ @Hint=#6:cancel|
+ Left=180
+ Top=125
+ Width=70
+ Height=25
+ Font=[Arial,8,0,0,1]
+ Caption="Отмена"
+}
+Add(Button,1738035,343,224)
+{
+ @Hint=#2:ok|
+ Left=260
+ Top=125
+ Width=70
+ Height=25
+ Font=[Arial,8,0,0,1]
+ Caption="ОК"
+}

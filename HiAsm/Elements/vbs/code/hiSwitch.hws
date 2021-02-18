@@ -1,0 +1,84 @@
+func Init
+  var(id)
+  id = Switch_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', id)
+  if(isndef(Default))
+    println(id, ' = True')
+  end
+  if(linked(State))
+    var(dt)
+    dt = State_
+    println('Dim ',dt)
+    if(isndef(Default))
+      println(dt, ' = ', DataOn)
+    else
+      println(dt, ' = ', DataOff)
+    end
+  end
+  if(linked(onOn) or linked(onOff))
+    if(sys.gvarfind('switchcheck_is_set') = -1)
+      gvar(switchcheck_is_set)
+      lng.begin_func('Check(state)\'' + code(id))
+        println('If state Then')
+        block.inclvl()
+          event(onOn, DataOn)
+        block.declvl()
+        println('Else')
+        block.inclvl()
+          event(onOff, DataOff)
+        block.declvl()    
+        println('End If')
+      lng.end_func(BLK_FUNC)
+    end
+  end
+  block.select(_arr.pop(stack))
+end
+
+func doCheck(_data)
+  if(linked(onOn) or linked(onOff))
+    println('Check ', id)
+  end
+end
+
+func doSwitch(_data)
+  println(id, ' = not ', id)
+  println('If ', id, ' Then')
+  block.inclvl()
+    if(linked(State))
+      println(dt, ' = ', DataOn)
+    end
+    event(onSwitch,DataOn)
+  block.declvl()
+  println('Else')
+  block.inclvl()
+    if(linked(State))
+      println(dt, ' = ', DataOff)
+    end
+    event(onSwitch, DataOff)
+  block.declvl()
+  println('End If')
+  if(linked(onOn) or linked(onOff))
+    println('Check ', id)
+  end
+end
+
+func doReset(_data)
+  println('If ', id, ' Then')
+  block.inclvl()
+    doSwitch(_data)
+  block.declvl()
+  println('End If')
+end
+
+func doOn(_data)
+  println('If not ', id, ' Then')
+  block.inclvl()
+    doSwitch(_data)
+  block.declvl()
+  println('End If')
+end
+
+func State()
+  return(dt)
+end

@@ -1,0 +1,59 @@
+include("GraphicObject")
+
+func Init()
+  if(linked(Brush))
+    var(id)
+    id = Brush
+    stack &= block.select(BLK_BODY)
+
+    // Common methods and properties
+    GraphicObject_Init(id)
+
+    // Local  methods and properties
+    fvar(bStyle)
+    if(isndef(Style))
+      if(Style>8)
+        bStyle = 268435456 // 0x10000000L
+        bStyle += Angle*900
+        if(isndef(Center))
+          bStyle += 536870912 // 0x20000000L
+        end
+      else
+        bStyle = Style
+      end
+      println(id, '.Style = ', bStyle)
+    end
+    if(isset(Image))
+      println(id, '.Image = ', Image)
+    end
+    if(isndef(GradientColor))
+      println(id, '.GradientColor = ', GradientColor)
+    end
+    println('')
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doImage(_data)
+  println(id, '.Image = ', _data)
+end
+
+func doStyle(_data)
+  println(id, '.Style = ', _data)
+end
+
+func doWidth(_data)
+  println(id, '.Width = ', _data)
+end
+
+func doGradientColor(_data)
+  println(id, '.GradientColor = ', _data)
+end
+
+func vStyle()
+  return(id + '.Style')
+end
+
+func vGradientColor()
+  return(id + '.GradientColor')
+end

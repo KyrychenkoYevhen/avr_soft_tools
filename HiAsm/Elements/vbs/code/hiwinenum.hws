@@ -1,0 +1,43 @@
+func Init()
+  include('dwx')
+  stack &= block.select(BLK_OBJ)
+  println('dwx.Register "user32", "EnumWindows", "i=pl"')
+  println('dwx.Register "user32", "GetWindowTextW", "i=hWl"')
+  if(linked(ActiveWindow))
+    println('dwx.Register "user32", "GetForegroundWindow", "f=s", "r=l"')
+  end
+  println('')
+  block.select(BLK_GLOB)
+  println('Dim ', Title, (linked(Handle) ? (', ' + hwnd) : ''))
+  println(Title, ' = Space(256)')
+  lng.begin_func('CallBackEnumWin(hwnd, lparam)')
+    println('dwx.GetWindowTextW hwnd, ', Title, ', 256')
+    println('If Len(', Title, ') > 0 Then')
+    block.inclvl()
+      if(linked(Handle))
+        println(hwnd, ' = hwnd')
+      end
+      event(onFoundWindow, Title)
+    block.declvl()
+    println('End If')
+    println('CallBackEnumWin = 1')
+  lng.end_func(BLK_FUNC)
+  block.select(_arr.pop(stack))
+end
+
+func doEnum()
+  println('dwx.EnumWindows dwx.RegisterCallback(GetRef("CallBackEnumWin"), "i=hl", "r=l"), 0')
+  event(onEndEnum)
+end
+
+func Handle()
+  return(hwnd)
+end
+
+func Caption()
+  return(Title)
+end
+
+func ActiveWindow()
+  return('dwx.GetForegroundWindow()')
+end

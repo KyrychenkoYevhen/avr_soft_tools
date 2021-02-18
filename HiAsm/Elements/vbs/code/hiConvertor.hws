@@ -1,0 +1,7 @@
+func doConvert(_data)
+   event(onResult, Mode &&'(' && Data && ')')
+end
+
+func Result()
+   return(Mode &&'(' && Data && ')')
+end

@@ -1,0 +1,18 @@
+func doCheckMask(_data,flags)
+  if(flags='')
+   //
+  end
+  println('If ', _data, ' = ', Key, ' Then')
+  if(linked(onTrue))
+    block.inclvl()
+      event(onTrue)
+    block.declvl()
+  end
+  if(linked(onFalse))
+    println('Else')
+    block.inclvl()
+      event(onFalse, _data)//,flags)
+    block.declvl()
+  end
+  println('End If')
+end

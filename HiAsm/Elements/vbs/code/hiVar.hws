@@ -1,0 +1,8 @@
+func doValue(_data)
+  println(code(Name),' = ', _data) 
+  event(onValue, code(Name))
+end
+
+func Var
+  return(code(Name))
+end

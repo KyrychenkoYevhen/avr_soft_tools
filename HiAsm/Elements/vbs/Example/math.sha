@@ -1,0 +1,126 @@
+Make(vbs)
+ver(4.04 build 185)
+Add(MainForm,2953706,21,105)
+{
+ Width=225
+ Height=117
+ Font=[Arial,8,0,0,1]
+ Point(doFont)
+}
+Add(Edit,5576561,371,210)
+{
+ Left=169
+ Top=22
+ Width=35
+ Text="0"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Edit,3069589,301,133)
+{
+ Left=22
+ Top=21
+ Width=30
+ Text="1"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Edit,3636924,343,133)
+{
+ Left=87
+ Top=21
+ Width=30
+ Text="2"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Math,1963530,301,210)
+{
+ link(onResult,5576561:doText,[])
+ link(Op1,3069589:vText,[])
+ link(Op2,3636924:vText,[(314,190)(349,190)])
+}
+Add(Button,16169569,238,210)
+{
+ Left=127
+ Top=19
+ Width=30
+ Height=25
+ Text="="
+ Font=[MS Sans Serif,12,1,0,1]
+ Point(onClick)
+ link(onClick,1963530:doOperation,[])
+}
+Add(Edit,2940191,371,357)
+{
+ Left=169
+ Top=51
+ Width=35
+ Text="0"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Edit,12382669,301,287)
+{
+ Left=22
+ Top=51
+ Width=30
+ Text="2"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Edit,3191416,343,287)
+{
+ Left=87
+ Top=51
+ Width=30
+ Text="2"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Button,9073693,238,357)
+{
+ Left=127
+ Top=50
+ Width=30
+ Height=25
+ Text="="
+ Font=[MS Sans Serif,12,1,0,1]
+ Point(onClick)
+ link(onClick,3844659:doCalc,[])
+}
+Add(MathParse,3844659,301,357)
+{
+ MathStr="%1 + %2"
+ link(onResult,2940191:doText,[])
+ link(X1,12382669:vText,[])
+ link(X2,3191416:vText,[(314,340)(349,340)])
+}
+Add(Label,7967857,238,308)
+{
+ Left=62
+ Top=19
+ Width=16
+ Height=18
+ Text="+"
+ Font=[MS Sans Serif,14,1,0,1]
+ Alignment=2
+ Point(doText)
+}
+Add(Label,6479727,238,168)
+{
+ Left=62
+ Top=48
+ Width=16
+ Height=18
+ Text="+"
+ Font=[MS Sans Serif,14,1,0,1]
+ Alignment=2
+ Point(doText)
+}

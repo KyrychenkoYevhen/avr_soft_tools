@@ -1,0 +1,43 @@
+func onNotifyEvent(id, name)
+    fvar(old, cur, old_loc, evn)
+
+    evn = id + '_' + code(name) 
+    old = block.select(BLK_PRIV_MTD)
+    
+    println('function ' + evn + '(Obj:PObj)')
+    
+    old_loc = LOC_VARS
+    LOC_VARS = block.reggen()
+    block.select(LOC_VARS)
+    block.inclvl()
+
+    cur = block.reggen() 
+    block.select(cur)
+    event(name)
+    
+    block.select(BLK_MTD_BODY)
+    
+    println('function ' + CUR_CLASS + '.' + evn)
+    block.select(LOC_VARS)
+    if(not block.empty())
+      block.select(BLK_MTD_BODY)
+      println('var')
+      block.copyhere(LOC_VARS)
+      block.delete(LOC_VARS)      
+    end
+    LOC_VARS = old_loc
+
+    block.select(BLK_MTD_BODY)
+    
+    block.inclvl()
+    block.copyhere(cur)
+    block.declvl()
+    
+    println('end function')
+    println('')
+    
+    block.delete(cur)
+    block.select(old)
+    
+    println(id, '.' + code(name) + ' = ' + evn) 
+end  

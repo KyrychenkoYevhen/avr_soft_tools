@@ -1,0 +1,2 @@
+Файл Pascal(*.pas)=pas
+Текстовый файл(*.txt)=text

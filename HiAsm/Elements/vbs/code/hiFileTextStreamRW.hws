@@ -1,0 +1,47 @@
+func doWrite(_data)
+  if(isset(Stream))
+   println(Stream, '.Write(', _data, ')')
+  end
+end
+
+func doWriteLine(_data)
+  if(isset(Stream))
+   println(Stream, '.WriteLine(', _data, ')')
+  end
+end
+
+func doWriteBlankLines(_data)
+  if(isset(Stream))
+   println(Stream, '.WriteBlankLines(', Cnt, ')')
+  end
+end
+
+func doRead(_data)
+  if(isset(Stream) and linked(onRead))
+    event(onRead, Stream && '.Read(' && Cnt && ')')
+  end
+end
+
+func doReadLine(_data)
+  if(isset(Stream) and linked(onRead))
+    event(onRead, Stream && '.ReadLine()')
+  end
+end
+
+func doReadAll(_data)
+  if(isset(Stream) and linked(onRead))
+    event(onRead, Stream && '.ReadAll()')
+  end
+end
+
+func doSkip(_data)
+  if(isset(Stream))
+    println(Stream, '.Skip(' && Cnt && ')')
+  end
+end
+
+func doSkipLine(_data)
+  if(isset(Stream))
+    println(Stream, '.SkipLine()')
+  end
+end

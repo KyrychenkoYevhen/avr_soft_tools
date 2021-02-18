@@ -1,0 +1,71 @@
+Make(vbs)
+ver(4.03 build 180)
+Add(MainForm,2953706,21,43)
+{
+ Width=251
+ Height=172
+ Text="Checks"
+}
+Add(CheckBox,13686487,98,49)
+{
+ Left=15
+ Top=20
+ Width=105
+ Text="2 state CheckBox"
+ Point(onChange)
+ link(onChange,13391373:doWork1,[(144,55)])
+}
+Add(CheckBox,2000443,98,91)
+{
+ Left=15
+ Top=40
+ Width=105
+ AllowGrayed=0
+ Text="3 state CheckBox"
+ Point(onChange)
+ link(onChange,13391373:doWork3,[(144,97)])
+}
+Add(RadioButton,5663680,98,161)
+{
+ Left=15
+ Top=80
+ Width=105
+ Text="RadioButton1"
+ Point(onChange)
+ link(onChange,5636004:doWork1,[(146,167)(146,181)])
+}
+Add(RadioButton,8235458,98,203)
+{
+ Left=15
+ Top=105
+ Width=105
+ Text="RadioButton2"
+ Point(onChange)
+ link(onChange,5636004:doWork2,[(146,209)(146,188)])
+}
+Add(Label,720395,203,70)
+{
+ Left=135
+ Top=30
+ Width=90
+ Height=20
+ Text="Label1"
+ Point(doText)
+}
+Add(Label,9793789,203,175)
+{
+ Left=135
+ Top=90
+ Width=85
+ Height=20
+ Text="Label2"
+ Point(doText)
+}
+Add(ChanelToIndex,5636004,161,175)
+{
+ link(onIndex,9793789:doText,[])
+}
+Add(HubEx,13391373,140,70)
+{
+ link(onEvent,720395:doText,[])
+}

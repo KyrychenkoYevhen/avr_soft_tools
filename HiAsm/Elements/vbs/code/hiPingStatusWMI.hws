@@ -1,0 +1,178 @@
+func Init()
+  if(isset(Handle))
+    var(obj, param)
+    obj = Handle
+    param = Property_
+    stack &= block.select(BLK_GLOB)
+    println('Dim ', param, (linked(RecordRoute))?(', ' + RecordRoute_):'', (linked(RouteRecordResolved))?(', ' + RouteRecordResolved_):'', (linked(TimeStampRecord))?(', ' + TimeStampRecord_):'', (linked(TimeStampRecordAddress))?(', ' + TimeStampRecordAddress_):'', (linked(TimeStampRecordAddressResolved))?(', ' + TimeStampRecordAddressResolved_):'')
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doPingStatus()
+  if(linked(onStatusCode))
+    if(linked(Computer))
+      println(query, ' = "Select * from Win32_PingStatus Where Address = \'"', ' & ', code(Computer), ' & ', '"\'"', isndef(`BufferSize`)?(' & " AND BufferSize=' + `BufferSize` + '"'):'', isndef(`Timeout`)?(' & " AND Timeout=' + `Timeout` + '"'):'')
+      println('Set ', obj_, ' = ', obj, '.ExecQuery(', query, ')')
+    else
+      println('Set ', obj_, ' = ', obj, '.ExecQuery("Select * from Win32_PingStatus Where Address = \'', code(Computer), '\'")')
+    end
+    println('For Each ', item_, ' In ', obj_)
+    block.inclvl()
+      println('Set ', param, ' = ', item_)
+      if(linked(RecordRoute))
+        println('If isNull(', param + '.RouteRecord) Then')
+        block.inclvl()
+          println(RecordRoute_, ' = ""')
+        block.declvl()
+        println('Else')
+        block.inclvl()
+          println(RecordRoute_, ' = Join(' + param + '.RouteRecord, ", ")')
+        block.declvl()
+        println('End If')
+      end
+      if(linked(RouteRecordResolved))
+        println('If isNull(', param + '.RouteRecordResolved) Then')
+        block.inclvl()
+          println(RouteRecordResolved_, ' = ""')
+        block.declvl()
+        println('Else')
+        block.inclvl()
+          println(RouteRecordResolved_, ' = Join(' + param + '.RouteRecordResolved, ", ")')
+        block.declvl()
+        println('End If')
+      end
+      if(linked(TimeStampRecord))
+        println('If isNull(', param + '.TimeStampRecord) Then')
+        block.inclvl()
+          println(TimeStampRecord_, ' = ""')
+        block.declvl()
+        println('Else')
+        block.inclvl()
+          println(TimeStampRecord_, ' = Join(' + param + '.TimeStampRecord, ", ")')
+        block.declvl()
+        println('End If')
+      end
+      if(linked(TimeStampRecordAddress))
+        println('If isNull(', param + '.TimeStampRecordAddress) Then')
+        block.inclvl()
+          println(TimeStampRecordAddress_, ' = ""')
+        block.declvl()
+        println('Else')
+        block.inclvl()
+          println(TimeStampRecordAddress_, ' = Join(' + param + '.TimeStampRecordAddress, ", ")')
+        block.declvl()
+        println('End If')
+      end
+      if(linked(TimeStampRecordAddressResolved))
+        println('If isNull(', param + '.TimeStampRecordAddressResolved) Then')
+        block.inclvl()
+          println(TimeStampRecordAddressResolved_, ' = ""')
+        block.declvl()
+        println('Else')
+        block.inclvl()
+          println(TimeStampRecordAddressResolved_, ' = Join(' + param + '.TimeStampRecordAddressResolved, ", ")')
+        block.declvl()
+        println('End If')
+      end
+      event(onStatusCode, param + '.StatusCode')
+    block.declvl()
+    println('Next')
+  end
+end
+
+func Address()
+  return(param + '.Address')
+end
+
+func BufferSize()
+  return(param + '.BufferSize')
+end
+
+func NoFragmentation()
+  return(param + '.NoFragmentation')
+end
+
+func PrimaryAddressResolutionStatus()
+  return(param + '.PrimaryAddressResolutionStatus')
+end
+
+func ProtocolAddress()
+  return(param + '.ProtocolAddress')
+end
+
+func ProtocolAddressResolved()
+  return(param + '.ProtocolAddressResolved')
+end
+
+func RecordRoute()
+  return(param + '.RecordRoute')
+end
+
+func ReplyInconsistency()
+  return(param + '.ReplyInconsistency')
+end
+
+func ReplySize()
+  return(param + '.ReplySize')
+end
+
+func ResolveAddressNames()
+  return(param + '.ResolveAddressNames')
+end
+
+func ResponseTime()
+  return(param + '.ResponseTime')
+end
+
+func ResponseTimeToLive()
+  return(param + '.ResponseTimeToLive')
+end
+
+func RouteRecord()
+  return(RecordRoute_)
+end
+
+func RouteRecordResolved()
+  return(RouteRecordResolved_)
+end
+
+func SourceRoute()
+  return(param + '.SourceRoute')
+end
+
+func SourceRouteType()
+  return(param + '.SourceRouteType')
+end
+
+func StatusCode()
+  return(param + '.StatusCode')
+end
+
+func TimeOut()
+  return(param + '.TimeOut')
+end
+
+func TimeStampRecord()
+  return(TimeStampRecord_)
+end
+
+func TimeStampRecordAddress()
+  return(TimeStampRecordAddress_)
+end
+
+func TimeStampRecordAddressResolved()
+  return(TimeStampRecordAddressResolved_)
+end
+
+func TimestampRoute()
+  return(param + '.TimestampRoute')
+end
+
+func TimeToLive()
+  return(param + '.TimeToLive')
+end
+
+func TypeofService()
+  return(param + '.TypeofService')
+end

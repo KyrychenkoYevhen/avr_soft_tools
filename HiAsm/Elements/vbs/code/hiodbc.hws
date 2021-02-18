@@ -1,0 +1,38 @@
+func Init()
+  var(obj_id)
+  fvar(old,classpath)
+  old = block.select(BLK_CLASS)
+  if (sys.gvarfind('ado_odbs_class') = -1)
+   gvar(ado_odbs_class)
+   classpath=replace(sys.codedir() & 'classes\clsADO.vbs','\\','\\\\')
+   println(code(file2str(classpath)))
+  end
+  obj_id = odbc_
+  block.select(BLK_GLOB)
+  println('Dim ',obj_id)
+  block.select(BLK_OBJ)
+  println('Set ',obj_id,' = New clsADO')
+  block.select(old)
+end
+
+func doOpen(_data)
+  println(obj_id,'.Connect ',ConnStr)
+  if(linked(onResult))
+   event(onResult,obj_id)
+  end
+  if(linked(onError))
+   println('If Len(',obj_id,'.ErrorMessage()) Then')
+   block.inclvl()
+    event(onError,obj_id && '.ErrorMessage()')
+   block.declvl()
+   println('End If')
+  end
+end
+
+func doClose()
+  println(obj_id,'.Close')
+end
+
+func dbHandle()
+  return(obj_id)
+end

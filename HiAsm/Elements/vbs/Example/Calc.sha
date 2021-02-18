@@ -1,0 +1,438 @@
+*Очень простой и несовсем традиционный калькулятор. Это конечно не Microsoft Super Calculator, но считает он ничуть не хуже.
+Make(vbs)
+ver(4.04 build 185)
+Add(Label,38053,385,287)
+{
+ Left=20
+ Top=5
+ Width=190
+ Height=20
+ Text="0"
+ Color=-16777204
+ Font=[Arial,8,0,0,1]
+ Point(doText)
+ Point(vText)
+}
+Add(Edit,13741752,371,70)
+{
+ Left=20
+ Top=26
+ Width=190
+ Text="0"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(MainForm,2953706,7,140)
+{
+ Width=236
+ Height=207
+ Text="Calc"
+}
+Add(InfoTip,72700,28,35)
+{
+ Info=#53:Очень простой и не слишком функциональный калькулятор|
+ Font=[Times New Roman,12,2,8388736,1]
+ Width=232
+ Height=46
+}
+Add(Button,83167,105,224)
+{
+ Left=50
+ Top=110
+ Width=25
+ Height=25
+ Text="2"
+ Font=[Arial,8,0,0,1]
+ Data=Integer(2)
+ Point(onClick)
+ link(onClick,6823753:doWork2,[])
+ AddHint(17,16,21,13,Text)
+}
+Add(Button,81875,105,182)
+{
+ Left=50
+ Top=80
+ Width=25
+ Height=25
+ Text="5"
+ Font=[Arial,8,0,0,1]
+ Data=Integer(5)
+ Point(onClick)
+ link(onClick,12559180:doWork2,[])
+ AddHint(16,16,21,13,Text)
+}
+Add(Button,76205,154,182)
+{
+ Left=80
+ Top=80
+ Width=25
+ Height=25
+ Text="6"
+ Font=[Arial,8,0,0,1]
+ Data=Integer(6)
+ Point(onClick)
+ link(onClick,2307312:doWork2,[])
+ AddHint(17,16,21,13,Text)
+}
+Add(Button,6804,56,224)
+{
+ Left=20
+ Top=110
+ Width=25
+ Height=25
+ Text="1"
+ Font=[Arial,8,0,0,1]
+ Data=Integer(1)
+ Point(onClick)
+ link(onClick,416749:doWork2,[])
+ AddHint(16,16,21,13,Text)
+}
+Add(Hub,75995,203,280)
+{
+ link(onEvent1,87545:doData,[(224,286)(224,258)])
+ link(onEvent2,6725737:doWork2,[])
+}
+Add(Button,52080,56,182)
+{
+ Left=20
+ Top=80
+ Width=25
+ Height=25
+ Text="4"
+ Font=[Arial,8,0,0,1]
+ Data=Integer(4)
+ Point(onClick)
+ link(onClick,5959480:doWork2,[])
+ AddHint(16,16,21,13,Text)
+}
+Add(Button,82548,56,140)
+{
+ Left=20
+ Top=50
+ Width=25
+ Height=25
+ Text="7"
+ Font=[Arial,8,0,0,1]
+ Data=Integer(7)
+ Point(onClick)
+ link(onClick,5959480:doWork1,[(95,146)])
+ AddHint(17,16,21,13,Text)
+}
+Add(Button,94032,154,140)
+{
+ Left=80
+ Top=50
+ Width=25
+ Height=25
+ Text="9"
+ Font=[Arial,8,0,0,1]
+ Data=Integer(9)
+ Point(onClick)
+ link(onClick,8705909:doWork2,[])
+ AddHint(17,16,21,13,Text)
+}
+Add(Button,57736,105,140)
+{
+ Left=50
+ Top=50
+ Width=25
+ Height=25
+ Text="8"
+ Font=[Arial,8,0,0,1]
+ Data=Integer(8)
+ Point(onClick)
+ link(onClick,12559180:doWork1,[(144,146)])
+ AddHint(16,16,21,13,Text)
+}
+Add(Button,34976,154,224)
+{
+ Left=80
+ Top=110
+ Width=25
+ Height=25
+ Text="3"
+ Font=[Arial,8,0,0,1]
+ Data=Integer(3)
+ Point(onClick)
+ link(onClick,16629905:doWork2,[])
+ AddHint(17,16,21,13,Text)
+}
+Add(Button,77974,56,266)
+{
+ Left=20
+ Top=140
+ Width=25
+ Height=25
+ Text="0"
+ Font=[Arial,8,0,0,1]
+ Data=Integer(0)
+ Point(onClick)
+ link(onClick,12298043:doWork2,[])
+ AddHint(16,16,21,13,Text)
+}
+Add(Button,26676,238,343)
+{
+ @Hint=#1:=|
+ Left=80
+ Top=140
+ Width=25
+ Height=25
+ Text="="
+ Font=[Arial,8,0,0,1]
+ Point(onClick)
+ link(onClick,575769:doStrCat,[])
+ AddHint(16,16,21,13,Text)
+}
+Add(DoData,55572,336,287)
+{
+ link(onEventData,38053:doText,[])
+ link(Data,8927474:Var3,[(342,131)])
+}
+Add(Button,66303,182,301)
+{
+ Left=110
+ Top=50
+ Width=25
+ Height=25
+ Text="+"
+ Font=[Arial,8,0,0,1]
+ Data=String(+)
+ Point(onClick)
+ link(onClick,8036276:doWork2,[])
+ AddHint(13,16,21,13,Text)
+}
+Add(Button,99724,182,427)
+{
+ Left=110
+ Top=140
+ Width=25
+ Height=25
+ Text="/"
+ Font=[Arial,8,0,0,1]
+ Data=String(/)
+ Point(onClick)
+ link(onClick,9126168:doWork3,[(228,433)])
+ AddHint(16,15,20,13,Text)
+}
+Add(Button,17108,182,343)
+{
+ Left=110
+ Top=80
+ Width=25
+ Height=25
+ Text="-"
+ Font=[Arial,8,0,0,1]
+ Data=String(-)
+ Point(onClick)
+ link(onClick,1011743:doWork2,[])
+ AddHint(16,16,18,13,Text)
+}
+Add(Button,13193,182,385)
+{
+ Left=110
+ Top=110
+ Width=25
+ Height=25
+ Text="*"
+ Font=[Arial,8,0,0,1]
+ Data=String(*)
+ Point(onClick)
+ link(onClick,9126168:doWork2,[])
+ AddHint(16,16,19,13,Text)
+}
+Add(Hub,97134,245,287)
+{
+ OutCount=3
+ link(onEvent1,55572:doData,[])
+ link(onEvent2,5289982:doData,[(289,300)(289,76)])
+ link(onEvent3,15531808:doValue,[])
+}
+Add(DoData,87545,238,252)
+{
+ Data=Integer(0)
+ link(onEventData,14991681:doWork2,[])
+}
+Add(GlobalVar,15531808,294,301)
+{
+}
+Add(MultiElementEx,575769,287,343)
+{
+ link(Result,14991681:doWork3,[(326,349)])
+ link(Str1,38053:vText,[(293,331)(391,331)])
+ link(Op,15531808:Var,[])
+ link(Str2,8927474:Var2,[])
+}
+BEGIN_SDK
+  Add(EditMultiEx,9488660,21,21)
+  {
+   WorkCount=#8:doStrCat|
+   EventCount=#6:Result|
+   DataCount=#4:Str1|2:Op|4:Str2|
+   Width=370
+   Height=165
+   link(doStrCat,12264056:doCompare,[(49,27)(49,83)])
+  }
+  Add(StrCat,2760965,200,133)
+  {
+   link(onStrCat,3481735:doStrCat,[])
+   link(Str1,9488660:Str1,[(206,127)(27,127)])
+   link(Str2,3815523:Var3,[(213,51)])
+  }
+  Add(StrCat,3481735,256,133)
+  {
+   link(onStrCat,14670417:doEval,[])
+   link(Str2,2186434:Var3,[(269,37)])
+  }
+  Add(Eval,14670417,308,133)
+  {
+   link(onEval,9488660:Result,[(369,139)(369,27)])
+  }
+  Add(If_else,12264056,56,77)
+  {
+   Op2=String(/)
+   link(onTrue,7774014:doCompare,[])
+   link(onFalse,12825300:doWork2,[(97,90)(97,139)])
+   link(Op1,3815523:Var2,[])
+  }
+  Add(If_else,7774014,112,77)
+  {
+   Op2=Integer(0)
+   link(onTrue,10669763:doMessageBox,[])
+   link(onFalse,12825300:doWork1,[(158,90)])
+   link(Op1,2186434:Var2,[])
+  }
+  Add(GetDataEx,2186434,112,32)
+  {
+   Angle=3
+   link(Data,9488660:Str2,[(41,37)])
+  }
+  Add(GetDataEx,3815523,56,46)
+  {
+   Angle=3
+   link(Data,9488660:Op,[(34,51)])
+  }
+  Add(HubEx,12825300,154,133)
+  {
+   link(onEvent,2760965:doStrCat,[])
+  }
+  Add(MessageBox,10669763,168,77)
+  {
+   Text="Divide by 0"
+   Caption="Error"
+   Icon=1
+  }
+END_SDK
+Add(DoData,5289982,322,70)
+{
+ Data=Integer(0)
+ link(onEventData,13741752:doText,[])
+}
+Add(GetDataEx,8927474,301,126)
+{
+ link(Data,13741752:vText,[(307,114)(377,114)])
+}
+Add(HubEx,11032234,322,140)
+{
+ link(onEvent,13741752:doText2,[(362,146)(362,83)])
+}
+Add(StrCat,44572,252,147)
+{
+ link(onStrCat,16690463:doWork3,[(298,153)])
+ link(Str1,1086466:Var2,[])
+}
+Add(If_else,86491,210,140)
+{
+ Op2=String(0)
+ link(onTrue,16690463:doWork2,[])
+ link(onFalse,44572:doStrCat,[])
+ link(Op1,1086466:Var1,[(216,131)])
+}
+Add(HubEx,16690463,294,140)
+{
+ link(onEvent,11032234:doWork2,[])
+}
+Add(GetDataEx,1086466,252,126)
+{
+ Angle=1
+ link(Data,8927474:Var1,[])
+}
+Add(HubEx,16629905,189,224)
+{
+ Angle=3
+ link(onEvent,2307312:doWork3,[])
+}
+Add(HubEx,8705909,189,140)
+{
+ link(onEvent,86491:doCompare,[])
+}
+Add(HubEx,2307312,189,182)
+{
+ Angle=3
+ link(onEvent,8705909:doWork3,[])
+}
+Add(HubEx,7319404,140,266)
+{
+ link(onEvent,16629905:doWork3,[(193,272)])
+}
+Add(HubEx,12298043,91,266)
+{
+ link(onEvent,7319404:doWork2,[])
+}
+Add(HubEx,5959480,91,182)
+{
+ Angle=1
+ link(onEvent,416749:doWork1,[])
+}
+Add(HubEx,416749,91,224)
+{
+ Angle=1
+ link(onEvent,12298043:doWork1,[])
+}
+Add(HubEx,12559180,140,182)
+{
+ Angle=1
+ link(onEvent,6823753:doWork1,[])
+}
+Add(HubEx,6823753,140,224)
+{
+ Angle=1
+ link(onEvent,7319404:doWork1,[])
+}
+Add(HubEx,8036276,224,301)
+{
+ Angle=3
+ link(onEvent,6725737:doWork3,[])
+}
+Add(HubEx,1011743,224,343)
+{
+ Angle=3
+ link(onEvent,8036276:doWork3,[])
+}
+Add(HubEx,9126168,224,385)
+{
+ Angle=3
+ link(onEvent,1011743:doWork3,[])
+}
+Add(HubEx,6725737,224,287)
+{
+ link(onEvent,97134:doEvent1,[])
+}
+Add(HubEx,14991681,322,252)
+{
+ Angle=3
+ link(onEvent,11032234:doWork3,[])
+}
+Add(Button,5720695,126,280)
+{
+ Left=50
+ Top=140
+ Width=25
+ Height=25
+ Text="CE"
+ Font=[Arial,8,0,0,204]
+ Data=Integer(-1)
+ Point(onClick)
+ link(onClick,75995:doEvent1,[])
+ AddHint(14,16,29,13,Text)
+}

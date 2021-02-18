@@ -1,0 +1,10 @@
+func doStart()
+  include("struct")
+  block.select(BLK_HEAD)
+  println('\'-----------------------------------------------------')
+  println('\'',code(project_name ()),'.vbs')
+  println('\'-----------------------------------------------------')
+  block.select(BLK_BODY)  
+  event(onStart)
+  sys.initall()
+end

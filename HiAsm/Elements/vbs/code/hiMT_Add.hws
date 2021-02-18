@@ -1,0 +1,17 @@
+func doAdd0(_data)//ToHead
+  if(linked(onAdd))
+    event(onAdd, ((typeof(_data) = 2) and (_data = '')) ? Data : (Data ^ _data))
+  end
+end
+
+func doAdd1(_data)//ToTail
+  if(linked(onAdd))
+    event(onAdd, ((typeof(_data) = 2) and (_data = '')) ? Data : (_data ^ Data))
+  end
+end
+
+func doAdd2(_data)//Null
+  if(linked(onAdd))
+    event(onAdd, (isndef(Data) or linked(Data)) ? Data : '')
+  end
+end

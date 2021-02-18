@@ -1,0 +1,76 @@
+func Init()
+  var(id)
+  include("zip")
+end
+
+func doPack(_data)
+  println('zip.Pack ', Pattern, ', ', Archive, ', ', (StorePath='True') ? StorePath : '', ', ', isset(NewPath) ? NewPath : '', ', ', Level )
+  if(linked(onResult))
+    event(onResult, 'zip.ErrorCode')
+  end
+end
+
+func doUnPack(_data)
+  println('zip.UnPack ', Archive, ', ', BasePath, isset(Pattern) ? ', ': '', isset(Pattern) ? Pattern : '')
+  if(linked(onResult))
+    event(onResult, 'zip.ErrorCode')
+  end
+end
+
+func doDelete(_data)
+  println('zip.Delete ', Pattern, ', ', Archive)
+  if(linked(onResult))
+    event(onResult, 'zip.ErrorCode')
+  end
+end
+
+func doMove(_data)
+  println('zip.Move ', Pattern, ', ', NewPath, ', ', Archive)
+  if(linked(onResult))
+    event(onResult, 'zip.ErrorCode')
+  end
+end
+
+func doList(_data)
+  if(linked(StringTable))
+    id = StringTable
+    println(id, '.Clear')
+    println(id, '.Columns.Clear')
+    println(arr,' = Array("Name","Date","Size","Path","Type")')
+    println('For ', i, ' = 0 To UBound(',arr,')')
+    block.inclvl()
+      println(id,'.Columns.Add ',arr,'(', i, ')')
+    block.declvl()
+    println('Next')
+    println('For Each ', item, ' In zip.Contents(', Archive, ')') 
+    block.inclvl()
+      println(arr,' = Array(', item + '.Name, ' + item + '.Date, ' + item + '.Size, ' + item + '.Path, ' + item + '.Type)')
+      println(id,'.Add ',arr,'(0)')
+      println('For ', j, ' = 1 To UBound(',arr,')')
+      println(id,'(',id,'.Count - 1).Subitems(', j, ' - 1) = ',arr,'(', j, ')')
+      println('Next')
+    block.declvl()
+    println('Next')
+  end
+  if(linked(StrList))
+    fvar(s,t)
+    id = StrList
+    t = Delimiter
+    println(id, '.Free')
+    println('For Each ', item, ' In zip.Contents(', Archive, ')') 
+    block.inclvl()
+      s = item + '.Name' + ' & ' + t + ' & ' + item + '.Date' + ' & ' + t + ' & ' + item + '.Size' + ' & ' + t + ' & ' + item + '.Path' + ' & ' + t + ' & ' + item + '.Type'
+      println(id,'.Push ',s)
+    block.declvl()
+    println('Next')
+  end
+  if(linked(onResult))
+    event(onResult, 'zip.ErrorCode')
+  end
+end
+
+func Count()
+  return('zip.Contents(' && Archive && ').Count')
+end
+
+

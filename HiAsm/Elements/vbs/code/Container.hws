@@ -1,0 +1,33 @@
+include("hiMultiElement")
+
+func Init()
+  fvar(i, idx, cnt, tmp)
+  cnt = cgt.sdk_get_count(cgt.el_get_parent_id())
+  tmp = 0
+  for(i = 0; i < cnt; i++)
+    tmp += pos(cgt.el_get_class_name(cgt.el_get_child_id(i)), 'GroupBox')
+    tmp += pos(cgt.el_get_class_name(cgt.el_get_child_id(i)), 'Panel')
+    tmp += pos(cgt.el_get_class_name(cgt.el_get_child_id(i)), 'ReBar')
+    tmp += pos(cgt.el_get_class_name(cgt.el_get_child_id(i)), 'Pager')
+    tmp += pos(cgt.el_get_class_name(cgt.el_get_child_id(i)), 'Tab')
+    tmp += pos(cgt.el_get_class_name(cgt.el_get_child_id(i)), 'TabControl')
+    tmp += pos(cgt.el_get_class_name(cgt.el_get_child_id(i)), 'ChildForm')
+    tmp += pos(cgt.el_get_class_name(cgt.el_get_child_id(i)), 'DialogForm')
+    if(tmp)
+      idx = i
+      i = cnt
+    end
+  end
+  var(id, frm_above)
+  frm_above = frm
+  sys.selectelement(cgt.el_get_child_id(idx))
+  frm = id
+  sys.selectelement(cgt.el_get_parent_id())
+  id = frm
+  stack &= block.select(BLK_BODY)
+  sys.selectelement(cgt.el_get_child_id(idx))
+  sys.initall()
+  sys.selectelement(cgt.el_get_parent_id())
+  frm = frm_above
+  block.select(_arr.pop(stack))
+end

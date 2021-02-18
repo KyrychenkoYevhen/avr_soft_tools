@@ -1,0 +1,12 @@
+func doEvent(_data)
+  fvar(i, dt, c)
+  dt = Data
+  c = _arr.mt_count(dt)
+  if(c > _event_count_)
+    c = _event_count_
+  end
+  for(i = 0; i < c; i++)
+    event(cgt.pt_get_name_byid(cgt.pt_arr_event(i)), _arr.mt_pop(dt))
+  end 
+end
+

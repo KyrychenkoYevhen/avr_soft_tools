@@ -1,0 +1,41 @@
+func Init()
+  if(isndef(Default) and (linked(doOperation) or linked(doClear)))
+    stack &= block.select((isset(BLK_FUNC) and isndef(Extern)) ? BLK_FUNC : BLK_GLOB)
+    println('Dim ', res)
+    println(res, ' = ', Default)
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doCalc(_data)
+  fvar(i, s)
+  s = code("(" + MathStr + ")")
+  for(i = _data_count_; i >= 1; i--)
+    replace(s, '%' + i, 'Eval(' + lcode(point("X" + i)) + ')')
+  end
+  if(linked(Result))
+    println(res, ' = ', s)
+    s = res
+  end
+  event(onResult, s)
+end
+
+func doClear()
+  println(res, ' = ', Default)
+end
+
+func Result()
+  if(linked(doCalc) or linked(doClear))
+    return(res)
+  else
+    fvar(i,s)
+    s = code("(" + MathStr + ")")
+    for(i = _data_count_; i >= 1; i--)
+      replace(s, '%' + i, 'Eval(' + lcode(point("X" + i)) + ')')
+    end
+    return(s)
+  end
+end
+
+// todo:
+//  сделать нормальный парсинг строки через оператор &

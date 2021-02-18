@@ -1,0 +1,33 @@
+include("object")
+include("control")
+include("frame")
+
+func Init()
+  var(id)
+  fvar(frm_above)
+  id = Tab_
+  set_parent_id()
+  stack &= block.select(BLK_BODY)
+
+  println('Set ', id, ' = ', frm, '.CreateTab(', Text, ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  frm_above = frm
+  frm = id
+  Object_Init(id)
+  Control_Init(id)
+  Frame_Init(id)
+
+  // Local  methods and properties
+  if(isndef(ImageIndex))
+    println(id, '.ImageIndex = ', ImageIndex)
+  end
+  println('')
+  frm = frm_above
+  block.select(_arr.pop(stack))
+end
+
+func vImageIndex()
+  return(id + '.ImageIndex')
+end

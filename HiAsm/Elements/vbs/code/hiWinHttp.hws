@@ -1,0 +1,53 @@
+func Init()
+  var(obj)
+  obj = WinHttp_
+  stack &= block.select(BLK_OBJ)
+  println('Dim ', obj)
+  println('Set ', obj, ' = CreateObject("WinHttp.WinHttpRequest.5.1")')
+  if(isndef(ProxyServer))
+    println(obj, '.SetProxy ', Mode, ', ', ProxyServer, ', ', BypassList)
+  end
+  block.select(BLK_NOTH)
+  println('Set ', obj, ' = Nothing')
+  block.select(_arr.pop(stack))
+end
+
+func doOpen(_data)
+  println(obj, '.Open ', str(Method), ', ', URL, ', ', Async)
+end
+
+func doRequest(_data)
+  println(obj, '.Send ', (isset(Data) ? Data : ''))
+  if(isndef(Async))
+    println(obj, '.WaitForResponse ', isndef(Timeout) ? Timeout : '')
+  end
+  event(onRequest, obj + '.Response' + Response)
+end
+
+func doStop()
+  println(obj, '.Abort')
+end
+
+func doOption(_data)
+  println(obj, '.Option = ', _data)
+end
+
+func doSetHeader(_data)
+  println(obj, '.SetRequestHeader ', _arr.mt_pop(_data), ', ', _data)
+end
+
+func doProxyServer(_data)
+  println(obj, '.SetProxy(', Mode, ', ', _data, ', ', BypassList, ')')
+end
+
+func Option()
+  return(obj + '.Option')
+end
+
+func Status()
+  return(obj + '.Status')
+end
+
+func StatusText()
+  return(obj + '.StatusText')
+end

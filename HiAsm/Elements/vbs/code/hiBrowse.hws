@@ -1,0 +1,18 @@
+func doBrowse(_data)
+  include('wso')
+  fvar(old)
+  old = block.cur()
+  println(browse, ' = ', get_parent(), '.Form.SelectFolderDialog(', Title, ',0)')
+  println('If Len(', browse, ') Then')
+  block.inclvl()
+    event(onBrowse, browse)
+    if(linked(onCancel))
+      block.declvl()
+      println('Else')
+      block.inclvl()
+      event(onCancel)
+    end
+  block.declvl()
+  println('End If')
+  block.select(old)
+end

@@ -1,0 +1,192 @@
+Make(vbs)
+ver(4.04 build 185)
+Add(MainForm,2953706,21,63)
+{
+ Width=394
+ Height=305
+ Text="Tree example"
+ BorderWidth=20
+ link(onCreate,9798744:doPart,[])
+}
+Add(TreeView,12153097,336,98)
+{
+ Left=20
+ Top=35
+ Width=350
+ Height=225
+ Align=5
+ Strings=5
+ Ctl3D=5
+ HotTrack=0
+ link(OnExpanded,10407008:doEvent1,[])
+ link(Images,7117616:Images,[])
+}
+Add(TreeItem,8834962,336,154)
+{
+ Bold=0
+ Point(UserData)
+ Point(Item)
+ link(Items,12153097:Items,[])
+ link(UserData,7800879:RootFolder,[(349,134)(188,134)])
+}
+Add(ImageList,7117616,336,56)
+{
+ Width=24
+ Height=24
+ Point(doImgSet)
+}
+Add(MT_Add,13688178,252,154)
+{
+ InputMT=1
+ link(onAdd,8062661:doAdd,[])
+ link(Data,11304827:Var2,[])
+}
+Add(MT_Add,8062661,294,154)
+{
+ InputMT=1
+ link(onAdd,8834962:doAdd,[])
+ link(Data,11304827:Var3,[(300,139)])
+}
+Add(Application,12013055,63,21)
+{
+}
+Add(FilePart,9798744,63,63)
+{
+ link(onPath,6222851:doStrCat,[])
+ link(FileName,12013055:ScriptFullName,[])
+}
+Add(StrCat,6222851,105,63)
+{
+ Str2="\Tree.bmp"
+ link(onStrCat,2666607:doEvent1,[])
+}
+Add(Hub,2666607,147,63)
+{
+ link(onEvent1,7117616:doImgSet,[])
+ link(onEvent2,7800879:doEnum,[])
+}
+Add(GetDataEx,11304827,252,134)
+{
+ Angle=3
+ link(Data,7800879:DriveType,[(181,139)])
+}
+Add(DrivesInfo,7800879,175,70)
+{
+ Point(DriveType)
+ Point(RootFolder)
+ link(onResult,10209720:doEvent1,[(215,76)(215,160)])
+}
+Add(If_else,249705,497,119)
+{
+ Op2=String()
+ link(onTrue,11428452:doSearch,[])
+}
+Add(FieldRead,1069274,413,119)
+{
+ Name="FirstChild"
+ IsObject=0
+ link(onRead,12823850:doRead,[])
+}
+Add(FileSearch,11428452,539,119)
+{
+ Include=1
+ link(onMatch,8776389:doEvent1,[])
+ link(onEndSearch,1889550:doEvent1,[(577,132)(577,188)])
+ link(Folder,12220266:Value,[])
+}
+Add(TreeItem,7568644,336,196)
+{
+ Point(UserData)
+ Point(Item)
+ link(Items,8834962:Item,[])
+}
+Add(Hub,10209720,224,154)
+{
+ link(onEvent1,13688178:doAdd,[])
+ link(onEvent2,971288:doData,[(245,167)(245,202)])
+}
+Add(FieldRead,12220266,539,70)
+{
+ Name="UserData"
+}
+Add(Hub,10407008,378,98)
+{
+ OutCount=4
+ link(onEvent1,2484139:doNoErr,[(406,104)(406,76)])
+ link(onEvent2,12220266:doRead,[(469,111)(469,76)])
+ link(onEvent3,4523565:doValue,[(402,118)(402,181)])
+ link(onEvent4,1069274:doRead,[])
+}
+Add(NoErr,2484139,413,70)
+{
+}
+Add(DoData,971288,294,196)
+{
+ link(onEventData,7568644:doAdd,[])
+}
+Add(Memory,4523565,413,175)
+{
+ IsObject=0
+}
+Add(TreeItem,8430059,749,231)
+{
+ Point(UserData)
+ Point(Item)
+ link(Items,4523565:Value,[(755,219)(419,219)])
+ link(UserData,16537820:Value,[])
+}
+Add(MT_Add,3207493,665,231)
+{
+ Data=Integer(6)
+ InputMT=1
+ link(onAdd,13002044:doAdd,[])
+}
+Add(MT_Add,13002044,707,231)
+{
+ Data=Integer(6)
+ InputMT=1
+ link(onAdd,8430059:doAdd,[])
+}
+Add(TreeItem,11380822,665,175)
+{
+ Point(UserData)
+ Point(Item)
+ Point(doRemove)
+ Point(doSort)
+ link(Items,1069274:Value,[(671,163)(419,163)])
+}
+Add(Hub,1889550,637,182)
+{
+ link(onEvent1,11380822:doRemove,[])
+ link(onEvent2,11380822:doSort,[])
+}
+Add(FieldRead,12823850,455,119)
+{
+ Name="Text"
+ link(onRead,249705:doCompare,[])
+}
+Add(Memory,16537820,756,119)
+{
+}
+Add(Hub,8776389,581,119)
+{
+ OutCount=3
+ link(onEvent1,16537820:doValue,[])
+ link(onEvent2,1850559:doPart,[(611,132)(611,230)])
+ link(onEvent3,12420065:doData,[(603,139)(603,279)])
+}
+Add(FilePart,1850559,623,224)
+{
+ link(onName,3207493:doAdd,[])
+ link(FileName,11428452:ItemName,[(629,204)(559,204)])
+}
+Add(TreeItem,16389930,749,273)
+{
+ Point(UserData)
+ Point(Item)
+ link(Items,8430059:Item,[])
+}
+Add(DoData,12420065,707,273)
+{
+ link(onEventData,16389930:doAdd,[])
+}

@@ -1,0 +1,117 @@
+Make(vbs)
+ver(4.04 build 185)
+Add(MainForm,2953706,217,119)
+{
+ Width=429
+ Height=197
+ link(onCreate,9798744:doPart,[])
+}
+Add(ChildReBar,5060264,350,119)
+{
+ link(onEvent1,2953706:doClose,[(387,125)(387,170)(205,170)(205,153)])
+}
+BEGIN_SDK
+  Add(EditMulti,13503961,14,14)
+  {
+   EventCount=1
+   WorkCount=1
+   Width=258
+   Height=221
+   link(doWork1,7680449:doEvent1,[])
+  }
+  Add(ReBar,10447061,77,84)
+  {
+   Left=5
+   Top=5
+   Width=408
+   Height=30
+   BevelOuter=2
+   InsertNewRow=1
+   link(Images,16410018:Var1,[(83,61)])
+  }
+  Add(Message,11488891,217,70)
+  {
+  }
+  Add(Menu,2126735,119,70)
+  {
+   Left=5
+   Top=5
+   Width=251
+   Height=22
+   Menu=#4:Файл|1:(|14:Открыть,CTRL+O|7:Закрыть|1:-|5:Выход|1:)|11:О программе|1:(|5:Автор|1:(|7:Соавтор|1:)|1:)|
+   Point(onSelectNum)
+   Point(Handle)
+   link(onSelectStr,11488891:doMessage,[])
+   link(Images,16410018:Var2,[])
+   link(onSelectNum,10702487:doEvent,[])
+  }
+  Add(IndexToChanel,10702487,175,77)
+  {
+   Count=4
+   link(onEvent3,13503961:onEvent1,[(260,97)(260,20)])
+  }
+  Add(ArrayEnum,7737469,126,126)
+  {
+   Point(Index)
+   link(onEnum,15187915:doData,[(166,132)(166,195)])
+   link(Array,2126735:vArray,[])
+  }
+  Add(DoData,15187915,175,189)
+  {
+   link(onEventData,12540471:doImageIndex,[])
+   link(Data,7737469:Index,[(181,166)(139,166)])
+  }
+  Add(EventBehavior,12540471,217,182)
+  {
+   Point(doImageIndex)
+   link(Sender,7737469:Item,[(223,174)(132,174)])
+  }
+  Add(ImageList,7117616,126,21)
+  {
+   Width=24
+   Height=24
+   Point(doImgSet)
+  }
+  Add(ReBarBand,13503591,175,126)
+  {
+   Text="Menu:"
+   link(Handle,2126735:Handle,[(181,117)(139,117)])
+  }
+  Add(Edit,6726587,77,140)
+  {
+   Left=270
+   Top=5
+   Width=130
+   Point(doText)
+   Point(onChange)
+   Point(vText)
+   Point(Handle)
+  }
+  Add(ReBarBand,12231331,84,182)
+  {
+   ImageIndex=0
+   link(Handle,6726587:Handle,[])
+  }
+  Add(GetDataEx,16410018,126,56)
+  {
+   link(Data,7117616:Images,[])
+  }
+  Add(Hub,7680449,35,28)
+  {
+   link(onEvent1,7117616:doImgSet,[])
+   link(onEvent2,7737469:doEnum,[(57,41)(57,132)])
+  }
+END_SDK
+Add(Application,12013055,266,77)
+{
+}
+Add(FilePart,9798744,266,119)
+{
+ link(onPath,13878128:doStrCat,[])
+ link(FileName,12013055:ScriptFullName,[])
+}
+Add(StrCat,13878128,308,119)
+{
+ Str2="\menu.bmp"
+ link(onStrCat,5060264:doWork1,[])
+}

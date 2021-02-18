@@ -1,0 +1,10 @@
+func doDraw()
+  var(id)
+  id=TextOut
+  println('Set ',id,' = ',Bitmap,'.TextOut(',X,',',Y,',',Text,')')
+  println('With ',id,'.Font')
+  println('  .Name = ',Font[0])
+  println('  .Color = ',Font[1])
+  println('  .Size = ',Font[2])
+  println('End With')
+end

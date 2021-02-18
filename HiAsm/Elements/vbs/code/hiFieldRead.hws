@@ -1,0 +1,21 @@
+func doRead(_data)
+  if(linked(Value))
+    println(isndef(IsObject) ? 'Set ' : '', res, ' = ', Object, '.', code(Name))
+    event(onRead, res)
+  else
+    event(onRead, Object + '.' + code(Name))
+  end
+end
+
+func Value()
+  if(linked(doRead))
+    stack &= block.select((isset(BLK_FUNC) and isndef(Extern)) ? BLK_FUNC : BLK_GLOB)
+    if(!pos('Dim ' & res, block.astext()))
+      println('Dim ', res)
+    end
+    block.select(_arr.pop(stack))
+    return(res)
+  else
+    return(Object + '.' + code(Name))
+  end
+end

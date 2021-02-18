@@ -1,0 +1,13 @@
+func Init()
+  if(isset(Source))
+    var(obj, res)
+    obj = Source
+  end
+end
+
+func doCopy(_data)
+  if(isset(Dest))
+    println(obj, '.CopyTo ', Dest, isndef(NumChars) ? (', ' + NumChars) : '')
+    event(onCopy)
+  end
+end

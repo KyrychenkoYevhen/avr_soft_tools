@@ -1,0 +1,459 @@
+Make(delphi)
+ver(4.04 build 184)
+Add(MultiElement,45260,679,21)
+{
+ @Hint=#19:Озвучивание событий|
+ FirstUsage=0
+}
+BEGIN_SDK
+  Add(EditMulti,50903,3,3)
+  {
+   WorkCount=1
+   Width=272
+   Height=193
+   link(doWork1,15443:doPlay,[(52,9)(52,153)])
+  }
+  Add(StrCat,26979,85,98)
+  {
+   Str2="\media\"
+   link(onStrCat,30859:doStrCat,[])
+   link(Str1,37045:WindowsDir,[])
+  }
+  Add(Dir,37045,78,21)
+  {
+   Point(WindowsDir)
+  }
+  Add(Memory,44644,147,21)
+  {
+   @Hint=#64:Звук Windows=Имя файла стандартного звука Windows из папки Media|
+   Default=String(Windows XP Balloon.wav)
+  }
+  Add(StrCat,30859,140,98)
+  {
+   link(onStrCat,83350:doData,[])
+   link(Str2,44644:Value,[])
+  }
+  Add(EventFromData,83350,196,98)
+  {
+   link(onEvent,26979:doStrCat,[(238,104)(238,88)(75,88)(75,104)])
+  }
+  Add(PlaySound,15443,196,147)
+  {
+   link(FileName,83350:GetData,[])
+  }
+END_SDK
+Add(hiPlugs,55565,91,77)
+{
+ Point(doInterface)
+ Point(onInit)
+ Point(Desktop)
+ Point(doCommand)
+ Point(onCmdEnabled)
+ Point(doCmdEnabled)
+ Point(doRegPanel)
+ Point(onPanelEvent)
+ link(onCommand,96790:doEvent1,[])
+ link(onKeyDown,79445:doCheckMask,[(258,90)(258,237)])
+ link(onCmdEnabled,11362090:In,[])
+ link(onPanelEvent,4747801:In,[(145,111)(145,132)])
+}
+Add(Memory,15243248,595,399)
+{
+}
+Add(Case,96180,350,112)
+{
+ Value=String(panels)
+ link(onNextCase,5930820:doCase,[])
+ link(onTrue,5260173:doData,[(392,125)(392,175)(17,175)(17,272)])
+}
+Add(InfoTip,86128,336,210)
+{
+ Info=#6:Ctrl+E|
+ Font=[Arial,8,0,0,1]
+ Width=78
+ Height=130
+}
+Add(KeyMask,79445,357,231)
+{
+ @Hint=#6:Ctrl+E|
+ Ctrl=1
+ Key=69
+ link(onFalse,29365:doCheckMask,[])
+ link(onTrue,91692:doWork1,[(399,244)(399,282)(347,282)(347,307)])
+}
+Add(DoData,70783,693,301)
+{
+ Data=String(freez)
+ link(onEventData,7128457:In,[])
+}
+Add(MultiElement,39312,441,301)
+{
+ @Hint=#21:Скрытие\показ панелей|
+ FirstUsage=0
+ link(onEvent1,55565:doInterface,[(489,307)(489,355)(9,355)(9,97)])
+}
+BEGIN_SDK
+  Add(EditMulti,51114,3,3)
+  {
+   EventCount=1
+   WorkCount=2
+   Width=272
+   Height=172
+   link(doWork1,63205:doEvent1,[(26,9)(26,40)])
+   link(doWork2,63205:doEvent2,[(13,16)(13,47)])
+  }
+  Add(Switch,1265,120,104)
+  {
+   DataOn=String(proj_man:off)
+   DataOff=String(proj_man:on)
+   link(onSwitch,38701:doEvent3,[(175,110)(175,54)])
+  }
+  Add(Hub,38701,183,34)
+  {
+   InCount=3
+   OutCount=1
+   link(onEvent1,51114:onEvent1,[(245,40)(245,9)])
+  }
+  Add(Switch,4516,120,34)
+  {
+   DataOn=String(tabs:off)
+   DataOff=String(tabs:on)
+   link(onSwitch,38701:doEvent1,[])
+  }
+  Add(Switch,77652,120,69)
+  {
+   DataOn=String(prop:off)
+   DataOff=String(prop:on)
+   link(onSwitch,38701:doEvent2,[(167,75)(167,47)])
+  }
+  Add(Hub,63205,50,34)
+  {
+   InCount=2
+   OutCount=3
+   link(onEvent1,4516:doSwitch,[])
+   link(onEvent2,77652:doSwitch,[(101,47)(101,75)])
+   link(onEvent3,1265:doSwitch,[(94,54)(94,110)])
+  }
+END_SDK
+Add(Memory,10248195,644,392)
+{
+ link(onData,7724600:doData,[(684,398)(684,475)])
+}
+Add(KeyMask,96479,532,231)
+{
+ Ctrl=1
+ Key=71
+ link(onFalse,78961:doCheckMask,[])
+}
+Add(KeyMask,29365,441,231)
+{
+ @Hint=#6:Ctrl+K|
+ Ctrl=1
+ Key=75
+ link(onFalse,96479:doCheckMask,[])
+ link(onTrue,39312:doWork1,[(483,244)(483,282)(431,282)(431,307)])
+}
+Add(InfoTip,63426,421,210)
+{
+ Info=#6:Ctrl+K|
+ Font=[Arial,8,0,0,1]
+ Width=78
+ Height=130
+}
+Add(KeyMask,78961,616,231)
+{
+ Ctrl=1
+ Key=82
+ link(onFalse,76485:doCheckMask,[])
+}
+Add(ArrayRW,7783817,742,469)
+{
+ link(onRead,12191334:doEvent,[])
+ link(Array,5467370:Array,[])
+}
+Add(InfoTip,87176,504,210)
+{
+ Info=#6:Ctrl+G|
+ Font=[Arial,8,0,0,1]
+ Width=78
+ Height=130
+}
+Add(Check,39543,581,21)
+{
+ Check=1
+ Caption="sound"
+ link(onEvent,45260:doWork1,[])
+}
+Add(InfoTip,268733,14,385)
+{
+ Info=#18:Регистрация команд|
+ Width=218
+ Height=137
+}
+Add(MultiElement,91692,357,301)
+{
+ FirstUsage=0
+}
+BEGIN_SDK
+  Add(EditMulti,34337,3,3)
+  {
+   WorkCount=1
+   Width=202
+   Height=137
+   link(doWork1,81370:doExec,[(19,9)(19,83)])
+  }
+  Add(Dir,39434,42,21)
+  {
+  }
+  Add(WinExec,81370,35,77)
+  {
+   FileName="explorer.exe"
+   link(Params,39434:CurrentDir,[])
+  }
+END_SDK
+Add(InfoTip,89936,588,210)
+{
+ Info=#6:Ctrl+R|
+ Font=[Arial,8,0,0,1]
+ Width=78
+ Height=130
+}
+Add(KeyMask,76485,693,231)
+{
+ Ctrl=1
+ Key=85
+ link(onTrue,70783:doData,[(735,244)(735,282)(683,282)(683,307)])
+}
+Add(InfoTip,36846,672,210)
+{
+ Info=#6:Ctrl+U|
+ Font=[Arial,8,0,0,1]
+ Width=78
+ Height=130
+}
+Add(IntegerArray,5467370,742,420)
+{
+ IntArray=['fname'=0,'play'=1,'stop'=2]
+ UseName=0
+}
+Add(Hub,96790,287,77)
+{
+ link(onEvent1,39543:doWork,[(450,83)(450,27)])
+ link(onEvent2,96180:doCase,[(327,90)(327,118)])
+}
+Add(LineBreak,1030910,28,483)
+{
+ Caption="onCmdEnabled"
+ link(Out,4152254:doEnum,[])
+ Primary=[11362090,126,-385]
+}
+Add(DoData,7724600,693,469)
+{
+ link(onEventData,7783817:doRead,[])
+ link(Data,15243248:Value,[(699,450)(601,450)])
+}
+Add(MediaPlayer,16397371,861,476)
+{
+ link(FileName,9258715:Value,[])
+}
+Add(LineBreak,7094809,14,112)
+{
+ Caption="cmd"
+ link(Out,55565:doCommand,[(69,118)(69,104)])
+ Primary=[7128457,819,189]
+}
+Add(Case,5930820,434,112)
+{
+ Value=String(rooms)
+ link(onNextCase,10537940:doCase,[])
+ link(onTrue,1758049:doData,[(476,125)(476,152)(424,152)(424,167)])
+}
+Add(DoData,1758049,434,161)
+{
+ Data=String(sha://http://hiasm.com/rooms/rooms.txt)
+ link(onEventData,12201310:doWork2,[(486,167)(486,76)])
+}
+Add(IndexToChanel,12191334,798,469)
+{
+ Count=3
+ Point(Data)
+ link(onEvent1,9258715:doValue,[(845,475)(845,426)])
+ link(onEvent2,16397371:doPlay,[])
+ link(onEvent3,16397371:doStop,[])
+ link(Data,10248195:Value,[(804,439)(650,439)])
+}
+Add(LineBreak,12970661,28,133)
+{
+ link(Out,55565:doCmdEnabled,[(74,139)(74,111)])
+ Primary=[16374849,161,350]
+}
+Add(InfoTip,16297631,336,91)
+{
+ Info=#6:panels|
+ Font=[Arial,8,0,0,1]
+ Width=78
+ Height=109
+}
+Add(InfoTip,16665965,420,91)
+{
+ Info=#5:rooms|
+ Font=[Arial,8,0,0,1]
+ Width=78
+ Height=109
+}
+Add(StrList,16630206,126,413)
+{
+ Strings=#5:rooms|6:upload|5:media|8:examples|5:icons|
+}
+Add(Case,10537940,518,112)
+{
+ Value=String(upload)
+ link(onNextCase,3630236:doCase,[])
+ link(onTrue,6903852:doData,[(560,125)(560,152)(508,152)(508,167)])
+}
+Add(DoData,6903852,518,161)
+{
+ Data=String(http://hiasm.com/down.html)
+ link(onEventData,12201310:doWork3,[(571,167)])
+}
+Add(InfoTip,12173960,504,91)
+{
+ Info=#6:upload|
+ Font=[Arial,8,0,0,1]
+ Width=78
+ Height=109
+}
+Add(LineBreak,15949427,14,56)
+{
+ Caption="open"
+ link(Out,55565:doOpen,[(72,62)(72,90)])
+ Primary=[2589647,875,14]
+}
+Add(HubEx,12201310,567,70)
+{
+ link(onEvent,8911784:doWork2,[])
+}
+Add(DoData,5260173,28,266)
+{
+ Data=String(D:\\126\Delphi\HiAsm3\Panel.sha)
+}
+Add(StrPart,16665177,427,392)
+{
+ Char="."
+ link(onSplit,999208:doSplit,[])
+ link(onPart,4667393:doValue,[])
+}
+Add(DoData,7825124,602,161)
+{
+ Data=String(panex)
+ link(onEventData,1307135:In,[(653,167)(653,202)])
+}
+Add(LineBreak,13024990,28,154)
+{
+ Caption="reg"
+ link(Out,55565:doRegPanel,[(81,160)(81,118)])
+ Primary=[1307135,805,42]
+}
+Add(ArrayEnum,4152254,140,483)
+{
+ link(onItem,16374849:In,[])
+ link(Array,16630206:Array,[])
+}
+Add(Case,3630236,602,112)
+{
+ Value=String(media)
+ link(onNextCase,11276213:doCase,[])
+ link(onTrue,7825124:doData,[(644,125)(644,152)(592,152)(592,167)])
+}
+Add(LineBreak,14664682,329,392)
+{
+ Caption="onPanelEvent"
+ link(Out,16665177:doSplit,[])
+ Primary=[4747801,-175,-266]
+}
+Add(Memory,9258715,861,420)
+{
+}
+Add(Memory,4667393,483,399)
+{
+}
+Add(StrPart,999208,539,392)
+{
+ Char=":"
+ link(onSplit,10248195:doValue,[])
+ link(onPart,15243248:doValue,[])
+}
+Add(InfoTip,15676489,588,91)
+{
+ Info=#5:panex|
+ Font=[Arial,8,0,0,1]
+ Width=78
+ Height=109
+}
+Add(MultiElementEx,7184743,684,161)
+{
+ link(Array,55565:Desktop,[(690,149)(104,149)])
+}
+BEGIN_SDK
+  Add(EditMultiEx,5713802,21,21)
+  {
+   WorkCount=#6:doRead|
+   DataCount=#5:Array|
+   link(doRead,10953987:doRead,[(35,27)(35,104)])
+  }
+  Add(WinExec,1752153,154,98)
+  {
+  }
+  Add(ArrayRW,10953987,49,98)
+  {
+   Index=Integer(10)
+   link(onRead,2462221:doString,[])
+   link(Array,5713802:Array,[(55,35)(27,35)])
+  }
+  Add(FormatStr,2462221,98,98)
+  {
+   Mask="%1elements\%2\example"
+   link(onFString,1752153:doShellExec,[(142,104)(142,111)])
+   link(Str1,4925935:CurrentDir,[])
+  }
+  Add(Dir,4925935,98,42)
+  {
+  }
+  Add(Message,7810996,154,133)
+  {
+  }
+END_SDK
+Add(Case,11276213,686,112)
+{
+ Value=String(examples)
+ link(onNextCase,8407810:doCase,[])
+ link(onTrue,7184743:doRead,[(730,125)(730,146)(672,146)(672,167)])
+}
+Add(InfoTip,5151715,672,91)
+{
+ Info=#8:examples|
+ Font=[Arial,8,0,0,1]
+ Width=78
+ Height=109
+}
+Add(Case,8407810,770,112)
+{
+ Value=String(icons)
+ link(onTrue,11904007:doData,[(812,125)(812,152)(760,152)(760,167)])
+}
+Add(DoData,11904007,770,161)
+{
+ Data=String(http://icons.hiasm.com)
+ link(onEventData,8911784:doWork3,[(823,167)])
+}
+Add(InfoTip,12262807,756,91)
+{
+ Info=#6:upload|
+ Font=[Arial,8,0,0,1]
+ Width=78
+ Height=109
+}
+Add(HubEx,8911784,819,70)
+{
+ link(onEvent,2589647:In,[])
+}

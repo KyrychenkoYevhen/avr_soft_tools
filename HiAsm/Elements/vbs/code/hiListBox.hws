@@ -1,0 +1,116 @@
+include("object")
+include("control")
+include("listcontrol")
+
+func Init()
+  var(id)
+  id = ListBox_
+  fvar(s, p, a)
+  stack &= block.select(BLK_BODY)
+  fvar(lbsStyle)
+  lbsStyle = 0
+  if(isndef(Sort))
+    lbsStyle += 2 //  0x0002L
+  end
+  if(isndef(MultiSelect))
+    lbsStyle += 8 //  0x0008L
+  end
+  if(isndef(NoIntegralHeight))
+    lbsStyle += 256 //  0x0100L
+  end
+  if(isndef(ExtendedSelect))
+    lbsStyle += 2048 //  0x0800L
+  end
+
+  println('Set ', id, ' = ', get_parent(), '.CreateListBox(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(', lbsStyle, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+  ListControl_Init(id)
+
+  // Local  methods and properties
+  if(isndef(ColumnCount))
+    println(id, '.ColumnCount = ', ColumnCount)
+  end
+  if(isndef(ColumnWidth))
+    println(id, '.ColumnWidth = ', ColumnWidth)
+  end
+  if(isndef(Strings))
+    if(_arr.count(Strings)=1)
+      println(id, '.Add ', Strings[0])
+    else
+      fvar(i)
+      println('With ', id)
+      block.inclvl()
+        for(i = 0; i < _arr.count(Strings); i++)
+          println('.Add ', Strings[i])
+        end
+      block.declvl()
+      println('End With')
+    end
+  end
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doSelect(_data)
+  println(id + '.Selected(', _data, ') = True')
+end
+
+func doSelected(_data)
+  if(linked(onSelected))
+    event(onSelected, id + '.Selected(' + _data + ')')
+  end
+end
+
+func doItemFromPoint(_data)
+  if(linked(onItemFromPoint))
+    event(onItemFromPoint, id + '.ItemFromPoint(' + _arr.mt_pop(_data) + ', ' + _data + ')')
+  end
+end
+
+func doColumnCount(_data)
+  println(id + '.ColumnCount = ', _data)
+end
+
+func doColumnWidth(_data)
+  println(id + '.ColumnCount = ', _data)
+end
+
+func doScrollBars(_data)
+  println(id + '.ScrollBars = ', _data)
+end
+
+func doMultiSelect(_data)
+  println(id + '.MultiSelect = ', (_data='') ? 'False' : _data)
+end
+
+func doExtendedSelect(_data)
+  println(id + '.ExtendedSelect = ', (_data='') ? 'False' : _data)
+end
+
+func SelCount()
+  return(id + '.SelCount')
+end
+
+func Selected()
+  return(id + '.Selected')
+end
+
+func vColumnCount()
+  return(id + '.ColumnCount')
+end
+
+func vColumnWidth()
+  return(id + '.ColumnWidth')
+end
+
+func vMultiSelect()
+  return(id + '.MultiSelect')
+end
+
+func vExtendedSelect()
+  return(id + '.ExtendedSelect')
+end

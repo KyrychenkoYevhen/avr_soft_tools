@@ -1,0 +1,31 @@
+func Init()
+  fvar(old)
+  old = block.select(BLK_FUNC)
+  if(pos ('Function GenGUID(', block.astext())=0)
+    println('Function GenGUID()')
+    block.inclvl()
+      println('Set TypeLib = CreateObject("Scriptlet.TypeLib")')
+      println('GenGuid = Left(CStr(TypeLib.Guid), 38)')
+      println('Set TypeLib = Nothing')
+    block.declvl()    
+    println('End Function')
+   end
+  block.select(old)
+end
+
+func doGUID(_data)
+  if(linked(Result))
+    println(guid, ' = GenGUID()')
+    event(onGUID, guid)
+  else
+    event(onGUID, 'GenGUID()')
+  end
+end
+
+func Result()
+  if(linked(doGUID))
+    return(guid)
+  else
+    return('GenGUID()')
+  end
+end

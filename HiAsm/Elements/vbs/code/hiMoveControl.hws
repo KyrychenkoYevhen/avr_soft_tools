@@ -1,0 +1,6 @@
+func doMove(_data)
+  if(isset(Handle))
+    include("wsoe")
+    println('wsoe.SendMessage ', Handle, ', &hA1, 2, 0')
+  end
+end

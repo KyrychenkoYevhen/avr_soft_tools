@@ -1,0 +1,34 @@
+func Init()
+  include('fso')
+  include('regexp')
+  include('shell')
+  var(id)
+  fvar(classpath)
+  stack &= block.select(BLK_FUNC)
+  if (sys.gvarfind('nslookup_is_set') = -1)
+    gvar (nslookup_is_set)
+   classpath = replace(sys.codedir() & 'classes\nslookup.vbs', '\\', '\\\\')
+   println(code(file2str(classpath)))
+  end
+  id = host_
+  block.select(BLK_GLOB)
+  println('Dim ', id)
+  block.select(_arr.pop(stack))
+end
+
+func doNsLookup(_data)
+  println(id, ' = nslookup(', isset(Data) ? Data : IP, ')')
+  if(linked(onFind))
+   println('If Len(', id, ') Then')
+   block.inclvl()
+    event(onFind, id)
+   block.declvl()
+   println('Else')
+   block.inclvl()
+    if(linked(onFailed))
+     event(onFailed)
+    end
+   block.declvl()
+   println('End If')
+  end
+end

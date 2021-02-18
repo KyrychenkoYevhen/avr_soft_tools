@@ -1,0 +1,78 @@
+include("object")
+override("control","doText")
+
+func Init()
+  var(id)
+  id = HotKey_
+  stack &= block.select(BLK_BODY)
+
+  println('Set ', id, ' = ', get_parent(), '.CreateHotKey(', Left, ', ', Top, ', ', Width, ', ', Height, ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(isndef(Key))
+    println(id, '.Key = ', Key)
+  end
+  fvar(tabu)
+  tabu = 0
+  if(isndef(None))
+    tabu += 1 // 0x0001
+  end
+  if(isndef(Shift))
+    tabu += 2 // 0x0002
+  end
+  if(isndef(Ctrl))
+    tabu += 4 // 0x0004
+  end
+  if(isndef(Alt))
+    tabu += 8 // 0x0008
+  end
+  if(isndef(ShiftCtrl))
+    tabu += 16 // 0x0010
+  end
+  if(isndef(ShiftAlt))
+    tabu += 32 // 0x0020
+  end
+  if(isndef(CtrlAlt))
+    tabu += 64 // 0x0040
+  end
+  if(isndef(ShiftCtrlAlt))
+    tabu += 128 // 0x0080
+  end
+  if(tabu > 0)
+    println(id, '.InvalidKeys = ', tabu)
+  end
+  if(isndef(DefaultKey))
+    println(id, '.DefaultKey = ', DefaultKey)
+  end
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doKey(_data)
+  println(id, '.Key =', _data)
+end
+
+func vKey()
+  return(id + '.Key')
+end
+
+func doInvalidKeys(_data)
+  println(id, '.InvalidKeys =', _data)
+end
+
+func vInvalidKeys()
+  return(id + '.InvalidKeys')
+end
+
+func doDefaultKey(_data)
+  println(id, '.DefaultKey =', _data)
+end
+
+func vDefaultKey()
+  return(id + '.DefaultKey')
+end

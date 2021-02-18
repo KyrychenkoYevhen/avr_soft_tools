@@ -1,0 +1,710 @@
+Make(Modules)
+ver(4.04 build 184)
+Add(MainForm,5276198,126,105)
+{
+ Width=732
+ Height=557
+ Caption="ECreator"
+ BorderStyle=3
+}
+Add(Button,11350711,273,420)
+{
+ @Hint=#3:hic|
+ Left=180
+ Top=475
+ Width=80
+ Hint="HiAsm Install Script"
+ Caption="HIS"
+}
+Add(Button,12789015,280,455)
+{
+ @Hint=#5:reset|
+ Left=180
+ Top=505
+ Width=80
+ Hint="Очистить поля формы"
+ Caption="Reset"
+}
+Add(Button,13299473,189,448)
+{
+ @Hint=#4:load|
+ Left=90
+ Top=505
+ Width=80
+ Hint="Загрузить конфигурацию элемента"
+ Caption="Load"
+}
+Add(Button,3430093,112,448)
+{
+ @Hint=#4:save|
+ Left=5
+ Top=505
+ Width=80
+ Hint="Сохранить конфигурацию элемента"
+ Caption="Save"
+}
+Add(ComboBox,5411117,140,427)
+{
+ @Hint=#4:pack|
+ Left=35
+ Top=475
+ Width=135
+ Hint="Пакет"
+ ReadOnly=0
+}
+Add(Label,16545848,105,427)
+{
+ Left=5
+ Top=480
+ Width=29
+ Height=17
+ Caption="Pack"
+}
+Add(ChildGroupBox,9176429,224,343)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,13749435,10,10)
+  {
+  }
+  Add(GroupBox,2075320,35,105)
+  {
+   Left=5
+   Top=355
+   Width=255
+   Height=115
+   Caption="Edit"
+  }
+  Add(Label,2147325,7,14)
+  {
+   Left=10
+   Top=20
+   Width=29
+   Height=17
+   Caption="Class"
+  }
+  Add(ComboBox,8900517,98,7)
+  {
+   @Hint=#10:edit_class|
+   Left=40
+   Top=15
+   Width=200
+   Height=21
+   Hint="Наследуемый класс для редактора форм"
+   Strings=#6:[none]|6:Button|4:Edit|5:Panel|8:CheckBox|8:GroupBox|7:ListBox|4:Form|8:Progress|11:RadioButton|9:ScrollBar|8:Splitter|
+  }
+  Add(Memo,9722325,98,84)
+  {
+   @Hint=#10:edit_other|
+   Left=10
+   Top=40
+   Width=230
+   Height=65
+   Color=-16777211
+   Hint="Привязка свойств элемента к свойствам редактора форм"
+  }
+END_SDK
+Add(ChildGroupBox,11951772,224,56)
+{
+ @Hint=#4:Tabs|
+}
+BEGIN_SDK
+  Add(EditMulti,780951,10,10)
+  {
+  }
+  Add(GroupBox,14544047,14,161)
+  {
+   Left=5
+   Top=5
+   Width=255
+   Height=96
+   Caption="Tabs"
+  }
+  Add(Label,15789033,63,21)
+  {
+   Left=10
+   Top=20
+   Width=32
+   Height=17
+   Caption="Name"
+  }
+  Add(Label,8796865,63,63)
+  {
+   Left=10
+   Top=45
+   Width=23
+   Height=17
+   Caption="Tab"
+  }
+  Add(Label,8792657,63,119)
+  {
+   Left=10
+   Top=70
+   Width=23
+   Height=17
+   Caption="Hint"
+  }
+  Add(Edit,13640387,161,21)
+  {
+   @Hint=#9:tabs_name|
+   Left=50
+   Top=15
+   Width=195
+   Color=-16777211
+   Hint="Уникальное имя элемента"
+   Text=""
+  }
+  Add(Edit,8014161,161,119)
+  {
+   @Hint=#9:tabs_hint|
+   Left=50
+   Top=65
+   Width=195
+   Color=-16777211
+   Hint="Подсказка над элементом"
+   Text=""
+  }
+  Add(ComboBox,2641678,161,63)
+  {
+   @Hint=#8:tabs_tab|
+   Left=50
+   Top=40
+   Width=195
+   Hint="Вкладка элемента по-умолчанию"
+  }
+END_SDK
+Add(ChildGroupBox,8781329,224,154)
+{
+ @Hint=#5:About|
+}
+BEGIN_SDK
+  Add(EditMulti,10513794,10,10)
+  {
+  }
+  Add(GroupBox,12120660,35,105)
+  {
+   Left=5
+   Top=105
+   Width=255
+   Height=97
+   Caption="About"
+  }
+  Add(Label,3663398,105,28)
+  {
+   Left=10
+   Top=20
+   Width=39
+   Height=17
+   Caption="Version"
+  }
+  Add(Edit,1101199,154,28)
+  {
+   @Hint=#13:about_version|
+   Left=55
+   Top=15
+   Width=190
+   Color=-16777211
+   Hint="Версия элемента"
+   Text=""
+  }
+  Add(Label,7202399,105,70)
+  {
+   Left=10
+   Top=45
+   Width=35
+   Height=17
+   Caption="Author"
+  }
+  Add(Edit,3364163,154,70)
+  {
+   @Hint=#12:about_author|
+   Left=55
+   Top=40
+   Width=190
+   Color=-16777211
+   Hint="Имя автора"
+   Text=""
+  }
+  Add(Label,10980829,105,112)
+  {
+   Left=10
+   Top=70
+   Width=32
+   Height=17
+   Caption="E-mail"
+  }
+  Add(Edit,5537683,154,112)
+  {
+   @Hint=#11:about_email|
+   Left=55
+   Top=65
+   Width=190
+   Color=-16777211
+   Hint="Почтовый ящик автора"
+   Text=""
+  }
+END_SDK
+Add(ChildGroupBox,4699884,224,245)
+{
+ @Hint=#4:Type|
+}
+BEGIN_SDK
+  Add(EditMulti,14945013,10,10)
+  {
+  }
+  Add(Edit,3776505,182,154)
+  {
+   @Hint=#8:type_sub|
+   Left=50
+   Top=90
+   Width=195
+   Color=-16777211
+   Hint="Описатель точек"
+   Text=""
+  }
+  Add(GroupBox,9254512,35,105)
+  {
+   Left=5
+   Top=205
+   Width=255
+   Height=147
+   Caption="Type"
+  }
+  Add(Label,1128871,98,35)
+  {
+   Left=10
+   Top=20
+   Width=29
+   Height=17
+   Caption="Class"
+  }
+  Add(ComboBox,7664539,140,35)
+  {
+   @Hint=#10:type_class|
+   Left=50
+   Top=15
+   Width=195
+   Hint="Класс элемента"
+   Strings=#7:Element|
+  }
+  Add(Label,11819845,98,91)
+  {
+   Left=10
+   Top=70
+   Width=22
+   Height=17
+   Caption="Info"
+  }
+  Add(Edit,10145545,140,91)
+  {
+   @Hint=#9:type_info|
+   Left=50
+   Top=65
+   Width=195
+   Color=-16777211
+   Hint="Расширенная подсказка к элементу"
+   Text=""
+  }
+  Add(Label,7996709,98,154)
+  {
+   Left=10
+   Top=95
+   Width=23
+   Height=17
+   Caption="Sub"
+  }
+  Add(CheckBox,4187138,140,154)
+  {
+   @Hint=#9:type_form|
+   Left=50
+   Top=95
+   Height=15
+   Hint="Требовать наличие формы"
+   Caption="Form"
+  }
+  Add(Label,14486611,7,42)
+  {
+   Left=10
+   Top=45
+   Width=33
+   Height=17
+   Caption="Inherit"
+  }
+  Add(Edit,13072675,49,42)
+  {
+   @Hint=#12:type_inherit|
+   Left=50
+   Top=40
+   Width=195
+   Color=-16777211
+   Hint="Наследник от элемента"
+   Text=""
+  }
+  Add(Label,2012989,7,126)
+  {
+   Left=10
+   Top=120
+   Width=51
+   Height=17
+   Caption="Interfaces"
+  }
+  Add(Edit,16106991,63,112)
+  {
+   @Hint=#8:type_int|
+   Left=65
+   Top=115
+   Width=180
+   Color=-16777211
+   Hint="Предоставляемые элементом интерфейсы"
+   Text=""
+  }
+END_SDK
+Add(ChildGroupBox,1659504,455,70)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,12710604,10,10)
+  {
+  }
+  Add(GroupBox,7449801,35,105)
+  {
+   Left=265
+   Top=5
+   Width=455
+   Height=267
+   Caption="Property"
+  }
+  Add(ListBox,8176569,7,14)
+  {
+   @Hint=#9:prop_list|
+   Left=10
+   Top=45
+   Width=125
+   Height=210
+  }
+  Add(Button,5060596,7,14)
+  {
+   @Hint=#8:prop_add|
+   Left=10
+   Top=20
+   Width=30
+   Hint="Добавить св-во"
+   Caption="Add"
+  }
+  Add(Button,13400814,70,14)
+  {
+   @Hint=#11:prop_remove|
+   Left=45
+   Top=20
+   Width=30
+   Hint="Удалить св-во"
+   Caption="Del"
+  }
+  Add(Label,15404789,147,21)
+  {
+   Left=150
+   Top=25
+   Width=32
+   Height=17
+   Caption="Name"
+  }
+  Add(Edit,7724235,203,21)
+  {
+   @Hint=#9:prop_name|
+   Left=185
+   Top=20
+   Width=115
+   Color=-16777211
+   Hint="Имя св-ва"
+   Text=""
+  }
+  Add(Label,410237,308,21)
+  {
+   Left=310
+   Top=25
+   Width=28
+   Height=17
+   Caption="Type"
+  }
+  Add(ComboBox,12683,357,21)
+  {
+   @Hint=#9:prop_type|
+   Left=340
+   Top=20
+   Width=105
+   Hint="Тип"
+   ReadOnly=0
+  }
+  Add(Label,6154678,147,49)
+  {
+   Left=150
+   Top=55
+   Width=31
+   Height=17
+   Caption="Value"
+  }
+  Add(Edit,6574846,203,56)
+  {
+   @Hint=#10:prop_value|
+   Left=185
+   Top=50
+   Width=75
+   Color=-16777211
+   Hint="Значение по-умолчанию"
+   Text=""
+  }
+  Add(Label,10044332,147,77)
+  {
+   Left=150
+   Top=80
+   Width=20
+   Height=17
+   Caption="List"
+  }
+  Add(Edit,13988455,203,84)
+  {
+   @Hint=#12:prop_vallist|
+   Left=185
+   Top=75
+   Width=240
+   Color=-16777211
+   Hint="Список значений для типа List"
+   Text=""
+  }
+  Add(Memo,3871922,140,98)
+  {
+   @Hint=#9:prop_info|
+   Left=145
+   Top=100
+   Width=300
+   Height=130
+   Color=-16777211
+   Hint="Описание св-ва"
+  }
+  Add(CheckBox,9656008,287,70)
+  {
+   @Hint=#8:prop_def|
+   Left=315
+   Top=55
+   Width=60
+   Height=15
+   Hint="Открывать двойным кликом"
+   Caption="Default"
+  }
+  Add(CheckBox,14681707,343,56)
+  {
+   @Hint=#7:prop_do|
+   Left=385
+   Top=55
+   Width=60
+   Height=15
+   Hint="Позволять делать точку типа Work по имени св-ва"
+   Caption="doWork"
+  }
+  Add(Button,7979388,84,21)
+  {
+   @Hint=#7:prop_up|
+   Left=80
+   Top=20
+   Width=25
+   Font=[Webdings,8,0,0,2]
+   Hint="Переместить вверх"
+   Caption="5"
+  }
+  Add(Button,11028736,112,21)
+  {
+   @Hint=#9:prop_down|
+   Left=110
+   Top=20
+   Width=25
+   Font=[Webdings,8,0,0,2]
+   Hint="Переместить вниз"
+   Caption="6"
+  }
+  Add(Button,14843087,224,217)
+  {
+   @Hint=#9:prop_data|
+   Left=310
+   Top=235
+   Hint="создать аналогичную точку Data"
+   Caption="Data"
+  }
+  Add(Button,2157222,427,70)
+  {
+   @Hint=#15:prop_list_maker|
+   Left=425
+   Top=75
+   Width=20
+   Caption="..."
+  }
+  Add(CheckBox,2635060,147,217)
+  {
+   @Hint=#9:prop_icon|
+   Left=195
+   Top=235
+   Width=45
+   Hint="Назначить данное св-во иконкой элемента"
+   Caption="Icon"
+  }
+  Add(CheckBox,9985062,196,217)
+  {
+   @Hint=#9:prop_tree|
+   Left=245
+   Top=235
+   Width=60
+   Hint="Отображать данное св-во в качестве имени эдемента в дереве проекта"
+   Caption="Tree"
+  }
+  Add(Button,3663024,266,49)
+  {
+   @Hint=#14:prop_val_maker|
+   Left=260
+   Top=50
+   Width=20
+   Caption="..."
+  }
+  Add(CheckBox,15828986,148,248)
+  {
+   @Hint=#9:prop_view|
+   Left=145
+   Top=235
+   Width=45
+   Hint="Использовать значение данного свойства для вывода на элементе "
+   Caption="View"
+  }
+END_SDK
+Add(ChildGroupBox,5617304,448,231)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,356660,10,10)
+  {
+  }
+  Add(GroupBox,13338527,35,105)
+  {
+   Left=265
+   Top=275
+   Width=455
+   Height=249
+   Caption="Methods"
+  }
+  Add(Memo,3871922,189,217)
+  {
+   @Hint=#12:methods_info|
+   Left=145
+   Top=80
+   Width=300
+   Height=160
+   Color=-16777211
+   Hint="Описание точки"
+  }
+  Add(ComboBox,14468286,182,49)
+  {
+   @Hint=#13:methods_value|
+   Left=185
+   Top=50
+   Width=115
+   Hint="Тип возвращаемого/принимаемого значения"
+   ReadOnly=0
+  }
+  Add(Button,5060596,56,133)
+  {
+   @Hint=#11:methods_add|
+   Left=10
+   Top=20
+   Width=30
+   Hint="Добавить точку"
+   Caption="Add"
+  }
+  Add(ListBox,8176569,56,133)
+  {
+   @Hint=#12:methods_list|
+   Left=10
+   Top=45
+   Width=125
+   Height=195
+  }
+  Add(Label,6154678,196,168)
+  {
+   Left=150
+   Top=55
+   Width=31
+   Height=17
+   Caption="Value"
+  }
+  Add(ComboBox,12683,406,140)
+  {
+   @Hint=#12:methods_type|
+   Left=340
+   Top=20
+   Width=105
+   Hint="Тип"
+   Strings=#4:Work|5:Event|3:Var|4:Data|
+   ReadOnly=0
+  }
+  Add(Label,410237,357,140)
+  {
+   Left=310
+   Top=25
+   Width=28
+   Height=17
+   Caption="Type"
+  }
+  Add(Edit,7724235,252,140)
+  {
+   @Hint=#12:methods_name|
+   Left=185
+   Top=20
+   Width=115
+   Color=-16777211
+   Hint="Имя точки"
+   Text=""
+  }
+  Add(Label,15404789,196,140)
+  {
+   Left=150
+   Top=25
+   Width=32
+   Height=17
+   Caption="Name"
+  }
+  Add(Button,13400814,119,133)
+  {
+   @Hint=#14:methods_remove|
+   Left=45
+   Top=20
+   Width=30
+   Hint="Удалить точку"
+   Caption="Del"
+  }
+  Add(CheckBox,2087855,182,77)
+  {
+   @Hint=#13:methods_novis|
+   Left=310
+   Top=55
+   Width=135
+   Height=15
+   Hint="Скрыть точку"
+   Caption="No visible"
+  }
+  Add(Button,11028736,126,35)
+  {
+   @Hint=#12:methods_down|
+   Left=110
+   Top=20
+   Width=25
+   Font=[Webdings,8,0,0,2]
+   Hint="Переместить вниз"
+   Caption="6"
+  }
+  Add(Button,7979388,98,35)
+  {
+   @Hint=#10:methods_up|
+   Left=80
+   Top=20
+   Width=25
+   Font=[Webdings,8,0,0,2]
+   Hint="Переместить вверх"
+   Caption="5"
+  }
+END_SDK

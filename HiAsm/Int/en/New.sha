@@ -1,0 +1,62 @@
+Make(modules)
+ver(4.03 build 180)
+Add(MainForm,1770522,35,70)
+{
+ Width=418
+ Height=302
+ Caption="Create new project"
+ BorderStyle=3
+}
+Add(ListBox,15512064,112,49)
+{
+ @Hint=#4:list|
+ Left=5
+ Top=5
+ Width=115
+ Height=185
+}
+Add(Button,1566404,189,203)
+{
+ @Hint=#4:help|
+ Left=95
+ Top=245
+ Width=90
+ Height=25
+ Caption="Help"
+}
+Add(StringTable,7557132,217,49)
+{
+ @Hint=#8:projects|
+ Left=130
+ Top=5
+ Width=275
+ Height=185
+ Color=-16777211
+}
+Add(Button,11827000,301,203)
+{
+ @Hint=#2:ok|
+ Left=315
+ Top=245
+ Width=90
+ Height=25
+ Caption="OK"
+}
+Add(Button,10018887,245,203)
+{
+ @Hint=#6:cancel|
+ Left=215
+ Top=245
+ Width=90
+ Height=25
+ Caption="Cancel"
+}
+Add(Memo,9207647,112,133)
+{
+ @Hint=#4:info|
+ Left=5
+ Top=195
+ Width=400
+ Height=40
+ Ctl3D=1
+}

@@ -1,0 +1,3 @@
+func Value
+  return('val('&&Value&&')')
+end

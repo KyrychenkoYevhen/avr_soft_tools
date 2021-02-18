@@ -1,0 +1,76 @@
+func Init()
+  var(obj)
+  obj = Stream_
+  stack &= block.select(BLK_OBJ)
+  println('Dim ', obj)
+  println('Set ', obj, ' = CreateObject("ADODB.Stream")')
+  println('')
+  block.select(BLK_NOTH)
+  println('Set ', obj, ' = Nothing')
+  block.select(_arr.pop(stack))
+end
+
+func doOpen(_data)
+  if(isset(Source))
+    fvar(mode_, opt_)
+    switch(Mode)
+      case 0: mode_ = 0
+      case 1: mode_ = 1
+      case 2: mode_ = 2
+      case 3: mode_ = 3
+      case 4: mode_ = 4
+      case 5: mode_ = 8
+      case 6: mode_ = 12
+      case 7: mode_ = 16
+      case 8: mode_ = 4194304  // 0x400000
+    end
+    if(Options)
+      opt_ = Options * Options
+    else
+      opt_ = -1
+    end
+  end
+
+  println('With ', obj)
+  block.inclvl()
+    print('.Open')
+    if(isset(Source))
+      print(' ', Source, ', ', mode_, ', ', opt_, ', ', Username, ', ', Password)
+    end
+    println('')
+    println('.Type = ', Type + 1)
+    if(isndef(CharSet) and Type)
+      println('.Position = 0')
+      println('.Charset = ', str(CharSet))
+    end
+    if(isndef(LineSeparator) and Type)
+      println('.LineSeparator = ', LineSeparator)
+    end
+  block.declvl()
+  println('End With')
+  event(onOpen, obj)
+end
+
+func doClose()
+  println('If ', obj, '.State Then ', obj, '.Close')
+end
+
+func doLineSeparator(_data)
+  println(obj, '.LineSeparator = ', _data)
+end
+
+func Stream()
+  return(obj)
+end
+
+func Size()
+  return(obj + '.Size')
+end
+
+func State()
+  return(obj + '.State')
+end
+
+func LineSeparator()
+  return(obj + '.LineSeparator')
+end

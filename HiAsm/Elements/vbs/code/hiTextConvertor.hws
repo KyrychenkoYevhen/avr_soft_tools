@@ -1,0 +1,44 @@
+func Init()
+  var(obj, fname)
+  obj = Stream_
+  stack &= block.select(BLK_OBJ)
+  println('Dim ', obj)
+  println('Set ', obj, ' = CreateObject("ADODB.Stream")')
+  println('')
+  block.select(BLK_FUNC)
+  fname = replace (Charset, '-', '_') && Mode
+  if(!Pos(fname, block.astext()))
+    lng.begin_func(fname && '(' && in_ && ')\'' && Mode)
+      println('With ', obj)
+      block.inclvl()
+        println('.Open')
+        println('.Type = ', isdef(Mode) ? 1 : 2)
+        println('.Position = 0')
+        if(isndef(Mode))
+          println('.Charset = ', str(Charset))
+        end
+        println('.Write', (isndef(Mode) ? 'Text ' : ' '), in_)
+        println('.Position = 0')
+        println('.Type = ', isndef(Mode) ? 1 : 2)
+        println('.Position = 0')
+        if(isdef(Mode))
+          println('.Charset = ', str(Charset))
+        end
+        println(fname, ' = .Read', (isdef(Mode) ? 'Text' : ''))
+        println('.Close')
+      block.declvl()
+      println('End With ')
+    lng.end_func(BLK_FUNC)
+  end
+  block.select(BLK_NOTH)
+  println('Set ', obj, ' = Nothing')
+  block.select(_arr.pop(stack))
+end
+
+func doConvert(_data)
+  event(onConvert, fname && '(' && Data && ')')
+end
+
+func Result()
+  return(fname && '(' && Data && ')')
+end

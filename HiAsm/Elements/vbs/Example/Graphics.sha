@@ -1,0 +1,590 @@
+Make(vbs)
+ver(4.04 build 185)
+Add(MainForm,2953706,56,490)
+{
+ Width=651
+ Height=710
+ Text="Graphics example"
+ Point(Handle)
+ link(onCreate,9798744:doPart,[])
+}
+Add(Rectangle,16707818,182,14)
+{
+ Left=15
+ Top=30
+ Width=200
+ Height=135
+ Point(Brush)
+ Point(Pen)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ Point(onMouseMove)
+ link(onMouseMove,5368772:doString,[(229,20)(229,6)(174,6)(174,62)])
+}
+Add(Brush,12801652,182,140)
+{
+ Color=16776960
+ Style=9
+ GradientColor=16711680
+ link(Brush,16707818:Brush,[])
+}
+Add(Pen,13962136,189,98)
+{
+ Color=65535
+ Style=4
+ link(Pen,16707818:Pen,[])
+}
+Add(FormatStr,5368772,196,56)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,3994020:doText,[])
+ link(Str1,16707818:MouseX,[])
+ link(Str2,16707818:MouseY,[])
+ link(Str3,16707818:Flags,[])
+}
+Add(Label,3994020,238,56)
+{
+ Left=15
+ Top=10
+ Width=200
+ Text="Rectangle"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(Line,3047525,301,14)
+{
+ Left=220
+ Top=30
+ Width=200
+ Height=135
+ X1=220
+ Y1=30
+ X2=420
+ Y2=165
+ Point(Pen)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ Point(onMouseMove)
+ link(onMouseMove,909994:doString,[(342,20)(342,6)(294,6)(294,62)])
+}
+Add(FormatStr,909994,308,56)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,10286504:doText,[])
+ link(Str1,3047525:MouseX,[])
+ link(Str2,3047525:MouseY,[])
+ link(Str3,3047525:Flags,[])
+}
+Add(Label,10286504,350,56)
+{
+ Left=220
+ Top=10
+ Width=200
+ Text="Line"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(Ellipse,13229681,413,14)
+{
+ Left=425
+ Top=30
+ Width=200
+ Height=135
+ Point(onMouseMove)
+ Point(Brush)
+ Point(Pen)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ link(onMouseMove,4418435:doString,[(460,20)(460,6)(408,6)(408,62)])
+}
+Add(FormatStr,4418435,427,56)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,5685904:doText,[])
+ link(Str1,13229681:MouseX,[])
+ link(Str2,13229681:MouseY,[])
+ link(Str3,13229681:Flags,[])
+}
+Add(Label,5685904,469,56)
+{
+ Left=425
+ Top=10
+ Width=200
+ Text="Ellipse"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(Brush,668245,413,140)
+{
+ Color=425687
+ Style=9
+ GradientColor=65535
+ Angle=1
+ Center=0
+ link(Brush,13229681:Brush,[])
+}
+Add(Pen,8200130,420,98)
+{
+ Color=32896
+ Width=3
+ link(Pen,13229681:Pen,[])
+}
+Add(Arc,5819335,182,189)
+{
+ Left=15
+ Top=190
+ Width=200
+ Height=135
+ XStartArc=15
+ YStartArc=325
+ XEndArc=115
+ YEndArc=190
+ Point(onMouseMove)
+ Point(Pen)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ link(onMouseMove,7134568:doString,[(223,195)(223,182)(175,182)(175,237)])
+}
+Add(FormatStr,7134568,189,231)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,1720850:doText,[])
+ link(Str1,5819335:MouseX,[])
+ link(Str2,5819335:MouseY,[])
+ link(Str3,5819335:Flags,[])
+}
+Add(Label,1720850,231,231)
+{
+ Left=15
+ Top=175
+ Width=200
+ Text="Arc"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(Pen,16592392,301,98)
+{
+ Color=255
+ Width=2
+ link(Pen,3047525:Pen,[])
+}
+Add(Pen,3154187,182,273)
+{
+ Color=16711680
+ Style=1
+ link(Pen,5819335:Pen,[])
+}
+Add(Bevel,8546782,301,189)
+{
+ Left=220
+ Top=190
+ Width=200
+ Height=135
+ BevelOuter=1
+ BevelInner=2
+ BorderWidth=10
+ BevelWidth=15
+ Point(onMouseMove)
+ Point(Brush)
+ Point(Pen)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ link(onMouseMove,5886759:doString,[(348,195)(348,182)(296,182)(296,237)])
+}
+Add(Brush,13444085,301,315)
+{
+ Color=-16777201
+ Style=0
+ link(Brush,8546782:Brush,[])
+}
+Add(Pen,14129501,308,273)
+{
+ Color=16777215
+ link(Pen,8546782:Pen,[])
+}
+Add(FormatStr,5886759,315,231)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,10989036:doText,[])
+ link(Str1,8546782:MouseX,[])
+ link(Str2,8546782:MouseY,[])
+ link(Str3,8546782:Flags,[])
+}
+Add(Label,10989036,357,231)
+{
+ Left=220
+ Top=175
+ Width=200
+ Text="Bevel"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(Chord,15927122,413,189)
+{
+ Left=425
+ Top=190
+ Width=200
+ Height=135
+ XRadial1=325
+ YRadial1=425
+ XRadial2=525
+ YRadial2=190
+ Point(onMouseMove)
+ Point(Brush)
+ Point(Pen)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ link(onMouseMove,7121171:doString,[(460,195)(460,182)(407,182)(407,237)])
+}
+Add(Brush,2824935,413,315)
+{
+ Color=16711935
+ Style=5
+ link(Brush,15927122:Brush,[])
+}
+Add(Pen,6987395,420,273)
+{
+ Color=65280
+ Width=5
+ link(Pen,15927122:Pen,[])
+}
+Add(FormatStr,7121171,427,231)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,9521271:doText,[])
+ link(Str1,15927122:MouseX,[])
+ link(Str2,15927122:MouseY,[])
+ link(Str3,15927122:Flags,[])
+}
+Add(Label,9521271,469,231)
+{
+ Left=425
+ Top=175
+ Width=200
+ Text="Chord"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(Circle,11592988,182,364)
+{
+ Left=15
+ Top=350
+ Width=200
+ Height=135
+ Point(onMouseMove)
+ Point(Brush)
+ Point(Pen)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ link(onMouseMove,15568271:doString,[(228,370)(228,356)(175,356)(175,412)])
+}
+Add(Brush,5281211,182,490)
+{
+ Point(doImage)
+ link(Brush,11592988:Brush,[])
+}
+Add(Pen,14565896,189,448)
+{
+ link(Pen,11592988:Pen,[])
+}
+Add(FormatStr,15568271,196,406)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,9092422:doText,[])
+ link(Str1,11592988:MouseX,[])
+ link(Str2,11592988:MouseY,[])
+ link(Str3,11592988:Flags,[])
+}
+Add(Label,9092422,238,406)
+{
+ Left=15
+ Top=335
+ Width=200
+ Text="Circle"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(Application,12013055,98,448)
+{
+}
+Add(FilePart,9798744,98,490)
+{
+ link(onPath,13878128:doStrCat,[])
+ link(FileName,12013055:ScriptFullName,[])
+}
+Add(StrCat,13878128,140,490)
+{
+ Str2="\logo.ico"
+ link(onStrCat,5281211:doImage,[])
+}
+Add(Pie,633501,301,364)
+{
+ Left=220
+ Top=350
+ Width=200
+ Height=135
+ XRadial1=500
+ YRadial1=150
+ Point(onMouseMove)
+ Point(Brush)
+ Point(Pen)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ link(onMouseMove,6172839:doString,[(348,370)(348,356)(291,356)(291,412)])
+}
+Add(Brush,16172101,301,490)
+{
+ Color=255
+ Style=4
+ link(Brush,633501:Brush,[])
+}
+Add(Pen,12642789,308,448)
+{
+ Color=65535
+ link(Pen,633501:Pen,[])
+}
+Add(FormatStr,6172839,315,406)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,6412195:doText,[])
+ link(Str1,633501:MouseX,[])
+ link(Str2,633501:MouseY,[])
+ link(Str3,633501:Flags,[])
+}
+Add(Label,6412195,357,406)
+{
+ Left=220
+ Top=335
+ Width=200
+ Text="Pie"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(RoundRect,4222013,413,364)
+{
+ Left=425
+ Top=350
+ Width=200
+ Height=135
+ nWidth=50
+ nHeight=50
+ Point(onMouseMove)
+ Point(Brush)
+ Point(Pen)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ Point(onMouseEnter)
+ Point(onMouseLeave)
+ link(onMouseMove,4557646:doString,[(460,370)(460,356)(404,356)(404,412)])
+ link(onMouseEnter,3896787:doEvent1,[])
+ link(onMouseLeave,5139539:doData,[(465,384)(465,580)])
+}
+Add(Brush,11211468,413,490)
+{
+ Color=8388736
+ Style=7
+ Point(doColor)
+ Point(vColor)
+ link(Brush,4222013:Brush,[])
+}
+Add(Pen,14590585,420,448)
+{
+ Color=16711935
+ Width=3
+ link(Pen,4222013:Pen,[])
+}
+Add(FormatStr,4557646,427,406)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,8743866:doText,[])
+ link(Str1,4222013:MouseX,[])
+ link(Str2,4222013:MouseY,[])
+ link(Str3,4222013:Flags,[])
+}
+Add(Label,8743866,469,406)
+{
+ Left=425
+ Top=335
+ Width=200
+ Text="RoundRect"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(Polygon,7593160,301,539)
+{
+ Left=220
+ Top=515
+ Width=200
+ Height=140
+ Script=#46:Array(320,520,370,620,250,580,400,580,270,630)|
+ Point(Brush)
+ Point(Pen)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ Point(onMouseMove)
+ Point(onMouseEnter)
+ Point(onMouseLeave)
+ link(onMouseMove,3067211:doString,[(348,545)(348,532)(293,532)(293,587)])
+ link(onMouseEnter,3175357:doEvent1,[])
+ link(onMouseLeave,2829373:doData,[(352,559)(352,713)])
+}
+Add(Brush,16323020,301,665)
+{
+ Color=54741
+ Style=9
+ GradientColor=32896
+ link(Brush,7593160:Brush,[])
+}
+Add(Pen,14650616,308,623)
+{
+ Color=32896
+ Width=3
+ Point(vColor)
+ Point(doColor)
+ link(Pen,7593160:Pen,[])
+}
+Add(FormatStr,3067211,315,581)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,71979:doText,[])
+ link(Str1,7593160:MouseX,[])
+ link(Str2,7593160:MouseY,[])
+ link(Str3,7593160:Flags,[])
+}
+Add(Label,71979,357,581)
+{
+ Left=220
+ Top=500
+ Width=200
+ Text="Polygon"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(TextOut,2462617,182,539)
+{
+ Left=65
+ Top=565
+ Width=151
+ Height=91
+ Text="Graphics \r\nText"
+ Font=[Microsoft Sans Serif,24,0,0,204]
+ Point(onMouseMove)
+ Point(FontEx)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ link(onMouseMove,15712206:doString,[(223,545)(223,532)(173,532)(173,587)])
+}
+Add(FormatStr,15712206,189,581)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,14451252:doText,[])
+ link(Str1,2462617:MouseX,[])
+ link(Str2,2462617:MouseY,[])
+ link(Str3,2462617:Flags,[])
+}
+Add(Label,14451252,231,581)
+{
+ Left=15
+ Top=500
+ Width=200
+ Text="TextOut"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(FontEx,7112744,182,623)
+{
+ Color=16711935
+ Angle=270
+ link(FontEx,2462617:FontEx,[])
+}
+Add(Color,4291809,399,539)
+{
+ vbsColor=1
+ wsoColor=255
+}
+Add(Memory,7320709,406,665)
+{
+ link(Data,14650616:vColor,[(412,660)(328,660)])
+}
+Add(Hub,3175357,357,546)
+{
+ link(onEvent1,7320709:doValue,[(379,552)(379,671)])
+ link(onEvent2,8031469:doData,[(395,559)(395,587)])
+}
+Add(DoData,8031469,406,581)
+{
+ link(onEventData,2916289:doWork1,[(446,587)])
+ link(Data,4291809:wColor,[])
+}
+Add(DoData,2829373,406,707)
+{
+ link(onEventData,2916289:doWork3,[(446,713)])
+ link(Data,7320709:Value,[])
+}
+Add(HubEx,2916289,442,614)
+{
+ Angle=2
+ link(onEvent,14650616:doColor,[(296,620)(296,629)])
+}
+Add(Color,15729692,511,364)
+{
+ vbsColor=1
+ wsoColor=255
+}
+Add(Memory,8329142,518,532)
+{
+ link(Data,11211468:vColor,[(524,527)(433,527)])
+}
+Add(DoData,8339165,518,406)
+{
+ link(onEventData,8597541:doWork1,[(558,412)])
+ link(Data,15729692:wColor,[])
+}
+Add(DoData,5139539,518,574)
+{
+ link(onEventData,8597541:doWork3,[(558,580)])
+ link(Data,8329142:Value,[])
+}
+Add(HubEx,8597541,554,478)
+{
+ Angle=2
+ link(onEvent,11211468:doColor,[(401,484)(401,496)])
+}
+Add(Hub,3896787,469,371)
+{
+ link(onEvent1,8329142:doValue,[(491,377)(491,538)])
+ link(onEvent2,8339165:doData,[(507,384)(507,412)])
+}

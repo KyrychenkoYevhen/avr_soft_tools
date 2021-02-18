@@ -1,0 +1,180 @@
+Make(vbs)
+ver(4.04 build 185)
+Add(MainForm,2953706,112,175)
+{
+ Width=563
+ Height=422
+ Point(onMouseMove)
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ link(onCreate,9798744:doPart,[])
+ link(onMouseMove,3569815:doString,[(156,202)(156,220)(100,220)(100,237)])
+}
+Add(Image,11650203,280,182)
+{
+ Left=235
+ Top=95
+ Point(Handle)
+ Point(MouseX)
+ Point(MouseY)
+ Point(onMouseDown)
+ Point(onMouseUp)
+ Point(onMouseMove)
+ Point(vLeft)
+ Point(vTop)
+ link(onMouseDown,13940382:doEvent1,[(327,188)(327,174)])
+ link(onMouseUp,5365189:doClear,[])
+ link(onMouseMove,6441089:doCompare,[(328,202)(328,237)])
+}
+Add(PosWindow,8694398,399,399)
+{
+ link(Handle,11650203:Handle,[(405,223)(286,223)])
+ link(Left,7668889:Result,[])
+ link(Top,7598785:Result,[(419,391)(482,391)])
+}
+Add(Hub,7797307,315,336)
+{
+ OutCount=4
+ link(onEvent1,8694398:doLeft,[(359,342)(359,405)])
+ link(onEvent2,8694398:doTop,[(350,349)(350,412)])
+ link(onEvent3,11894282:doWork2,[(345,356)(345,251)])
+ link(onEvent4,2664732:doWork2,[(365,363)(365,258)])
+}
+Add(If_else,6441089,420,231)
+{
+ Op2=Integer(1)
+ link(onTrue,7797307:doEvent1,[(464,237)(464,297)(305,297)(305,342)])
+ link(Op1,5365189:Value,[])
+}
+Add(Memory,5365189,420,182)
+{
+ Default=Integer(0)
+}
+Add(FormatStr,3569815,112,231)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,12571162:doText,[])
+ link(Str1,2953706:MouseX,[])
+ link(Str2,2953706:MouseY,[])
+ link(Str3,2953706:Flags,[])
+}
+Add(Label,12571162,161,231)
+{
+ Left=95
+ Top=130
+ Point(doText)
+}
+Add(Memory,13809900,490,287)
+{
+ link(Data,16255769:Var3,[(496,271)])
+}
+Add(Memory,16583665,420,301)
+{
+ link(Data,11641878:Var3,[(426,288)])
+}
+Add(Hub,13940382,336,168)
+{
+ OutCount=3
+ link(onEvent1,5365189:doValue,[(402,174)(402,188)])
+ link(onEvent2,11894282:doWork1,[(392,181)])
+ link(onEvent3,2664732:doWork1,[(385,188)])
+}
+Add(GetDataEx,11641878,413,283)
+{
+ Angle=3
+ link(Data,11650203:MouseX,[(293,288)])
+}
+Add(GetDataEx,16255769,483,266)
+{
+ Angle=3
+ link(Data,11650203:MouseY,[(300,271)])
+}
+Add(HubEx,11894282,388,245)
+{
+ Angle=1
+ link(onEvent,13809900:doValue,[(392,293)])
+}
+Add(HubEx,2664732,381,252)
+{
+ Angle=1
+ link(onEvent,16583665:doValue,[(385,307)])
+}
+Add(MathParse,7668889,406,350)
+{
+ DataCount=3
+ MathStr="%1 + %2 - %3"
+ link(X1,11650203:vLeft,[(412,282)(307,282)])
+ link(X2,11641878:Var2,[])
+ link(X3,16583665:Value,[])
+}
+Add(MathParse,7598785,476,343)
+{
+ DataCount=3
+ MathStr="%1 + %2 - %3"
+ link(X1,11650203:vTop,[(482,279)(314,279)])
+ link(X2,16255769:Var2,[])
+ link(X3,13809900:Value,[])
+}
+Add(Application,12013055,161,133)
+{
+}
+Add(FilePart,9798744,161,175)
+{
+ link(onPath,13878128:doStrCat,[])
+ link(FileName,12013055:ScriptFullName,[])
+}
+Add(StrCat,13878128,210,175)
+{
+ Str2="\wso.ico"
+ link(onStrCat,11643326:doEvent1,[])
+}
+Add(Label,16310078,322,14)
+{
+ Left=140
+ Top=10
+ Width=240
+ Height=33
+ Text="Moving picture by mouse"
+ Font=[MS Sans Serif,18,0,0,1]
+ Point(doText)
+}
+Add(Hub,11643326,252,175)
+{
+ link(onEvent1,3265752:doWork1,[(273,181)(273,125)])
+ link(onEvent2,11650203:doDrawImage,[])
+}
+Add(ChildPanel,3265752,280,119)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,15737280,21,21)
+  {
+   WorkCount=1
+   link(doWork1,11650203:doDrawImage,[(36,27)(36,97)])
+  }
+  Add(Panel,15010408,217,56)
+  {
+   Left=190
+   Top=120
+   Width=32
+   Height=32
+   BevelWidth=0
+   BevelInner=0
+   CaptureMouse=1
+   Point(Handle)
+   Point(onMouseDown)
+   link(onMouseDown,14023880:doMove,[(261,62)(261,97)(205,97)(205,132)])
+  }
+  Add(MoveControl,14023880,217,126)
+  {
+   link(Handle,15010408:Handle,[])
+  }
+  Add(Image,11650203,70,91)
+  {
+   Width=32
+   Height=32
+   Point(onMouseDown)
+  }
+END_SDK

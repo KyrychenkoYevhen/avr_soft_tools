@@ -1,0 +1,34 @@
+// ************************************************
+// GraphicObject.hws for Vbs packet
+// WSO methods, properties and constants
+// Общие свойства и методы наследников класса GraphicObject
+// Last modification: 22.07.2009
+// ************************************************
+
+// Common properties
+func GraphicObject_Init(id)
+
+  // Default color
+  // For Brush - white (0xFFFFFF).
+  // For Font, Pen - black (0x000000).
+  if(isndef(Color))
+    println(id, '.Color = ', Color)
+  end
+
+end
+
+// Common methods
+// Default All
+func doDefault()
+  println (id, '.Default()')
+end
+
+// write Color
+func doColor(_data)
+  println (id, '.Color = ', _data)
+end
+
+// read Color
+func vColor()
+  return(id  + '.Color')
+end

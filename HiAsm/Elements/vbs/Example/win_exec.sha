@@ -1,0 +1,52 @@
+Make(vbs)
+ver(4.03 build 180)
+Add(MainForm,2953706,21,105)
+{
+}
+Add(Button,5818562,133,119)
+{
+ Left=50
+ Top=80
+ Text="Run"
+ Point(onClick)
+ link(onClick,10263303:doExec,[])
+ AddHint(-54,7,35,13,Text)
+}
+Add(Edit,11995071,182,63)
+{
+ Left=115
+ Top=80
+ Width=210
+ Text="notepad.exe"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+ AddHint(-29,-31,74,13,Text)
+}
+Add(WinExec,10263303,182,119)
+{
+ Params="c:\boot.ini"
+ Mode=6
+ link(onExec,9295725:doCompare,[])
+ link(FileName,11995071:vText,[])
+ AddHint(53,-30,63,13,Params)
+}
+Add(Label,9143567,329,119)
+{
+ Left=145
+ Top=115
+ Width=95
+ Text="status unknown"
+ Point(doText)
+}
+Add(If_else,9295725,231,119)
+{
+ Op2=Integer(0)
+ link(onTrue,8777279:doData,[])
+}
+Add(DoData,8777279,280,119)
+{
+ Data=String(complete)
+ link(onEventData,9143567:doText,[])
+ AddHint(40,-30,68,13,Data)
+}

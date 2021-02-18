@@ -1,0 +1,308 @@
+--- CodeGen.dpr	ѕн но€ 22 22:02:48 2010
++++ CodeGen.dpr	—р окт 27 11:35:28 2010
+@@ -323,6 +323,7 @@
+ 
+      procedure FuncLexem(const fname:string; Args:TArgs);
+      function EndLexem:boolean;
++     procedure OverrideLexem;
+      procedure IncludeLexem;
+      procedure InlineLexem;
+      procedure SubLexem;
+@@ -603,6 +604,11 @@
+   Result := args.Values[0]^;
+ end;
+ 
++function map_len(parser:TParser; args:TArgs):TScData;
++begin
++   Result.SetValue(Length(args.Values[0].toStr()));
++end;
++
+ function map_lower(parser:TParser; args:TArgs):TScData;
+ begin
+    Result.SetValue(LowerCase(args.Values[0].toStr()), args.Values[0].GetType);
+@@ -722,12 +728,29 @@
+    lang_level := lang_level + args.Values[0].toInt();
+ end;
+ 
++function map_file2str(parser:TParser; args:TArgs):TScData;
++var fname,s:string;
++    list:PStrList;
++begin
++   fname := args.Values[0].toStr();
++   s := '';
++   if FileExists(fname) then
++    begin
++     list := NewStrList;
++     list.LoadFromFile(fname);
++     s := list.Text;
++     list.Free;
++    end;
++   Result.SetValue(s);
++end;
++
+ const
+   // карта встроеных ф-ций €зыка
+-  func_map_size = 15;
++  func_map_size = 17;
+   func_map:array[0..func_map_size-1] of TFuncMap = (
+     // ------------ STRINGS ----------------------------
+     (name: 'replace';     count:3;  proc:map_replace;  ainfo: 'str, dst, src'),
++    (name: 'len';         count:1;  proc:map_len;      ainfo: 'str'),
+     (name: 'lower';       count:1;  proc:map_lower;    ainfo: 'str'),
+     (name: 'upper';       count:1;  proc:map_upper;    ainfo: 'str'),
+     (name: 'copy';        count:3;  proc:map_copy;     ainfo: 'str, position, length'),
+@@ -740,6 +763,7 @@
+     (name: 'lng_lvl';     count:1;  proc:map_lng_lvl;  ainfo: 'increment'),
+ 
+     // ------------ FILES ------------------------------
++    (name: 'file2str';    count:1;  proc:map_file2str; ainfo: 'filename'),
+     (name: 'fopen';       count:2;  proc:map_fopen;    ainfo: 'filename, mode'),
+     (name: 'fputs';       count:2;  proc:map_fputs;    ainfo: 'id, str'),
+     (name: 'fgets';       count:1;  proc:map_fgets;    ainfo: 'id'),
+@@ -973,6 +997,7 @@
+ var i:integer;
+     s,d,nv:string;
+     dt:PScData;
++    arr:PScArray;
+ begin
+    case index of
+      0: // count
+@@ -997,9 +1022,10 @@
+          end;
+         Result.SetValue(s, args.Values[1].GetType);
+        end
+-      else Result := args.Values[0]^;
+-     2: Result.SetValue(args.Values[0].mtGetCount());
+-     3:
++      else Result.SetValue('');
++     2: // mt_count
++      Result.SetValue(args.Values[0].mtGetCount());
++     3: // mt_item
+       begin
+         i := args.Values[1].toInt();
+         if i = 0 then
+@@ -1012,7 +1038,18 @@
+             else Result := dt^;
+          end;
+       end;
+-     4: Result := args.Values[0].mtPop()^;
++     4: // mt_pop
++      Result := args.Values[0].mtPop()^;
++     5: // pop
++      if args.Values[0].GetType = data_array then
++       begin
++         arr := args.Values[0].toArray();
++         i := arr.count;
++         Result := arr.Items[i-1]^;
++         SetLength(arr.items, i-1);
++         dec(arr.count);
++       end
++      else Result := args.Values[0]^;
+    end;
+ end;
+ 
+@@ -1124,7 +1161,7 @@
+      name := '_arr';
+      obj := nil;
+      fields_count := 0;
+-     methods_count := 5;
++     methods_count := 6;
+      SetLength(fields,fields_count);
+      SetLength(methods,methods_count);
+      methods[0] := MakeMethod('count',     1, 'array');
+@@ -1133,6 +1170,7 @@
+      methods[2] := MakeMethod('mt_count',  1, 'mt array');
+      methods[3] := MakeMethod('mt_item',   2, 'mt array, index');
+      methods[4] := MakeMethod('mt_pop',    1, 'mt array');
++     methods[5] := MakeMethod('pop',       1, 'array');
+ 
+      method_proc := array_proc;
+    end;
+@@ -2053,16 +2091,26 @@
+      end;
+ end;
+ 
++//function PropFont(s:string; font:id_font):string;
++//begin
++//  Result := string(s + '.name', cgt.fntName(font)) + #13#10 +
++//            string(s + '.size', cgt.fntSize(font)) + #13#10 +
++//            string(s + '.style', cgt.fntStyle(font)) + #13#10 +
++//            string(s + '.color', cgt.fntColor(font)) + #13#10 +
++//            string(s + '.charset', cgt.fntCharSet(font));
++//end;
++
+ function readProperty(e:id_element; cgt:PCodeGenTools; prop:id_prop):PScData;
+ var list:PStrList;
+     i:integer;
+     dt,item:TScData;
+     arr:id_array;
+-    f:id_font;
++    font:id_font;
+ begin
+   Result := MakeData('');
+   case cgt.propGetType(prop) of
+     data_int, data_color, data_flags: Result.SetValue(integer(cgt.propGetValue(prop)^));
++    //data_int:                         Result := PropInt(s,cgt.propToInteger(pr));
+     data_str: Result.SetValue(string(cgt.propGetValue(prop)^));
+     data_real: Result.SetValue(real(cgt.propGetValue(prop)^));
+     data_data: Result^ := DoData(cgt,id_data(cgt.propGetValue(prop)));
+@@ -2099,23 +2147,23 @@
+      end;
+     data_comboEx: Result.SetValue(cgt.propToString(prop), data_code);
+     data_element: Result.SetValue(cgt.propGetLinkedElement(e, cgt.propGetName(prop)));
++    //data_font:    Result.SetValue(cgt.fntName(id_font(cgt.propGetValue(prop))));// := PropFont(s,id_font(cgt.propGetValue(prop)));
+     data_font:
+       begin
+         Result.BuildArray;
+-        f := id_font(cgt.propGetValue(prop));
+-        dt.SetValue(cgt.fntName(f));
++        font := id_font(cgt.propGetValue(prop));
++        dt.SetValue(cgt.fntName(font));
+         Result.AddValue(@dt);
+-        dt.SetValue(cgt.fntSize(f));
++        dt.SetValue(cgt.fntSize(font));
+         Result.AddValue(@dt);
+-        dt.SetValue(cgt.fntStyle(f));
++        dt.SetValue(cgt.fntStyle(font));
+         Result.AddValue(@dt);
+-        dt.SetValue(cgt.fntColor(f));
++        dt.SetValue(cgt.fntColor(font));
+         Result.AddValue(@dt);
+-        dt.SetValue(cgt.fntCharSet(f));
++        dt.SetValue(cgt.fntCharSet(font));
+         Result.AddValue(@dt);
+       end
+-    else 
+-      Result.SetValue('');
++    else Result.SetValue('');
+   end;
+  if assigned(readCustomProperty) then
+    readCustomProperty(Result, e, cgt, prop);  
+@@ -3246,6 +3294,65 @@
+   end;
+ end;
+ 
++procedure TParser.OverrideLexem;
++var fname,data:PScData;
++    s:string;
++    patterns:PStrList;
++    procedure InsertStrings();
++    var list:PStrList;
++        i,j:integer;
++        pattern:string;
++    begin
++       list := NewStrList;
++       list.LoadFromFile(s);
++       for i := 0 to list.count-1 do
++        begin
++         if patterns.count > 0 then
++          begin
++           s := list.items[i];
++           for j := 0 to patterns.count-1 do
++            begin
++             pattern := patterns.items[j];
++             if pos(AnsiLowerCase(pattern),AnsiLowerCase(s)) > 0 then
++              begin
++               Replace(s, pattern, '_'+pattern);
++               list.Delete(i);
++               list.Insert(i, s);
++              end;
++             end;
++            end;
++         LineInsert(LineIndex+i, list.items[i]);
++        end;
++       list.Free;
++    end;
++begin
++   if (fData <> nil)and(fData.fSkeep) then
++     if CheckSkipped then exit;
++
++   if CheckOpenArgs('override') then exit;
++
++   if level1(fname) then exit;
++   s := cgt.ReadCodeDir(el) + fname.toStr + '.hws';
++   if GetToken then exit;
++   patterns := NewStrList;
++   repeat
++    if Token = ',' then
++     begin
++       if (level1(data) or GetToken) then
++        begin
++         patterns.Free;
++         exit;
++        end;
++     end;
++    patterns.Add(data.toStr)
++   until (Token = ')');
++   if FileExists(s) then
++     InsertStrings()
++   else
++     AddError('File ' + s + ' not found');
++   patterns.Free;
++end;
++
+ procedure TParser.IncludeLexem;
+ var fname:PScData;
+     s:string;
+@@ -4154,10 +4261,13 @@
+ var lp:id_point;
+     parser:TParser;
+     lst:PStrList;
++//    data:PScData;
+ begin
+    Result := false;
+    if CheckOpenArgs('linked') then exit;
+ 
++//      if level1(data) then exit;
++
+    if GetToken then exit;
+    lp := cgt.elGetPtName(el, PChar(RToken));
+    if lp > 0 then
+@@ -5170,6 +5280,8 @@
+              begin
+                if EndLexem then exit;
+              end
++          else if Token = 'override' then
++             OverrideLexem
+           else if Token = 'include' then
+              IncludeLexem
+           else if Token = 'inline' then
+@@ -5371,7 +5483,8 @@
+                1:
+                  begin
+                    Body.Add('func ' + MName + '(_data)');
+-                   Body.Add('  // TODO');
++                   Body.Add('  println(''\''' + MName +''')');
++                   Body.Add('  // todo');
+                    Body.Add('end');
+                    Body.Add('');
+                  end;
+@@ -5379,7 +5492,9 @@
+                3:
+                  begin
+                    Body.Add('func ' + MName + '()');
+-                   Body.Add('  return()');
++                   Body.Add('  println(''\''' + MName +''')');
++                   Body.Add('  // todo');
++                   Body.Add('  return(' + MName + ')');
+                    Body.Add('end');
+                    Body.Add('');
+                  end;
+@@ -5412,8 +5527,8 @@
+      list.text := hnt_message;
+      if length(list.text) > 1 then
+       begin
+-       GetMem(p.hint, length(list.text)-1);
+-       StrLCopy(p.hint, PChar(list.text), length(list.text)-2);
++     GetMem(p.hint, length(list.text)-1);
++     StrLCopy(p.hint, PChar(list.text), length(list.text)-2);
+       end;
+      list.free;
+ 
+@@ -5478,4 +5593,4 @@
+   synReadFuncList,
+   hintForElement;
+ 
+-end.
+\ No newline at end of file
++end.

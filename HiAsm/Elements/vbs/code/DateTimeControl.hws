@@ -1,0 +1,18 @@
+// ************************************************
+// DateTimeControl.hws for Vbs packet
+// WSO methods, properties and constants
+// Общие свойства и методы наследников класса DateTimeControl
+// Last modification: 11.09.2009
+// ************************************************
+
+func Value()
+  return(id + '.Value')
+end
+
+func Min()
+  return(id + '.Min')
+end
+
+func Max()
+  return(id + '.Max')
+end

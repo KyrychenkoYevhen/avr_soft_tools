@@ -1,0 +1,18 @@
+func doPrompt(_data)
+  println(input_, ' = InputBox(', Message, ', ', Caption, ', ', Default, ')')  
+  println('If ', linked(onPromptOk) ? '' : ' Not ', 'Len(', input_, ') Then')
+  if(linked(onPromptOk))
+    block.inclvl()
+    event(onPromptOk, input_)
+    block.declvl()
+  end
+  if(linked(onPromptCancel))
+    if(linked(onPromptOk))
+      println('Else')
+    end
+    block.inclvl()
+    event(onPromptCancel)
+    block.declvl() 
+  end
+  println('End If')
+end

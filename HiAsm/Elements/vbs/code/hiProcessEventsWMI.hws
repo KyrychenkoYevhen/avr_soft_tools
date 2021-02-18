@@ -1,0 +1,22 @@
+func Init()
+  if(isset(Handle))
+    var(obj, sink)
+    obj = Handle
+    sink = SINK_
+    stack &= block.select(BLK_OBJ)
+    println('Set wmi', sink, ' = WScript.CreateObject("WbemScripting.SWbemSink", "', sink, '_")')
+    println('')
+    if(linked(onEvent))
+      lng.begin_func(sink + '_OnObjectReady(wmiObject, wmiAsyncContext)')
+        event(onEvent, 'wmiObject.TargetInstance.Name')
+      lng.end_func(BLK_FUNC)
+    end
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doMonitoring()
+  if(linked(onEvent))
+    println(obj, '.ExecNotificationQueryAsync wmi', sink, ', "Select * from __instance', (EventType)?'deletion':'creation', 'event within 1 Where TargetInstance isa \'Win32_Process\'"')
+  end
+end

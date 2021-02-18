@@ -1,0 +1,14 @@
+You are assured, what wish to remove the selected components?
+Confirmation
+Group name
+Enter a new name of group
+Tab name
+Enter a new name of the tab
+Tab description
+Enter the description for the new tab
+Project HiAsm (*.sha) | *.sha
+Keep changes in the project?
+Carriage %d: %d
+Lines %d
+Goto line number
+Enter line number

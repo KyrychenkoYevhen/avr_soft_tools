@@ -1,0 +1,125 @@
+include("object")
+include("control")
+
+func Init()
+  var(id)
+  id = IE_
+  fvar(old)
+  old = block.select(BLK_GLOB)
+  println('Dim ', id)
+  block.select(BLK_BODY)
+
+  println('Set ', id,' = ', get_parent(), '.CreateActiveXControl(', Left, ', ', Top, ', ', Width, ', ', Height, ', "{8856F961-340A-11D0-A96B-00C04FD705A2}")')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(isndef(Silent))
+    println(id, '.Control.Silent = True')
+  end
+  if(linked(onNavigate))
+    lng.begin_func(id + '_OnNavigate(ByVal pDisp, ByVal URL)')
+      event(onNavigate, 'URL')
+    lng.end_func(BLK_EVENTS)
+    println(id && '.Events.NavigateComplete2 = GetRef("', id, '_OnNavigate")')
+  end
+  if(linked(onTitle))
+    lng.begin_func(id + '_OnTitle(ByVal Text)')
+      event(onTitle, 'Text')
+    lng.end_func(BLK_EVENTS)
+    println(id && '.Events.TitleChange = GetRef("', id, '_OnTitle")')
+  end
+  if(linked(onStatus))
+    lng.begin_func(id + '_OnStatus(ByVal Text)')
+      event(onStatus, 'Text')
+    lng.end_func(BLK_EVENTS)
+    println(id && '.Events.StatusTextChange = GetRef("', id, '_OnStatus")')
+  end
+  if(linked(onProgress))
+    lng.begin_func(id + '_OnProgress(ByVal Progress, ByVal ProgressMax)')
+      event(onProgress, 'Progress')
+    lng.end_func(BLK_EVENTS)
+    println(id && '.Events.ProgressChange = GetRef("', id, '_OnProgress")')
+  end
+  if(linked(NewWindow))
+    lng.begin_func(id + '_OnNewWindow(ByVal pDisp, ByRef Cancel)')
+      println('Cancel = ', NewWindow)
+    lng.end_func(BLK_EVENTS)
+    println(id && '.Events.NewWindow2 = GetRef("', id, '_OnNewWindow")')
+  end
+  if(linked(Navigate))
+    lng.begin_func(id + '_OnBeforeNavigate(ByVal pDisp, ByRef url, ByRef Flags, ByRef TargetFrameName, ByRef PostData, ByRef Headers, ByRef Cancel)')
+      println('If ', Navigate, ' Then')
+      block.inclvl()
+        println('If url <> "about:blank" Then')
+        block.inclvl()
+          println('pDisp.Stop')
+          println('Cancel = True')
+          println('pDisp.Navigate "about:blank"')
+        block.declvl()
+        println('End If')
+      block.declvl()
+      println('End If')
+    lng.end_func(BLK_EVENTS)
+    println(id && '.Events.BeforeNavigate2 = GetRef("', id, '_OnBeforeNavigate")')
+  end
+  block.select(old)
+end
+
+func doNavigate(_data)
+  println(id, '.Control.Navigate(', URL, ')')
+end
+
+func doRefresh()
+  println('On Error Resume Next')
+  println(id, '.Control.Refresh()')
+end
+
+func doBack()
+  println('On Error Resume Next')
+  println(id, '.Control.GoBack()')
+end
+
+func doForward()
+  println('On Error Resume Next')
+  println(id, '.Control.GoForward()')
+end
+
+func doStop()
+  println(id, '.Control.Stop()')
+end
+
+func doHome()
+  println(id, '.Control.GoHome()')
+end
+
+func ExecWB(_data, CmdID)
+  print('If Len(', id, '.Control.LocationURL) Then ')
+  println(id, '.Control.ExecWB ', CmdID, ', ', (_data='') ? 0 : _data)
+end
+
+func doSavePage(_data)
+  ExecWB(_data, 4)
+end
+
+func doPrint(_data)
+  ExecWB(_data, 6)
+end
+
+func doPreview(_data)
+  ExecWB(_data, 7)
+end
+
+func doPrintSetup(_data)
+  ExecWB(_data, 8)
+end
+
+func CurrentURL()
+  return(id && '.Control.LocationURL')
+end
+
+func Page()
+  return(id && '.Control.Document')
+end

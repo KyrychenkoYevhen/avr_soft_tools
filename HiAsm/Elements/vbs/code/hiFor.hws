@@ -1,0 +1,21 @@
+func doFor(_data)
+fvar(c)
+  fvar(t)
+  t = Start
+  c=(CounterName='')?Counter:code(CounterName)
+  println('For ',c,' = ',Start,' To ',End,(IncludeEnd='False')?((Step<0)?' + 1':' - 1'):'',(Step=1)?'':(' Step '&& Step))
+ block.inclvl()
+   event(onEvent,c)
+ block.declvl()
+ println('Next')
+ event(onStop)
+end
+
+func doStop
+ println('Exit For')
+ event(onStop)
+end
+
+func Position
+ return((CounterName='')?Counter:code(CounterName))
+end

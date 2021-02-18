@@ -1,0 +1,50 @@
+<html>
+	<head>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<LINK href="style.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+		<table class="mes_table" border="1">
+			<tr class="prop_cap">
+				<td width="10%"><IMG src="../elements/delphi/icon/udp.ico"></td>
+				<td align="center">UDP</td>
+			</tr>
+			<tr>
+				<td style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px" colSpan="2">
+					<P align="justify">&nbsp;UDP - компонент для работы с сокетами по протоколу UDP.</P>
+					<P align="justify"><STRONG>LocalPort </STRONG>- определяет порт, к которому будет 
+						привязан сокет. Иными словами любое другое приложение в сети сможет после 
+						создания сокета слать данные на этот порт, а компонент соответственно получить 
+						их одним из методов - doRecived или doRecivedFrom.
+					</P>
+					<P align="justify"><STRONG>LocalHost</STRONG> - указывает то, к какому IP адресу 
+						будет привязан сокет. Это св-во задает фактически фильтр на принимаемые пакеты, 
+						который может быть настроен на прием данных только с локального компьютера, 
+						прием из сети и наконец прием всех пакетов, посланных на данный порт. Обычно 
+						это св-во остается пустым для приема всех пакетов.
+					</P>
+					<P align="justify"><STRONG>RemotePort</STRONG> - номер порта удаленного компьютера. 
+						Именно в этот порт компонент будет отсылать данные при использование 
+						соответствующих методов.</P>
+					<P align="justify"><STRONG>RemoteHost</STRONG> - IP адрес удаленного компьютера для 
+						отправки данных.
+					</P>
+					<P align="justify"><STRONG>AutoConnect</STRONG> - при установки этого св-ва в True 
+						компонент автоматически после создания совета привяжет IP адрес из св-ва&nbsp;<STRONG>RemoteHost</STRONG>&nbsp;к 
+						методу отправки данных <STRONG>doSend</STRONG>, в противном случае этот метод 
+						будет работать только для широковещательных пакетов.&nbsp;</P>
+					<P align="justify"><STRONG>ReceiveMode</STRONG> - способ приема данных из сокета. 
+						При задание Thread - компонент автоматически создаст новый поток для 
+						прослушивания порта и будет вызывать&nbsp;событие onReceive&nbsp;всякие раз 
+						после прихода данных. При использование режима Manual вам необходимо вручную 
+						вызывать методы <STRONG>doReceive</STRONG>&nbsp;или <STRONG>doReceiveFrom</STRONG>&nbsp;для 
+						приема данных.</P>
+				</td>
+			</tr>
+			<tr>
+				<td class="down_sel" colSpan="2">&nbsp;Примеры: <A href="*Example*tutorial/GlobalVar.sha">
+						GlobalVar</A></td>
+			</tr>
+		</table>
+	</body>
+</html>

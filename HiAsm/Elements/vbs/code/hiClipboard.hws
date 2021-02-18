@@ -1,0 +1,9 @@
+func doPutText(_data)
+  include("clipboard")
+  println('Clipboard.Copy(', PutText, ')')
+end
+
+func Text()
+  include("clipboard")
+  return('Clipboard.Paste()')
+end

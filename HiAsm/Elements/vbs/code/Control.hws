@@ -1,0 +1,557 @@
+// ************************************************
+// Control.hws for Vbs packet
+// WSO methods, properties and constants
+// Общие свойства и методы наследников класса Control
+// Last modification: 20.04.2010
+// ************************************************
+
+// Common properties
+func Control_Init(obj)
+  var(id_)
+  id_ = obj
+  if(isndef(ClientWidth) or isndef(ClientHeight) or isndef(MinWidth) or isndef(MinHeight) or isndef(MaxWidth) or isndef(MaxHeight) or (len(Text)) or isndef(Visible) or isndef(Enabled) or isndef(Align) or isndef(ParentColor) or isndef(Color) or isndef(Font) or isndef(Cursor) or isndef(Hint) or isndef(TabOrder) or isndef(TabStop) or isndef(Border) or isndef(Name))
+    println('With ', id_)
+    block.inclvl()
+  end
+
+  // Client size
+  if(isndef(ClientWidth))
+    println('.ClientWidth = ', Width)
+  end
+  if(isndef(ClientHeight))
+    println('.ClientHeight  = ', Height )
+  end
+
+  // Limit size
+  if(isndef(MinWidth))
+    println('.MinWidth = ', MinWidth)
+  end
+  if(isndef(MinHeight))
+    println('.MinHeight = ', MinHeight)
+  end
+  if(isndef(MaxWidth))
+    println('.MaxWidth = ', MaxWidth)
+  end
+  if(isndef(MaxHeight))
+    println('.MaxHeight = ', MaxHeight)
+  end
+
+  // Text
+  if(len(Text))
+    println('.Text = ', replace(Text, '\r\n', '" & vbCrLf & "'))
+  end
+
+  // Visible
+  if(isndef(Visible))
+    println('.Visible = False')
+  end
+
+  // Enabled
+  if(isndef(Enabled))
+    println('.Enabled = False')
+  end
+
+  // Align
+  if(isndef(Align))
+    println('.Align = wso.Translate("', Align, '")')
+  end
+
+  // Parent Color
+  if(isndef(ParentColor))
+    println('.ParentColor = True')
+  else
+    if(isndef(Color))
+      println('.Color = ', Color)
+    end
+  end
+
+  // Parent Font
+  if(isndef(ParentFont))
+    println('.ParentFont = True')
+  else
+    if(isndef(Font))
+      println('With .Font')
+      block.inclvl()
+        println('.Name =' , Font[0])
+        if(Font[1]<>0)
+          println('.Size = ', Font[1])
+        end
+        if(Font[3]<>8)
+          println('.Color = ', Font[3])
+        end
+        switch(Font[2])
+          case 1: println('.Bold = True')
+          case 2: println('.Italic = True')
+          case 3: println('.Italic = True')
+                  println('.Bold = True')
+          case 4: println('.Underline = True')
+          case 5: println('.Underline = True')
+                  println('.Bold = True')
+          case 6: println('.Underline = True')
+                  println('.Italic = True')
+          case 7: println('.Underline = True')
+                  println('.Italic = True')
+                  println('.Bold = True')
+        end
+      block.declvl()
+      println('End With')
+    end
+  end
+
+  // Cursor
+  if(isndef(Cursor))
+    println('.Cursor = wso.Translate("', Cursor, '")')
+  end
+
+  // Hint
+  if(isndef(Hint))
+    println('.Hint = ', Hint)
+    println('.Hint.Visible = True')
+  end
+
+  // TabOrder
+  if(isndef(TabOrder))
+    println('.TabOrder = ', TabOrder)
+  end
+
+  // TabOrder
+  if(isndef(TabStop))
+    println('.TabStop = True')
+  end
+
+  // Border
+  if(isndef(Border))
+    println('.Border = True')
+  end
+
+    // Name
+  if(len(`Name`))
+    println('.Name = ', `Name`)
+  end
+  
+  if(isndef(ClientWidth) or isndef(ClientHeight) or isndef(MinWidth) or isndef(MinHeight) or isndef(MaxWidth) or isndef(MaxHeight) or (len(Text)) or isndef(Visible) or isndef(Enabled) or isndef(Align) or isndef(ParentColor) or isndef(Color) or isndef(Font) or isndef(Cursor) or isndef(Hint) or isndef(TabOrder) or isndef(TabStop) or isndef(Border) or isndef(Name))
+    block.declvl()
+    println('End With')
+  end
+
+  // Common Events
+  // OnClick
+  if(linked(onClick))
+    lng.begin_func(id_ + '_OnClick(Sender)\'' + code(id_))
+      event(onClick)
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnDblClick
+  if(linked(onDblClick))
+    lng.begin_func(id_ + '_OnDblClick(Sender, X, Y, Button, mkFlags)\'' + code(id_))
+      if(linked(MouseX))
+        println('MouseX = X')
+      end
+      if(linked(MouseY))
+        println('MouseY = Y')
+      end
+      if(linked(Flags))
+        println('Flags = mkFlags')
+      end
+      event(onDblClick, 'Button')
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnChange
+  if(linked(onChange))
+    lng.begin_func(id_ + '_OnChange(Sender)\'' + code(id_))
+      event(onChange)
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnKeyDown
+  if(linked(onKeyDown))
+    lng.begin_func(id_ + '_OnKeyDown(Sender, Key, mkFlags)\'' + code(id_))
+      if(linked(Flags))
+        println('Flags = mkFlags')
+      end
+      event(onKeyDown,'Key')
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnKeyUp
+  if(linked(onKeyUp))
+    lng.begin_func(id_ + '_OnKeyUp(Sender, Key, mkFlags)\'' + code(id_))
+      if(linked(Flags))
+        println('Flags = mkFlags')
+      end
+      event(onKeyUp,'Key')
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnMouseEnter
+  if(linked(onMouseEnter))
+    lng.begin_func(id_ + '_OnMouseEnter(Sender)\'' + code(id_))
+      event(onMouseEnter)
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnMouseLeave
+  if(linked(onMouseLeave))
+    lng.begin_func(id_ + '_OnMouseLeave(Sender)\'' + code(id_))
+      event(onMouseLeave)
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnMouseDown
+  if(linked(onMouseDown))
+    lng.begin_func(id_ + '_OnMouseDown(Sender, X, Y, Button, mkFlags)\'' + code(id_))
+      if(linked(MouseX))
+        println('MouseX = X')
+      end
+      if(linked(MouseY))
+        println('MouseY = Y')
+      end
+      if(linked(Flags))
+        println('Flags = mkFlags')
+      end
+      event(onMouseDown, 'Button')
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnMouseMove
+  if(linked(onMouseMove))
+    lng.begin_func(id_ + '_OnMouseMove(Sender, X, Y, mkFlags)\'' + code(id_))
+      if(linked(MouseX))
+        println('MouseX = X')
+      end
+      if(linked(MouseY))
+        println('MouseY = Y')
+      end
+      if(linked(Flags))
+        println('Flags = mkFlags')
+      end
+      event(onMouseMove)
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnMouseUp
+  if(linked(onMouseUp))
+    lng.begin_func(id_ + '_OnMouseUp(Sender, X, Y, Button, mkFlags)\'' + code(id_))
+      if(linked(MouseX))
+        println('MouseX = X')
+      end
+      if(linked(MouseY))
+        println('MouseY = Y')
+      end
+      if(linked(Flags))
+        println('Flags = mkFlags')
+      end
+      event(onMouseUp, 'Button')
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnResize
+  if(linked(onResize))
+    lng.begin_func(id_ + '_OnResize(Sender)\'' + code(id_))
+      event(onResize)
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnMove
+  if(linked(onMove))
+    lng.begin_func(id_ + '_OnMove(Sender)\'' + code(id_))
+      event(onMove)
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnDestroy
+  if(linked(onDestroy))
+    lng.begin_func(id_ + '_OnDestroy(Sender)\'' + code(id_))
+      event(onDestroy)
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnShow
+  if(linked(onShow))
+    lng.begin_func(id_ + '_OnShow(Sender)\'' + code(id_))
+      event(onShow)
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnHide
+  if(linked(onHide))
+    lng.begin_func(id_ + '_OnHide(Sender)\'' + code(id_))
+      event(onHide)
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnEnabledChange
+  if(linked(onEnabledChange))
+    lng.begin_func(id_ + '_OnEnabledChange(Sender)\'' + code(id_))
+      event(onEnabledChange)
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnSetFocus
+  if(linked(onSetFocus))
+    lng.begin_func(id_ + '_OnSetFocus(Sender)\'' + code(id_))
+      event(onSetFocus)
+    lng.end_func(BLK_EVENTS)
+  end
+
+  // OnKillFocus
+  if(linked(onKillFocus))
+    lng.begin_func(id_ + '_OnKillFocus(Sender)\'' + code(id_))
+      event(onKillFocus)
+    lng.end_func(BLK_EVENTS)
+  end
+end // Init
+
+// Common methods
+// Position
+func doLeft(_data)
+  println(id_, '.Left = ', _data)
+end
+
+func doTop(_data)
+  println(id_, '.Top = ', _data)
+end
+
+// Size
+func doWidth(_data)
+  println(id_, '.Width = ', _data)
+end
+
+func doHeight(_data)
+  println(id_, '.Height = ', _data)
+end
+
+// Client size
+func doClientWidth(_data)
+  println(id_, '.ClientWidth = ', _data)
+end
+
+func doClientHeight(_data)
+  println(id_, '.ClientHeight = ', _data)
+end
+
+func doText(_data)
+  println(id_, '.Text = ', _data)
+end
+
+// Visible
+func doVisible(_data)
+  println(id_, '.Visible = ', (_data='') ? 'False' : _data)
+end
+
+// Enabled
+func doEnabled(_data)
+  println(id_, '.Enabled = ', (_data='') ? 'False' : _data)
+end
+
+// Align
+func doAlign(_data)
+  println(id_, '.Align = ', _data)
+end
+
+// Color
+func doColor(_data)
+  println(id_, '.Color = ', _data)
+end
+
+// Font
+func doFont(_data)
+  println(id_, '.Font = ', _data)
+end
+
+// Cursor
+func doCursor(_data)
+  println(id_, '.Cursor = ', _data)
+end
+
+// Hint
+func doHint(_data)
+  println(id_, '.Hint = ', _data)
+  println(id_, '.Hint.Visible = True')
+end
+
+// Name
+func doName(_data)
+  println(id_, '.Name = ', _data)
+end
+
+// Show
+func doShow()
+  println(id_, '.Show()')
+end
+
+// Hide
+func doHide()
+  println(id_, '.Hide()')
+end
+
+// Destroy
+func doDestroy()
+  println(id_, '.Destroy()')
+end
+
+// SetBounds
+func doSetBounds(_data)
+  println(id_, '.SetBounds ' + _arr.mt_pop(_data) + ', ' + _arr.mt_pop(_data) + ', ' + _arr.mt_pop(_data) + ', ' + _data)
+end
+
+// CenterControl
+func doCenterControl()
+  println(id_, '.CenterControl()')
+end
+
+// SetFocus
+func doSetFocus()
+  println(id_, '.SetFocus()')
+end
+
+// Repaint
+func doRepaint()
+  println(id_, '.Repaint()')
+end
+
+// Common Vars
+// Handle
+// Root
+func Root()
+  return(id_ + '.Root')
+end
+
+// Form
+func Form()
+  return(id_ + '.Form')
+end
+
+// Parent
+func Parent()
+  return(id_ + '.Parent')
+end
+
+func Handle()
+  return(id_)
+end
+
+// FontEx
+func FontEx()
+  return(id_ + '.Font')
+end
+
+// Visible
+func Visible()
+  return(id_ + '.Visible')
+end
+
+// Enabled
+func Enabled()
+  return(id_ + '.Enabled')
+end
+
+// Text
+func vText()
+  return(id_ + '.Text')
+end
+
+// Color
+func vColor()
+  return(id_ + '.Color')
+end
+
+// Bounds
+func vLeft()
+  return(id_ + '.Left')
+end
+
+func vTop()
+  return(id_ + '.Top')
+end
+
+func Right()
+  return(id_ + '.Right')
+end
+
+func Bottom()
+  return(id_ + '.Bottom')
+end
+
+// Size
+func vWidth()
+  return(id_ + '.Width')
+end
+
+func vHeight()
+  return(id_ + '.Height')
+end
+
+// Focused
+func Focused()
+  return(id_ + '.Focused')
+end
+
+// Hint
+func vHint()
+  return(id_ + '.Hint')
+end
+
+// Name
+func Name()
+  return(id_ + '.Name')
+end
+
+// Mouse position
+func MouseX()
+  stack &= block.select(BLK_GLOB)
+  if (sys.gvarfind('mouse_x_set') = -1)
+    gvar(mouse_x_set)
+    println('Dim MouseX')
+  end
+  block.select(_arr.pop(stack))
+  return('MouseX')
+end
+
+func MouseY()
+  stack &= block.select(BLK_GLOB)
+  if (sys.gvarfind('mouse_y_set') = -1)
+    gvar(mouse_y_set)
+    println('Dim MouseY')
+  end
+  block.select(_arr.pop(stack))
+  return('MouseY')
+end
+
+// Botton and keyboard flags
+func Flags()
+  stack &= block.select(BLK_GLOB)
+  if (sys.gvarfind('events_flags_set') = -1)
+    gvar(events_flags_set)
+    println('Dim Flags')
+  end
+  block.select(_arr.pop(stack))
+  return('Flags')
+end
+
+// PopupMenu
+func PopupMenu()
+  return(id_ + '.PopupMenu')
+end
+
+// Brush
+func Brush()
+  return(id_ + '.Brush')
+end
+
+// Pen
+func Pen()
+  return(id_ + '.Pen')
+end
+
+// ClientWidth
+func ClientWidth()
+  return(id_ + '.ClientWidth')
+end
+
+// ClientHeight
+func ClientHeight()
+  return(id_ + '.ClientHeight')
+end

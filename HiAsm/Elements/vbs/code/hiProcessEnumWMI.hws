@@ -1,0 +1,226 @@
+func Init()
+  if(isset(HandleWMI))
+    var(obj, param, user, workgroup, sid)
+    obj = HandleWMI
+    param = Property_
+    user = user_
+    workgroup = domain_
+    sid = sid_
+    stack &= block.select(BLK_GLOB)
+    println('Dim ', param, (linked(Domain) or linked(Owner))?(', ' + user+ ', ' + workgroup):'', (linked(OwnerSid))?(', ' + sid):'')
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doEnum()
+  if(linked(onEvent))
+    if(linked(Process))
+      println(query, ' = "Select * from Win32_Process Where Name = \'"', ' & ', code(Process), ' & ', '"\'"')
+      println('Set ', obj_, ' = ', obj, '.ExecQuery(', query, ')')
+    elseif(isndef(Process))
+      println('Set ', obj_, ' = ', obj, '.ExecQuery("Select * from Win32_Process WHERE Name = \'', code(Process), '\'")')
+    else
+      println('Set ', obj_, ' = ', obj, '.ExecQuery("Select * from Win32_Process")')
+    end
+    println('For Each ', item_, ' In ', obj_)
+    block.inclvl()
+      println('Set ', param, ' = ', item_)
+      if(linked(Domain) or linked(Owner))
+        println(param, '.GetOwner ', user, ', ', workgroup)
+      end
+      if(linked(OwnerSid))
+        println(param, '.GetOwnerSid ', sid)
+      end
+      event(onEvent, param + '.Name')
+    block.declvl()
+    println('Next')
+  end
+end
+
+func Caption()
+  return(param + '.Caption')
+end
+
+func CommandLine()
+  return(param + '.CommandLine')
+end
+
+func CreationClassName()
+  return(param + '.CreationClassName')
+end
+
+func CreationDate()
+  return(param + '.CreationDate')
+end
+
+func CSCreationClassName()
+  return(param + '.CSCreationClassName')
+end
+
+func CSName()
+  return(param + '.CSName')
+end
+
+func Description()
+  return(param + '.Description')
+end
+
+func Domain()
+  return(domain_)
+end
+
+func ExecutablePath()
+  return(param + '.ExecutablePath')
+end
+
+func ExecutionState()
+  return(param + '.ExecutionState')
+end
+
+func Handle()
+  return(param + '.Handle')
+end
+
+func HandleCount()
+  return(param + '.HandleCount')
+end
+
+func InstallDate()
+  return(param + '.InstallDate')
+end
+
+func KernelModeTime()
+  return(param + '.KernelModeTime')
+end
+
+func MaximumWorkingSetSize()
+  return(param + '.MaximumWorkingSetSize')
+end
+
+func MinimumWorkingSetSize()
+  return(param + '.MinimumWorkingSetSize')
+end
+
+func OSCreationClassName()
+  return(param + '.OSCreationClassName')
+end
+
+func OSName()
+  return(param + '.OSName')
+end
+
+func OtherOperationCount()
+  return(param + '.OtherOperationCount')
+end
+
+func OtherTransferCount()
+  return(param + '.OtherTransferCount')
+end
+
+func Owner()
+  return(user)
+end
+
+func OwnerSid()
+  return(sid)
+end
+
+func PageFaults()
+  return(param + '.PageFaults')
+end
+
+func PageFileUsage()
+  return(param + '.PageFileUsage')
+end
+
+func ParentProcessId()
+  return(param + '.ParentProcessId')
+end
+
+func PeakPageFileUsage()
+  return(param + '.PeakPageFileUsage')
+end
+
+func PeakVirtualSize()
+  return(param + '.PeakVirtualSize')
+end
+
+func PeakWorkingSetSize()
+  return(param + '.PeakWorkingSetSize')
+end
+
+func Priority()
+  return(param + '.Priority')
+end
+
+func PrivatePageCount()
+  return(param + '.PrivatePageCount')
+end
+
+func ProcessId()
+  return(param + '.ProcessId')
+end
+
+func QuotaNonPagedPoolUsage()
+  return(param + '.QuotaNonPagedPoolUsage')
+end
+
+func QuotaPagedPoolUsage()
+  return(param + '.QuotaPagedPoolUsage')
+end
+
+func QuotaPeakNonPagedPoolUsage()
+  return(param + '.QuotaPeakNonPagedPoolUsage')
+end
+
+func QuotaPeakPagedPoolUsage()
+  return(param + '.QuotaPeakPagedPoolUsage')
+end
+
+func ReadOperationCount()
+  return(param + '.ReadOperationCount')
+end
+
+func ReadTransferCount()
+  return(param + '.ReadTransferCount')
+end
+
+func SessionId()
+  return(param + '.SessionId')
+end
+
+func Status()
+  return(param + '.Status')
+end
+
+func TerminationDate()
+  return(param + '.TerminationDate')
+end
+
+func ThreadCount()
+  return(param + '.ThreadCount')
+end
+
+func UserModeTime()
+  return(param + '.UserModeTime')
+end
+
+func VirtualSize()
+  return(param + '.VirtualSize')
+end
+
+func WindowsVersion()
+  return(param + '.WindowsVersion')
+end
+
+func WorkingSetSize()
+  return(param + '.WorkingSetSize')
+end
+
+func WriteOperationCount()
+  return(param + '.WriteOperationCount')
+end
+
+func WriteTransferCount()
+  return(param + '.WriteTransferCount')
+end

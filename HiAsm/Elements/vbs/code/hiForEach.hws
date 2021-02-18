@@ -1,0 +1,25 @@
+func Init
+  var(i)
+  i = item_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', i)
+  block.select(_arr.pop(stack))
+end
+
+func doFor
+  println('For Each ', i, ' In ', Collection)
+  block.inclvl()
+    event(onEvent, i)
+  block.declvl()
+  println('Next')
+  event(onStop)
+end
+
+func doStop
+  event(onBreak)
+  println('Exit For')
+end
+
+func Item
+  return(i)
+end

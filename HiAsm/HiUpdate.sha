@@ -1,0 +1,554 @@
+*Update HiAsm Studio#13#10create by Dilma & nesco
+Make(delphi)
+ver(4.03 build 180)
+Add(MainForm,5561604,77,65)
+{
+ Left=20
+ Top=105
+ Width=840
+ Height=270
+ Caption="HiAsm online update"
+ Point(Width)
+ Point(onResize)
+ link(onResize,12237195:doWork1,[(117,92)(117,71)])
+}
+Add(ChildPanel,12237195,126,65)
+{
+ @Hint=#9:Top panel|
+ link(onEvent1,16237997:doStrCat,[])
+}
+BEGIN_SDK
+  Add(EditMulti,3396886,7,7)
+  {
+   EventCount=1
+   WorkCount=1
+   VarCount=2
+   Width=146
+   Height=102
+   link(doWork1,15610024:doResize,[(14,13)(14,27)])
+   link(Var1,10422719:Checked,[(13,102)(27,102)])
+   link(Var2,16237997:Result,[(20,104)(111,104)])
+  }
+  Add(Panel,632427,63,21)
+  {
+   Width=832
+   Height=30
+   Align=2
+   BevelInner=0
+   Point(doColor)
+  }
+  Add(Edit,800876,105,21)
+  {
+   Left=65
+   Top=5
+   Width=285
+   Layout="top_panel"
+   WidthScale=100
+   Text="http://hiasm.com"
+  }
+  Add(StrCat,16237997,105,63)
+  {
+   Str2="/hi_zvcs/"
+   link(onStrCat,3396886:onEvent1,[(145,69)(145,13)])
+   link(Str1,800876:Text,[])
+  }
+  Add(HBoxLayout,15610024,21,21)
+  {
+   Name="top_panel"
+   Space=3
+   Padding=5
+  }
+  Add(CheckBox,10422719,21,63)
+  {
+   Left=355
+   Top=5
+   Width=120
+   TabOrder=-1
+   Layout="top_panel"
+   Caption="Update HiUpdate"
+  }
+  Add(Button,3490777,63,63)
+  {
+   Left=5
+   Top=5
+   TabOrder=-1
+   Layout="top_panel"
+   Caption="Update"
+   link(onClick,16237997:doStrCat,[])
+  }
+END_SDK
+Add(HTTP_Get,16180479,210,65)
+{
+ link(onDownload,9579638:doDeCompress,[])
+ link(onStop,3137198:doEvent1,[(252,92)(252,113)])
+}
+Add(Convertor,7093061,301,65)
+{
+ Mode=11
+ link(onResult,16036371:doText,[])
+}
+Add(StrList,16036371,350,44)
+{
+}
+Add(HTTP_Get,13142930,329,604)
+{
+ Wait=0
+ link(onStatus,4306622:doEvent1,[])
+ link(onDownload,13136775:doEvent1,[(371,617)(371,680)])
+ link(onURLSize,7894611:doMax,[(379,624)(379,554)])
+}
+Add(StrCat,2048370,245,555)
+{
+ link(onStrCat,16175694:doEvent1,[])
+ link(Str1,12237195:Var2,[(251,542)(139,542)])
+ link(Str2,1992835:Var1,[(258,389)])
+}
+Add(StatusBar,10905628,581,352)
+{
+}
+Add(InfoTip,608644,574,30)
+{
+ Info=#9:Внимание!|157:Программа предназначена только для опытных пользователей! Во избежание проблем, связанных с её применением, рекомендуется делать резервные копии файлов HiAsm|
+ Transparent=1
+ Width=267
+ Height=67
+}
+Add(ZLIB,13547628,483,653)
+{
+ link(onStream,2338735:doEvent1,[])
+}
+Add(FileStream,6242335,721,646)
+{
+ Mode=1
+ AutoCopy=0
+ Point(doCopyFromStream)
+ link(FileName,16171936:Var2,[])
+}
+Add(ZLIB,9579638,259,65)
+{
+ link(onStream,7093061:doConvert,[])
+}
+Add(Hub,2338735,651,653)
+{
+ link(onEvent1,15785818:doPart,[(675,659)(675,610)])
+ link(onEvent2,6242335:doCopyFromStream,[])
+}
+Add(Dir,3270630,791,604)
+{
+}
+Add(FilePart,15785818,686,604)
+{
+ link(onPath,11478614:doStrCat,[])
+ link(FileName,16171936:Var1,[(692,592)])
+}
+Add(StrCat,11478614,735,604)
+{
+ link(onStrCat,3270630:doDir,[])
+ link(Str1,3270630:CurrentDir,[(741,592)(781,592)(781,650)(797,650)])
+}
+Add(Hub,14641127,161,443)
+{
+ OutCount=4
+ link(onEvent1,8812294:doGetFileIcon,[(224,449)(224,428)])
+ link(onEvent2,13118516:doAdd,[])
+ link(onEvent3,13101876:doWork1,[(224,463)(224,492)(424,492)])
+ link(onEvent4,2048370:doStrCat,[(199,470)(199,561)])
+}
+Add(Hub,13136775,406,674)
+{
+ OutCount=3
+ link(onEvent1,13547628:doDeCompress,[(429,680)(429,666)])
+ link(onEvent2,15921080:doWrite,[])
+ link(onEvent3,2453929:doWork1,[(473,694)(473,561)])
+}
+Add(HubEx,4628014,546,142)
+{
+ link(onEvent,13501557:doFileHashsum,[])
+}
+Add(MTStrTbl,6013134,329,520)
+{
+ Top=30
+ Width=832
+ Height=206
+ Align=5
+ Name="tab"
+ Columns=#12:FileName=170|15:MD5 Current=235|16:MD5 Download=235|4:Size|10:Result===2|
+ Col=3
+ SmallIconsManager="icon"
+ DrawManager="draw_tab"
+ link(onClientRect,7826895:doSeparateMT,[(369,547)(369,526)])
+ link(Row,12264012:Var1,[(349,501)])
+}
+Add(MST_Clear,9004730,329,310)
+{
+ MSTControl="tab"
+ link(onChange,11501077:doClearIcons,[])
+}
+Add(MST_RowAction,6415472,448,450)
+{
+ MSTControl="tab"
+ link(onChange,428623:doEvent1,[])
+}
+Add(MST_SelectRow,9991676,574,457)
+{
+ MSTControl="tab"
+ Point(doSelEndStr)
+}
+Add(Hub,428623,490,450)
+{
+ link(onEvent1,9991676:doSelEndStr,[(562,456)(562,470)])
+ link(onEvent2,13243325:doData,[])
+}
+Add(DoData,13243325,518,457)
+{
+ Data=Integer(-1)
+ link(onEventData,9991676:doSelect,[])
+}
+Add(Hub,8777299,294,338)
+{
+ link(onEvent1,9004730:doClear,[(318,344)(318,316)])
+ link(onEvent2,5055158:doEnum,[])
+}
+Add(IconsManager,9803987,413,44)
+{
+ Name="icon"
+ Icons=[]
+}
+Add(MST_DrawManager,16717880,455,44)
+{
+ Name="draw_tab"
+}
+Add(WorkIconsManager,11501077,406,310)
+{
+ IconsManager="icon"
+ Point(EndIdxIcons)
+ Point(doMT_InsertIcon)
+}
+Add(FileAttributes,8812294,273,401)
+{
+ Point(doGetFileIcon)
+ Point(onGetFileIcon)
+ link(FileName,1992835:Var2,[])
+ link(onGetFileIcon,4384211:doAdd,[(313,414)(313,407)])
+}
+Add(StrPart,13624185,413,142)
+{
+ Char=" "
+ Point(Left)
+ Point(Right)
+ link(onSplit,15275704:doCase,[])
+}
+Add(Hashsum,13501557,574,135)
+{
+ link(onResult,2944035:doCompare,[])
+ link(Data,9812061:Var3,[(580,127)(564,127)(564,207)])
+}
+Add(If_else,2944035,623,135)
+{
+ link(onFalse,9925632:doAdd,[(666,148)(666,196)(366,196)(366,232)])
+ link(Op2,6432290:Var3,[(636,119)(557,119)(557,186)])
+}
+Add(ArrayEnum,7302725,364,142)
+{
+ Type=1
+ link(onItem,13624185:doSplit,[])
+ link(onEndEnum,6496262:doFindName,[(407,155)(407,204)])
+ link(Array,16036371:Array,[])
+}
+Add(If_else,13757478,98,324)
+{
+ Type=4
+ Op2=Integer(1)
+ link(onTrue,1781679:doEvent1,[])
+ link(onFalse,3097733:doMessage,[(147,337)(147,365)])
+ link(Op1,1316608:Var1,[(104,277)])
+}
+Add(Message,3097733,189,359)
+{
+ Message="No files for update"
+ Caption="HiAsm UpDate"
+ Icon=4
+ link(onMessage,10756984:doWork3,[(284,365)])
+}
+Add(Message,16234927,231,331)
+{
+ Message="Continuation operation or cancelling operation for later update"
+ Type=1
+ Icon=3
+ DefButton=1
+ Point(onOK)
+ Point(onCANCEL)
+ link(Caption,4408191:Result,[])
+ link(onOK,8777299:doEvent1,[])
+ link(onCANCEL,10756984:doWork2,[])
+}
+Add(HubEx,10756984,280,345)
+{
+ Angle=3
+ link(onEvent,8602437:doWork3,[])
+}
+Add(MT_AddData,13118516,406,450)
+{
+ Count=3
+ InputMT=0
+ link(onAdd,6415472:doRowAction,[])
+ link(Data1,5159624:Value,[(412,442)(391,442)])
+ link(Data2,10948658:Value,[(419,442)(440,442)])
+ link(Data3,11501077:EndIdxIcons,[])
+}
+Add(Memory,10948658,434,401)
+{
+ Default=String(...)
+}
+Add(Memory,5159624,385,401)
+{
+ Default=String()
+}
+Add(MatrixRW,11024662,574,611)
+{
+ X=3
+ link(Matrix,999281:Var2,[])
+ link(Y,12264012:Var2,[])
+}
+Add(Hub,4306622,392,604)
+{
+ OutCount=4
+ link(onEvent1,7894611:doPosition,[(434,610)(434,519)])
+ link(onEvent2,7894611:doHint,[(521,617)(521,568)])
+ link(onEvent3,11024662:doWrite,[])
+ link(onEvent4,2399401:doWork2,[])
+}
+Add(MatrixRW,15921080,609,674)
+{
+ X=4
+ link(Matrix,999281:Var3,[(615,592)])
+ link(Value,7304561:Value,[])
+ link(Y,12264012:Var3,[(636,501)])
+}
+Add(Memory,7304561,616,604)
+{
+ Default=String(ok)
+}
+Add(MST_Matrix,12305587,574,534)
+{
+ MSTControl="tab"
+}
+Add(GetDataEx,999281,574,587)
+{
+ link(Data,12305587:Matrix,[])
+}
+Add(Application,4906143,434,625)
+{
+ Wait=1
+}
+Add(MT_Add,4384211,322,401)
+{
+ InputMT=1
+ link(onAdd,11501077:doMT_InsertIcon,[(369,407)(369,323)])
+ link(Data,11501077:CountIcons,[(328,379)(419,379)])
+}
+Add(EnumProcess,6496262,700,177)
+{
+ Point(doFindName)
+ Point(onFind)
+ Point(onNotFind)
+ Point(Name)
+ link(onFind,13978274:doMessage,[(740,190)(740,169)])
+ link(onNotFind,4659309:doWork2,[])
+ link(Name,3282797:Var2,[])
+}
+Add(Message,13978274,749,163)
+{
+ Message="Before update please close HiAsm!"
+ Caption="HiAsm UpDate"
+ Icon=3
+ link(onMessage,4659309:doWork1,[(795,169)])
+}
+Add(HubEx,4659309,791,191)
+{
+ link(onEvent,10614988:doFindName,[])
+}
+Add(Memory,15780777,707,107)
+{
+ Default=String(HiAsm.exe)
+}
+Add(GetDataEx,6432290,413,181)
+{
+ link(Data,13624185:Left,[])
+}
+Add(MT_MultiMem,13829474,721,345)
+{
+ Count=1
+ link(onData,14641127:doEvent1,[(840,351)(840,711)(148,711)(148,449)])
+}
+Add(MT_Add,9925632,378,226)
+{
+ link(onAdd,14031690:doAdd,[])
+ link(Data,6432290:Var1,[(384,186)])
+}
+Add(MT_Add,14031690,420,226)
+{
+ InputMT=1
+ link(onAdd,4563914:doAdd,[])
+ link(Data,9812061:Var2,[])
+}
+Add(IndexToChanel,11053661,504,149)
+{
+ Point(Index)
+ link(onEvent2,4628014:doWork3,[(550,162)])
+ link(Index,12237195:Var1,[(510,105)(132,105)])
+}
+Add(MT_MTArrayRW,4563914,665,212)
+{
+ Point(Count)
+ link(Array,15639132:Var2,[])
+}
+Add(MT_MTArray,15598311,665,107)
+{
+}
+Add(Hub,3137198,308,107)
+{
+ link(onEvent1,15598311:doClear,[])
+ link(onEvent2,7302725:doEnum,[(343,120)(343,148)])
+}
+Add(MT_MTArrayEnum,5055158,476,345)
+{
+ link(onItem,13829474:doValue,[])
+ link(onEndEnum,9110833:doData,[])
+ link(Array,15639132:Var1,[(482,200)])
+}
+Add(GetDataEx,15639132,665,195)
+{
+ link(Data,15598311:Array,[])
+}
+Add(GetDataEx,15936999,721,384)
+{
+ link(Data,13829474:Value1,[])
+}
+Add(GetDataEx,1992835,273,384)
+{
+ Angle=1
+ link(Data,15936999:Var1,[])
+}
+Add(GetDataEx,16171936,721,587)
+{
+ link(Data,15936999:Var2,[])
+}
+Add(StrCat,4408191,238,289)
+{
+ Str2=" for update"
+}
+Add(Convertor,16677425,189,289)
+{
+ Mode=16
+ Word_1="file"
+ Word_2="files"
+ Word_5="files"
+ link(onResult,4408191:doStrCat,[])
+ link(Data,1316608:Var2,[])
+}
+Add(GetDataEx,1316608,189,272)
+{
+ Angle=1
+ link(Data,4563914:Count,[(678,277)])
+}
+Add(Hub,1781679,154,324)
+{
+ link(onEvent1,16677425:doConvert,[(178,330)(178,295)])
+ link(onEvent2,16234927:doMessage,[])
+}
+Add(EnumProcess,10614988,805,170)
+{
+ Point(doFindName)
+ Point(onFind)
+ Point(onNotFind)
+ Point(Name)
+ link(onFind,6387417:doMessage,[])
+ link(onNotFind,13757478:doCompare,[(846,190)(846,716)(86,716)(86,330)])
+ link(Name,3282797:Var3,[(818,151)])
+}
+Add(GetDataEx,3282797,707,146)
+{
+ link(Data,15780777:Value,[])
+}
+Add(Message,6387417,854,177)
+{
+ Message="You have not closed HiAsm. Further update impossible"
+ Caption="HiAsm UpDate"
+ Icon=1
+ link(onMessage,8602437:doWork2,[(898,183)(898,267)])
+}
+Add(HubEx,8602437,280,261)
+{
+ Angle=2
+ link(onEvent,5561604:doClose,[(65,267)(65,92)])
+}
+Add(Hub,16175694,287,555)
+{
+ OutCount=5
+ link(onEvent1,6013134:doClientRect,[(309,561)(309,526)])
+ link(onEvent2,2453929:doWork2,[])
+ link(onEvent3,13142930:GetURLSize,[(316,575)(316,624)])
+ link(onEvent4,13101876:doWork2,[])
+ link(onEvent5,13142930:doDownload,[(311,589)(311,610)])
+}
+Add(GetDataEx,12264012,595,496)
+{
+ link(Data,9991676:EndIdx,[])
+}
+Add(MT_MultiData,7826895,378,520)
+{
+ Count=4
+ link(onData1,7894611:doLeft,[])
+ link(onData2,7894611:doTop,[])
+ link(onData3,7894611:doWidth,[])
+ link(onData4,7894611:doHeight,[])
+}
+Add(ProgressBar,7894611,532,513)
+{
+ Left=425
+ Top=515
+ Visible=1
+ Ctl3D=0
+ Hint=" "
+ Point(doLeft)
+ Point(doTop)
+ Point(doWidth)
+ Point(doHeight)
+ Point(doMax)
+ Point(doVisible)
+ Point(doHint)
+}
+Add(GetDataEx,9812061,420,202)
+{
+ link(Data,13624185:Right,[])
+}
+Add(Case,15275704,455,142)
+{
+ Value=String(HiUpdate.sha)
+ link(onNextCase,4628014:doWork2,[])
+ link(onTrue,11053661:doEvent,[])
+}
+Add(StrCat,16237997,168,65)
+{
+ Str2="hashed.txt"
+ link(onStrCat,16180479:doDownload,[])
+}
+Add(ChanelToIndex,2453929,483,555)
+{
+ link(onIndex,7894611:doVisible,[])
+}
+Add(DoData,9110833,532,352)
+{
+ Data=String(Finished)
+ link(onEventData,10905628:doText,[])
+}
+Add(HubEx,2399401,420,625)
+{
+ link(onEvent,4906143:doProcessMessages,[])
+}
+Add(HubEx,13101876,420,576)
+{
+ Angle=1
+ link(onEvent,2399401:doWork1,[])
+}

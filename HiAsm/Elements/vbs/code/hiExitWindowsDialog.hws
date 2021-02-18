@@ -1,0 +1,13 @@
+func Init()
+  var(obj)
+  obj = objShell_
+  stack &= block.select(BLK_OBJ)
+  println('Dim ', obj)
+  println('Set ', obj, ' = CreateObject("Shell.Application")')
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doExit()
+  println(obj, '.ShutdownWindows')
+end

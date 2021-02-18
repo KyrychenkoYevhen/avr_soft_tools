@@ -1,0 +1,20 @@
+func doRepeat(_data)
+  println('FStop = False')
+  if (Check = 0)
+    println('While Not FStop And (', Op1,' ',Type,' ',Op2,')')
+    block.inclvl()
+    event(onRepeat)
+    block.declvl()
+    println('Wend')
+  else
+    println('Do')
+    block.inclvl()
+    event(onRepeat)
+    block.declvl()
+    println('Loop Until FStop Or (', Op1,' ',Type,' ',Op2,')')
+  end
+end
+
+func doStop(_data)
+  println('FStop = True')
+end

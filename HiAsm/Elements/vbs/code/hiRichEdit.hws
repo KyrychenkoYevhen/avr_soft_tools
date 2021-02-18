@@ -1,0 +1,220 @@
+include("object")
+include("control")
+
+func flgFormat()  // IOFlags
+  fvar(exFormat)
+  exFormat = ReadFormat + 1
+  if(isndef(Unicode))
+    exFormat += 16 //  0x0010
+  end
+  if(isndef(UseCodePage))
+    exFormat += 32 //  0x0020
+  end
+  if(isndef(PlainRTF))
+    exFormat += 16384 //  0x4000
+  end
+  if(isndef(Selection))
+    exFormat += 32768 //  0x8000
+  end
+  return(exFormat)
+end
+
+func flgFind()  // FindFlags
+  fvar(exFnd)
+  exFnd = 0
+  if(isdef(Down))
+    exFnd += 1
+  end
+  if(isndef(WholeWord))
+    exFnd += 2
+  end
+  if(isndef(MatchCase))
+    exFnd += 4
+  end
+  return(exFnd)
+end
+
+func Init()
+  var(id)
+  id = RichEdit_
+
+  fvar(old, esStyle)
+  esStyle = 0
+  if(isdef(ES_MULTILINE))
+    esStyle += 4 //  0x00000004L
+  end
+  if(isndef(ES_PASSWORD))
+    esStyle += 32 //  0x00000020L
+  end
+  if(isndef(ES_NOHIDESEL))
+    esStyle += 256 //  0x00000100L
+  end
+  if(isndef(ES_READONLY))
+    esStyle += 2048 //  0x00000800L
+  end
+  old = block.select(BLK_BODY)
+
+  println('Set ', id, ' = ', get_parent(), '.CreateRichEdit(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(' + esStyle + '))')
+
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(_arr.count(Strings)>0)
+    println(id, '.Text = ', code(_arr.join(Strings, ' & vbCrLf & ')))
+  end  
+  if(isndef(AutoURLDetect))
+    println(id, '.AutoURLDetect = True')
+  end
+  if(isndef(UndoLimit))
+    println(id, '.UndoLimit = ', UndoLimit)
+  end
+  block.select(BLK_GLOB)
+  if(linked(doRead) or linked(doWrite))
+    println('Dim ', flagsFormat)
+    println(flagsFormat, ' = ', flgFormat())
+  end
+  if(linked(doFindText))
+    // Search options
+    println('Dim ', flagsFind, ', ', MinPosition, ', ', MaxPosition)
+    println(flagsFind, ' = ', flgFind())
+    // Default searching position
+    println(MinPosition, ' = ', MinPos)
+    println(MaxPosition, ' = ', MaxPos)
+  end
+  block.select(old)
+end
+
+func doPut(_data)
+  println(x, ' = ', _arr.mt_pop(_data))
+  println(y, ' = ', _arr.mt_pop(_data))
+  println(z, ' = ', id, '.SelStart')
+  println(id, '.ReplaceSelection ' , x, ', True')
+  println(id, '.SelStart = ', z)
+  println(id, '.SelLength = Len(', x, ')')
+  println(id, '.SelFont.Color = ', _data)
+  println(id, '.SelFont.Bold = ((', y, ' And 1) = 1)')
+  println(id, '.SelFont.Italic = ((', y, ' And 2) = 2)')
+  println(id, '.SelFont.Underline = ((', y, ' And 4) = 4)')
+  println(id, '.SelFont.Strikethrough = ((', y, ' And 8) = 8)')
+  println(id, '.ClearSelection()')
+end
+
+func doAdd(_data)
+  println(x, ' = ', _arr.mt_pop(_data))
+  println(y, ' = ', _arr.mt_pop(_data))
+  println(id, '.SelFont.Color = ', _data)
+  println(id, '.SelFont.Bold = ((', y, ' And 1) = 1)')
+  println(id, '.SelFont.Italic = ((', y, ' And 2) = 2)')
+  println(id, '.SelFont.Underline = ((', y, ' And 4) = 4)')
+  println(id, '.SelFont.Strikethrough = ((', y, ' And 8) = 8)')
+  println(id, '.Add ', x)
+end
+
+func doRead(_data)
+  if(linked(onResult))
+    println(res, ' = ', id, '.Load(', _data, ', ', flagsFormat, ')')
+    event(onResult, res)
+  else
+    println(id, '.Load ', _data, ', ', flagsFormat)
+  end
+end
+
+func doWrite(_data)
+  if(linked(onResult))
+    println(res, ' = ', id, '.Save(', _data, ', ', flagsFormat, ')')
+    event(onResult, res)
+  else
+    println(id, '.Save ', _data, ', ', flagsFormat)
+  end
+end
+
+func doPrint(_data)
+  println(id, '.Print ', Driver, ', ', Device, ', ', PrintInfo, ', ', Selection)
+end
+
+func doFindText(_data)
+  println(res, ' = ', id, '.FindText(', _data, ', Clng(', flagsFind, '), ', MinPosition, ', ', MaxPosition, ')')
+  if(linked(onFound))
+    event(onFound, res)
+  end
+end
+
+func doSelection(_data)
+  println('If ', _data, ' Then')
+  block.inclvl()
+    println(flagsFormat, ' = ', flagsFormat, ' Or &H8000')
+  block.declvl()
+  println('Else')
+  block.inclvl()
+    println(flagsFormat, ' = ', flagsFormat, ' And &H8000')
+  block.declvl()
+  println('End If')
+end
+
+func doDown(_data)
+  println('If ', _data, ' Then')
+  block.inclvl()
+    println(flagsFind, ' = ', flagsFind, ' Or 1')
+  block.declvl()
+  println('Else')
+  block.inclvl()
+    println(flagsFind, ' = ', flagsFind, ' And &HFFFFFFFE')
+  block.declvl()
+  println('End If')
+end
+
+func doWholeWord(_data)
+  println('If ', _data, ' Then')
+  block.inclvl()
+    println(flagsFind, ' = ', flagsFind, ' Or 2')
+  block.declvl()
+  println('Else')
+  block.inclvl()
+    println(flagsFind, ' = ', flagsFind, ' And &HFFFFFFFD')
+  block.declvl()
+  println('End If')
+end
+
+func doMatchCase(_data)
+  println('If ', _data, ' Then')
+  block.inclvl()
+    println(flagsFind, ' = ', flagsFind, ' Or 4')
+  block.declvl()
+  println('Else')
+  block.inclvl()
+    println(flagsFind, ' = ', flagsFind, ' And &HFFFFFFFB')
+  block.declvl()
+  println('End If')
+end
+
+func doMinPos(_data)
+  println(MinPosition, ' = ', _data)
+end
+
+func doMaxPos(_data)
+  println(MaxPosition, ' = ', _data)
+end
+
+func doAutoURLDetect(_data)
+  println(id, '.AutoURLDetect = ', _data)
+end
+
+func doUndoLimit(_data)
+  println(id, '.UndoLimit = ', _data)
+end
+
+func Paragraph()
+  return(id + '.Paragraph')
+end
+
+func SelFont()
+  return(id + '.SelFont')
+end
+
+func CanRedo()
+  return(id + '.CanRedo')
+end

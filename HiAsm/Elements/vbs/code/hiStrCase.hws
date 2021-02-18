@@ -1,0 +1,19 @@
+func doModify
+  fvar(s)
+  s = ((Type='Lower') ? 'LCase(' :'UCase(') && SrcStr && ')'
+  if(linked(Result))
+    println(sc, ' = ', s)
+    event(onModify, sc)
+  else
+    event(onModify, s)
+  end
+end
+
+func Result
+  if(linked(doModify))
+    return(sc)
+  else
+     return(((Type='Lower') ? 'LCase(' :'UCase(') && SrcStr && ')')
+  end
+end
+

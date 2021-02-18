@@ -1,0 +1,121 @@
+Make(Modules)
+ver(4.04 build 184)
+Add(MainForm,2953706,21,105)
+{
+ Width=566
+ Height=369
+ Caption="HiAsm settings editor"
+}
+Add(ListBox,2701753,70,105)
+{
+ @Hint=#4:menu|
+ Width=150
+ Height=307
+ Align=1
+}
+Add(ChildPanel,16764280,98,147)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,12970773,21,21)
+  {
+  }
+  Add(Panel,13661237,35,105)
+  {
+   Top=307
+   Width=558
+   Height=37
+   Align=4
+   BevelInner=0
+  }
+  Add(Button,7501307,203,147)
+  {
+   @Hint=#6:cancel|
+   Left=425
+   Top=5
+   Width=60
+   Height=25
+   Caption="Cancel"
+  }
+  Add(Button,11543436,161,147)
+  {
+   @Hint=#2:ok|
+   Left=490
+   Top=5
+   Width=60
+   Height=25
+   Caption="OK"
+  }
+  Add(Button,14644984,119,147)
+  {
+   @Hint=#3:new|
+   Left=115
+   Top=5
+   Width=60
+   Height=25
+   Caption="New..."
+  }
+  Add(Button,11159584,161,91)
+  {
+   @Hint=#4:help|
+   Left=360
+   Top=5
+   Width=60
+   Height=25
+   Caption="Help"
+  }
+  Add(ComboBox,7042519,203,91)
+  {
+   @Hint=#4:lang|
+   Top=8
+   Width=110
+   ReadOnly=0
+  }
+  Add(Button,7599945,160,41)
+  {
+   @Hint=#4:help|
+   Left=210
+   Top=5
+   Width=60
+   Height=25
+   Hint="Export settings into text file"
+   Caption="Export"
+  }
+  Add(Button,6972125,203,41)
+  {
+   @Hint=#4:help|
+   Left=275
+   Top=5
+   Width=60
+   Height=25
+   Hint="Import settings from text file"
+   Caption="Import"
+  }
+END_SDK
+Add(ChildPanel,12877299,126,105)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,10964530,21,21)
+  {
+  }
+  Add(Panel,9196143,35,105)
+  {
+   @Hint=#5:plist|
+   Left=150
+   Width=408
+   Height=307
+   Align=5
+   BevelInner=0
+  }
+  Add(Memo,11448911,35,147)
+  {
+   @Hint=#4:hint|
+   Left=1
+   Top=263
+   Width=430
+   Height=45
+   Align=4
+   Ctl3D=1
+  }
+END_SDK

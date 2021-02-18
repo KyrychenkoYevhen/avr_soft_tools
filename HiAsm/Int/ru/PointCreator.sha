@@ -1,0 +1,62 @@
+Make(modules)
+Add(MainForm,2851852,21,105)
+{
+ Left=20
+ Top=105
+ Width=296
+ Height=126
+ Caption="Конструктор точек"
+ BorderStyle=3
+}
+Add(Button,9261856,126,63)
+{
+ @Hint=#6:cancel|
+ Left=120
+ Top=65
+ Width=70
+ Height=25
+ Caption="Отмена"
+}
+Add(Label,11087722,14,7)
+{
+ Left=20
+ Top=15
+ Width=26
+ Height=17
+ Caption="Имя"
+}
+Add(Edit,16405065,49,49)
+{
+ @Hint=#4:name|
+ Left=50
+ Top=10
+ Width=220
+ Color=-16777211
+ Text=""
+}
+Add(Label,2653686,7,28)
+{
+ Left=5
+ Top=40
+ Width=47
+ Height=17
+ Caption="Справка"
+}
+Add(Edit,4791038,49,35)
+{
+ @Hint=#4:hint|
+ Left=50
+ Top=35
+ Width=220
+ Color=-16777211
+ Text=""
+}
+Add(Button,9013592,210,63)
+{
+ @Hint=#2:ok|
+ Left=200
+ Top=65
+ Width=70
+ Height=25
+ Caption="OK"
+}

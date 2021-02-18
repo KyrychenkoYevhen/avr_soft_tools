@@ -1,0 +1,19 @@
+func Init()
+  stack &= block.select(BLK_HEAD)
+  println('\'--------------------------------------')
+  println('\' Version: ', code(Version))
+  if(isdef(Time))
+    println('\' Time: ', code(sys.time('h:m:s')))
+  end
+  if(isdef(Date))
+    println('\' Date: ', code(sys.time('D.M.Y')))
+  end
+  if(isset(Description))
+    println('\' Description: ', code(Description))
+  end
+  if(isset(Copyright))
+    println('\' Copyright: ', code(replace(Copyright, '%year%', code(sys.time('Y')))))
+  end
+  println('\'--------------------------------------')
+  block.select(_arr.pop(stack))
+end

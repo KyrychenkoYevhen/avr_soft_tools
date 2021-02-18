@@ -1,0 +1,49 @@
+Make(Delphi)
+Pos(0,0)
+Add(MainForm,794976,21,105)
+{
+ Left=20
+ Top=105
+ Width=370
+ Height=91
+ Caption="Media pleer"
+ BorderStyle=3
+}
+Add(Button,12869958,210,119)
+{
+ @Hint=#4:play|
+ Left=240
+ Top=35
+ Caption="Play"
+}
+Add(Edit,8671075,203,49)
+{
+ @Hint=#5:fname|
+ Left=30
+ Top=10
+ Width=325
+ Text=""
+}
+Add(Button,13998766,252,119)
+{
+ @Hint=#4:stop|
+ Left=300
+ Top=35
+ Caption="Stop"
+}
+Add(Label,15211582,28,42)
+{
+ Left=5
+ Top=15
+ Width=20
+ Height=17
+ Caption="File"
+}
+Add(Label,3767952,7,35)
+{
+ Left=5
+ Top=40
+ Width=223
+ Height=17
+ Caption="Simple example for demonstration doRegPanel"
+}

@@ -1,0 +1,136 @@
+Make(vbs)
+ver(4.03 build 180)
+Add(MainForm,8104307,21,84)
+{
+ Width=323
+ Height=205
+ Text="Switch data"
+}
+Add(Button,5962344,21,154)
+{
+ Left=45
+ Top=55
+ Text="0"
+ Data=Integer(0)
+ Point(onClick)
+ link(onClick,4105972:doEvent1,[])
+}
+Add(Edit,16309684,154,84)
+{
+ Left=130
+ Top=30
+ Text="Text1"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Edit,720229,203,84)
+{
+ Left=190
+ Top=30
+ Text="Text2"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(GetIndexData,2185291,154,154)
+{
+ Count=3
+ link(Data1,16309684:vText,[])
+ link(Data2,720229:vText,[(167,135)(209,135)])
+ link(Data3,7794593:vText,[(174,143)(258,143)])
+}
+Add(Button,12527616,21,196)
+{
+ Left=45
+ Top=80
+ Text="1"
+ Data=Integer(1)
+ Point(onClick)
+ link(onClick,12420333:doEvent1,[])
+}
+Add(Label,10477437,154,245)
+{
+ Left=180
+ Top=80
+ Width=80
+ Height=20
+ Alignment=2
+ Point(doText)
+ link(Data,2185291:Var,[])
+}
+Add(Edit,7794593,252,84)
+{
+ Left=245
+ Top=30
+ Text="Text3"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Button,10171328,21,238)
+{
+ Left=45
+ Top=105
+ Text="2"
+ Data=Integer(2)
+ Point(onClick)
+ link(onClick,12426223:doEvent1,[])
+}
+Add(HubEx,12677854,133,154)
+{
+ link(onEvent,2185291:doIndex,[])
+}
+Add(Hub,4105972,70,154)
+{
+ link(onEvent1,12677854:doWork2,[])
+ link(onEvent2,2477281:doWork1,[(119,167)])
+}
+Add(Hub,12420333,70,196)
+{
+ link(onEvent1,1139884:doWork2,[])
+ link(onEvent2,2477281:doWork2,[])
+}
+Add(Hub,12426223,70,238)
+{
+ link(onEvent1,1139884:doWork3,[(137,244)])
+ link(onEvent2,1528958:doWork2,[])
+}
+Add(HubEx,1139884,133,196)
+{
+ Angle=3
+ link(onEvent,12677854:doWork3,[])
+}
+Add(HubEx,2477281,115,203)
+{
+ Angle=1
+ link(onEvent,1528958:doWork1,[])
+}
+Add(HubEx,1528958,115,245)
+{
+ link(onEvent,10477437:doText,[])
+}
+Add(Label,7127923,154,35)
+{
+ Left=130
+ Top=15
+ Text="0"
+ Alignment=2
+ Point(doText)
+}
+Add(Label,14838451,203,35)
+{
+ Left=190
+ Top=15
+ Text="1"
+ Alignment=2
+ Point(doText)
+}
+Add(Label,15658292,252,35)
+{
+ Left=245
+ Top=15
+ Text="2"
+ Alignment=2
+ Point(doText)
+}

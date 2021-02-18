@@ -1,0 +1,127 @@
+Make(modules)
+ver(4.03 build 180)
+Add(hcTplForm,14566895,424,224)
+{
+ Left=20
+ Top=105
+ Width=414
+ Height=281
+ Visible=1
+ Caption="Try to access data on the disk"
+ BorderStyle=3
+ Point(doShowModal)
+}
+Add(hcTplLabel,8552815,427,273)
+{
+ Left=10
+ Top=15
+ Width=385
+ Height=35
+ Font=[MS Sans Serif,8,1,255,1]
+ Caption=""
+ AutoSize=1
+ Point(doCaption)
+}
+Add(hcTplLabel,1553816,210,77)
+{
+ Left=10
+ Top=55
+ Width=103
+ Height=17
+ Caption="What are you doing?"
+}
+Add(hcTplLabel,9845912,139,175)
+{
+ Left=10
+ Top=78
+ Width=38
+ Height=17
+ Font=[MS Sans Serif,8,1,0,1]
+ Caption="Allow:"
+}
+Add(hcTplButton,12073631,182,217)
+{
+ Left=50
+ Top=100
+ Width=305
+ Height=25
+ Caption="Only this time"
+ Data=Integer(1)
+ link(onClick,7826730:doWork2,[])
+}
+Add(hcTplButton,12519383,182,259)
+{
+ Left=50
+ Top=130
+ Width=305
+ Height=25
+ Caption="In this and in all the subsequent"
+ Data=Integer(2)
+ link(onClick,6610511:doWork2,[])
+}
+Add(hcTplLabel,3640658,140,301)
+{
+ Left=8
+ Top=158
+ Width=40
+ Height=17
+ Font=[MS Sans Serif,8,1,0,1]
+ Caption="Block:"
+}
+Add(hcTplButton,2247083,182,378)
+{
+ Left=50
+ Top=210
+ Width=305
+ Height=25
+ Caption="In this and in all the subsequent"
+ Data=Integer(4)
+ link(onClick,7278204:doWork3,[(228,384)])
+}
+Add(hcTplButton,2518060,182,336)
+{
+ Left=50
+ Top=180
+ Width=305
+ Height=25
+ Caption="Only this time"
+ Data=Integer(3)
+ link(onClick,7278204:doWork2,[])
+}
+Add(hcHub,9949619,238,217)
+{
+ OutCount=3
+ link(onEvent1,7605908:doValue,[])
+ link(onEvent2,4865124:doReturn,[(289,230)(289,272)])
+ link(onEvent3,14566895:doClose,[])
+}
+Add(HubEx,7826730,224,217)
+{
+ link(onEvent,9949619:doEvent1,[])
+}
+Add(HubEx,6610511,224,259)
+{
+ Angle=3
+ link(onEvent,7826730:doWork3,[])
+}
+Add(HubEx,7278204,224,336)
+{
+ Angle=3
+ link(onEvent,6610511:doWork3,[])
+}
+Add(hcHiAsmTrasmitter,4865124,308,266)
+{
+ link(onInit,3359883:doEvent1,[])
+ link(Arg1,7605908:Value,[])
+}
+Add(hcMemory,7605908,308,217)
+{
+ Default=Integer(0)
+}
+Add(hcHub,3359883,357,266)
+{
+ OutCount=3
+ link(onEvent1,7605908:doClear,[(403,272)(403,198)(296,198)(296,230)])
+ link(onEvent2,8552815:doCaption,[])
+ link(onEvent3,14566895:doShowModal,[(408,286)(408,244)])
+}

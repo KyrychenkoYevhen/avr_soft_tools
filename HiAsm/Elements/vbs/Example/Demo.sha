@@ -1,0 +1,407 @@
+Make(vbs)
+ver(4.04 build 185)
+Add(MainForm,2953706,434,70)
+{
+ Width=360
+ Height=540
+ Text="WSO demostration"
+ Point(MouseX)
+ Point(MouseY)
+ Point(Flags)
+ Point(onMouseMove)
+ Point(doText)
+ Point(doIconPath)
+ link(onCreate,6023273:doEvent1,[])
+ link(onMouseMove,5895985:doString,[(473,97)(473,131)(425,131)(425,146)])
+}
+Add(Button,2600237,168,105)
+{
+ Left=20
+ Top=20
+ Width=50
+ Text="Caption"
+ Data=String(Change Text)
+ Point(onClick)
+ link(onClick,11390957:doSwitch,[])
+}
+Add(Button,7570760,168,154)
+{
+ Left=75
+ Top=20
+ Width=50
+ Text="Beep"
+ Point(onClick)
+ link(onClick,3077052:doBeep,[])
+}
+Add(CheckBox,10446016,168,196)
+{
+ Left=32
+ Top=52
+ AllowGrayed=0
+ Checked=0
+ Point(onChange)
+ link(onChange,12208216:doText,[])
+}
+Add(Edit,12153047,168,238)
+{
+ Left=20
+ Top=80
+ Width=145
+ Height=95
+ Text="Пример проверки грамматики при помощи сервера \r\nавтоматизации MS Word. Открываем текстовый файл, \r\nпрограмма запускает MS Word вставляет в него текст \r\nфайла и запускает проверку грамматики. После \r\nзавершения проверки выделяет весь текст, копирует \r\nего в программу и отображает в окне. Если проверка \r\nВас устраивает, можете сохранить текст в файл. Этот \r\nтекст уже прошел такую проверку."
+ ScrollBars=2
+ WordWrap=1
+ ES_MULTILINE=0
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(RadioButton,3325063,168,56)
+{
+ Left=40
+ Top=210
+ Width=85
+ Text="RadioButton2"
+ Point(onChange)
+ link(onChange,1119981:doWork2,[(216,62)(216,34)])
+}
+Add(RadioButton,7353306,168,14)
+{
+ Left=40
+ Top=190
+ Width=85
+ Text="RadioButton1"
+ Checked=0
+ Point(onChange)
+ link(onChange,1119981:doWork1,[(216,20)(216,27)])
+}
+Add(FormatStr,5895985,434,140)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,10468391:doText,[])
+ link(Str1,2953706:MouseX,[])
+ link(Str2,2953706:MouseY,[])
+ link(Str3,2953706:Flags,[])
+}
+Add(Label,10468391,476,140)
+{
+ Left=180
+ Top=20
+ Width=150
+ Alignment=2
+ Point(doText)
+}
+Add(ChanelToIndex,1119981,231,21)
+{
+ link(onIndex,13366313:doText,[])
+}
+Add(Switch,11390957,217,105)
+{
+ DataOn=String(Hello...)
+ DataOff=String(World!)
+ link(onSwitch,2953706:doText,[])
+}
+Add(Calendar,5171585,168,280)
+{
+ Left=175
+ Top=40
+ MultiSelect=0
+ Point(onChange)
+ link(onChange,10525493:doWork1,[])
+}
+Add(DatePicker,2695435,210,287)
+{
+ Left=175
+ Top=198
+ Width=155
+ Height=21
+ Style=1
+ Point(OnChange)
+ link(OnChange,10525493:doWork2,[])
+}
+Add(GetIndexData,3825649,182,357)
+{
+ link(Data1,5171585:Value,[(188,341)(174,341)])
+ link(Data2,2695435:Value,[(195,341)(216,341)])
+}
+Add(ChanelToIndex,10525493,252,280)
+{
+ link(onIndex,3586557:doEvent1,[(317,286)(317,324)(142,324)(142,363)])
+}
+Add(Hub,3586557,154,357)
+{
+ link(onEvent1,3825649:doIndex,[])
+ link(onEvent2,8501304:doData,[(175,370)(175,419)])
+}
+Add(Label,13366313,280,21)
+{
+ Left=20
+ Top=200
+ Width=15
+ Text="0"
+ Point(doText)
+}
+Add(Label,12208216,217,196)
+{
+ Left=20
+ Top=54
+ Width=10
+ Text="1"
+ Point(doText)
+}
+Add(StatusBar,15755218,231,406)
+{
+ Top=493
+ Width=352
+ Simple=0
+ Point(doText)
+}
+Add(DoData,8501304,182,413)
+{
+ link(onEventData,15755218:doText,[])
+ link(Data,3825649:Var,[])
+}
+Add(Timer,8388827,525,77)
+{
+ Interval=50
+ link(onExecute,13458406:doEvent1,[])
+}
+Add(Beep,3077052,217,154)
+{
+}
+Add(ProgressBar,14273364,644,63)
+{
+ Left=20
+ Top=5
+ Width=310
+ Height=10
+ Smooth=0
+ Point(doPosition)
+}
+Add(Counter,8442698,602,77)
+{
+ link(onNext,14273364:doPosition,[])
+}
+Add(ScrollBar,13247659,791,105)
+{
+ Left=20
+ Top=235
+ Width=310
+ Point(doPosition)
+}
+Add(If_else,8701907,644,119)
+{
+ Type=1
+ Op2=Integer(100)
+ link(onTrue,9336884:doWork2,[])
+ link(onFalse,6266139:doNext,[(684,132)(684,139)])
+}
+Add(Counter,6266139,693,133)
+{
+ Type=1
+ Default=100
+ link(onNext,9336884:doWork3,[(739,139)])
+}
+Add(HubEx,9336884,735,119)
+{
+ link(onEvent,13862744:doEvent1,[])
+}
+Add(Counter,5331554,602,119)
+{
+ Max=199
+ link(onNext,8701907:doCompare,[])
+}
+Add(Hub,13458406,567,77)
+{
+ link(onEvent1,8442698:doNext,[])
+ link(onEvent2,5331554:doNext,[(591,90)(591,125)])
+}
+Add(WebBrowser,9980610,525,203)
+{
+ Left=20
+ Top=255
+ Width=310
+ link(URL,10095246:Value,[])
+}
+Add(Memory,10095246,525,161)
+{
+ Default=String(http://www.hiasm.com)
+}
+Add(Hub,6023273,483,70)
+{
+ OutCount=5
+ link(onEvent1,9798744:doPart,[(506,76)(506,56)(296,56)(296,118)])
+ link(onEvent2,8388827:doStart,[])
+ link(onEvent3,15265415:doOpen,[(511,90)(511,125)])
+ link(onEvent4,15265415:doPlay,[(511,97)(511,132)])
+ link(onEvent5,9980610:doNavigate,[(511,104)(511,209)])
+}
+Add(Application,12013055,308,63)
+{
+}
+Add(FilePart,9798744,308,112)
+{
+ link(onPath,15478885:doEvent1,[])
+ link(FileName,12013055:ScriptFullName,[])
+}
+Add(StrCat,13878128,385,112)
+{
+ Str2="\logo.ico"
+ link(onStrCat,2953706:doIconPath,[])
+}
+Add(Image,12494452,434,182)
+{
+ Left=137
+ Top=20
+ Width=16
+ Height=16
+ AutoSize=0
+ Point(onClick)
+ link(onClick,12545106:doMessageBox,[])
+}
+Add(StrCat,6222851,385,182)
+{
+ Str2="\wso.ico"
+ link(onStrCat,12494452:doDrawImage,[])
+}
+Add(Hub,15478885,357,112)
+{
+ link(onEvent1,13878128:doStrCat,[])
+ link(onEvent2,6222851:doStrCat,[(378,125)(378,188)])
+}
+Add(InfoTip,83841,357,7)
+{
+ Info=#31:ДЕМОнстрация WSO для пакета VBS|
+ Font=[Comic Sans MS,16,1,0,1]
+ Frame=1
+ Width=365
+ Height=25
+}
+Add(Label,15933122,791,189)
+{
+ Left=15
+ Top=385
+ Width=30
+ Height=17
+ Text="0"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+ link(Data,7684706:vPosition,[])
+}
+Add(TrackBar,7684706,791,147)
+{
+ Left=45
+ Top=382
+ Width=290
+ Height=35
+ TickFrequency=10
+ Point(onChange)
+ Point(doPosition)
+}
+Add(UpDown,3619816,182,455)
+{
+ Left=155
+ Top=195
+ Width=15
+ Height=30
+ Point(onChange)
+ link(onChange,13382508:doText,[])
+}
+Add(Label,13382508,231,455)
+{
+ Left=130
+ Top=203
+ Width=20
+ Text="0"
+ AutoSize=1
+ Alignment=1
+ Point(doText)
+}
+Add(Hub,13862744,756,119)
+{
+ OutCount=3
+ link(onEvent1,13247659:doPosition,[])
+ link(onEvent2,7684706:doPosition,[(784,132)(784,167)])
+ link(onEvent3,15933122:doText,[(780,139)(780,195)])
+}
+Add(Ping,11949420,231,539)
+{
+ Name=""
+ link(onFind,13563785:doNsLookup,[])
+ link(onFailed,1803564:doWork1,[(273,552)(273,579)(319,579)])
+}
+Add(Button,11119413,126,539)
+{
+ Left=15
+ Top=420
+ Text="Ping"
+ Point(onClick)
+ link(onClick,5487486:doNsLookup,[])
+}
+Add(Label,8840476,385,539)
+{
+ Left=145
+ Top=422
+ Width=200
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(NsLookup,13563785,280,539)
+{
+ link(onFind,15517010:doWork2,[])
+ link(onFailed,1803564:doWork2,[])
+}
+Add(DoData,2729097,329,546)
+{
+ Data=String(Host not found)
+ link(onEventData,15517010:doWork3,[(375,552)])
+}
+Add(HubEx,15517010,371,539)
+{
+ link(onEvent,8840476:doText,[])
+}
+Add(MessageBox,12545106,476,182)
+{
+ Text="Click picture"
+ Caption="WSO demostration"
+ Icon=4
+ RTLReading=0
+}
+Add(HyperLink,1383974,182,588)
+{
+ Left=115
+ Top=55
+ Text="HiAsm"
+ URL="www.hiasm.com"
+}
+Add(Animate,15265415,525,119)
+{
+ Left=15
+ Top=445
+ Width=315
+ Height=45
+ Source=3
+ Transparent=0
+}
+Add(HubEx,1803564,315,546)
+{
+ link(onEvent,2729097:doData,[])
+}
+Add(NsLookup,5487486,182,539)
+{
+ link(onFind,11949420:doPing,[])
+ link(Data,256538:vText,[])
+}
+Add(Edit,256538,182,497)
+{
+ Left=75
+ Top=420
+ Width=65
+ Text="hiasm.com"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}

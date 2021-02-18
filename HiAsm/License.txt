@@ -1,0 +1,53 @@
+===============================================
+                    HiAsm 4.05 build 185
+===============================================
+	Лицензионное соглашение
+
+   Программа HiAsm (в дальнейшем "Программный продукт") создан Dilma (в дальнейшем "Автор").
+   Настоящим лицензионным соглашением удостоверяются права на "Программный продукт" Dilma.
+   "Программный продукт" "Автора" предназначен для конструирования программ без знаний языков программирования.
+   Программа распространяется по принципу "AS IS", что значит, что при правильном или неправильном использование программы "Автор" ответственности не несет. Вы устанавливаете программу под свою ответственность. За ВСЕ сбои после установки программы "Автор" ответственности не несет. Вы устанавливаете программу на свой страх и риск, хотя "Автором" было сделано все возможное, чтобы ошибок, сбоев, поломок не было.
+   Программа распространяется по принципу "Freeware", что означает, что программа абсолютно бесплатная.
+   По всем вопросам и предложениям связанным с программой, а также недоработках, просьба сообщать "Автору".
+  
+   Домашняя страница в Интернете:  http://hiasm.com
+   Электронная почта проекта  (E-Mail):  support@hiasm.com
+
+   "Автор":     Dilma - hiasm@mail.ru
+
+
+===============================================
+
+The license agreement
+
+1. The program HiAsm (further referred as "Software product") is created by
+Dilma (further referred as the "Author").
+The present license agreement is to acknowledge the ownership of all the rights on this 
+"Software product" by Dilma.
+
+2. The "Software product" made by "Author" is intended for designing
+programs without knowledge of programming languages.
+
+3. The program is distributed by a principle " AS IS ", which means,
+that the "Author" does not bear any responsibility on correct or wrong use of the 
+program. You install the program solely under your own responsibility. The "Author" is not 
+responsible for any failures after installation of the program. You install the program at 
+own risk, although, it has been made utmost by the "Author" to prevent any damages, 
+failures and losses.
+
+4. The program is distributed by a principle "Freeware", which means, that
+the program is absolutely free-of-charge.
+
+5. Installing and using HiasM signifies acceptance of these terms 
+and conditions of the license.
+
+6. If you do not agree with the terms of this license you must remove 
+HiasM files from your storage devices and cease to use the product.
+
+On all questions and offers related to the program, or
+its drawbacks, it is requested to inform the "Author".
+
+Webpage: http://hiasm.com
+E-mail: support@hiasm.com
+
+The "Author": Dilma - hiasm@mail.ru

@@ -1,0 +1,4 @@
+func doSleep
+println('sleep ', Delay)
+event(onSleep)
+end

@@ -1,0 +1,46 @@
+include("object")
+override("control", "onChange")
+include("statuscontrol")
+
+func Init()
+  var (id)
+  id = Progress_
+  stack &= block.select(BLK_BODY)
+
+  fvar(pbsStyle)
+  pbsStyle = 0
+  if(isndef(Smooth))
+    pbsStyle += 1
+  end
+  if(isndef(Vertical))
+    pbsStyle += 4
+  end
+
+  println('Set ', id, ' = ', get_parent(), '.CreateProgressBar(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(', pbsStyle, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+   // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+  StatusControl_Init(id)
+
+  // Local  methods and properties
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doSmooth(_data)
+  println(id, '.Smooth = ', (_data='') ? 'False' : _data)
+end
+
+func doVertical(_data)
+  println(id, '.Vertical = ', (_data='') ? 'False' : _data)
+end
+
+func vSmooth()
+  return(id + '.Smooth')
+end
+
+func vVertical()
+  return(id + '.Vertical')
+end

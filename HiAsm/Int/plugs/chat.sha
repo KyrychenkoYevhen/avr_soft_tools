@@ -1,0 +1,166 @@
+Pos(0,0)
+Add(hiPlugs,31715,63,119)
+{
+ Point(doChat)
+ Point(onChat)
+ link(onKeyDown,82866:doCheckMask,[(112,132)(112,335)])
+ link(onChat,15202:doSplit,[])
+}
+Add(Hub,39035,343,182)
+{
+ OutCount=4
+ link(onEvent1,38968:doWork,[(392,188)(392,41)])
+ link(onEvent2,12509006:doWork,[(403,195)(403,90)])
+ link(onEvent4,70330:doEvent2,[(420,209)(420,188)])
+}
+Add(DoData,30612,343,140)
+{
+ Data=String(-=Register OK=-)
+ link(onEventData,70330:doEvent1,[(421,146)(421,181)])
+}
+Add(Time,35062,441,231)
+{
+ Format="h:m:s"
+}
+Add(MultiElement,11518201,567,84)
+{
+}
+BEGIN_SDK
+Pos(0,0)
+  Add(EditMulti,41551,3,3)
+  {
+   WorkCount=1
+   Width=195
+   Height=172
+   link(doWork1,1512963:doCaption,[(33,9)(33,132)])
+  }
+  Add(WinEnum,3593182,56,35)
+  {
+   Point(GetActiveWindow)
+  }
+  Add(WinTools,1512963,63,105)
+  {
+   link(Handle,3593182:GetActiveWindow,[])
+  }
+END_SDK
+Add(Check,38968,483,35)
+{
+ Caption="sound"
+ link(onEvent,92044:doWork1,[])
+}
+Add(FormatStr,63445,441,287)
+{
+ Mask="[%1]: %2"
+ link(onFString,45810:doStrCat,[])
+ link(Str1,35062:FormatTime,[])
+}
+Add(ArrayRW,33938,203,140)
+{
+ link(Array,19778:Array,[])
+}
+Add(DoData,95264,308,336)
+{
+ Data=String(#LIST:)
+ link(onEventData,53226:doEvent3,[(544,342)(544,223)])
+}
+Add(StrCat,40496,490,175)
+{
+ Str1="#MEMO:"
+ link(onStrCat,53226:doEvent1,[(537,181)(537,209)])
+}
+Add(StrPart,15202,133,133)
+{
+ Char=":"
+ link(onSplit,9143:doEvent,[])
+ link(onPart,33938:doRead,[])
+}
+Add(Hub,53226,553,203)
+{
+ InCount=3
+ OutCount=1
+ link(onEvent1,85749:In,[])
+}
+Add(StrCat,82239,392,252)
+{
+ Str1="%u: "
+ link(onStrCat,70330:doEvent3,[(432,258)(432,195)])
+}
+Add(Hub,6748,336,280)
+{
+ link(onEvent1,82239:doStrCat,[(383,286)(383,258)])
+ link(onEvent2,63445:doString,[])
+}
+Add(Hub,70330,441,175)
+{
+ InCount=3
+ OutCount=1
+ link(onEvent1,40496:doStrCat,[])
+}
+Add(LineBreak,982285,7,133)
+{
+ Caption="chat"
+ link(Out,31715:doChat,[])
+ Primary=[85749,602,70]
+}
+Add(StrCat,45810,490,287)
+{
+ Str1="#TEXT:"
+ link(onStrCat,53226:doEvent2,[(537,293)(537,216)])
+}
+Add(KeyMask,82866,245,329)
+{
+ Ctrl=1
+ Key=76
+ link(onTrue,95264:doData,[])
+}
+Add(IndexToChanel,9143,266,133)
+{
+ Count=5
+ Point(Index)
+ link(onEvent2,30612:doData,[])
+ link(onEvent3,39035:doEvent1,[(329,153)(329,188)])
+ link(onEvent4,6748:doEvent1,[(324,160)(324,286)])
+ link(Index,33938:Item,[(272,123)(251,123)(251,184)(209,184)])
+}
+Add(MultiElement,92044,567,35)
+{
+}
+BEGIN_SDK
+Pos(0,0)
+  Add(EditMulti,41551,3,3)
+  {
+   WorkCount=1
+   Width=195
+   Height=144
+   link(doWork1,3754:doString,[(40,9)(40,97)])
+  }
+  Add(FormatStr,3754,77,91)
+  {
+   Mask="%1\Media\%2"
+   link(onFString,25605:doPlay,[])
+   link(Str1,82142:WindowsDir,[])
+   link(Str2,43505:Value,[(90,76)(132,76)])
+  }
+  Add(Memory,43505,126,28)
+  {
+   Default=String(ringout.wav)
+   @Hint='FileName=Имя WAV файла из папки Windows\Media'
+  }
+  Add(Dir,82142,49,28)
+  {
+   Point(WindowsDir)
+  }
+  Add(PlaySound,25605,133,91)
+  {
+  }
+END_SDK
+Add(IntegerArray,19778,203,77)
+{
+ IntArray=[#ERROR=0,#REG=1,#TEXT=2,#MEMO=3,#LIST=4,#JOIN=5,#QUIT=6,#PART=7,#JOINED=8]
+ UseName=0
+}
+Add(Check,12509006,483,84)
+{
+ Caption="caption"
+ link(onEvent,11518201:doWork1,[])
+}

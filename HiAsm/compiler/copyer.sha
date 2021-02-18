@@ -1,0 +1,41 @@
+Make(delphi)
+Add(Console,111768,49,224)
+{
+ link(onStart,12461044:doRead,[])
+}
+Add(Application,11218844,133,112)
+{
+}
+Add(FileTools,11657668,231,224)
+{
+ link(onEnd,8165706:doString,[])
+ link(FileName,5266551:Var2,[])
+}
+Add(ArrayRW,12461044,112,224)
+{
+ Index=Integer(0)
+ link(onRead,8446934:doRead,[])
+ link(Array,14138372:Var1,[(118,184)])
+}
+Add(ArrayRW,8446934,168,224)
+{
+ Index=Integer(1)
+ link(onRead,11657668:doCopy,[(216,230)(216,237)])
+ link(Array,14138372:Var3,[(174,184)])
+}
+Add(GetDataEx,14138372,133,175)
+{
+ link(Data,11218844:Params,[])
+}
+Add(FormatStr,8165706,287,224)
+{
+ Mask="Copy from %1 to %2"
+ link(onFString,111768:doWrite,[(331,230)(331,287)(38,287)(38,230)])
+ link(Str1,5266551:Var3,[(293,177)])
+ link(Str2,8446934:Item,[(300,208)(272,208)(272,268)(174,268)])
+}
+Add(GetDataEx,5266551,224,168)
+{
+ Angle=3
+ link(Data,12461044:Item,[(106,177)(106,268)(118,268)])
+}

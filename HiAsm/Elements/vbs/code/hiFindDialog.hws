@@ -1,0 +1,134 @@
+include("object")
+
+func Init()
+  var(id)
+  id = Find_
+  fvar(old)
+  old = block.select(BLK_GLOB)
+  println('Dim ', id)
+  if(linked(doReplaceShow))
+    println('Dim ', mode)
+    println(mode, ' = ', ReplaceShow)
+  end
+  block.select(old)
+end
+
+func flgStyle()
+  fvar(frStyle)
+  frStyle = 0
+  if(isdef(Down))
+    frStyle += 1  //  0x00000001L
+  end
+  if(isndef(WholeWord))
+    frStyle += 2  //  0x00000002L
+  end
+  if(isndef(MatchCase))
+    frStyle += 4  //  0x00000004L
+  end
+  if(isndef(ShowHelp))
+    frStyle += 128  //  0x00000080L
+  end
+  if(isndef(NoUpDown))
+    frStyle += 1024  //  0x00000400L
+  end
+  if(isndef(NoMatchCase))
+    frStyle += 2048  //  0x00000800L
+  end
+  if(isndef(NoWholeWord))
+    frStyle += 4096  //  0x00001000L
+  end
+  if(isndef(HideUpDown))
+    frStyle += 16384  //  0x00004000L
+  end
+  if(isndef(HideMatchCase))
+    frStyle += 32768  //  0x00008000L
+  end
+  if(isndef(HideWholeWord))
+    frStyle += 65536  //  0x00010000L
+  end
+  return(frStyle)
+end
+
+func doDialog(_data)
+  fvar(old, f, r)
+  f = 'Set ' + id + ' = ' + frm + '.CreateFindDialog(' + Text + ', Clng(' + flgStyle() + '))'
+  r = 'Set ' + id + ' = ' + frm + '.CreateReplaceDialog(' + Text + ', ' + Repl + ', Clng(' + flgStyle() + '))'
+  if(linked(doReplaceShow))
+    println('If ', mode, ' Then')
+    block.inclvl()
+      println(r)
+    block.declvl()
+    println('Else')
+    block.inclvl()
+      println(f)
+    block.declvl()
+    println('End If ')
+  else
+    if(isdef(ReplaceShow))
+      println(f)
+    else
+      println(r)
+    end
+  end
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+
+  // Local  methods and properties
+  old = block.cur()
+  if(linked(onFind))
+    lng.begin_func(id + '_OnFind(Sender)\'' + code(id))
+      event(onFind, 'Sender.FindText')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onReplace))
+    lng.begin_func(id, '_OnReplace(Sender)\'' + code(id))
+      event(onReplace, 'Sender.ReplaceText')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onReplaceAll))
+    lng.begin_func(id, '_OnReplaceAll(Sender)\'' + code(id))
+      event(onReplaceAll, 'Sender.ReplaceText')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onClose))
+    lng.begin_func(id, '_OnClose(Sender)\'' + code(id))
+      event(onClose)
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onHelp))
+    lng.begin_func(id + '_OnHelp(Sender)\'' + code(id))
+      event(onHelp)
+    lng.end_func(BLK_EVENTS)
+  end
+  block.select(old)
+end
+
+func doReplaceShow(_data)
+  println(mode, ' = ', _data)
+end
+
+func doClose()
+  println(id, '.Close()')
+end
+
+func FindText()
+  return(id && '.FindText')
+end
+
+func ReplaceText()
+  return(id && '.ReplaceText')
+end
+
+func SearchDown()
+  return(id && '.SearchDown')
+end
+
+func SearchMatchCase()
+  return(id && '.MatchCase')
+end
+
+func SearchWholeWord()
+  return(id && '.WholeWord')
+end

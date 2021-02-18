@@ -1,0 +1,26 @@
+func Init()
+  include("regions")
+  if(linked(Result))
+    stack &= block.select(BLK_GLOB)
+    println('Dim ', Result_)
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doCompare(_data)
+  if(linked(Result))
+    println (Result_, ' = rgn.EqualRgn(', Rgn1, ', ', Rgn2, ')')
+  else
+    if(linked(onResult))
+      event(onResult, 'rgn.EqualRgn(' + Rgn1 + ', ' + Rgn2 + ')')
+    end
+  end
+end
+
+func Result()
+  if(linked(doCompare))
+    return(Result_)
+  else
+    return('rgn.EqualRgn(' + Rgn1 + ', ' + Rgn2 + ')')
+  end
+end

@@ -1,0 +1,1280 @@
+Make(modules)
+Add(MainForm,1070405,406,238)
+{
+ Left=20
+ Top=105
+ Width=514
+ Height=350
+ Caption="Настройки"
+ BorderStyle=3
+}
+Add(ChildPanel,56636,63,63)
+{
+ @Hint=#5:Общие|
+}
+BEGIN_SDK
+  Add(EditMulti,61332,3,3)
+  {
+   Height=256
+  }
+  Add(Panel,27830,9,156)
+  {
+   @Hint=#5:tools|
+   Left=5
+   Top=5
+   Width=340
+   Height=242
+   Font=[Arial,8,0,0,1]
+   BevelInner=1
+  }
+  Add(CheckBox,66712,126,84)
+  {
+   @Hint=#8:Compress|
+   Left=20
+   Top=100
+   Width=90
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Сжимать EXE"
+  }
+  Add(CheckBox,10359,203,84)
+  {
+   @Hint=#12:SplashScreen|
+   Left=185
+   Top=30
+   Width=135
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Отображать заставку"
+  }
+  Add(CheckBox,85707,203,126)
+  {
+   @Hint=#4:Logs|
+   Left=185
+   Top=45
+   Width=135
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Вести лог загрузки"
+  }
+  Add(Label,93979,56,35)
+  {
+   Left=10
+   Top=10
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Опции автосохранения"
+   AutoSize=1
+  }
+  Add(CheckBox,51422,56,119)
+  {
+   @Hint=#7:Desktop|
+   Left=20
+   Top=45
+   Width=135
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Открытые документы"
+  }
+  Add(CheckBox,12796732,56,154)
+  {
+   @Hint=#10:open_pages|
+   Left=20
+   Top=60
+   Width=135
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Открытые вкладки"
+  }
+  Add(CheckBox,19813,56,84)
+  {
+   @Hint=#8:EditFile|
+   Left=20
+   Top=30
+   Width=135
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Редактируемый файл"
+  }
+  Add(CheckBox,83518,126,119)
+  {
+   @Hint=#5:ZipOn|
+   Left=20
+   Top=115
+   Width=140
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Сжимать данные в ZIP"
+  }
+  Add(CheckBox,99544,126,154)
+  {
+   @Hint=#8:SaveProp|
+   Left=20
+   Top=130
+   Width=135
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Сохранять изменения"
+  }
+  Add(Label,83981,126,35)
+  {
+   Left=10
+   Top=80
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Оптимизация"
+   AutoSize=1
+  }
+  Add(Label,19005,203,35)
+  {
+   Left=175
+   Top=10
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Прочее"
+   AutoSize=1
+  }
+  Add(CheckBox,1101273,203,168)
+  {
+   @Hint=#11:new_project|
+   Left=185
+   Top=60
+   Width=135
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Новый проект"
+  }
+END_SDK
+Add(InfoTip,9811923,56,154)
+{
+ Info=#24:Настройки редактора кода|
+ Font=[Arial,10,1,128,1]
+ VAlign=1
+ Width=260
+ Height=46
+}
+Add(ChildPanel,94495,63,112)
+{
+ @Hint=#8:Редактор|
+}
+BEGIN_SDK
+  Add(EditMulti,70106,3,3)
+  {
+   Height=466
+  }
+  Add(Panel,46196,30,100)
+  {
+   @Hint=#6:editor|
+   Left=5
+   Top=155
+   Width=340
+   Height=250
+   Font=[Arial,8,0,0,1]
+   BevelInner=1
+  }
+  Add(CheckBox,51422,98,126)
+  {
+   @Hint=#10:Align_Grid|
+   Left=20
+   Top=45
+   Width=95
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Сетка"
+  }
+  Add(CheckBox,67984,105,357)
+  {
+   @Hint=#12:Select_Frame|
+   Left=20
+   Top=155
+   Width=90
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Рамка"
+  }
+  Add(Label,83981,84,182)
+  {
+   Left=10
+   Top=65
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Подсказки"
+   AutoSize=1
+  }
+  Add(CheckBox,29483,105,392)
+  {
+   @Hint=#12:Select_Color|
+   Left=20
+   Top=140
+   Width=140
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Цвет"
+  }
+  Add(CheckBox,19813,98,91)
+  {
+   @Hint=#13:Align_Enabled|
+   Left=20
+   Top=30
+   Width=90
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Включить"
+  }
+  Add(CheckBox,66712,105,231)
+  {
+   @Hint=#11:Hints_Point|
+   Left=20
+   Top=85
+   Width=90
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Точка"
+  }
+  Add(CheckBox,83518,105,266)
+  {
+   @Hint=#13:Hints_Element|
+   Left=20
+   Top=100
+   Width=140
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Элемент"
+  }
+  Add(Label,19005,217,42)
+  {
+   Left=175
+   Top=10
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Синтакс"
+   AutoSize=1
+  }
+  Add(CheckBox,21146,231,161)
+  {
+   @Hint=#10:View_freez|
+   Left=185
+   Top=60
+   Width=145
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Отображать заморозку"
+  }
+  Add(Label,83900,77,315)
+  {
+   Left=10
+   Top=120
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Выбор элемента"
+   AutoSize=1
+  }
+  Add(CheckBox,10359,231,91)
+  {
+   @Hint=#14:Syntax_Enabled|
+   Left=185
+   Top=30
+   Width=90
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Включить"
+  }
+  Add(ChildPanel,12434458,301,182)
+  {
+   @Hint=#11:color_panel|
+  }
+  BEGIN_SDK
+    Add(EditMulti,9601573,21,21)
+    {
+    }
+    Add(Panel,13565778,35,105)
+    {
+     @Hint=#11:color_panel|
+     Left=305
+     Top=180
+     Width=25
+     Height=25
+    }
+  END_SDK
+  Add(Label,93979,84,42)
+  {
+   Left=10
+   Top=10
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Выравнивание"
+   AutoSize=1
+  }
+  Add(CheckBox,33480,231,126)
+  {
+   @Hint=#14:Line_highlight|
+   Left=185
+   Top=45
+   Width=105
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Выделять линии"
+  }
+  Add(Label,13189795,217,217)
+  {
+   Left=175
+   Top=80
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Прочее"
+   AutoSize=1
+  }
+  Add(CheckBox,6565874,217,266)
+  {
+   @Hint=#10:delete_ans|
+   Left=185
+   Top=100
+   Width=145
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Подтверждать удаление"
+  }
+  Add(CheckBox,11140856,182,119)
+  {
+   @Hint=#12:PropHiglight|
+   Left=185
+   Top=115
+   Width=140
+   Height=15
+   Caption="Выделение свойств"
+  }
+  Add(Label,7060341,182,140)
+  {
+   Left=185
+   Top=140
+   Width=109
+   Height=17
+   Caption="Смещение мультика"
+  }
+  Add(Edit,4112885,273,133)
+  {
+   @Hint=#12:multi_offset|
+   Left=295
+   Top=135
+   Width=30
+   Color=-16777211
+   Text=""
+  }
+  Add(CheckBox,12294675,182,161)
+  {
+   @Hint=#10:insert_bin|
+   Left=185
+   Top=160
+   Width=140
+   Height=15
+   Caption="Вставка бинарников"
+  }
+  Add(Label,215381,35,203)
+  {
+   Left=10
+   Top=175
+   Width=158
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Связь точек"
+   AutoSize=1
+  }
+  Add(CheckBox,8910955,14,196)
+  {
+   @Hint=#14:link_del_point|
+   Left=20
+   Top=195
+   Width=140
+   Height=15
+   Caption="Удалять лишние точки"
+  }
+  Add(CheckBox,14043043,21,210)
+  {
+   @Hint=#15:link_del_direct|
+   Left=20
+   Top=210
+   Width=145
+   Height=15
+   Caption="Удалять прямые связи"
+  }
+  Add(CheckBox,14183391,42,224)
+  {
+   @Hint=#10:link_trace|
+   Left=20
+   Top=225
+   Width=140
+   Height=15
+   Caption="Умный обход"
+  }
+  Add(ComboBox,3744057,189,189)
+  {
+   @Hint=#9:color_box|
+   Left=185
+   Top=180
+   Width=115
+   Height=22
+   Color=-16777211
+   ReadOnly=0
+  }
+  Add(CheckBox,9373571,182,224)
+  {
+   @Hint=#4:hook|
+   Left=185
+   Top=205
+   Width=125
+   Height=15
+   Caption="Хук списка свойств"
+  }
+  Add(CheckBox,4270029,182,224)
+  {
+   @Hint=#9:drop_copy|
+   Left=185
+   Top=220
+   Width=130
+   Height=15
+   Caption="Копирование при Ctrl"
+  }
+END_SDK
+Add(ChildPanel,13863076,63,161)
+{
+ @Hint=#3:Код|
+}
+BEGIN_SDK
+  Add(EditMulti,70106,3,3)
+  {
+   Width=209
+  }
+  Add(Panel,46196,30,100)
+  {
+   @Hint=#10:codeeditor|
+   Left=5
+   Top=155
+   Width=340
+   Height=190
+   Font=[Arial,8,0,0,1]
+   BevelInner=1
+  }
+  Add(CheckBox,19813,98,91)
+  {
+   @Hint=#10:code_lines|
+   Left=20
+   Top=30
+   Width=145
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Номера строк"
+  }
+  Add(Edit,15077670,98,140)
+  {
+   @Hint=#11:code_offset|
+   Left=20
+   Top=50
+   Width=30
+   Color=-16777211
+   Text="18"
+  }
+  Add(Label,4476639,140,140)
+  {
+   Left=55
+   Top=55
+   Width=58
+   Height=17
+   Caption="Смещение"
+  }
+  Add(Label,93979,84,42)
+  {
+   Left=10
+   Top=10
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Общие"
+   AutoSize=1
+  }
+END_SDK
+Add(ChildPanel,5617801,63,210)
+{
+ @Hint=#9:Интерфейс|
+}
+BEGIN_SDK
+  Add(EditMulti,70106,3,3)
+  {
+   Width=349
+   Height=620
+  }
+  Add(Label,2127688,35,182)
+  {
+   Left=5
+   Top=85
+   Width=51
+   Height=18
+   Font=[Arial,8,0,0,1]
+   Caption="Область:"
+  }
+  Add(Panel,46196,79,282)
+  {
+   @Hint=#5:hiasm|
+   Left=355
+   Top=5
+   Width=340
+   Height=228
+   Font=[Arial,8,0,0,1]
+   BevelInner=1
+  }
+  Add(Label,93979,21,14)
+  {
+   Left=10
+   Top=10
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Разделитель"
+   AutoSize=1
+  }
+  Add(CheckBox,3504407,14,210)
+  {
+   @Hint=#8:addpoint|
+   Left=20
+   Top=205
+   Width=140
+   Height=15
+   Caption="Показ точек по св-ам"
+  }
+  Add(ComboBox,5622182,77,77)
+  {
+   @Hint=#7:sp_type|
+   Left=50
+   Top=30
+   Width=115
+   Height=22
+   Color=-16777211
+   Font=[Arial,8,0,0,1]
+   Strings=#11:Стандартный|17:Скрыть по нажатию|19:Скрыть по наведению|
+   ReadOnly=0
+  }
+  Add(Label,8706135,35,77)
+  {
+   Left=25
+   Top=35
+   Width=25
+   Height=18
+   Font=[Arial,8,0,0,1]
+   Caption="Тип:"
+  }
+  Add(Label,5520048,35,133)
+  {
+   Left=10
+   Top=60
+   Width=39
+   Height=18
+   Font=[Arial,8,0,0,1]
+   Caption="Размер:"
+  }
+  Add(Edit,13316836,77,133)
+  {
+   @Hint=#7:sp_size|
+   Left=50
+   Top=55
+   Width=40
+   Color=-16777211
+   Font=[Arial,8,0,0,1]
+   Text=""
+  }
+  Add(Label,3938857,126,133)
+  {
+   Left=95
+   Top=60
+   Width=16
+   Height=18
+   Font=[Arial,8,0,0,1]
+   Caption="px"
+  }
+  Add(Label,8517079,126,182)
+  {
+   Left=95
+   Top=85
+   Width=16
+   Height=18
+   Font=[Arial,8,0,0,1]
+   Caption="px"
+  }
+  Add(Edit,14501089,77,182)
+  {
+   @Hint=#7:sp_rect|
+   Left=50
+   Top=80
+   Width=40
+   Color=-16777211
+   Font=[Arial,8,0,0,1]
+   Text=""
+  }
+  Add(Label,55803,245,21)
+  {
+   Left=175
+   Top=10
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Палитра элементов"
+   AutoSize=1
+  }
+  Add(CheckBox,5390151,259,189)
+  {
+   @Hint=#11:ShowCaption|
+   Left=190
+   Top=35
+   Width=115
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Показ заголовков"
+  }
+  Add(ComboBox,10701474,259,378)
+  {
+   @Hint=#8:el_style|
+   Left=215
+   Top=100
+   Width=105
+   Height=22
+   Color=-16777211
+   Font=[Arial,8,0,0,1]
+   Strings=#11:Стандартный|7:Плоский|
+   ReadOnly=0
+  }
+  Add(CheckBox,8778453,259,240)
+  {
+   @Hint=#10:AutoExpand|
+   Left=190
+   Top=50
+   Width=110
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Авто нажатие"
+  }
+  Add(Label,4334758,42,84)
+  {
+   Left=190
+   Top=105
+   Width=25
+   Height=18
+   Font=[Arial,8,0,0,1]
+   Caption="Тип:"
+  }
+  Add(CheckBox,16132159,56,546)
+  {
+   @Hint=#7:OneCopy|
+   Left=20
+   Top=175
+   Width=145
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Одна копия программы"
+  }
+  Add(CheckBox,1506539,63,385)
+  {
+   @Hint=#9:show_menu|
+   Left=20
+   Top=130
+   Width=140
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Отображать меню"
+  }
+  Add(Label,1804442,63,336)
+  {
+   Left=10
+   Top=110
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Прочее"
+   AutoSize=1
+  }
+  Add(CheckBox,9847704,63,441)
+  {
+   @Hint=#13:show_navigate|
+   Left=20
+   Top=145
+   Width=140
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Отображать навигацию"
+  }
+  Add(CheckBox,13280937,63,495)
+  {
+   @Hint=#8:TabState|
+   Left=20
+   Top=160
+   Width=125
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Как вкладки"
+  }
+  Add(CheckBox,7570166,259,282)
+  {
+   @Hint=#9:AutoClose|
+   Left=190
+   Top=65
+   Width=125
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Авто сворачивание"
+  }
+  Add(CheckBox,521633,56,588)
+  {
+   @Hint=#4:grad|
+   Left=20
+   Top=190
+   Width=140
+   Height=15
+   Caption="Градиент в заголовках"
+  }
+  Add(CheckBox,1288615,259,322)
+  {
+   @Hint=#8:ShowHint|
+   Left=190
+   Top=80
+   Width=120
+   Height=15
+   Caption="Подсказки"
+  }
+  Add(CheckBox,7279961,189,133)
+  {
+   @Hint=#11:pm_show_cap|
+   Left=190
+   Top=155
+   Width=140
+   Height=15
+   Caption="Показывать заголовки"
+  }
+  Add(Label,13951599,224,161)
+  {
+   Left=175
+   Top=130
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Менеджер вкладок"
+   AutoSize=1
+  }
+  Add(Label,10724829,182,168)
+  {
+   Left=185
+   Top=175
+   Width=93
+   Height=17
+   Caption="Реагировать при:"
+  }
+  Add(ComboBox,2265172,168,189)
+  {
+   @Hint=#8:pm_style|
+   Left=190
+   Top=190
+   Width=135
+   Height=22
+   Color=-16777211
+   Strings=#11:перемещении|7:нажатии|
+   ReadOnly=0
+  }
+END_SDK
+Add(InfoTip,28893,56,105)
+{
+ Info=#19:Настройки редактора|
+ Font=[Arial,10,1,128,1]
+ VAlign=1
+ Width=260
+ Height=46
+}
+Add(ChildPanel,83645,63,406)
+{
+ @Hint=#10:Интеграция|
+}
+BEGIN_SDK
+  Add(EditMulti,19790,3,3)
+  {
+   Width=160
+   Height=165
+  }
+  Add(Panel,29107,30,100)
+  {
+   @Hint=#3:reg|
+   Left=355
+   Top=260
+   Width=340
+   Height=85
+   Font=[Arial,8,0,0,1]
+   BevelInner=1
+  }
+  Add(Button,85672,91,70)
+  {
+   @Hint=#3:LPT|
+   Left=105
+   Top=50
+   Width=115
+   Height=25
+   Font=[Arial,8,0,0,1]
+   Caption="Драйвера LPT"
+  }
+  Add(Button,33815,91,28)
+  {
+   @Hint=#11:Integration|
+   Left=105
+   Top=15
+   Width=115
+   Height=25
+   Font=[Arial,8,0,0,1]
+   Caption="Интеграция"
+  }
+  Add(Button,42976,91,112)
+  {
+   @Hint=#7:License|
+   Left=105
+   Top=85
+   Width=115
+   Height=25
+   Font=[Arial,8,0,0,1]
+   Caption="Лицензия"
+  }
+END_SDK
+Add(InfoTip,76977,56,399)
+{
+ Info=#8:Жмакулки|
+ Font=[Arial,10,1,128,1]
+ VAlign=1
+ Width=260
+ Height=46
+}
+Add(InfoTip,31555,56,56)
+{
+ Info=#20:Глобальные настройки|
+ Font=[Arial,10,1,128,1]
+ VAlign=1
+ Width=260
+ Height=46
+}
+Add(InfoTip,88320,56,252)
+{
+ Info=#13:Режим Отладка|
+ Font=[Arial,10,1,128,1]
+ VAlign=1
+ Width=260
+ Height=46
+}
+Add(InfoTip,40548,56,301)
+{
+ Info=#22:Параметры пользователя|
+ Font=[Arial,10,1,128,1]
+ VAlign=1
+ Width=260
+ Height=46
+}
+Add(InfoTip,59308,56,350)
+{
+ Info=#3:Чат|
+ Font=[Arial,10,1,128,1]
+ VAlign=1
+ Width=260
+ Height=46
+}
+Add(ChildPanel,80509,63,259)
+{
+ @Hint=#7:Отладка|
+}
+BEGIN_SDK
+  Add(EditMulti,94368,3,3)
+  {
+   Height=256
+  }
+  Add(Panel,72702,23,128)
+  {
+   @Hint=#2:22|
+   Left=355
+   Top=5
+   Width=340
+   Height=105
+   Font=[Arial,8,0,0,1]
+   BevelInner=1
+  }
+  Add(Label,29075,168,126)
+  {
+   Left=180
+   Top=60
+   Width=40
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Клиент"
+  }
+  Add(RadioButton,54126,84,126)
+  {
+   @Hint=#4:Mode|
+   Left=20
+   Top=45
+   Width=105
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Hint="1"
+   Caption="UDP сокет"
+  }
+  Add(Label,93979,63,42)
+  {
+   Left=10
+   Top=10
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Тип соединения"
+   AutoSize=1
+  }
+  Add(Edit,8505,224,84)
+  {
+   @Hint=#10:ServerPort|
+   Left=230
+   Top=30
+   Height=21
+   Color=-16777211
+   Font=[Arial,8,0,0,1]
+   Text=""
+  }
+  Add(Label,2125,168,84)
+  {
+   Left=180
+   Top=35
+   Width=40
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Сервер"
+  }
+  Add(RadioButton,14407,84,84)
+  {
+   @Hint=#4:Mode|
+   Left=20
+   Top=30
+   Width=95
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Hint="0"
+   Caption="Mail слот"
+  }
+  Add(Edit,7392,224,126)
+  {
+   @Hint=#10:ClientPort|
+   Left=230
+   Top=55
+   Height=21
+   Color=-16777211
+   Font=[Arial,8,0,0,1]
+   Text=""
+  }
+  Add(Label,19005,210,42)
+  {
+   Left=175
+   Top=10
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" UDP порты"
+   AutoSize=1
+  }
+END_SDK
+Add(ChildPanel,66607,63,357)
+{
+ @Hint=#3:Чат|
+}
+BEGIN_SDK
+  Add(EditMulti,85624,3,3)
+  {
+   Width=321
+   Height=361
+  }
+  Add(Panel,94024,30,100)
+  {
+   @Hint=#6:hichat|
+   Left=5
+   Top=350
+   Width=340
+   Height=185
+   Font=[Arial,8,0,0,1]
+   BevelInner=1
+  }
+  Add(Edit,11155004,154,273)
+  {
+   @Hint=#7:IrcChan|
+   Left=50
+   Top=150
+   Width=110
+   Color=-16777211
+  }
+  Add(CheckBox,19813,98,91)
+  {
+   @Hint=#15:History_Enabled|
+   Left=20
+   Top=30
+   Width=135
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Включить"
+  }
+  Add(Label,51624,84,133)
+  {
+   Left=15
+   Top=50
+   Width=80
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Кол-во записей"
+  }
+  Add(Label,93979,98,42)
+  {
+   Left=10
+   Top=10
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" История ввода"
+   AutoSize=1
+  }
+  Add(Label,34725,217,42)
+  {
+   Left=175
+   Top=10
+   Width=155
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Общие"
+   AutoSize=1
+  }
+  Add(CheckBox,52423,224,91)
+  {
+   @Hint=#4:Ping|
+   Left=180
+   Top=30
+   Width=150
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Выводить команду Ping"
+  }
+  Add(Edit,88719,140,133)
+  {
+   @Hint=#13:History_Count|
+   Left=100
+   Top=45
+   Height=21
+   Color=-16777211
+   Font=[Arial,8,0,0,1]
+   Text=""
+  }
+  Add(CheckBox,28602,224,133)
+  {
+   @Hint=#4:EnRu|
+   Left=180
+   Top=45
+   Width=145
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Автоперевод текста"
+  }
+  Add(Edit,64035,266,231)
+  {
+   @Hint=#8:FontSize|
+   Left=225
+   Top=70
+   Width=35
+   Color=-16777211
+   Font=[Arial,8,0,0,1]
+   Text=""
+  }
+  Add(Label,47742,217,231)
+  {
+   Left=180
+   Top=75
+   Width=40
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Шрифт"
+  }
+  Add(Label,10689364,105,49)
+  {
+   Left=10
+   Top=80
+   Width=152
+   Height=15
+   Color=-16777200
+   Font=[Arial,8,0,16777215,1]
+   Caption=" Сервер"
+   AutoSize=1
+  }
+  Add(Label,4263187,91,245)
+  {
+   Left=10
+   Top=105
+   Width=35
+   Height=15
+   Caption="Имя"
+  }
+  Add(Label,6070274,91,259)
+  {
+   Left=10
+   Top=130
+   Width=30
+   Height=15
+   Caption="Порт"
+  }
+  Add(Label,2527663,91,273)
+  {
+   Left=10
+   Top=155
+   Width=35
+   Height=15
+   Caption="Канал"
+  }
+  Add(Edit,4634917,140,245)
+  {
+   @Hint=#9:IrcServer|
+   Left=50
+   Top=100
+   Width=110
+   Color=-16777211
+  }
+  Add(Edit,11925973,147,259)
+  {
+   @Hint=#7:IrcPort|
+   Left=50
+   Top=125
+   Width=110
+   Color=-16777211
+  }
+END_SDK
+Add(InfoTip,5544151,56,203)
+{
+ Info=#9:Интерфейс|
+ Font=[Arial,10,1,128,1]
+ VAlign=1
+ Width=260
+ Height=46
+}
+Add(ChildPanel,71952,63,308)
+{
+ @Hint=#12:Пользователь|
+}
+BEGIN_SDK
+  Add(EditMulti,14146,3,3)
+  {
+   Height=249
+  }
+  Add(Panel,35673,30,100)
+  {
+   @Hint=#4:user|
+   Left=355
+   Top=120
+   Width=340
+   Height=135
+   Font=[Arial,8,0,0,1]
+   BevelInner=1
+  }
+  Add(Label,1339,84,70)
+  {
+   Left=40
+   Top=45
+   Width=25
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Mail"
+  }
+  Add(Edit,43201,140,154)
+  {
+   @Hint=#9:_Password|
+   Left=70
+   Top=100
+   Width=115
+   Height=21
+   Color=-16777211
+   Font=[Arial,8,0,0,1]
+   Text=""
+   Password=0
+  }
+  Add(Label,67691,84,28)
+  {
+   Left=35
+   Top=15
+   Width=30
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Имя"
+  }
+  Add(Label,81848,84,112)
+  {
+   Left=10
+   Top=75
+   Width=70
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Страница"
+  }
+  Add(Edit,83031,140,70)
+  {
+   @Hint=#5:_Mail|
+   Left=70
+   Top=40
+   Width=215
+   Height=21
+   Color=-16777211
+   Font=[Arial,8,0,0,1]
+   Text=""
+  }
+  Add(Edit,43301,140,112)
+  {
+   @Hint=#5:_Site|
+   Left=70
+   Top=70
+   Width=215
+   Height=21
+   Color=-16777211
+   Font=[Arial,8,0,0,1]
+   Text=""
+  }
+  Add(Edit,60460,140,28)
+  {
+   @Hint=#5:_Name|
+   Left=70
+   Top=10
+   Width=215
+   Height=21
+   Color=-16777211
+   Font=[Arial,8,0,0,1]
+   Text=""
+  }
+  Add(Label,52116,84,154)
+  {
+   Left=20
+   Top=105
+   Width=45
+   Height=15
+   Font=[Arial,8,0,0,1]
+   Caption="Пароль"
+  }
+END_SDK

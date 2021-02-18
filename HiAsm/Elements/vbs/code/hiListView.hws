@@ -1,0 +1,404 @@
+include("object")
+include("control")
+
+func Init()
+  var(id, lst)
+  id = ListView_
+  lst = LVList_
+  stack &= block.select(BLK_BODY)
+
+  fvar(lvsStyle)
+  lvsStyle = Style
+  if(isndef(SingleSel))
+    lvsStyle += 4  // 0x0004
+  end
+  if(isndef(ShowSelAlways))
+    lvsStyle += 8  // 0x0008
+  end
+  if(isndef(NoLabelWrap))
+    lvsStyle += 128  // 0x0080
+  end
+  if(isndef(EditLabels))
+    lvsStyle += 512  // 0x0200
+  end
+  if(isndef(OwnerData))
+    lvsStyle += 4096  // 0x1000
+  end
+
+  println('Set ', id, ' = ', get_parent(), '.CreateListView(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(', lvsStyle, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+  //sys.initall() // needed for override
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  println('With ', id)
+  block.inclvl()
+    if(isset(LargeImages))
+      println('.LargeImages = ', LargeImages)
+    end
+    if(isset(SmallImages))
+      println('.SmallImages = ', SmallImages)
+    end
+    if(isset(StateImages))
+      println('.StateImages = ', StateImages)
+    end
+    if(isndef(`Count`))
+      println('.Count = ', `Count`)
+    end
+    if(isndef(TextBkColor))
+      println('.TextBkColor = ', TextBkColor)
+    end
+    if(isndef(MultiSelect))
+      println('.MultiSelect = False')
+    end
+    if(isndef(HideSelection))
+      println('.HideSelection = False')
+    end
+    if(isndef(ItemIndex))
+      println('.ItemIndex = ', ItemIndex)
+    end
+    if(isndef(CheckBoxes))
+      println('.CheckBoxes = True')
+    end
+    if(isndef(GridLines))
+      println('.GridLines = True')
+    end
+    if(isndef(HotTrack))
+      println('.HotTrack = True')
+    end
+    if(isndef(RowSelect))
+      println('.RowSelect = True')
+    end
+    if(isndef(BorderSelect))
+      println('.BorderSelect = True')
+    end
+    if(isndef(BorderSelect))
+      println('.BorderSelect = True')
+    end
+    if(isndef(FlatScrollBars))
+      println('.FlatScrollBars = True')
+    end
+    if(isndef(OwnerData))
+      println('.OwnerData = True')
+    end
+    if(isndef(ReadOnly))
+      println('.ReadOnly = False')
+    end
+    if(isndef(WrapText))
+      println('.WrapText = False')
+    end
+    if(isndef(Arrangement))
+      println('.Arrangement = wso.Translate("AL_LEFT")')
+    end
+  block.declvl()
+  println('End With')
+  println('')
+
+  if(linked(onData))
+    lng.begin_func(id + '_OnData(Sender, Item)\'' + code(id))
+      event(onData, 'Item')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onColumnClick))
+    lng.begin_func(id + '_OnColumnClick(Sender, colItem)\'' + code(id))
+      event(onColumnClick, 'colItem.' + code(ColumnClick))
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onColumnResize))
+    lng.begin_func(id + '_OnColumnResize(Sender, colItem)\'' + code(id))
+      event(onColumnResize, 'colItem.' + code(ColumnClick))
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onEdited))
+    lng.begin_func(id + '_OnEdited(Sender, Item, Result)\'' + code(id))
+      event(onEdited, 'Result')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onItemCheck))
+    lng.begin_func(id + '_OnItemCheck(Sender, Item)\'' + code(id))
+      event(onItemCheck, 'Item')
+    lng.end_func(BLK_EVENTS)
+  end
+  block.select(BLK_GLOB)
+  if(linked(Items))
+    println('Dim ', lst, '()')
+  end
+  block.select(_arr.pop(stack))
+end
+
+func doAdd(_data)
+  println(id, '.Add ', _data)
+end
+
+func doClear(_data)
+  println(id, '.Clear')
+  if(isndef(ClearAll))
+    println(id, '.Columns.Clear')
+  end
+end
+
+func doLoad(_data)
+  include('fso')
+  println('Set st = fso.OpenTextFile(', FileName, ', 1)')
+  println(id, '.Clear')
+  // println(id, '.BeginUpdate()')
+  println('While Not st.AtEndOfStream')
+    block.inclvl()
+    println(arr,' = Split(st.ReadLine, ', Delimiter, ')')
+    println(subarr,' = Split(', arr, '(0), ', SubDelimiter, ')')
+    println(id, '.Add ', subarr, '(0)')
+    println(id, '.Item(', id, '.Count-1).ImageIndex = ', subarr, '(1)')
+    println(id, '.Item(', id, '.Count-1).Selected = CBool(', subarr, '(2))')
+    println(id, '.Item(', id, '.Count-1).Checked = CBool(', subarr, '(3))')
+    println(id, '.Item(', id, '.Count-1).UserData = ', subarr, '(4)')
+    println('For ', j, ' = 1 To UBound(', arr, ')')
+    block.inclvl()
+      println(subarr,' = Split(', arr, '(', j, '), ', SubDelimiter, ')')
+      println(id, '(', id, '.Count - 1).Subitems(', j, ' - 1) = ', subarr, '(0)')
+      println(id, '(', id, '.Count - 1).SubItemImage(', j, ' - 1) = ', subarr, '(1)')
+    block.declvl()
+    println('Next')
+    block.declvl()
+  println('Wend')
+  // println(id, '.EndUpdate()')
+  println('st.Close')
+  println('Set st = Nothing')
+end
+
+func doSave(_data)
+  include('fso')
+  println('Set st = fso.CreateTextFile(', FileName,', True)')
+  println('For ', j, ' = 0 To ', id, '.Count-1')
+    block.inclvl()
+    println(n, ' = ', SubDelimiter, ' & ', id, '(', j, ').ImageIndex & ', SubDelimiter)
+    println(s, ' = ', id, '(', j, ').Selected & ', SubDelimiter)
+    println(c, ' = ', id, '(', j, ').Checked & ', SubDelimiter)
+    println(u, ' = ', id, '(', j, ').UserData')
+    println(x, ' = ', id, '(', j, ').Text & ', n, ' & ', s, ' & ', c, ' & ', u)
+    println('For ', i, ' = 0 To ', id, '.Columns.Count-2')
+    block.inclvl()
+      println(x, ' = ', x, ' & ', Delimiter, ' & ', id, '(', j, ').Subitems(', i, ') & ', SubDelimiter, ' & ', id, '(', j, ').SubItemImage(', i, ')')
+    block.declvl()
+    println('Next')
+    println('st.WriteLine ', x)
+    block.declvl()
+  println('Next')
+  println('st.Close')
+  println('Set st = Nothing')
+end
+
+func doInsert(_data)
+  println(arr,' = Split(', _arr.mt_pop(_data), ', ', Delimiter, ')')
+  println(id, '.Insert ', _data, ', ', arr, '(0)')
+  println('For ', j, ' = 1 To UBound(', arr, ')')
+  block.inclvl()
+    println(id, '(', _data, ').Subitems(', j, ' - 1) = ', arr, '(', j, ')')
+  block.declvl()
+  println('Next')
+end
+
+func doRemove(_data)
+  println(id, '.Remove ', _data)
+end
+
+func doBeginUpdate()
+  println(id, '.BeginUpdate()')
+end
+
+func doEndUpdate()
+  println(id, '.EndUpdate()')
+end
+
+func doSelectAll()
+  println(id, '.SelectAll()')
+end
+
+func doClearSelection()
+  println(id, '.ClearSelection()')
+end
+
+func doEditItem(_data)
+  println(id, '.EditItem ', _data)
+end
+
+func doSort(_data)
+  println(id, '.Sort ', DataType, ', ', Reverse, ', ', _data)
+end
+
+func doOnColumnClick(_data)
+  println(id, '.OnColumnClick = GetRef(', _data, ')')
+end
+
+func doOnColumnResize(_data)
+  println(id, '.OnColumnResize = GetRef(', _data, ')')
+end
+
+func doOnData(_data)
+  println(id, '.OnData = GetRef(', _data, ')')
+end
+
+func doOnItemCheck(_data)
+  println(id, '.OnItemCheck = GetRef(', _data, ')')
+end
+
+func doOnEdited(_data)
+  println(id, '.OnEdited = GetRef(', _data, ')')
+end
+
+func doStyle(_data)
+  println(id, '.Style = ', _data)
+end
+
+func doCount_(_data)
+  println(id, '.Count = ', _data)
+end
+
+func doTextBkColor(_data)
+  println(id, '.TextBkColor = ', _data)
+end
+
+func doMultiSelect(_data)
+  println(id, '.MultiSelect = ', (_data='') ? 'False' : _data)
+end
+
+func doHideSelection(_data)
+  println(id, '.HideSelection = ', (_data='') ? 'False' : _data)
+end
+
+func doHideSelection(_data)
+  println(id, '.HideSelection = ', (_data='') ? 'False' : _data)
+end
+
+func doItemIndex(_data)
+  println(id, '.ItemIndex = ', _data)
+end
+
+func doCheckBoxes(_data)
+  println(id, '.CheckBoxes = ', (_data='') ? 'False' : _data)
+end
+
+func doGridLines(_data)
+  println(id, '.GridLines = ', (_data='') ? 'False' : _data)
+end
+
+func doHotTrack(_data)
+  println(id, '.HotTrack = ', (_data='') ? 'False' : _data)
+end
+
+func doRowSelect(_data)
+  println(id, '.RowSelect = ', (_data='') ? 'False' : _data)
+end
+
+func doBorderSelect(_data)
+  println(id, '.BorderSelect = ', (_data='') ? 'False' : _data)
+end
+
+func doFlatScrollBars(_data)
+  println(id, '.FlatScrollBars = ', (_data='') ? 'False' : _data)
+end
+
+func doOwnerData(_data)
+  println(id, '.OwnerData = ', (_data='') ? 'False' : _data)
+end
+
+func doReadOnly(_data)
+  println(id, '.ReadOnly = ', (_data='') ? 'False' : _data)
+end
+
+func doWrapText(_data)
+  println(id, '.WrapText = ', (_data='') ? 'False' : _data)
+end
+
+func doArrangement(_data)
+  println(id, '.Arrangement = ', _data)
+end
+
+func Style()
+  return(id + '.Style')
+end
+
+func Count()
+  return(id + '.Count')
+end
+
+func TextBkColor()
+  return(id + '.TextBkColor')
+end
+
+func MultiSelect()
+  return(id + '.MultiSelect')
+end
+
+func HideSelection()
+  return(id + '.HideSelection')
+end
+
+func ItemIndex()
+  return(id + '.ItemIndex')
+end
+
+func CheckBoxes()
+  return(id + '.CheckBoxes')
+end
+
+func GridLines()
+  return(id + '.GridLines')
+end
+
+func HotTrack()
+  return(id + '.HotTrack')
+end
+
+func RowSelect()
+  return(id + '.RowSelect')
+end
+
+func BorderSelect()
+  return(id + '.BorderSelect')
+end
+
+func FlatScrollBars()
+  return(id + '.FlatScrollBars')
+end
+
+func OwnerData()
+  return(id + '.OwnerData')
+end
+
+func ReadOnly()
+  return(id + '.ReadOnly')
+end
+
+func WrapText()
+  return(id + '.WrapText')
+end
+
+func Arrangement()
+  return(id + '.Arrangement')
+end
+
+func Selected()
+  return(id + '.Item(' + id + '.ItemIndex)')
+end
+
+func Items()
+  println('Erase ', lst)
+  println('ReDim ', lst, '(', id, '.Count-2', ')')
+  println('For ', j, ' = 0 To ', id, '.Count')
+    block.inclvl()
+    println('Set ', lst, '(', j, ') = ', id, '.Item(', j, ')')
+    block.declvl()
+  println('Next')
+  return(lst)
+end
+
+func Columns()
+  return(id + '.Columns')
+end
+
+func SelCount()
+  return(id + '.SelCount')
+end

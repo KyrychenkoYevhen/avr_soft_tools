@@ -1,0 +1,76 @@
+include("object")
+override("control", "onChange")
+include("listcontrol")
+
+func Init()
+  var(id)
+  id = ComboBox_
+  fvar(s, p, a)
+  stack &= block.select(BLK_BODY)
+  fvar(cbsStyle)
+  cbsStyle = 8192 * CharCase + Mode + 1
+  if(isndef(Sort))
+    cbsStyle += 256 //  0x0100L
+  end
+  if(isndef(NoIntegralHeight))
+    cbsStyle += 1024 //  0x0400L
+  end
+
+  println('Set ', id, ' = ', get_parent(), '.CreateComboBox(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(', cbsStyle, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(isndef(ReadOnly))
+    println(id, '.ReadOnly = True')
+  end
+  if(isndef(Strings) and (_arr.count(Strings))=1)
+    s = Strings[0]
+    p = pos('=', s)
+    if(p>0)
+      a = copy(s, 1, p-1) & delete(s, 1, p)
+      println(id, '.Add ', a[0])
+      println(id, '.ItemData(0) = ', a[1])
+    else
+      println(id, '.Add ', s)
+    end
+  else
+    fvar(i)
+    println('With ', id)
+    block.inclvl()
+      for(i = 0; i < _arr.count(Strings); i++)
+        s = Strings[i]
+        p = pos('=', s)
+        if(p>0)
+          a = copy(s, 1, p-1) & delete(s, 1, p)
+          println('.Add ', a[0])
+          println('.ItemData(', i, ') = ', a[1])
+        else
+          println('.Add ', s)
+        end
+      end
+    block.declvl()
+    println('End With')
+  end
+
+  // Common methods and properties again
+  ListControl_Init(id)
+
+  println('')
+
+  if(linked(onChange))
+    lng.begin_func(id + '_OnChange(Sender)')
+      switch(DataType)
+        case 0: s = '.ItemIndex'
+        case 1: s = '.Text'
+        case 2: s = '.ItemData(Sender.ItemIndex)'
+      end
+      event(onChange, 'Sender' + s)
+    lng.end_func(BLK_EVENTS)
+  end
+  block.select(_arr.pop(stack))
+end
+

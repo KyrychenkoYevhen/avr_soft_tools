@@ -1,0 +1,52 @@
+func Init
+  include('fso')
+end
+
+func doMove
+  println('fso.MoveFile(', FileName, ', ', NewFileName, ')')
+  event(onEnd)
+end
+
+func doCopy
+  println('fso.CopyFile(', FileName, ', ', NewFileName, ')')
+  event(onEnd)
+end
+
+func doDelete
+  println('fso.DeleteFile(', FileName, ')')
+  event(onEnd)
+end
+
+func doFileExists
+  event(onEnd, 'fso.FileExists(' && FileName && ')')
+end
+
+func doRename
+  if(linked(onEnd))
+   println('fso.MoveFile(', FileName, ', ', NewFileName, ')')
+   event(onEnd)
+  else
+  println('fso.MoveFile ', FileName, ', ', NewFileName)
+  end
+end
+
+func doChmod
+  println('chmod(', FileName, ', ', Mode, ')')
+  event(onEnd)
+end
+
+func Size
+  return('fso.GetFile(' && FileName && ').Size')
+end
+
+func CreateTime
+  return('fso.GetFile(' && FileName && ').DateCreated')
+end
+
+func ModifyTime
+  return('fso.GetFile(' && FileName && ').DateLastModified')
+end
+
+func ActiveTime
+  return('fso.GetFile(' && FileName && ').DateLastAccessed')
+end

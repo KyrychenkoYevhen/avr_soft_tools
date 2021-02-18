@@ -1,0 +1,9 @@
+func global(var_name, var_data)
+  fvar(old)
+  old = block.select(BLK_GLOB)
+  println('Dim ', code(var_name))
+  if(var_data<>'')
+    println(code(var_name), ' = ', var_data)
+  end
+  block.select(old)
+end

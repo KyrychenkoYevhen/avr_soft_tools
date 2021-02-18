@@ -1,0 +1,100 @@
+include("printdialogbase")
+
+func Init()
+  var(id)
+  id = PrintDialog_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', id)
+  println('Dim ', Start)
+  println(Start, ' = ', MinPage)
+  println('Dim ', Finish)
+  println(Finish, ' = ', MaxPage)
+  block.select(_arr.pop(stack))
+end
+
+func flgStyle()
+  fvar(pdStyle)
+  pdStyle = Range
+  if(isdef(NoSelection))
+    pdStyle += 4  //  0x00000004L
+  end
+  if(isdef(NoPageNums))
+    pdStyle += 8  //  0x00000008L
+  end
+  if(isndef(Collate))
+    pdStyle += 16  //  0x00000010L
+  end
+  if(isndef(PrintToFile))
+    pdStyle += 32  //  0x00000020L
+  end
+  if(isndef(NoWarning))
+    pdStyle += 128  //  0x00000080L
+  end
+  if(isndef(ShowHelp))
+    pdStyle += 2048  //  0x00000800L
+  end
+  if(isdef(UseDevModeCopies))
+    pdStyle += 262144  //  0x00040000L
+  end
+  if(isndef(DisablePrintToFile))
+    pdStyle += 524288  //  0x00080000L
+  end
+  if(isndef(HidePrintToFile))
+    pdStyle += 1048576  //  0x00100000L
+  end
+  if(isndef(NoNetworkButton))
+    pdStyle += 2097152  //  0x00200000L
+  end
+  return(pdStyle)
+end
+
+func doDialog(_data)
+  println('Set ' + id + ' = ' + frm + '.PrintDialog(CLng(' + flgStyle() + '), ', Start, ', ', Finish, ')')
+  if(linked(onDialog))
+    println('If Not ', id, ' Is Nothing Then')
+    block.inclvl()
+      event(onDialog)
+    block.declvl()
+    println('End If')
+  end
+end
+
+func doMinPage(_data)
+  println(Start, ' = ', _data)
+end
+
+func doMaxPage(_data)
+  println(Finish, ' = ', _data)
+end
+
+func Copies()
+  return(id + '.Copies')
+end
+
+func Collate()
+  return(id + '.Collate')
+end
+
+func Selection()
+  return(id + '.Selection')
+end
+
+func All()
+  return(id + '.All')
+end
+
+func Pages()
+  return(id + '.Range')
+end
+
+func ToFile()
+  return(id + '.ToFile')
+end
+
+func FromPage()
+  return(id + '.FromPage')
+end
+
+func ToPage()
+  return(id + '.ToPage')
+end

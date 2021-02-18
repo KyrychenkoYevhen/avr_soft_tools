@@ -1,0 +1,26 @@
+func Init()
+  if(isset(Handle))
+    var(obj)
+    obj = Handle
+  end
+end
+
+func doCheck()
+  if(linked(onCheck))
+    if(linked(Process))
+      println(query, ' = "Select * from Win32_Process Where Name = \'"', ' & ', code(Process), ' & ', '"\'"')
+      println('Set ', obj_, ' = ', obj, '.ExecQuery(', query, ')')
+    else
+      println('Set ', obj_, ' = ', obj, '.ExecQuery("Select * from Win32_Process Where Name = \'', code(Process), '\'")')
+    end
+    println('If ', obj_, '.Count = 0 Then')
+    block.inclvl()
+      event(onCheck, 0)
+    block.declvl()
+    println('Else')
+    block.inclvl()
+      event(onCheck, 1)
+    block.declvl()
+    println('End If')
+  end
+end

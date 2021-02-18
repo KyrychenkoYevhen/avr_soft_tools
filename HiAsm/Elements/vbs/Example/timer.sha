@@ -1,0 +1,117 @@
+Make(vbs)
+ver(4.04 build 183)
+Add(MainForm,2953706,21,105)
+{
+ Width=160
+ Height=180
+ Text="Timer test"
+ link(onCreate,5784828:doStart,[])
+}
+Add(Timer,5784828,77,105)
+{
+ Interval=100
+ link(onExecute,15917233:doEvent1,[])
+}
+Add(Circle,7625682,413,105)
+{
+ Width=20
+ Height=20
+ Point(doLeft)
+ Point(doTop)
+ Point(doRepaint)
+}
+Add(Hub,10650134,189,105)
+{
+ OutCount=4
+ link(onEvent1,7625682:doRepaint,[(385,111)(385,132)])
+ link(onEvent2,14908208:doOperation,[(291,118)(291,132)])
+ link(onEvent3,2889166:doCalc,[(281,125)(281,188)])
+ link(onEvent4,2010453:doCalc,[(255,132)(255,230)])
+}
+Add(MathParse,2889166,308,182)
+{
+ DataCount=1
+ MathStr="50 * COS( %1 ) + 75"
+ link(onResult,7625682:doLeft,[(376,188)(376,118)])
+ link(X1,1469500:Var2,[])
+}
+Add(Math,14908208,308,126)
+{
+ Op2=0.6
+ link(onResult,14847592:doValue,[(351,132)(351,72)(296,72)(296,90)])
+ link(Op1,14847592:Value,[])
+}
+Add(Memory,14847592,308,84)
+{
+ Default=Real(1.5707963)
+}
+Add(MathParse,2010453,294,224)
+{
+ DataCount=1
+ MathStr="50 * SIN( %1 ) + 75"
+ link(onResult,7625682:doTop,[(397,230)(397,125)])
+ link(X1,1469500:Var1,[(300,166)])
+}
+Add(GetDataEx,1469500,308,161)
+{
+ link(Data,14908208:Result,[])
+}
+Add(Circle,3804668,420,308)
+{
+ Width=10
+ Height=10
+ Point(doLeft)
+ Point(doTop)
+ Point(doRepaint)
+ Point(Brush)
+}
+Add(Hub,11879020,182,308)
+{
+ OutCount=4
+ link(onEvent1,3804668:doRepaint,[(392,314)(392,335)])
+ link(onEvent2,2353991:doOperation,[(298,321)(298,335)])
+ link(onEvent3,11752227:doCalc,[(288,328)(288,391)])
+ link(onEvent4,10451805:doCalc,[(262,335)(262,433)])
+}
+Add(MathParse,11752227,315,385)
+{
+ DataCount=1
+ MathStr="50 * COS( %1 ) + 75"
+ link(onResult,3804668:doLeft,[(383,391)(383,321)])
+ link(X1,9116168:Var2,[])
+}
+Add(Math,2353991,315,329)
+{
+ Op2=1.1
+ link(onResult,11963106:doValue,[(358,335)(358,275)(303,275)(303,293)])
+ link(Op1,11963106:Value,[])
+}
+Add(Memory,11963106,315,287)
+{
+ Default=Real(1.5707963)
+}
+Add(MathParse,10451805,301,427)
+{
+ DataCount=1
+ MathStr="50 * SIN( %1 ) + 75"
+ link(onResult,3804668:doTop,[(404,433)(404,328)])
+ link(X1,9116168:Var1,[(307,369)])
+}
+Add(GetDataEx,9116168,315,364)
+{
+ link(Data,2353991:Result,[])
+}
+Add(Hub,15917233,119,105)
+{
+ link(onEvent1,10650134:doEvent1,[])
+ link(onEvent2,11879020:doEvent1,[(157,118)(157,314)])
+}
+Add(Brush,668245,420,350)
+{
+ Color=425687
+ Style=9
+ GradientColor=255
+ Angle=1
+ Center=0
+ link(Brush,3804668:Brush,[])
+}

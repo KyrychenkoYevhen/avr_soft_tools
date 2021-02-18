@@ -1,0 +1,133 @@
+*ѕростой проигрыватель на базе MediaPlayer ActiveX Control, который должен быть установлен в системе.
+Make(vbs)
+ver(4.04 build 182)
+Add(MainForm,2953706,112,105)
+{
+ Text="Media Player"
+}
+Add(ActiveXControl,15280702,196,56)
+{
+ Left=25
+ Top=10
+ Width=345
+ Height=245
+ Align=5
+ IdOCX="{22D6F312-B0F6-11D0-94AB-0080C74C7E95}"
+ Point(onMouseDown)
+}
+Add(ODialog,6746166,154,98)
+{
+ Filter="All Files (*.*)|*.*"
+ link(onExecute,11024062:doWrite,[])
+}
+Add(Menu,2031801,14,91)
+{
+ Width=516
+ Align=2
+ Visible=1
+ Menu=#4:File|1:(|11:Open,CTRL+O|8:Exit,ESC|1:)|4:Help|1:(|8:About,F1|1:)|
+ Assign=0
+ Point(onSelectNum)
+ link(onSelectNum,1213886:doEvent,[])
+}
+Add(IndexToChanel,1213886,56,98)
+{
+ Count=3
+ link(onEvent1,6746166:doExecute,[])
+ link(onEvent2,2953706:doClose,[(103,111)(103,139)])
+ link(onEvent3,9393229:doHelp,[(97,118)(97,146)])
+}
+Add(InfoTip,18582,63,21)
+{
+ Info=#37:Last modification 02:12:2009 00:23:43|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ Width=197
+ Height=18
+}
+Add(InfoTip,3786,56,7)
+{
+ Info=#26:Media Player version 0.002|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ Width=204
+ Height=18
+}
+Add(InfoTip,3927081,63,35)
+{
+ Info=#28:HiAsm version 4.04 build 182|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ Width=197
+ Height=18
+}
+Add(MultiElementEx,9393229,238,140)
+{
+ link(Str2,4061237:Value,[])
+}
+BEGIN_SDK
+  Add(EditMultiEx,14406852,21,21)
+  {
+   WorkCount=#6:doHelp|
+   DataCount=#4:Str2|
+   Width=328
+   Height=102
+   link(doHelp,3546182:doStrCat,[(31,76)])
+  }
+  Add(Message,13687337,294,70)
+  {
+  }
+  Add(StrCat,13529164,126,70)
+  {
+   link(onStrCat,3464368:doStrCat,[])
+   link(Str2,15110140:vSymbol,[])
+  }
+  Add(StrCat,3464368,168,70)
+  {
+   Str2="made by HiAsm Studio"
+   link(onStrCat,7752474:doStrCat,[])
+  }
+  Add(Symbol,15110140,133,28)
+  {
+   Symbol=2
+  }
+  Add(StrCat,7752474,210,70)
+  {
+   link(onStrCat,5558736:doStrCat,[])
+   link(Str2,1419234:vSymbol,[])
+  }
+  Add(Symbol,1419234,217,28)
+  {
+   Symbol=2
+  }
+  Add(StrCat,5558736,252,70)
+  {
+   Str2="   Copyright Ѓ 2009"
+   link(onStrCat,13687337:doMessage,[])
+  }
+  Add(Replace,12229083,84,70)
+  {
+   SubStr=","
+   DestStr="."
+   link(onReplace,13529164:doStrCat,[])
+  }
+  Add(StrCat,3546182,42,70)
+  {
+   Str1="   Media Player v"
+   link(onStrCat,12229083:doReplace,[])
+   link(Str2,14406852:Str2,[(55,46)])
+  }
+END_SDK
+Add(Memory,4061237,238,98)
+{
+ Default=Real(0.002)
+}
+Add(ScriptEvents,88089,14,14)
+{
+ Script=#15:function Load()|3:end|0:|15:function Save()|3:end|0:|21:function SaveBefore()|21:  Dim _Date as String|22:  Dim _Title as String|25:  Dim _strTitle as String|29:  _Date = Time("D:M:Y h:m:s")|37:  _Title = SDK.GetProp(18582, "Info")|84:  _strTitle = Delete(_Title, Len(_Title) - Len(_Date), Len(_Date) + 1) + " " + _Date|39:  sdk.SetProp(18582, "Info", _strTitle)|3:end|0:|0:|26:Function CmdEvent(Command)|26: If Command = "build" Then|17:  Dim num as Real|19:  Dim ver as String|21:  Dim Title as String|24:  Dim strTitle as String|45:  num = Real(SDK.GetProp(4061237, "Default"))|44:  SDK.SetProp(4061237, "Default", num+0.001)|44:  SDK.SetProp(3074520, "Version", num+0.001)|44:  ver = Str(SDK.GetProp(4061237, "Default"))|35:  Title = SDK.GetProp(3786, "Info")|75:  strTitle = Delete(Title, Len(Title) - Len(ver), Len(ver) + 1) + " " + ver|37:  SDK.SetProp(3786, "Info", strTitle)|57:  SDK.SetProp(3927081, "Info", "HiAsm version " + CurVer)|7: End If|13:End          |
+}
+Add(FieldWrite,11024062,196,98)
+{
+ Name="FileName"
+ link(Object,15280702:Control,[])
+}

@@ -1,0 +1,128 @@
+include("object")
+override("control", "onChange", "doText")
+
+func Init()
+  var(id)
+  id = Edit_
+  fvar(old)
+  old = block.select(BLK_BODY)
+
+  fvar(esStyle)
+  esStyle = 0
+  if(isndef(ES_MULTILINE))
+    esStyle += 4 //  0x00000004L
+  end
+  if(isndef(ES_UPPERCASE))
+    esStyle += 8 //  0x00000008L
+  end
+  if(isndef(ES_LOWERCASE))
+    esStyle += 16 //  0x00000010L
+  end
+  if(isndef(ES_PASSWORD))
+    esStyle += 32 //  0x00000020L
+  end
+  if(isndef(ES_NOHIDESEL))
+    esStyle += 256 //  0x00000100L
+  end
+  if(isndef(ES_READONLY))
+    esStyle += 2048 //  0x00000800L
+  end
+
+  println('Set ', id,' = ', get_parent(), '.CreateEdit(', Left, ', ', Top, ', ', Width, ', ', Height, (esStyle=0) ? ')' : (', Clng(' + esStyle + '))'))
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(isndef(ES_PASSWORD))
+    println(id, '.PasswordChar = ', Password)
+  end
+  if(isndef(DataType))
+    println(id, '.DataType = ', DataType)
+  end
+  if(isndef(ScrollBars))
+    println(id, '.ScrollBars = ', ScrollBars)
+  end
+  if(isndef(WordWrap))
+    println(id, '.WordWrap = True')
+  end
+  if(isndef(LeftMargin))
+    println(id, '.LeftMargin = ', LeftMargin)
+  end
+  if(isndef(RightMargin))
+    println(id, '.RightMargin = ', RightMargin)
+  end
+  if(isndef(Alignment))
+    println(id, '.TextAlign = ', Alignment+1)
+  end
+  println('')
+  if(linked(onChange))
+    block.select(BLK_GLOB)
+    if(isndef(IgnoreFirstEvent))
+      println('Dim ', FirstOnChange_)
+      println(FirstOnChange_, ' = False')
+    end
+    // Function OnChange
+    lng.begin_func(id + '_OnChange(Sender)')
+      if(isndef(IgnoreFirstEvent))
+        println('If ', FirstOnChange_, ' Then')
+        block.inclvl()
+      end
+      event(onChange, 'Sender.Text')
+      if(isndef(IgnoreFirstEvent))
+        block.declvl()
+        println('Else')
+        block.inclvl()
+          println(FirstOnChange_, ' = True')
+        block.declvl()
+        println('End If')
+      end
+    lng.end_func(BLK_EVENTS)
+  end
+  block.select(old)
+end
+
+func doText(_data)
+  println (id, '.Text = Replace(', Data, ', "\r\n", vbCrLf)')
+  if(linked(onChange))
+    event(onChange, id && '.Text')
+  end
+end
+
+func doText2(_data)
+  println (id, '.Text = Replace(', Data, ', "\r\n", vbCrLf)')
+end
+
+func doSelStart(_data)
+  println (id, '.SelStart = ', _data)
+end
+
+func doSelectAll()
+  println (id, '.SelectAll()')
+end
+
+func doSelLength(_data)
+  println (id, '.SelLength = ', _Data)
+end
+
+func doText2(_data)
+  println (id, '.Text = ', _Data)
+end
+
+func Index()
+  return(id  + '.LineFromChar(-1)')
+end
+
+func SelStart()
+  return(id  + '.SelStart')
+end
+
+func SelEnd()
+  return(id  + '.SelEnd')
+end
+
+func SelLength()
+  return(id  + '.SelLength')
+end

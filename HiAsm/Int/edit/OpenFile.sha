@@ -1,0 +1,55 @@
+*Редактор имени файла
+Make(modules)
+ver(4.01 build 177)
+Add(hcTplForm,2953706,217,189)
+{
+ Width=301
+ Height=60
+ Visible=1
+ Caption="Ввод кода"
+ BorderStyle=3
+ Point(doShowModal)
+ Point(onKeyDown)
+}
+Add(hcHiAsmTrasmitter,2963275,217,140)
+{
+ link(onInit,6684674:doEvent1,[])
+ link(Arg1,11190520:Value,[(223,124)(588,124)(588,182)(552,182)])
+}
+Add(hcHub,6684674,266,140)
+{
+ OutCount=3
+ link(onEvent1,4980085:doWork2,[])
+ link(onEvent2,7013934:doExecute,[(304,153)(304,174)])
+ link(onEvent3,2963275:doReturn,[(292,160)(292,182)(207,182)(207,146)])
+}
+Add(hcMemory,11190520,546,140)
+{
+}
+Add(HubEx,4980085,525,133)
+{
+ link(onEvent,11190520:doValue,[])
+}
+Add(hcOpenDialog,7013934,336,168)
+{
+ Title="Выберите файл"
+ link(onExecute,5049715:doReplace,[])
+}
+Add(hcReplace,5049715,385,168)
+{
+ Source="\r"
+ Dest="\\r"
+ link(onReplace,472192:doReplace,[])
+}
+Add(hcReplace,472192,434,168)
+{
+ Source="\n"
+ Dest="\\n"
+ link(onReplace,4117830:doReplace,[])
+}
+Add(hcReplace,4117830,483,168)
+{
+ Source="\t"
+ Dest="\\t"
+ link(onReplace,4980085:doWork3,[(529,174)])
+}

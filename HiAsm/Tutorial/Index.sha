@@ -1,0 +1,83 @@
+Make(Delphi)
+Pos(0,0)
+Add(MainForm,12337631,539,56)
+{
+ Left=20
+ Top=105
+}
+Add(InfoTip,16464751,77,14)
+{
+ Info=#
+ Font=[MS Sans Serif,10,0,0,1]
+ Transparent=1
+ Width=508
+ Height=312
+}
+Add(Shape,6712503,77,14)
+{
+ Width=508
+ Height=25
+ Text="Содержание"
+ Font=[Times New Roman,14,1,0,1]
+ Color=10789024
+}
+Add(LinkTip,7908000,84,49)
+{
+ Link="Введение в Hyper-Help=sha://Intro.sha"
+ Font=[MS Sans Serif,10,0,16711680,1]
+}
+Add(LinkTip,7852045,84,70)
+{
+ Link="Как сделать свой компонент с настраиваемыми свойствами=sha://element.sha"
+ Font=[MS Sans Serif,10,0,16711680,1]
+}
+Add(LinkTip,2735209,84,91)
+{
+ Link="Демонстрация работы компонента Hub=sha://hub.sha"
+ Font=[MS Sans Serif,10,0,16711680,1]
+}
+Add(LinkTip,13961370,84,112)
+{
+ Link="Как работает компонент Check=sha://check.sha"
+ Font=[MS Sans Serif,10,0,16711680,1]
+}
+Add(LinkTip,6764611,84,133)
+{
+ Link="Использование компонента EventFromData=sha://eventfromdata.sha"
+ Font=[MS Sans Serif,10,0,16711680,1]
+}
+Add(LinkTip,2585621,84,154)
+{
+ Link="Использование динамических схем=sha://MultiElementEx.sha"
+ Font=[MS Sans Serif,10,0,16711680,1]
+}
+Add(LinkTip,13474717,84,175)
+{
+ Link="Как работать с глобальными переменными=sha://GlobalVar.sha"
+ Font=[MS Sans Serif,10,0,16711680,1]
+}
+Add(InfoTip,53711,266,301)
+{
+ Info=#55:Для перехода по ссылке удерживайте нажатой клавишу Ctrl|
+ Font=[MS Sans Serif,8,0,8388736,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=316
+ Height=18
+}
+Add(LinkTip,8155520,84,196)
+{
+ Link="Использование компонента Stack=sha://stack.sha"
+ Font=[MS Sans Serif,10,0,16711680,1]
+}
+Add(LinkTip,15143472,84,217)
+{
+ Link="Создание динамических библиотек DLL=sha://dll.sha"
+ Font=[MS Sans Serif,10,0,16711680,1]
+}
+Add(LinkTip,3660680,84,238)
+{
+ Link="Отчет о протекание потока=sha://informer.sha"
+ Font=[MS Sans Serif,10,0,16711680,1]
+}

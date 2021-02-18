@@ -1,0 +1,163 @@
+include("object")
+include("control")
+
+func MakeMenu()
+  fvar(i,l,s)
+  l = 0
+  if(linked(onSelectNum) or linked(vArray))
+    println('ReDim AllActions(0)')
+  end
+  for(i = 0; i < _arr.count(Menu); i++)
+    if(Menu[i]="(")
+      l++
+    ElseIf(Menu[i]=")")
+      l--
+    ElseIf(l=0)
+      println('Set l', l, ' = ', id, '.Menu.Add(', Menu[i], ')')
+    ElseIf(l>0)
+      if(Menu[i+1]="(")
+        println('Set l', l, ' = l', l-1, '.Add(', Menu[i], ')')
+      ElseIf(Menu[i]="-")
+        println('Set ', x, ' = l', l-1, '.NewLine()')
+      else
+        s = Menu[i]
+        if(pos(',', s) > 0)
+          s = replace(s, ",", '","')
+        end
+        println('Set ', x, ' = l', l-1, '.Add(', s, ')')
+        println(x, '.OnExecute = GetRef("', id, '_OnEvent")')
+        if(linked(onSelectNum) or linked(vArray))
+          println('ReDim Preserve AllActions(UBound(AllActions)+1)')
+          println('Set AllActions(UBound(AllActions)-1) = ', x)
+        end
+      end
+    end
+  end
+  if(linked(onSelectNum) or linked(vArray))
+    println('ReDim Preserve AllActions(UBound(AllActions)-1)')
+  end
+end
+
+func Init()
+  var(id)
+  id = Menu_
+  fvar(old)
+  old = block.select(BLK_BODY)
+
+  println('Set ', id, ' = ', get_parent(), '.CreateMenuBar(', Left, ', ', Top, ', ', Width, ', ', Height, ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(isndef(Menu))
+    MakeMenu()
+  end
+  if(linked(Images))
+    println(id, '.Menu.Images = ', Images)
+  end
+  if(isndef(Assign))
+    println('Set ', frm, '.Menu = ', id, '.Menu')
+  end
+  println('')
+
+  block.select(BLK_GLOB)
+  if(linked(Sender))
+    println('Dim vSender')
+  end
+  if(linked(onSelectNum) or linked(vArray))
+    println('Dim AllActions()')
+  end
+
+  // Function OnEvent
+  lng.begin_func(id + '_OnEvent(Sender)\'' + code(id))
+    if(linked(Sender))
+      println('Set vSender = Sender')
+    end
+    if(linked(onSelectStr))
+      event(onSelectStr, 'Sender.Text')
+    end
+    if(linked(onSelectNum))
+      println('For i = 0 To UBound(AllActions)-1')
+      block.inclvl()
+        println('If AllActions(i).Text=Sender.Text Then Exit For')
+      block.declvl()
+      println('Next')
+      event(onSelectNum, 'i')
+    end
+  lng.end_func(BLK_EVENTS)
+
+  if(linked(doInit))
+    if (sys.gvarfind('makemenurt_set') = -1)
+      gvar(makemenurt_set)
+      // Function MakeMenuRT
+      lng.begin_func('MakeMenuRT(arrMenu)')
+        println('Dim i,l,x')
+        println('l = 0')
+        if(linked(onSelectNum) or linked(vArray))
+          println('ReDim AllActions(0)')
+        end
+        println('For i = 0 To UBound(arrMenu)-1')
+        block.inclvl()
+          println('If(arrMenu(i)="(") Then')
+          block.inclvl()
+            println('l = l + 1')
+          block.declvl()
+          println('ElseIf(arrMenu(i)=")") Then')
+          block.inclvl()
+            println('l = l - 1')
+          block.declvl()
+          println('ElseIf(l=0) Then')
+          block.inclvl()
+            println('Execute "Set l" + CStr(l) + " = ', id, '.Menu.Add(""" + arrMenu(i) + """)"')
+          block.declvl()
+          println('ElseIf(l>0) Then')
+          block.inclvl()
+            println('if(arrMenu(i+1)="(") Then')
+            block.inclvl()
+              println('Execute "Set l" + CStr(l) + " = l" + CStr(l-1) + ".Add(""" + arrMenu(i) + """)"')
+            block.declvl()
+            println('ElseIf(arrMenu(i)="-") Then')
+            block.inclvl()
+              println('Execute "Set x = l" + CStr(l-1) + ".NewLine()"')
+            block.declvl()
+            println('Else')
+            block.inclvl()
+              println('If InStr(arrMenu(i), ",")>0 Then arrMenu(i) = Replace(arrMenu(i), ",", """,""")')
+              println('Execute "Set x = l" + CStr(l-1) + ".Add(""" + arrMenu(i) + """)"')
+              println('x.OnExecute = GetRef("', id, '_OnEvent")')
+              if(linked(onSelectNum) or linked(vArray))
+                println('ReDim Preserve AllActions(UBound(AllActions)+1)')
+                println('Set AllActions(UBound(AllActions)-1) = x')
+              end
+            block.declvl()
+            println('End If')
+          block.declvl()
+          println('End If')
+        block.declvl()
+        println('Next')
+        if(linked(onSelectNum) or linked(vArray))
+          println('ReDim Preserve AllActions(UBound(AllActions)-1)')
+        end
+      lng.end_func(BLK_FUNC)
+    end
+  end
+  block.select(old)
+end
+
+
+func doInit(_data)
+  if(isset(Array))
+    println('MakeMenuRT(', Array, ')')
+  end
+end
+
+func Sender()
+  return('vSender')
+end
+
+func vArray()
+  return('AllActions')
+end

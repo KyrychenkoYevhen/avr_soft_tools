@@ -1,0 +1,6 @@
+function run(){
+  sys.addpack("vbs","VBS","Проекты для создания vbs сценариев","vbs");
+  sys.addproject("vbs","EntryPoint","EntryPoint", "Создание VBS сценариев","vbs","make_vbs.dll");
+  sys.addproject("vbs","MainForm","MainForm", "Создание VBS сценариев с WSO","vbs","make_vbs.dll");
+  sys.setcompiler("vbs","Copy");
+}

@@ -1,0 +1,6 @@
+function OnMessage(Nick,Text)
+ 'asdasdadasd
+ 'set += 1
+ 'result = Nick = "Dilma"
+
+end

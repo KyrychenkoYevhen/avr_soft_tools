@@ -1,0 +1,30 @@
+func Init()
+  var(FIndex)
+  fvar(old)
+  FIndex = IdxData
+  old = block.select(BLK_GLOB)
+  println('Dim ',FIndex)
+  block.select(old)
+end
+
+func doIndex(_data)
+  println(FIndex, ' = ', _data)
+end
+
+func Var()
+  fvar(i,res)
+  res = selData
+  println('Select Case ', FIndex)
+  block.inclvl()
+  for(i = 0; i < _data_Count_; i++)
+    if(cgt.pt_get_rlink_point(cgt.pt_arr_data(i)))
+      println('Case ' + i)
+      block.inclvl()
+      println(res, ' = ', point("Data" + Str(i+1)))
+      block.declvl()
+    end
+  end
+  block.declvl()
+  println('End Select')
+  return(res)
+end

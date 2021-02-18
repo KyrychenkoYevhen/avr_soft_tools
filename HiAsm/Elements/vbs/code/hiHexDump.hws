@@ -1,0 +1,31 @@
+// var hexDump = StringUtils.HexDump( dumpString );
+func Init()
+  var(obj)
+  obj = HexDump_
+  stack &= block.select(BLK_OBJ)
+  println('Dim ', obj )
+  if (sys.gvarfind('w3utils_is_set') = -1)
+    gvar(w3utils_is_set)
+    println('On Error Resume Next')
+    println('Set ', obj, ' = CreateObject("w3.StringUtils")')
+    println('If Err.Number <> 0 Then')
+    println('  Msgbox "Please install w3u_base.dll before!" & vbCrLf & "Open a command prompt and cd" & vbCrLf & "to the directory where the dll is located" & vbCrLf & "then type regsvr32 w3u_base.dll"')
+    println('  WScript.Quit 1')
+    println('End If')
+    println('Set ', obj, ' = Nothing')
+    println('On Error GoTo 0')
+    println('')
+  end
+  println('Set ', obj, ' = CreateObject("w3.StringUtils")')
+  block.select(BLK_NOTH)
+  println('Set ', obj, ' = Nothing')
+  block.select(_arr.pop(stack))
+end
+
+func doHexDump(_data)
+  event(onHexDump, obj + '.HexDump(' + Data + ')')
+end
+
+func HexDump()
+  return(obj + '.HexDump(' + Data + ')')
+end

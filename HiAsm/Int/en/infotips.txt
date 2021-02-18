@@ -1,0 +1,8 @@
+To break a channel between two entry-points apart use right click on one of the connected points.
+To scroll the scheme desktop horizontally use scroll ring, if any, on your mouse holding Ctrl-button.
+To explore the scheme desktop in more interactive way use your mouse’s third button.
+To enable additional entry-points in some components you need to choose desirable ones in the ‘Parameters’ window (tabbed sheet ‘Entry points’).
+To make a screenshot of the current scheme use ‘Ctrl+Q’ shortcut.
+To enter the compound element-container - double click the selected cube.
+Help on the selected cube could be called by pushing Ctrl+F1.
+To close the current project or tabbed sheet click it with your mouse’s third button (as well you can try finding ‘close’ menu item or pushing a button with a cross in the right part of the tabbed page)

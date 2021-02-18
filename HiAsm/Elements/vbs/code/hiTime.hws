@@ -1,0 +1,35 @@
+func Now()
+  return('Now')
+end
+
+func Date()
+  return('Date')
+end
+
+func Time()
+  return('Time')
+end
+
+func Year()
+  return('Year(' && (isset(Data) ? Data : 'Now') && ')')
+end
+
+func Month()
+  return('Month(' && (isset(Data) ? Data : 'Now') && ')')
+end
+
+func Day()
+  return('Day(' && (isset(Data) ? Data : 'Now') && ')')
+end
+
+func Hour()
+  return('Hour(' && (isset(Data) ? Data : 'Now') && ')')
+end
+
+func Minute()
+  return('Minute(' && (isset(Data) ? Data : 'Now') && ')')
+end
+
+func Second()
+  return('Second(' && (isset(Data) ? Data : 'Now') && ')')
+end

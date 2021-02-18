@@ -1,0 +1,245 @@
+<html>
+	<head>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<link type="text/css" rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<table class="mes_table" border="1">
+			<tr class="prop_cap">
+				<td width="10%"><IMG src="../elements/delphi/icon/calldll.ico"></td>
+				<td align="center">Как подключить DLL библиотеки к HiAsm?</td>
+			</tr>
+			<tr>
+				<td style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px" colSpan="2">
+					<P>Компонент CallDLL осуществляет взаимодействие DLL библиотек, написанных 
+						пользователем, с другими компонентами схемы, используя любые из всех четырех 
+						видов точек входа.
+					</P>
+					<P>&nbsp;Взаимодействие программы и DLL библиотеки осуществляется всего 3-мя 
+						процедурами:</P>
+					<P>&nbsp;Pascal: <STRONG>procedure</STRONG> DllInit(_onEvent,_Data:TdllInitProc; 
+						_Param:pointer); <STRONG>cdecl</STRONG>;<br>
+						&nbsp;C++: <FONT color="#6600ff">void</FONT> DllInit(TdllInitProc 
+						_onEvent,TdllInitProc _Data,<FONT color="#6600ff">void</FONT> *_Param)
+					</P>
+					<P>&nbsp;где _onEvent - указатель на процедуру вызова событий, _Data - указатель на 
+						процедуру получения данных, _Param - поле, содержащее указатель на внутренний 
+						класс-обработчик в программе(используется исключительно компонентом CallDLL).</P>
+					<P>&nbsp;Pascal: <STRONG>procedure</STRONG> GetVar (<STRONG>var</STRONG> _Data:TValue; 
+						Index:word); <STRONG>cdecl</STRONG>;<br>
+						&nbsp;C++: <FONT color="#6600ff">void</FONT> GetVar (TValue &amp;_Data,WORD 
+						Index)
+					</P>
+					<P>&nbsp;где _Data - переменная, содержащая переданные процедуре данные, Index - 
+						индекс точки входа, на которую поступили данные(индекс первой точки равен 0)</P>
+					<P>&nbsp;Pascal: <STRONG>procedure</STRONG> doWork (<STRONG>var</STRONG> _Data:TValue; 
+						Index:word); <STRONG>cdecl</STRONG>;<br>
+						&nbsp;C++: <FONT color="#6600ff">void</FONT> doWork (TValue &amp;_Data,WORD 
+						Index)
+					</P>
+					<P>&nbsp;параметры аналогичны параметрам процедуры GetVar.</P>
+					<p>
+						Типы данных, которые может содержать поле _Data.Value в зависимости от значения 
+						в поле _Data.DType:
+						<table class="mes_table" border="1" align="center">
+							<tr class="down_sel">
+								<td><b>Тип</b></td>
+								<td><b>Описание</b></td>
+								<td><b>Pascal</b></td>
+								<td><b>C++</b></td>
+							</tr>
+							<tr>
+								<td>0</td>
+								<td>Пустые данные</td>
+								<td>---</td>
+								<td>---</td>
+							</tr>
+							<tr>
+								<td>1</td>
+								<td>Данные целого типа(Integer)</td>
+								<td>integer(Value^)</td>
+								<td>(*(int*)Value)</td>
+							</tr>
+							<tr>
+								<td>2</td>
+								<td>Данные cтрокового типа(String)</td>
+								<td>PChar(Value)</td>
+								<td>(char *)Value</td>
+							</tr>
+							<tr>
+								<td>3</td>
+								<td>Данные действительного типа(Real)</td>
+								<td>Real(Value^)</td>
+								<td>(*(double*)Value)</td>
+							</tr>
+							<tr>
+								<td>11</td>
+								<td>Картинка(Bitmap)</td>
+								<td>PBitmap(Value)</td>
+								<td>---</td>
+							</tr>
+						</table>
+					</p>
+					<P>&nbsp;Написание DLL библиотек разберем на простом примере:</P>
+				</td>
+			</tr>
+			<tr>
+				<td class="prop_cap" align="center" colSpan="2">Pascal (Delphi)</td>
+			</tr>
+			<tr>
+				<td style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px" colSpan="2">
+					Скачать тестовый пример программы и исходный код DLL библиотеки из примера 
+					можно <a href="http://hiasm.spb.ru/tools/dll_delphi.rar">тут</a>(37Kb)
+					<pre><STRONG>library</STRONG> test;
+
+<STRONG>uses</STRONG>
+  Windows;
+
+<STRONG>type</STRONG>
+  TValue = <STRONG>record
+</STRONG>   DType:byte;      <FONT color=#6600ff>//поле, указывающее тип данных</FONT>
+   Value:pointer;   <FONT color=#6600ff>//указатель на данные</FONT>            
+        
+  <STRONG>end</STRONG>;
+  TdllInitProc = <STRONG>procedure</STRONG> (<STRONG>var</STRONG> _Data:TValue; Index:word; Param:pointer); <STRONG>cdecl</STRONG>;
+
+<STRONG>var</STRONG>
+  Param:pointer;        <FONT color=#6600ff>// здесь сохраняем параметр, переданный процедурой DllInit</FONT> 
+  onEvent:TdllInitProc; <FONT color=#6600ff>// указатель на обработку точек входа "Событие"</FONT>
+  Data:TdllInitProc;    <FONT color=#6600ff>// указатель на обработку точек входа "Данные"</FONT>
+                 
+
+<STRONG>procedure</STRONG> doWork (<STRONG>var</STRONG> _Data:TValue; Index:word); <STRONG>cdecl</STRONG>;
+<STRONG>var</STRONG> dt:TValue;
+    i:integer;
+<STRONG>begin</STRONG>
+  Data(dt,0,Param);  <FONT color=#3300ff>// извлекаем данные с нулевой(т.е. первой в схеме) точки входа</FONT>
+  dt.DType := 1;    <FONT color=#6600ff> // задаем выходной тип данных - Integer</FONT>
+  i := integer(_Data.Value^) * integer(dt.Value^); <FONT color=#6600ff>// вычесляем результат</FONT>
+  dt.Value := @i;         <FONT color=#6600ff>         // записываем результат в  выходную переменную</FONT>
+  <STRONG>if</STRONG> assigned(onEvent) <STRONG>then</STRONG>
+    onEvent(dt,0,Param);   <FONT color=#6600ff>// вызываем событие 0, если оно доступно, с данными dt</FONT>
+                
+<STRONG>end</STRONG>;
+
+<STRONG>procedure</STRONG> GetVar (<STRONG>var</STRONG> _Data:TValue; Index:word); <STRONG>cdecl</STRONG>;
+<STRONG>begin</STRONG>
+  _Data.DType := 2; <FONT color=#6600ff>// задаем выходной тип данных - String</FONT>
+  _data.Value := PChar('Hello world!!!'); <FONT color=#6600ff>// выдаем строку(напомню, что PChar - это указатель)</FONT>
+<STRONG>end</STRONG>;
+
+<STRONG>procedure</STRONG> DllInit(_onEvent,_Data:TdllInitProc; _Param:pointer); <STRONG>cdecl</STRONG>;
+<STRONG>begin      </STRONG>
+  Param := _Param;     <FONT color=#6600ff> // сохраняем в переменных все переданные нам параметры</FONT>
+  onEvent := _onEvent;
+  Data := _Data;
+<STRONG>end</STRONG>;
+
+<STRONG>exports</STRONG>
+   doWork,
+   GetVar,
+   DllInit;
+
+<STRONG>begin
+end</STRONG>.                
+                
+                </pre>
+					</FONT></FONT></FONT>
+				</td>
+			</tr>
+			<tr>
+				<td class="prop_cap" align="center" colSpan="2">C++</td>
+			</tr>
+			<tr>
+				<td colSpan="2">
+					Скачать тестовый пример программы и исходный код DLL библиотеки из примера 
+					можно <a href="http://hiasm.spb.ru/tools/dll_c.rar">тут</a>(34Kb). Пример для 
+					языка C++ писался в среде MS Visual Studio .NET с типом проекта Win32 DLL.
+					<pre><FONT color=#6600ff>#include "windows.h"</FONT>
+	<FONT color=#009900>// макрос для экспорта ф-ций из DLL библиотеки</FONT>
+<FONT color=#6600ff>#ifdef</FONT> __cplusplus 
+<FONT color=#6600ff>#define</FONT> EXPORT <FONT color=#6600ff>extern</FONT> "C" <FONT color=#6600ff>__declspec</FONT> (<FONT color=#6600ff>dllexport</FONT>)
+<FONT color=#6600ff>#else</FONT> 
+<FONT color=#6600ff>#define</FONT> EXPORT <FONT color=#6600ff>__declspec</FONT> (<FONT color=#6600ff>dllexport</FONT>)
+<FONT color=#6600ff>#endif</FONT> 
+
+HINSTANCE HInstance;
+<FONT color=#6600ff>typedef struct</FONT>{
+   BYTE DType;  <FONT color=#009900>//поле, указывающее тип данных</FONT>    
+   <FONT color=#3300ff>void</FONT> *Value; <FONT color=#009900>//указатель на данные</FONT>
+}TValue;
+
+<FONT color=#6600ff>typedef void</FONT> * <FONT color=#6600ff>__cdecl </FONT> TdllInitProc(TValue &amp;,WORD,void*);
+
+<FONT color=#6600ff>void</FONT> *Param;           <FONT color=#009900>// здесь сохраняем параметр, переданный процедурой DllInit</FONT> 
+TdllInitProc *onEvent; <FONT color=#009900>// указатель на обработку точек входа "Событие"
+</FONT>TdllInitProc *Data;    <FONT color=#009900>// указатель на обработку точек входа "Данные"
+</FONT>
+
+EXPORT <FONT color=#6600ff>void</FONT> <FONT color=#6600ff>__cdecl </FONT> doWork (TValue &amp;_Data,WORD Index)
+{
+  TValue dt;
+  <FONT color=#6600ff>int</FONT> i;
+
+  Data(dt,0,Param);   <FONT color=#009900>// извлекаем данные с нулевой(т.е. первой в схеме) точки входа</FONT>  
+  dt.DType = 1;       <FONT color=#009900>// задаем выходной тип данных - Integer</FONT> 
+  i = (*(<FONT color=#6600ff>int</FONT> *)_Data.Value) * (*(<FONT color=#6600ff>int</FONT>*)dt.Value); <FONT color=#009900>// вычесляем результат</FONT>
+  dt.Value = &amp;i;      <FONT color=#009900>// записываем результат в выходную переменную</FONT> 
+  <FONT color=#6600ff>if</FONT>( onEvent )
+    onEvent(dt,0,Param); <FONT color=#009900>// вызываем событие 0, если оно доступно, с данными dt</FONT>
+}
+
+EXPORT <FONT color=#6600ff>void</FONT> <FONT color=#6600ff>__cdecl </FONT> GetVar (TValue &amp;_Data,WORD Index)
+{
+  _Data.DType = 2;      <FONT color=#009900>// задаем выходной тип данных - String</FONT>  
+  _Data.Value = "Hello world!!!";  <FONT color=#009900>// выдаем строку</FONT>
+}
+
+EXPORT <FONT color=#6600ff>void</FONT> <FONT color=#6600ff>__cdecl</FONT> DllInit(TdllInitProc _onEvent,TdllInitProc _Data,<FONT color=#6600ff>void</FONT> *_Param)
+{
+  Param = _Param;        <FONT color=#009900>// сохраняем в переменных все переданные нам параметры</FONT>
+  onEvent = _onEvent;
+  Data = _Data;            
+}
+
+BOOL APIENTRY DllMain(HINSTANCE hModule,DWORD ul_reason_for_call,LPVOID lpReserved)
+{
+	HInstance = hModule;
+	<FONT color=#6600ff>return true</FONT>;
+}            
+             
+             </pre>
+				</td>
+			</tr>
+			<tr>
+				<td class="prop_cap" align="center" colSpan="2">Советы</td>
+			</tr>
+			<tr>
+				<td colSpan="2">
+					<P>&nbsp;В&nbsp;примере, приведенном выше, вы могли заметить, что нет никакой 
+						проверки типа входных данных, т.к. я предпологаю, что мне на вход могут 
+						поступать только данные типа Integer. На самом же деле никто не гарантирует, 
+						что туда не могут поступить данные, к примеру, типа String, и тогда число 
+						integer(_Data.Value^) или (*(<FONT color="#6600ff">int</FONT>*)dt.Value) будут 
+						содержать неизвестно что, и как следствие результат получится непредсказуемым. 
+						Поэтому, если вы сомневаетесь в том, что вы всегда будете передавать данные 
+						нужного формата, то лучше предусмотреть проверку типа в поле _Data.DType и в 
+						зависимости от этого разъименовывать указатель, а затем конвертировать(если 
+						необходимо) данные в нужный тип.</P>
+					<P>&nbsp;Второй монент связан с использованием процедур Data и onEvent.&nbsp;Так в 
+						приведенном&nbsp;примере указатель Data не проверяется на равенство 0, а 
+						onEvent - проверяется. Но&nbsp;причина&nbsp;проверки тут&nbsp;иная. 
+						Единственный вариант, при котором Data(или onEvent) будет содержать 0, это ваша 
+						собственная ошибка при написание кода, потому что компонент CallDLL всегда 
+						передает методы обработки точек входа "Данные" и "События". А поэтому, если вы 
+						верно написали код и корректно сохранили указатели(строчка onEvent = _onEvent), 
+						то проверку вставлять не требуется.</P>
+				</td>
+			</tr>
+			<tr>
+				<td class="down_sel" colSpan="2">&nbsp;Примеры: <a href="http://hiasm.spb.ru/tools/dll_delphi.rar">
+						Delphi</a>, <a href="http://hiasm.spb.ru/tools/dll_c.rar">C++</a></td>
+			</tr>
+		</table>
+	</body>
+</html>

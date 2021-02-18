@@ -1,0 +1,41 @@
+func Init()
+  if(linked(doActivate))
+    include('shell')
+  end
+  if(linked(doShow) or linked(doCaption) or linked(doClose))
+    include('dwx')
+    stack &= block.select(BLK_OBJ)
+    if(linked(doShow))
+      println('dwx.Register "user32", "ShowWindow", "i=hl"')
+    end
+    if(linked(doCaption))
+      println('dwx.Register "user32", "SetWindowText", "i=hs"')
+    end
+    if(linked(doClose))
+      println('dwx.Register "user32", "PostMessage", "i=huul"')
+    end
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doActivate(_data)
+  println('shell.AppActivate ', Caption)
+end
+
+func doShow(_data)
+  if(isset(WindowID))
+    println('dwx.ShowWindow ', WindowID, ', ', Mode)
+  end
+end
+
+func doCaption(_data)
+  if(isset(WindowID))
+    println('dwx.SetWindowText ', WindowID, ', ', Caption)
+  end
+end
+
+func doClose(_data)
+  if(isset(WindowID))
+    println('dwx.PostMessage ', WindowID, ', 16, 0, 0')
+  end
+end

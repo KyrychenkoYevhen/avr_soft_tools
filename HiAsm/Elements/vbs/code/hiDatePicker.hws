@@ -1,0 +1,97 @@
+include("object")
+include("control")
+include("datetimecontrol")
+
+func Init()
+  var(id)
+  id = DatePicker_
+  fvar(old)
+  old = block.select(BLK_BODY)
+  
+  fvar(dtsStyle)
+  dtsStyle = 0
+  if(isndef(UpDown))
+    dtsStyle += 1
+  end
+  if(isndef(CheckBox))
+    dtsStyle += 2
+  end
+  if(isndef(LongDateFormat))
+    dtsStyle += 4
+  end
+  if(isndef(TimeFormat))
+    dtsStyle += 9
+  end
+  if(isndef(RightAlign))
+    dtsStyle += 32
+  end
+
+  println('Set ', id, ' = ', get_parent(), '.CreateDateTimePicker(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(', dtsStyle, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(isndef(Style))
+    switch(Style)
+      case 1: println(id, '.Style = 4')
+      case 2: println(id, '.Style = 9')
+    end
+  end
+  if(isndef(ShowCheckBox))
+    println(id, '.ShowCheckBox = True')
+  end
+  if(isndef(ShowUpDown))
+    println(id, '.ShowUpDown = True')
+  end
+  if(isndef(DropDownRightAlign))
+    println(id, '.DropDownRightAlign = True')
+  end
+  if(isndef(CustomFormat))
+    println(id, '.CustomFormat = ', CustomFormat)
+  end
+  println('')
+  block.select(old)
+end
+
+func doStyle(_data)
+  println(id, '.Style = ', _data)
+end
+
+func doShowCheckBox(_data)
+  println(id, '.ShowCheckBox = ', (_data='') ? 'False' : _data)
+end
+
+func doShowUpDown(_data)
+  println(id, '.ShowUpDown = ', (_data='') ? 'False' : _data)
+end
+
+func doDropDownRightAlign(_data)
+  println(id, '.DropDownRightAlign = ', (_data='') ? 'False' : _data)
+end
+
+func doCustomFormat(_data)
+  println(id, '.CustomFormat = ', _data)
+end
+
+func vStyle()
+  return(id + '.Style')
+end
+
+func vShowCheckBox()
+  return(id + '.ShowCheckBox')
+end
+
+func vShowUpDown()
+  return(id + '.ShowUpDown')
+end
+
+func vDropDownRightAlign()
+  return(id + '.DropDownRightAlign')
+end
+
+func vCustomFormat()
+  return(id + '.CustomFormat')
+end

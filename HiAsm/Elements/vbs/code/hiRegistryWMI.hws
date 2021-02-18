@@ -1,0 +1,192 @@
+func Init()
+  if(isset(Handle))
+    var(obj, obj_, fReg)
+    obj = Handle
+    obj_ = oReg_
+    fReg = res_
+    //Set oReg = GetObject("winmgmts:!root/default:StdRegProv")
+    stack &= block.select(BLK_GLOB)
+    println('Dim ', fReg)
+    block.select(_arr.pop(stack))
+  end
+end
+
+func GetPath()
+  fvar(path)
+  switch(HKey)
+    case 'CLASSES_ROOT': path = '&H80000000, '
+    case 'CURRENT_USER': path = '&H80000001, '
+    case 'LOCAL_MACHINE': path = '&H80000002, '
+    case 'USERS': path = '&H80000003, '
+    case 'CURRENT_CONFIG': path = '&H80000005, '
+  end
+  return(path)  
+end
+
+func doRead(_data)
+  println('Set ', obj_, ' = ', obj, '.Get("StdRegProv")')
+  println(res, ' = ', obj_, '.Get', DataType, 'Value(', GetPath(), Key, ', ', Value, ', ', fReg, ')')
+  if(linked(onError))
+    print('If (', res, ' <> 0) Or (Err.Number <> 0) Then ')
+    event(onError, 'Err.Number+' && res)
+  end
+  if(linked(onRead))
+    if(NotEmpty='True')
+      print('If (', res, ' = 0) And (Err.Number = 0) Then ')
+      event(onRead, fReg)
+    else
+      event(onRead, fReg)
+    end
+  end
+end
+
+func doWrite(_data)
+  println('Set ', obj_, ' = ', obj, '.Get("StdRegProv")')
+  println(res, ' = ', obj_, '.CreateKey(', GetPath(), Key, ')')
+  if(linked(onError))
+    print('If (', res, ' <> 0) Or (Err.Number <> 0) Then ')
+    event(onError, 'Err.Number+' && res)
+  end
+  println(res, ' = ', obj_, '.Set', DataType, 'Value(', GetPath(), Key, ', ', Value, ', ', Data, ')')
+  if(linked(onError))
+    print('If (', res, ' <> 0) Or (Err.Number <> 0) Then ')
+    event(onError, 'Err.Number+' && res)
+  end
+end
+
+func doDeleteValue(_data)
+  println('Set ', obj_, ' = ', obj, '.Get("StdRegProv")')
+  println(res, ' = ', obj_, '.DeleteValue(', GetPath(), Key, ', ', Value, ')')
+  if(linked(onError))
+    print('If (', res, ' <> 0) Or (Err.Number <> 0) Then ')
+    event(onError, 'Err.Number+' && res)
+  end
+end
+
+func doDeleteKey(_data)
+  println('Set ', obj_, ' = ', obj, '.Get("StdRegProv")')
+  println(res, ' = ', obj_, '.DeleteKey(', GetPath(), Key, ')')
+  if(linked(onError))
+    print('If (', res, ' <> 0) Or (Err.Number <> 0) Then ')
+    event(onError, 'Err.Number+' && res)
+  end
+end
+
+func doEraseKey(_data)
+  println('Set ', obj_, ' = ', obj, '.Get("StdRegProv")')
+  println(obj_, '.EnumKey ', GetPath(), Key, ', arrSubKeys')
+  println('If Not IsNull(arrSubKeys) Then')
+  block.inclvl()
+    println('For Each subkey In arrSubKeys')
+    block.inclvl()
+      println(res, ' = ', obj_, '.DeleteKey(', GetPath(), Key, ' & "\" & subkey)')
+      if(linked(onError))
+        print('If (', res, ' <> 0) Or (Err.Number <> 0) Then ')
+        event(onError, 'Err.Number+' && res)
+      end
+    block.declvl()
+    println('Next')
+  block.declvl()
+  println('End If')
+end
+
+func doEnumKeys(_data)
+  println('Set ', obj_, ' = ', obj, '.Get("StdRegProv")')
+  println(obj_, '.EnumKey ', GetPath(), Key, ', arrSubKeys')
+  println('If Not IsNull(arrSubKeys) Then')
+  block.inclvl()
+    println('For Each subkey In arrSubKeys')
+    block.inclvl()
+      if(linked(onEnumKey))
+        event(onEnumKey, 'subkey')
+      end
+    block.declvl()
+    println('Next')
+  block.declvl()
+  println('End If')
+end
+
+func doEnumValues(_data)
+  println('Set ', obj_, ' = ', obj, '.Get("StdRegProv")')
+  println(obj_, '.EnumValues ', GetPath(), Key, ', arrValues, arrTypes')
+  println('For Each keyValue In arrValues')
+  block.inclvl()
+    if(linked(onEnumValue))
+      event(onEnumValue, 'keyValue')
+    end
+  block.declvl()
+  println('Next')
+end
+
+func doCheckAccess(_data)
+  println('Set ', obj_, ' = ', obj, '.Get("StdRegProv")')
+  println(obj_, '.CheckAccess ', GetPath(), Key, ', ', Permission, ', bValue')
+  if(linked(onCheckAccess))
+    event(onCheckAccess, 'bValue')
+  end
+end
+
+func doExistsKey(_data)
+  println('Set ', obj_, ' = ', obj, '.Get("StdRegProv")')
+  println(obj_, '.EnumKey ', GetPath(), 'Left(', Key, ', InStrRev(', Key, ', "\")-1), arrSubKeys')
+  println(res, ' = False')
+  println('If Not IsNull(arrSubKeys) Then')
+  block.inclvl()
+    println(s, ' = Mid(', Key, ', InStrRev(', Key, ', "\")+1)')
+    println('For Each subkey In arrSubKeys')
+    block.inclvl()
+      if(linked(onExistsKey))
+        println('If LCase(', s, ')=LCase(subkey) Then')
+        block.inclvl()
+          println(res, ' = True')
+          println('Exit For')
+        block.declvl()
+        println('End If')
+      end
+    block.declvl()
+    println('Next')
+  block.declvl()
+  println('End If')
+  event(onExistsKey, res)
+end
+
+func doExistsValue(_data)
+  println('Set ', obj_, ' = ', obj, '.Get("StdRegProv")')
+  println(obj_, '.EnumValues ', GetPath(), Key, ', arrValues, arrTypes')
+  println(res, ' = False')
+  println('If Not IsNull(arrValues) Then')
+  block.inclvl()
+    println('For Each keyValue In arrValues')
+    block.inclvl()
+      if(linked(onExistsValue))
+        println('If LCase(', Value, ')=LCase(keyValue) Then')
+        block.inclvl()
+          println(res, ' = True')
+          println('Exit For')
+        block.declvl()
+        println('End If')
+      end
+    block.declvl()
+    println('Next')
+  block.declvl()
+  println('End If')
+  event(onExistsValue, res)
+end
+
+func doStopEnum(_data)
+  println('Exit For')
+end
+
+func RData(_data)
+  if(linked(doRead))
+    return(fReg)
+  else
+  println('Set ', obj_, ' = ', obj, '.Get("StdRegProv")')
+    println(obj_, '.Get', DataType, 'Value ', GetPath(), Key, ', ', Value, ', ', fReg)
+    return(fReg)
+  end
+end
+
+func RCount()
+  return('UBound(' && fReg && ')-1')
+end

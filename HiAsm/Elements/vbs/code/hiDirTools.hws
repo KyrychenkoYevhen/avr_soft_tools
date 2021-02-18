@@ -1,0 +1,117 @@
+func Init
+  include('fso')
+end
+
+func doCreate(_data)
+  if(linked(onError))
+   println('On Error Resume Next')
+  end
+  println('Set ', f, ' = fso.CreateFolder(', Source, ')')
+  if(linked(onOk))
+   println('If Err.Number = 0 Then')
+   block.inclvl()
+    event(onOk)
+   block.declvl()
+   println('End If')
+  end
+  if(linked(onError))
+   println('If Err.Number<>0 Then')
+   block.inclvl()
+    event(onError, '"Error # " & CStr(Err.Number) & " - " & Err.Description')
+   block.declvl()
+   println('End If')
+  end
+  if(linked(onError))
+   println('On Error GoTo 0')
+  end  
+end
+
+func doMove(_data)
+  if(linked(onError))
+   println('On Error Resume Next')
+  end
+  println('fso.MoveFolder ', Source, ', ', Dest)
+  if(linked(onOk))
+   println('If Err.Number = 0 Then')
+   block.inclvl()
+    event(onOk)
+   block.declvl()
+   println('End If')
+  end
+  if(linked(onError))
+   println('If Err.Number <> 0 Then')
+   block.inclvl()
+    event(onError, '"Error #" & CStr(Err.Number) & " - " & Err.Description')
+   block.declvl()
+   println('End If')
+  end
+  if(linked(onError))
+   println('On Error GoTo 0')
+  end
+end
+
+func doCopy(_data)
+  if(linked(onError))
+   println('On Error Resume Next')
+  end
+  println('fso.CopyFolder ', Source, ', ', Dest, ', ', isdef(Overwrite) ? 'True' : 'False')
+  if(linked(onOk))
+   println('If Err.Number = 0 Then')
+   block.inclvl()
+    event(onOk)
+   block.declvl()
+   println('End If')
+  end
+  if(linked(onError))
+   println('If Err.Number <> 0 Then')
+   block.inclvl()
+    event(onError, '"Error # " & CStr(Err.Number) & " - " & Err.Description')
+   block.declvl()
+   println('End If')
+  end
+  if(linked(onError))
+   println('On Error GoTo 0')
+  end  
+end
+
+func doDelete(_data)
+  if(linked(onError))
+   println('On Error Resume Next')
+  end
+  println('fso.DeleteFolder ', Source, ', ', isndef(Force) ? 'True' : 'False')
+  if(linked(onOk))
+   println('If Err.Number = 0 Then')
+   block.inclvl()
+    event(onOk)
+   block.declvl()
+   println('End If')
+  end
+  if(linked(onError))
+   println('If Err.Number <> 0 Then')
+   block.inclvl()
+    event(onError, '"Error # " & CStr(Err.Number) & " - " & Err.Description')
+   block.declvl()
+   println('End If')
+  end
+  if(linked(onError))
+   println('On Error GoTo 0')
+  end
+end
+
+func doExists(_data)
+  if(linked(onOk) or linked(onError))
+   println('If fso.FolderExists(' && Source && ') Then')
+   block.inclvl()
+    if(linked(onOk))
+      event(onOk)
+    end
+    if(linked(onError))
+     block.declvl()
+     println('Else')
+     block.inclvl()
+      event(onError, '"Folder "' & linked(Source) ? Source : _data & '" - Not Exists"')
+    end
+   block.declvl()
+   println('End If')
+  end
+end

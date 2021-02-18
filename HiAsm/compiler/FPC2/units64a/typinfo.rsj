@@ -1,0 +1,5 @@
+{"version":1,"strings":[
+{"hash":124383253,"name":"typinfo.serrnotanenumerated","sourcebytes":[84,121,112,101,32,105,110,102,111,114,109,97,116,105,111,110,32,112,111,105,110,116,115,32,116,111,32,110,111,110,45,101,110,117,109,101,114,97,116,101,100,32,116,121,112,101],"value":"Type information points to non-enumerated type"},
+{"hash":34528387,"name":"typinfo.serrinvalidenumeratedcount","sourcebytes":[73,110,118,97,108,105,100,32,110,117,109,98,101,114,32,111,102,32,101,110,117,109,101,114,97,116,101,100,32,118,97,108,117,101,115],"value":"Invalid number of enumerated values"},
+{"hash":205266661,"name":"typinfo.serrduplicateenumerated","sourcebytes":[68,117,112,108,105,99,97,116,101,32,97,108,105,97,115,32,102,111,114,32,101,110,117,109,101,114,97,116,101,100,32,118,97,108,117,101],"value":"Duplicate alias for enumerated value"}
+]}

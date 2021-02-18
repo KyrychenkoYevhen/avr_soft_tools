@@ -1,0 +1,109 @@
+*Пример работы с файлом dBase через источник данных OLEDB#13#10______________________#13#10Автор: nesco
+Make(delphi)
+ver(4.04 build 185)
+Add(MainForm,3171043,119,84)
+{
+ Left=20
+ Top=105
+ Width=390
+ Height=415
+ Caption="dBase_with_OLEDBDataSource"
+ Position=1
+ link(onCreate,11947023:doStrCat,[])
+}
+Add(Button,941652,161,252)
+{
+ Left=305
+ Top=5
+ Width=75
+ TabOrder=-1
+ Caption="Подключить"
+ link(onClick,5366140:doOpen,[])
+}
+Add(StringTable,6078793,476,224)
+{
+ Left=5
+ Top=165
+ Width=375
+ Height=210
+ Point(doAddColumn)
+}
+Add(MT_Enum,5673081,420,259)
+{
+ link(onItem,6078793:doAddColumn,[])
+}
+Add(MT_String,16321824,420,217)
+{
+ link(onResult,6078793:doAdd,[(464,223)(464,230)])
+}
+Add(Edit,11108326,217,98)
+{
+ Left=5
+ Top=5
+ Width=295
+ Text=""
+ link(onChange,12314600:doEvent1,[])
+}
+Add(Dir,5145339,168,49)
+{
+}
+Add(StrCat,11947023,168,98)
+{
+ Str2="Phone.dbf"
+ link(onStrCat,11108326:doText,[])
+ link(Str1,5145339:CurrentDir,[])
+}
+Add(FormatStr,5564056,385,98)
+{
+ DataCount=1
+ Mask="Driver={Microsoft dBASE Driver (*.dbf)};\r\nDriverId=533;\r\nDescription=dBase 5;\r\nFIL=dBase 5;\r\nDefaultDir=%1;\r\nPageTimeout=600;\r\nCollatingSequence=International;"
+ Point(FString)
+ link(onFString,14216946:doText,[])
+}
+Add(FormatStr,10216816,420,140)
+{
+ Mask="SELECT * FROM %1"
+ Point(FString)
+ link(onFString,90655:doText,[])
+}
+Add(Memo,14216946,476,77)
+{
+ Left=5
+ Top=30
+ Width=375
+ Height=105
+}
+Add(DS_OLEDB,5366140,217,252)
+{
+ Name="ole_driver_1"
+ link(onCreate,13233332:doQuery,[])
+ link(Driver,5564056:FString,[(223,183)(391,183)])
+}
+Add(DSC_Query,13233332,266,252)
+{
+ DSManager="ole_driver_1"
+ link(onQuery,16321824:doStr,[(328,258)(328,223)])
+ link(onColumns,5673081:doEnum,[])
+ link(SQL,90655:Text,[(272,196)(482,196)])
+}
+Add(Edit,90655,476,140)
+{
+ Left=5
+ Top=140
+ Width=375
+ Text=""
+}
+Add(FilePartElm,3189965,322,140)
+{
+ link(onPart,10216816:doString,[])
+}
+Add(FilePartElm,8180295,322,98)
+{
+ Mode=0
+ link(onPart,5564056:doString,[])
+}
+Add(Hub,12314600,280,98)
+{
+ link(onEvent1,8180295:doPart,[])
+ link(onEvent2,3189965:doPart,[(308,111)(308,146)])
+}

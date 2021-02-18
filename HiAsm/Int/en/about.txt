@@ -1,0 +1,22 @@
+-=HiAsm Studio=-
+********************
+Program builder
+Version %ver
+********************
+
+Author:
+Dilma - hiasm@mail.ru
+
+Developers:
+nesco.sochi,tsdimitri
+nbereznikov, iarspider,
+
+Host and design:
+Andrej - andrej@nightmail.ru
+V.sh - v112.sh@mail.ru
+
+Home page:
+http://www.hiasm.com
+
+Copyright(C) 2003 - 2011
+-=end=-

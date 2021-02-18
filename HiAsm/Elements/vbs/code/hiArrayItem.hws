@@ -1,0 +1,13 @@
+func doGet(_data)
+  event(onGet, Array && '(' && Name && ')')
+end
+
+func doSet(_data)
+  println(Array, '(', Name, ') = ', _data_,)
+  event(onGet, Array && '(' && Name && ')')
+end
+
+func Get()
+  return(Array && '(' && Name && ')')
+end
+

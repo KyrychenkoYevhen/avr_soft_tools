@@ -1,0 +1,56 @@
+Make(modules)
+Add(MainForm,5583812,70,133)
+{
+ Left=20
+ Top=105
+ Width=263
+ Height=317
+ Font=[Arial,10,0,0,1]
+ Caption="О программе"
+ BorderStyle=3
+}
+Add(Label,5078200,315,147)
+{
+ Left=5
+ Top=265
+ Width=107
+ Font=[Arial,10,0,0,1]
+ Caption="Страница HiAsm:"
+}
+Add(Label,7742796,126,203)
+{
+ @Hint=#4:site|
+ Left=120
+ Top=265
+ Width=133
+ Font=[Arial,10,0,0,1]
+ Caption="http://www.hiasm.com"
+}
+Add(ChildPanel,9205520,154,98)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,3436274,3,3)
+  {
+  }
+  Add(Panel,1033118,30,100)
+  {
+   Left=10
+   Top=15
+   Width=232
+   Height=235
+   Font=[Arial,8,0,0,1]
+   BorderWidth=3
+   BevelInner=1
+   BevelOuter=2
+   BevelWidth=2
+  }
+  Add(Image,7588248,14,14)
+  {
+   @Hint=#5:image|
+   Left=7
+   Top=7
+   Width=217
+   Height=220
+  }
+END_SDK

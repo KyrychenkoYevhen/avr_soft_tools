@@ -1,0 +1,30 @@
+func MakeCode(dt)
+  fvar(c)
+  c = isdef(Type) ? 'Mid' : 'MidB'
+  c += '(' + SrcStr + ', ' + Start
+  if(Length)
+    c += ', ' + Length
+  end
+  c += ')'
+  return(c)
+end
+
+func doCopy(_data)
+  if(linked(Result))
+    println(res, ' = ', MakeCode(_data))
+    event(onCopy, res)
+  else
+    event(onCopy, MakeCode(_data))
+  end
+end
+
+func Result()
+  if(linked(doCopy))
+    stack &= block.select((isset(BLK_FUNC) and isndef(Extern)) ? BLK_FUNC : BLK_GLOB)
+    println('Dim ', res)
+    block.select(_arr.pop(stack))
+    return(res)
+  else
+    return(MakeCode())
+  end
+end

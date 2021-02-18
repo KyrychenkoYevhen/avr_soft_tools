@@ -1,0 +1,5 @@
+Load room failed!
+The room is not found
+The application tries to read a file: %s
+The application tries to write a file: %s
+The application tries to load the data at address: %s

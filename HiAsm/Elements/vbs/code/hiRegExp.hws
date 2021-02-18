@@ -1,0 +1,84 @@
+func Init
+  var(val,values)
+  fvar(old)
+  val = Match_
+  values = Matches_
+  old = block.select(BLK_GLOB)  
+  println('Dim ', values)
+  if(linked(Match) or linked(MatchPos) or linked(MatchLen))
+   println('Dim ', val)
+  end
+  block.select(old)
+end
+
+func doExecute(_data)
+  include("regexp")
+  println('With re')
+  block.inclvl()
+   println('.Pattern = ', Exp)
+   println('.IgnoreCase = ', isndef(IgnoreCase) ? 'True' : 'False')
+   println('.Global = ', isndef(Global) ? 'True' : 'False')
+   println('Set ', values, ' = .Execute(', InStr, ')')
+  block.declvl()
+  println('End With')
+  println('For Each ', val, ' In ', values)
+  block.inclvl()
+   if(linked(onMatch))
+    event(onMatch, val && '.Value')
+   end
+  block.declvl()
+  println('Next')
+  if(linked(onEnd))
+   event(onEnd)
+  end
+end
+
+func doReplace(_data)
+  include("regexp")
+  println('With re')
+  block.inclvl()
+   println('.Pattern = ', Exp)
+   println('.IgnoreCase = ', isndef(IgnoreCase) ? 'True' : 'False')
+   println('.Global = ', isndef(Global) ? 'True' : 'False')
+  block.declvl()
+  println('End With')
+  if(linked(onMatch))
+   event(onMatch, 're.Replace(' && InStr && ', ' && ReplStr && ')')
+  end
+end
+
+func doTest(_data)
+  include("regexp")
+  println('With re')
+  block.inclvl()
+   println('.Pattern = ', Exp)
+   println('.IgnoreCase = ', isndef(IgnoreCase) ? 'True' : 'False')
+   println('.Global = ', isndef(Global) ? 'True' : 'False')
+  block.declvl()
+  println('End With')
+  if(linked(onMatch))
+   println('If re.Test(', InStr, ') Then')
+   block.inclvl()
+    event(onMatch)
+    if(linked(onEnd))
+    block.declvl()
+   println('Else')
+   block.inclvl()
+    event(onEnd)
+    end
+   block.declvl()
+   println('End If')
+  end
+end
+
+func Match()
+  return(val && '.Value')
+end
+
+func MatchPos()
+  return(val && '.FirstIndex')
+end
+
+func MatchLen()
+  return(val && '.Length')
+end

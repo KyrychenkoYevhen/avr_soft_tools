@@ -1,0 +1,6 @@
+function run(){
+sys.addpack("pocketpc","PocketPC","Приложения для PocketPC","h");
+sys.addproject("pocketpc","MainForm","Приложение PocketPC","Создание интерфейсных приложений для PocketPC","exe","make_exe.dll");
+sys.addproject("pocketpc","Service","Фоновое приложение PocketPC","Создание фоновых приложений для PocketPC","exe","make_service.dll");
+sys.setcompiler("pocketpc","ARM");
+}

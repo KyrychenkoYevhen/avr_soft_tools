@@ -1,0 +1,25 @@
+func Init()
+  include("wso")
+  var(id)
+  id = Pict_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', id)
+  block.select(BLK_BODY)
+  if(isndef(Path))
+    println('Set ', id, ' = wso.LoadImage(', Path, ')')
+  end
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doLoad(_data)
+  println('Set ', id, ' = wso.LoadImage(', Path, ')')
+  if(linked(onLoad))
+    event(onLoad, id)
+  end
+end
+
+func Image()
+  return(id)
+end
+

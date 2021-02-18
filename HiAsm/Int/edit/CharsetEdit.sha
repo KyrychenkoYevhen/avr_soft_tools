@@ -1,0 +1,43 @@
+*Create by Nic
+Make(Modules)
+ver(4.03 build 180)
+Add(hcTplForm,15167743,217,84)
+{
+ Width=246
+ Height=327
+ Visible=1
+ Caption="Select charset"
+ BorderStyle=3
+ Point(doShowModal)
+}
+Add(hcHiAsmTrasmitter,2963275,168,98)
+{
+ link(onInit,15167743:doShowModal,[])
+}
+Add(hcTplButton,3639436,168,56)
+{
+ Left=81
+ Top=275
+ Width=65
+ Caption="OK"
+ link(onClick,15167743:doClose,[(208,62)(208,97)])
+}
+Add(hcTplListBox,8529965,84,91)
+{
+ Left=6
+ Top=5
+ Width=225
+ Height=260
+ Strings=#15:ANSI_CHARSET=0 |18:DEFAULT_CHARSET=1 |17:SYMBOL_CHARSET=2 |15:MAC_CHARSET=77 |21:SHIFTJIS_CHARSET=128 |19:HANGUL_CHARSET=129 |18:JOHAB_CHARSET=130 |19:GB2312_CHARSET=134 |24:CHINESEBIG5_CHARSET=136 |18:GREEK_CHARSET=161 |20:TURKISH_CHARSET=162 |23:VIETNAMESE_CHARSET=163 |19:HEBREW_CHARSET=177 |19:ARABIC_CHARSET=178 |19:BALTIC_CHARSET=186 |20:RUSSIAN_CHARSET=204 |17:THAI_CHARSET=222 |23:EASTEUROPE_CHARSET=238 |16:OEM_CHARSET=255 |
+ Point(Index)
+ link(onClick,3446970:doRead,[])
+}
+Add(hcArrayRead,3446970,126,98)
+{
+ link(onRead,2963275:doReturn,[])
+ link(Array,13936723:Array,[])
+}
+Add(hcStrList,13936723,112,42)
+{
+ Strings=#2:0 |2:1 |2:2 |3:77 |4:128 |4:129 |4:130 |4:134 |4:136 |4:161 |4:162 |4:163 |4:177 |4:178 |4:186 |4:204 |4:222 |4:238 |4:255 |
+}

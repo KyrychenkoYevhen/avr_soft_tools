@@ -1,0 +1,14 @@
+function run(){
+  sys.addcompiler("FPC-32","\"%fname%\" -Fu\"%curdir%compiler\\FPC2\\units32a\" -FE\"%opath%\" -FU\"%upath%\\units32a\" -Twin32 -vi","%curdir%compiler\\FPC2\\ppc386.exe","dpr");
+
+  sys.addcompiler("FPC-64","\"%fname%\" -Fu\"%curdir%compiler\\FPC2\\units64a\" -FE\"%opath%\" -FU\"%upath%\\units64a\" -Twin64 -vi","%curdir%compiler\\FPC2\\ppcrossx64.exe","dpr");
+
+  sys.addcompiler("FPC-32U","\"%fname%\" -Fu\"%curdir%compiler\\FPC2\\units32u\" -FE\"%opath%\" -FU\"%upath%\\units32u\" -Twin32 -Mdelphiunicode -vi","%curdir%compiler\\FPC2\\ppc386.exe","dpr");
+
+  sys.addcompiler("FPC-64U","\"%fname%\" -Fu\"%curdir%compiler\\FPC2\\units64u\" -FE\"%opath%\" -FU\"%upath%\\units64u\" -Twin64 -Mdelphiunicode -vi","%curdir%compiler\\FPC2\\ppcrossx64.exe","dpr");
+
+  sys.setcompiler("delphi","FPC-32");
+  sys.setcompiler("delphi","FPC-64");
+  sys.setcompiler("delphi","FPC-32U");
+  sys.setcompiler("delphi","FPC-64U");
+}

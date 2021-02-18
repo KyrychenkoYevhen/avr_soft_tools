@@ -1,0 +1,80 @@
+Make(vbs)
+ver(4.04 build 185)
+Add(MainForm,8186,126,84)
+{
+ Left=312
+ Top=234
+ Height=148
+ Text="Sinus"
+ Font=[Arial,8,0,0,1]
+ Point(Handle)
+ link(onCreate,52352:doFor,[(188,90)(188,202)])
+}
+Add(For,52352,217,196)
+{
+ Start=1
+ CounterName="i"
+ link(onEvent,289972:doEvent1,[])
+ link(End,3780267:CurrentWidth,[(230,191)(146,191)])
+}
+Add(Img_Line,43560,469,203)
+{
+ Point2AsOffset=0
+ Size=2
+ Color=8388608
+ Point(Point1)
+ Point(Point2)
+ link(Bitmap,6230020:Var3,[(475,139)])
+ link(Point1,12755147:Point,[])
+ link(Point2,8215030:Point,[(489,195)(524,195)])
+}
+Add(MathParse,22630,294,203)
+{
+ DataCount=1
+ MathStr="40*sin(%1*pi/180)+50"
+ link(onResult,9075684:doEvent1,[])
+}
+Add(SizeWindow,3780267,140,151)
+{
+ link(Handle,6230020:Var2,[])
+}
+Add(GetDataEx,6230020,140,134)
+{
+ Angle=3
+ link(Data,8186:Handle,[(132,139)])
+}
+Add(PointXY,8215030,518,147)
+{
+ link(X,52352:Position,[(524,116)(210,116)(210,235)(223,235)])
+ link(Y,22630:Result,[(531,109)(203,109)(203,242)(300,242)])
+}
+Add(PointXY,12755147,476,147)
+{
+ link(X,7733253:Result,[(482,126)(387,126)(387,188)(300,188)])
+ link(Y,16654232:Var,[(489,133)(451,133)(451,246)(391,246)])
+}
+Add(Hub,289972,259,196)
+{
+ link(onEvent1,7733253:doOperation,[(280,202)(280,153)])
+ link(onEvent2,22630:doCalc,[])
+}
+Add(Math,7733253,294,147)
+{
+ OpType=1
+ Op2=1
+}
+Add(Hub,9075684,343,203)
+{
+ link(onEvent1,43560:doDraw,[])
+ link(onEvent2,16654232:doValue,[])
+}
+Add(GlobalVar,16654232,385,210)
+{
+ Name="prev_y"
+ Data=Integer(50)
+}
+Add(GlobalVar,15961479,343,147)
+{
+ Name="pi"
+ Data=Real(3.1415926)
+}

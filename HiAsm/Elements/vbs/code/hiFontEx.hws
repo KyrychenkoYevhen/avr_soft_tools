@@ -1,0 +1,95 @@
+include("GraphicObject")
+
+func Init()
+  if(linked(FontEx))
+    var(id)
+    id = FontEx
+
+    // Common methods and properties
+    GraphicObject_Init(id)
+
+    if(isndef(Name))
+      println(id, '.Name = ', Name)
+    end
+    if(isndef(Size))
+      println(id, '.Size = ', Size)
+    end
+    if(isndef(CharSet))
+      println(id, '.CharSet = ', CharSet)
+    end
+    if(isndef(Angle))
+      println(id, '.Angle = ', Angle)
+    end
+    if(isndef(Weight))
+      println(id, '.Weight = ', Weight)
+    end
+    if(isndef(Bold))
+      println(id, '.Bold = True')
+    end
+    if(isndef(Italic))
+      println(id, '.Italic = True')
+    end
+    if(isndef(Underline))
+      println(id, '.Underline = True')
+    end
+    if(isndef(Strikethrough))
+      println(id, '.Strikethrough = True')
+    end
+  end
+end
+
+func doName(_data)
+  println(id, '.Name = ', _data)
+end
+
+func doSize(_data)
+  println(id, '.Size = ', _data)
+end
+
+func doCharSet(_data)
+  println(id, '.CharSet = ', _data)
+end
+
+func doAngle(_data)
+  println(id, '.Angle = ', _data)
+end
+
+func doWeight(_data)
+  println(id, '.Weight = ', _data)
+end
+
+func doBold(_data)
+  println(id, '.Bold = ', _data)
+end
+
+func doItalic(_data)
+  println(id, '.Italic = ', _data)
+end
+
+func doUnderline(_data)
+  println(id, '.Underline = ', _data)
+end
+
+func doStrikethrough(_data)
+  println(id, '.Strikethrough = ', _data)
+end
+
+func vName()
+  return(id, '.Name')
+end
+
+func vSize()
+  return(id + '.Size')
+end
+
+func vCharSet()
+  return(id + '.CharSet')
+end
+
+func vAngle()
+  return(id + '.Angle')
+end
+
+func vWeight()
+  return(id + '.Weight')
+end

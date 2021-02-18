@@ -1,0 +1,5 @@
+func Init()
+  if(WScriptObject='False')
+    gvar(wscript_disable)
+  end
+end

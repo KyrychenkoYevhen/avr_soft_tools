@@ -1,0 +1,35 @@
+func GetType()
+  fvar(s,i)
+  s = 1
+  for(i = 1; i <= Type; i++)
+    s *= 2
+  end
+  return(s / 2)
+end
+
+func Log(_data)
+  fvar(s,st)
+  if(linked(onLog))
+    s = 'shell.LogEvent(' + GetType() + ', ' + Message
+    if(isset(Target))
+      s += ', ' + Target
+      end
+    s += ')'
+  else
+    s = 'shell.LogEvent ' + GetType() + ', ' + Message
+    if(isset(Target))
+      s += ', ' + Target
+    end
+  end
+  return(s)
+end
+
+func doLog(_data)
+  include('shell')
+  if(linked(onLog))
+    event(onLog, Log(_data))
+  else
+    println(Log(_data))
+  end
+end
+

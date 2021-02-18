@@ -1,0 +1,106 @@
+*Переименование файлов по маске с индексом
+Make(delphi)
+ver(4.04 build 185)
+Add(MainForm,64878,14,175)
+{
+ Left=388
+ Top=351
+ Width=248
+ Height=66
+ Caption="File list"
+ BorderStyle=3
+ TaskBar=1
+}
+Add(StrCat,90902,434,175)
+{
+ link(onStrCat,60336:doMove,[])
+ link(Str1,20055:Value,[])
+}
+Add(Memory,20717,497,70)
+{
+ @Hint=#19:Имя исходного файла|
+}
+Add(StrCat,64560,329,175)
+{
+ link(onStrCat,24587:doStrCat,[])
+ link(Str1,34144:Count,[])
+}
+Add(Memory,20055,434,77)
+{
+ @Hint=#12:Путь к файлу|
+}
+Add(Hub,39009,70,70)
+{
+ link(onEvent1,20717:doValue,[])
+ link(onEvent2,12314600:doEvent1,[])
+}
+Add(FileTools,60336,497,175)
+{
+ link(FileName,20717:Value,[])
+}
+Add(StrCat,24587,385,175)
+{
+ link(onStrCat,90902:doStrCat,[])
+ link(Str1,91859:Text,[])
+}
+Add(Label,14849,14,119)
+{
+ Left=5
+ Top=15
+ Font=[Arial,8,0,0,1]
+ Caption="Mask"
+}
+Add(Edit,91859,385,119)
+{
+ @Hint=#11:Общая часть|
+ Left=60
+ Top=10
+ Width=165
+ Height=21
+ Font=[Arial,8,0,0,1]
+ Text=""
+}
+Add(InfoTip,98029,266,161)
+{
+ Info=#31:Соединяем все части имени файла|
+ Font=[Times New Roman,9,0,0,1]
+ VAlign=2
+ Width=225
+ Height=67
+}
+Add(Counter,34144,329,119)
+{
+ @Hint=#14:Счетчик файлов|
+}
+Add(StrCase,38059,280,175)
+{
+ @Hint=#16:Расширение файла|
+ link(onModify,64560:doStrCat,[])
+}
+Add(DropFile,64529,14,70)
+{
+ link(onDropFile,39009:doEvent1,[])
+ link(onEndDrop,34144:doReset,[(61,83)(61,139)])
+}
+Add(FilePartElm,3189965,161,119)
+{
+ Mode=2
+ link(onPart,34144:doNext,[])
+}
+Add(FilePartElm,8180295,161,77)
+{
+ Mode=0
+ link(onPart,20055:doValue,[])
+}
+Add(Hub,12314600,105,77)
+{
+ OutCount=3
+ link(onEvent1,8180295:doPart,[])
+ link(onEvent2,3189965:doPart,[(146,90)(146,125)])
+ link(onEvent3,9529621:doPart,[(133,97)(133,181)])
+}
+Add(FilePartElm,9529621,161,175)
+{
+ Mode=3
+ link(onPart,38059:doModify,[])
+}

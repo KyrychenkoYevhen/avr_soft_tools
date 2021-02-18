@@ -1,0 +1,17 @@
+Compilation error, code [%d]:
+The library is not found
+Latest version of HiAsm is required
+The input point in library is not found
+Error of assemblage of the project
+The application is not found
+Preparation for project assemblage...
+The compiler on the set path is not found: %s
+Stop and unloading plug-in
+Generation of a code for target language
+The builder of resources GoRc.exe is not found
+Project build...
+Code compression...
+Compression of a code for the given project is not supported
+Plug-in loading
+Assemblage is finished.
+The template %s not found!

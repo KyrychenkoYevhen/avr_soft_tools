@@ -1,0 +1,26 @@
+Check on a server a name of package and the project...
+Package with name [%s] is not found!
+Section "Information about project" is not filled
+Project with a name [%s] not found in base.
+Project publication...
+You are not authorised on a server. Try once again.
+File of the project too big!
+The project is successfully published!
+Unknown error: %s
+Project with name [%s] is updated...
+You are not the author of the given project!
+The project is successfully updated!
+Authorisation on a server for user name %s...
+Authorisation error! Check up correctness of the name and password.
+You try to open the scheme of the user with low level of trust. You are assured, what wish to continue?
+You try to save the scheme of the user with low level of trust. You are assured, what wish to continue?
+The prevention!
+Project saving
+Removal of the project from a server is executed successfully.
+Responses about the project %s
+You cannot add yourself!
+This author is already added
+Author is successfully added!
+Specified user is not the co-author in the given project
+User is successfully removed from the list of co-authors of the project!
+Project is successfully updated!

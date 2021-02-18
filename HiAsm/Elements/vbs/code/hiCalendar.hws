@@ -1,0 +1,102 @@
+include("object")
+include("control")
+include("datetimecontrol")
+
+func Init()
+  var(id)
+  id = Calendar_
+  fvar(old)
+  old = block.select(BLK_BODY)
+
+  fvar(mcsStyle)
+  mcsStyle = 0
+  if(isndef(MultiSelect))
+    mcsStyle += 2
+  end
+  if(isndef(WeekNumbers))
+    mcsStyle += 4
+  end
+  if(isndef(NoTodayCircle))
+    mcsStyle += 8
+  end
+  if(isndef(NoToday))
+    mcsStyle += 16
+  end
+
+  println('Set ', id, ' = ', get_parent(), '.CreateCalendar(', Left, ', ', Top, ', ', Width, ', ', Height, ', Clng(', mcsStyle, '))')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(isndef(MonthDelta))
+    println(id, '.MonthDelta = ', MonthDelta)
+  end
+  if(isndef(MaxSelCount))
+    println(id, '.MaxSelCount = ', MaxSelCount)
+  end
+  println('')
+  block.select(old)
+end
+
+func doMultiSelect(_data)
+  println(id, '.MultiSelect = ', (_data='') ? 'False' : _data)
+end
+
+func doWeekNumbers(_data)
+  println(id, '.WeekNumbers = ', (_data='') ? 'False' : _data)
+end
+
+func doNoTodayCircle(_data)
+  println(id, '.TodayCircle = ', (_data='') ? 'False' : _data)
+end
+
+func doNoToday(_data)
+  println(id, '.TodayText = ', (_data='') ? 'False' : _data)
+end
+
+func doMonthDelta(_data)
+  println(id, '.MonthDelta = ', _data)
+end
+
+func doMaxSelCount(_data)
+  println(id, '.MaxSelCount = ', _data)
+end
+
+func Today()
+  return(id + '.Today')
+end
+
+func SelStart()
+  return(id + '.SelStart')
+end
+
+func SelEnd()
+  return(id + '.SelEnd')
+end
+
+func vMultiSelect()
+  return(id + '.MultiSelect')
+end
+
+func vWeekNumbers()
+  return(id + '.WeekNumbers')
+end
+
+func TodayCircle()
+  return(id + '.TodayCircle')
+end
+
+func TodayText()
+  return(id + '.TodayText')
+end
+
+func vMonthDelta()
+  return(id + '.MonthDelta')
+end
+
+func vMaxSelCount()
+  return(id + '.MaxSelCount')
+end

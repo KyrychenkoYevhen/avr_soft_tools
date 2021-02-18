@@ -1,0 +1,37 @@
+Make(Modules)
+ver(4.04 build 185)
+Add(hcTplForm,2953706,266,147)
+{
+ Width=367
+ Height=85
+ Visible=1
+ Caption="Ключ для активации"
+ BorderStyle=3
+}
+Add(hcTplLabel,9474711,266,42)
+{
+ Left=20
+ Top=20
+ Width=33
+ Height=17
+ Caption="Ключ:"
+}
+Add(hcTplEdit,16479650,266,105)
+{
+ Left=65
+ Top=15
+ Width=270
+ Color=-16777201
+ Text=""
+ ReadOnly=0
+}
+Add(hcHiAsmTrasmitter,15011854,175,105)
+{
+ DataCount=0
+ link(onInit,9030003:doEvent1,[])
+}
+Add(hcHub,9030003,224,105)
+{
+ link(onEvent1,16479650:doText,[])
+ link(onEvent2,2953706:doShow,[(252,118)(252,153)])
+}

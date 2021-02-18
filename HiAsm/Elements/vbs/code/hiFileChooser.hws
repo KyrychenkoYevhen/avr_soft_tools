@@ -1,0 +1,46 @@
+func Init()
+  println(root, ' = ', StartDir)
+end
+
+func doBrowse(_data)
+  include("filechooser")
+  println('FileChooser.Title = ', Title)
+  println('FileChooser.Filter = ' + Filter)
+  if(linked(onResult))
+    println(files, ' = FileChooser.Browse(' + root + ')')
+    println('If Len(', files, ') Then')
+    block.inclvl()
+      println('If FileChooser.FileCount=1 Then')
+      block.inclvl()
+        event(onResult, files)
+      block.declvl()
+      println('Else')
+      block.inclvl()
+        println(arrFiles, ' = Split(', files, ', "|")')
+        println(pathFiles, ' = ', arrFiles, '(0)')
+        println('For ', i, '=1 To FileChooser.FileCount')
+        block.inclvl()
+          event(onResult, pathFiles && ' & "\\" & ' && arrFiles + '(' && i && ')')
+        block.declvl()
+        println('Next')
+      block.declvl()
+      println('End If')    
+      if (linked(onCancel))
+        block.declvl()
+        println('Else')
+        block.inclvl()
+        event(onCancel)
+      end
+    block.declvl()
+    println('End If')    
+  end
+end
+
+func doStartDir(_data)
+  println(root, ' = ', _data)
+end
+
+func FileCount()
+  include("filechooser")
+  return('FileChooser.FileCount')
+end

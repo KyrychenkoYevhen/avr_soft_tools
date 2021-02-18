@@ -1,0 +1,41 @@
+func Init()
+  var(subname, funcname)
+  subname = doWork_
+  funcname = GetVar_
+  fvar(i, k, p, s, t, q, w, pname, pdata)
+  stack &= block.select(BLK_BODY)
+  for(i = 0; i< _arr.count(Script); i++)
+    s  = Script[i]
+    replace(s, 'doWork', subname)
+    replace(s, 'GetVar', funcname)
+    for(k = 0; k < _data_count_; k++)
+      pname = cgt.pt_get_name_byid(cgt.pt_arr_data(k))
+      replace(s, 'sys.' + code(pname), lcode(point(pname)))
+    end
+    for(k = 0; k < _event_count_; k++)
+      pname = cgt.pt_get_name_byid(cgt.pt_arr_event(k))
+      p = pos('sys.' + code(pname), s)
+      if(p)
+        q = s
+        delete(s, 1, p - 1)
+        p = pos('(', s)
+        w = ')'
+        t = pos(w, s)
+        pdata = copy(s, p + 1, t - p - 1)
+        w = copy(s, 1, t)
+        s = q
+        replace(s, w, event(pname, code(pdata)))
+      end
+    end
+    println(code(s))
+  end
+  block.select(_arr.pop(stack))
+end
+
+func WorkPoints(_data, index)
+  println('call ', subname, '(', _data, ', ', index, ')')
+end
+
+func VarPoints(_data, index)
+  return(funcname && '(' && lcode(_data) && ', ' && index && ')')
+end

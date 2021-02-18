@@ -1,0 +1,22 @@
+func Init()
+  var(obj_id)
+  fvar(old,classpath)
+  old = block.select(BLK_CLASS)
+  if (sys.gvarfind('md5_class') = -1)
+   gvar(md5_class)
+   classpath=replace(sys.codedir() & 'classes\MD5.vbs','\\','\\\\')
+   println(code(file2str(classpath)))
+  end
+  obj_id = hash_
+  block.select(BLK_GLOB)
+  println('Dim ',obj_id)
+  block.select(BLK_OBJ)
+  println('Set ',obj_id,' = New MD5')
+  block.select(old)
+end
+
+func doHashsum(_data)
+  if(linked(onResult))
+   event(onResult, obj_id && '.MD5(' && Data && ')')
+  end
+end

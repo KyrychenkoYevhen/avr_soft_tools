@@ -1,0 +1,12 @@
+func vDay()
+println('\'Day = ',Day)
+  switch(Day)
+  case 0: return('vbSunday')
+  case 1: return('vbMonday')
+  case 2: return('vbTuesday')
+  case 3: return('vbWednesday')
+  case 4: return('vbThursday')
+  case 5: return('vbFriday')
+  case 6: return('vbSaturday')
+ end   
+end

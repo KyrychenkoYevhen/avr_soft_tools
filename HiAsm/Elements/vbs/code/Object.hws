@@ -1,0 +1,64 @@
+// ************************************************
+// Object.hws for Vbs packet
+// WSO methods, properties and constants
+// Общие свойства и методы наследников класса Object
+// Last modification: 18.04.2010
+// ************************************************
+// Init id of container
+func set_parent_id()
+  stack &= sys.curelement()
+  heap &= id
+  sys.selectelement(cgt.el_get_parent_id())
+  id = _arr.pop(heap)
+  sys.selectelement(_arr.pop(stack))
+end
+
+// Get parent container
+func get_parent()
+  if(cgt.el_get_parent_id())
+    stack &= sys.curelement()
+    sys.selectelement(cgt.el_get_parent_id())
+    heap &= id
+    sys.selectelement(_arr.pop(stack))
+    return(_arr.pop(heap))
+  else
+    return(frm)
+  end
+end
+
+// Common properties
+func Object_Init(obj)
+  var(_id)
+  _id = obj
+  // UserData
+  if(isndef(UserData))
+    println(_id, '.UserData = ', `UserData`)
+  end
+
+end
+
+// Common methods
+// AddEventHandler
+func doAddEventHandler(_data)
+  println (_id, '.AddEventHandler ', _arr.mt_pop(_data), ', ', _data)
+end
+
+// RemoveEventHandler
+func doRemoveEventHandler(_data)
+  println (_id, '.RemoveEventHandler ', _arr.mt_pop(_data), ', ', _data)
+end
+
+// UserData
+func doUserData(_data)
+  println (_id, '.UserData = ', _data)
+end
+
+// Type
+func Type()
+  return(_id  + '.Type')
+end
+
+// UserData
+func UserData()
+  return(_id  + '.UserData')
+end

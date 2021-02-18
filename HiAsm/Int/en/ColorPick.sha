@@ -1,0 +1,90 @@
+Make(modules)
+ver(4.03 build 180)
+Add(hcTplForm,2953706,420,308)
+{
+ Width=168
+ Height=256
+ Visible=1
+ Caption="Color select"
+ BorderStyle=3
+ Point(doShowModal)
+}
+Add(hcTplBitBtn,16422617,210,259)
+{
+ Left=5
+ Top=5
+ Width=145
+ Height=15
+ Color=-16777200
+ Caption="default"
+ Data=Integer(-1)
+ link(onClick,1079856:doWork2,[])
+}
+Add(hcTplColorPicker,1283414,420,259)
+{
+ Left=5
+ Top=30
+ Width=145
+ Height=145
+ Point(doColor)
+ link(onClickColor,1079856:doWork1,[(462,265)(462,249)(263,249)])
+ link(onSelectColor,15948255:doConvert,[])
+}
+Add(hcHiAsmTrasmitter,16345966,329,259)
+{
+ link(onInit,3504981:doEvent1,[])
+}
+Add(HubEx,1079856,259,259)
+{
+ link(onEvent,13111485:doEvent1,[])
+}
+Add(hcHub,13111485,280,259)
+{
+ link(onEvent1,16345966:doReturn,[])
+ link(onEvent2,2953706:doClose,[(313,272)(313,321)])
+}
+Add(hcHub,3504981,378,259)
+{
+ link(onEvent1,1283414:doColor,[])
+ link(onEvent2,2953706:doShowModal,[(406,272)(406,328)])
+}
+Add(hcConvertor,15948255,476,266)
+{
+ Mode=6
+ Digits=6
+ link(onResult,16734039:doCaption,[])
+}
+Add(hcTplLabel,16070799,525,217)
+{
+ Left=15
+ Top=180
+ Width=33
+ Height=17
+ Caption="RGB: "
+}
+Add(hcTplLabel,16734039,525,266)
+{
+ Left=53
+ Top=181
+ Width=40
+ Height=17
+ Caption="000000"
+ Point(doCaption)
+}
+Add(hcTplComboBox,9263318,420,357)
+{
+ Left=5
+ Top=203
+ Width=145
+ Height=21
+ Strings=#7:Default|5:Color|10:ColorLight|4:Gray|
+ DataType=1
+ ReadOnly=0
+ link(onClick,1318103:doString,[(464,370)(464,363)])
+}
+Add(hcFormatStr,1318103,476,357)
+{
+ DataCount=1
+ Mask="int\pal\%1.pal"
+ link(onFString,1283414:doLoad,[(518,363)(518,301)(411,301)(411,272)])
+}

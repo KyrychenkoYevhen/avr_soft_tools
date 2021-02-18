@@ -1,0 +1,126 @@
+include("object")
+
+func Init()
+  if(isset(Items) and isndef(Index))
+    var(id)
+    id = ColItem_
+    stack &= block.select(BLK_BODY)
+
+    println('Set ', id, ' = ', Items + '(' + Index + ')')
+    println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+    // Common methods and properties
+    Object_Init(id)
+
+    if(isndef(Text))
+      println(id, '.Text = ', Text)
+    end
+    if(isndef(Width))
+      println(id, '.Width = ', Width)
+    end
+    if(isndef(TextAlign))
+      println(id, '.TextAlign = ', TextAlign+1)
+    end
+    if(isndef(ImageIndex))
+      println(id, '.ImageIndex = ', ImageIndex)
+    end
+    if(isndef(DataType))
+      println(id, '.DataType = ', DataType)
+    end
+    if(isndef(SortType))
+      println(id, '.SortType = ', SortType-1)
+    end
+    println('')
+    if(linked(onClick))
+      lng.begin_func(id + '_OnClick(Sender)\'' + code(id))
+        event(onClick)
+      lng.end_func(BLK_EVENTS)
+    end
+    if(linked(onResize))
+      lng.begin_func(id + '_OnResize(Sender)\'' + code(id))
+        event(onResize)
+      lng.end_func(BLK_EVENTS)
+    end
+    if(linked(onBeginTrack))
+      lng.begin_func(id + '_OnBeginTrack(Sender, Button, ResultPtr)\'' + code(id))
+        if(isndef(Resize))
+          println('ResultPtr.Put False')
+        end
+        event(onBeginTrack, 'Button')
+      lng.end_func(BLK_EVENTS)
+    end
+    if(linked(onTrack))
+      lng.begin_func(id + '_OnTrack(Sender, Width, Button, ResultPtr)\'' + code(id))
+        if(isndef(Resize))
+          println('ResultPtr.Put False')
+        end
+        event(onTrack, 'Width')
+      lng.end_func(BLK_EVENTS)
+    end
+    if(linked(onDividerDblClick) or isndef(NoDblClick))
+      lng.begin_func(id + '_OnDividerDblClick(Sender, ResultPtr)\'' + code(id))
+        if(isndef(NoDblClick))
+          println('ResultPtr.Put True')
+        end
+        event(onDividerDblClick)
+      lng.end_func(BLK_EVENTS)
+    end
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doOnClick(_data)
+  println(id, '.OnClick = GetRef(', _data, ')')
+end
+
+func doOnResize(_data)
+  println(id, '.OnResize = GetRef(', _data, ')')
+end
+
+func doText(_data)
+  println(id, '.Text = ', _data)
+end
+
+func doWidth(_data)
+  println(id, '.Width = ', _data)
+end
+
+func doTextAlign(_data)
+  println(id, '.TextAlign = ', _data)
+end
+
+func doImageIndex(_data)
+  println(id, '.ImageIndex = ', _data)
+end
+
+func doDataType(_data)
+  println(id, '.DataType = ', _data)
+end
+
+func doSortType(_data)
+  println(id, '.SortType = ', _data)
+end
+
+func Text()
+  return(id + '.Text')
+end
+
+func Width()
+  return(id + '.Width')
+end
+
+func TextAlign()
+  return(id + '.TextAlign')
+end
+
+func ImageIndex()
+  return(id + '.ImageIndex')
+end
+
+func DataType()
+  return(id + '.DataType')
+end
+
+func SortType()
+  return(id + '.SortType')
+end

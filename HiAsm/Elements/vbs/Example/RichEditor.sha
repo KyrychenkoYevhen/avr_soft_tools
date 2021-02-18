@@ -1,0 +1,445 @@
+*Простой редактор текста
+Make(vbs)
+ver(4.04 build 185)
+Add(MainForm,2953706,35,98)
+{
+ @Color=11184725
+ Width=524
+ Height=473
+ Text="Rich Editor"
+ Point(Close)
+ Point(vText)
+ link(onCreate,13086570:doData,[(75,104)(75,314)])
+ link(Close,11497308:GetData,[])
+}
+Add(RichEdit,252222,539,91)
+{
+ @Hint=#8:RichEdit|
+ @Color=16755285
+ Top=20
+ Width=516
+ Height=426
+ Align=5
+ ES_NOHIDESEL=0
+ ReadFormat=0
+ WriteFormat=0
+ AutoURLDetect=0
+ Point(Handle)
+ Point(FontEx)
+ Point(SelFont)
+ Point(onClick)
+ Point(doFindText)
+ Point(doMinPos)
+ Point(doDown)
+ Point(doMatchCase)
+ Point(doWholeWord)
+ link(onFound,2009871:doCompare,[])
+ link(Driver,9029744:Driver,[])
+ link(Device,9029744:Device,[])
+ link(PrintInfo,8332780:Handle,[])
+ link(onClick,11366890:doData,[(591,118)(591,307)])
+ AddHint(58,-14,55,13,@Hint)
+}
+Add(EditControl,10592136,371,189)
+{
+ ScrollBars=3
+ WordWrap=0
+ Point(doUndo)
+ Point(doCut)
+ Point(doCopy)
+ Point(doPaste)
+ Point(doSelectAll)
+ Point(doWordWrap)
+ link(Handle,15086998:Var1,[(377,166)])
+}
+Add(FileTextStream,3690140,329,63)
+{
+ link(onStream,252222:doRead,[(408,69)(408,104)])
+}
+Add(SDialog,12513437,280,105)
+{
+ Filter="All|*.*"
+ FileName=""
+ link(onExecute,8386617:doOpen,[])
+}
+Add(FileTextStream,8386617,329,105)
+{
+ Mode=1
+ NewFile=1
+ link(onStream,252222:doWrite,[])
+}
+Add(Menu,2031801,154,147)
+{
+ Width=516
+ Align=2
+ Visible=1
+ Menu=#4:File|1:(|11:Open,CTRL+O|18:Save as ...,CTRL+S|1:-|10:Page Setup|5:Print|1:-|8:Exit,ESC|1:)|4:Edit|1:(|4:Undo|1:-|3:Cut|4:Copy|5:Paste|1:-|17:Select All,CTRL+A|1:-|11:Find,CTRL+F|1:)|6:Format|1:(|9:Word Wrap|1:-|4:Font|5:Style|1:(|14:Default,CTRL+D|11:Bold,CTRL+B|13:Italic,CTRL+I|16:Underline,CTRL+U|20:Strikethrough,CTRL+T|5:Color|1:)|1:)|4:Help|1:(|8:About,F1|1:)|
+ Assign=0
+ Point(onSelectNum)
+ link(onSelectNum,1213886:doEvent,[])
+}
+Add(IndexToChanel,1213886,203,154)
+{
+ Count=20
+ link(Data,13921776:Var2,[])
+ link(onEvent1,11259599:doExecute,[(260,160)(260,69)])
+ link(onEvent2,12513437:doExecute,[(268,167)(268,111)])
+ link(onEvent3,9029744:doDialog,[(366,174)(366,13)])
+ link(onEvent4,252222:doPrint,[(370,181)(370,118)])
+ link(onEvent5,2953706:doClose,[(247,188)(247,141)(23,141)(23,132)])
+ link(onEvent6,10592136:doUndo,[])
+ link(onEvent7,10592136:doCut,[])
+ link(onEvent8,10592136:doCopy,[])
+ link(onEvent9,10592136:doPaste,[])
+ link(onEvent10,10592136:doSelectAll,[])
+ link(onEvent11,2255049:doData,[(267,230)(267,377)])
+ link(onEvent12,13903594:doSwitch,[(275,237)(275,230)])
+ link(onEvent13,10518211:doDialog,[(377,244)(377,237)])
+ link(onEvent14,3034054:doDefault,[(259,251)(259,272)])
+ link(onEvent15,3034054:doBold,[(256,258)(256,279)])
+ link(onEvent16,3034054:doItalic,[(253,265)(253,286)])
+ link(onEvent17,3034054:doUnderline,[(250,272)(250,293)])
+ link(onEvent18,3034054:doStrikethrough,[(247,279)(247,300)])
+ link(onEvent19,8768563:doDialog,[(245,286)(245,335)])
+ link(onEvent20,13759744:doWork1,[(242,293)])
+}
+Add(EventFromData,11497308,35,56)
+{
+ link(onEvent,12902158:doMessageBox,[])
+}
+Add(Math,1829440,119,56)
+{
+ OpType=1
+ Op2=1
+ link(onResult,11497308:doData,[(161,62)(161,50)(23,50)(23,62)])
+}
+Add(ODialog,11259599,280,63)
+{
+ Filter="Text|*.txt|All|*.*"
+ FileName=""
+ link(onExecute,3690140:doOpen,[])
+}
+Add(EventBehavior,12540471,161,301)
+{
+ Point(doCheckBox)
+ Point(doChecked)
+ link(Sender,8895886:Item,[])
+}
+Add(ArrayRW,8895886,161,252)
+{
+ Index=Integer(9)
+ link(Array,2031801:vArray,[])
+}
+Add(Hub,15201426,126,308)
+{
+ link(onEvent1,12540471:doCheckBox,[])
+ link(onEvent2,5426234:doWork2,[])
+}
+Add(DoData,13086570,84,308)
+{
+ link(onEventData,15201426:doEvent1,[])
+ link(Data,13921776:Var1,[(90,131)])
+}
+Add(Switch,13903594,287,224)
+{
+ DataOn=Integer(-1)
+ DataOff=Integer(0)
+ Default=0
+ link(onSwitch,14083570:doEvent1,[])
+}
+Add(HubEx,5426234,147,315)
+{
+ link(onEvent,12540471:doChecked,[])
+}
+Add(Hub,14083570,329,224)
+{
+ link(onEvent1,10592136:doWordWrap,[])
+ link(onEvent2,5426234:doWork1,[(351,237)(351,290)(151,290)])
+}
+Add(MultiElementEx,9393229,259,483)
+{
+ @Hint=#12:Help Message|
+ link(Str2,4061237:Value,[])
+ AddHint(-102,11,83,13,@Hint)
+}
+BEGIN_SDK
+  Add(EditMultiEx,14406852,21,21)
+  {
+   WorkCount=#6:doHelp|
+   DataCount=#4:Str2|
+   Width=328
+   Height=102
+   link(doHelp,3546182:doStrCat,[])
+  }
+  Add(StrCat,13529164,126,70)
+  {
+   link(onStrCat,3464368:doStrCat,[])
+   link(Str2,15110140:vSymbol,[])
+  }
+  Add(StrCat,3464368,168,70)
+  {
+   Str2="made by HiAsm Studio"
+   link(onStrCat,7752474:doStrCat,[])
+  }
+  Add(Symbol,15110140,133,28)
+  {
+   Symbol=2
+  }
+  Add(StrCat,7752474,210,70)
+  {
+   link(onStrCat,5558736:doStrCat,[])
+   link(Str2,1419234:vSymbol,[])
+  }
+  Add(Symbol,1419234,217,28)
+  {
+   Symbol=2
+  }
+  Add(StrCat,5558736,252,70)
+  {
+   Str2="   Copyright ® 2009"
+   link(onStrCat,9114771:doMessageBox,[])
+  }
+  Add(Replace,12229083,84,70)
+  {
+   SubStr=","
+   DestStr="."
+   link(onReplace,13529164:doStrCat,[])
+  }
+  Add(StrCat,3546182,42,70)
+  {
+   Str1="   Rich Editor v"
+   link(onStrCat,12229083:doReplace,[])
+   link(Str2,14406852:Str2,[])
+  }
+  Add(MessageBox,9114771,294,70)
+  {
+   Caption="About"
+   TopMost=0
+  }
+END_SDK
+Add(FontDialog,10518211,518,231)
+{
+ ShowHelp=0
+ Apply=0
+ Point(onHelp)
+ link(FontEx,8209933:Var1,[(524,222)])
+ link(onHelp,13759744:doWork2,[(603,244)(603,365)(234,365)(234,426)])
+}
+Add(StatusBar,9949203,35,175)
+{
+ Left=25
+ Top=160
+ Text="made by HiAsm Studio"
+ Simple=0
+}
+Add(HubEx,13759744,238,420)
+{
+ Angle=1
+ link(onEvent,9393229:doHelp,[(242,489)])
+}
+Add(DoData,3891428,455,525)
+{
+ link(onEventData,252222:doWholeWord,[(508,531)(508,153)])
+ link(Data,12820867:SearchWholeWord,[(461,516)(384,516)])
+}
+Add(GetDataEx,13921776,210,126)
+{
+ link(Data,5477429:vBoolean,[])
+}
+Add(Switch,9831828,707,175)
+{
+ DataOn=Integer(1)
+ DataOff=Integer(-1)
+ Point(State)
+ Point(doOn)
+}
+Add(DoData,8752494,455,476)
+{
+ link(onEventData,252222:doMatchCase,[(500,482)(500,146)])
+ link(Data,12820867:SearchMatchCase,[(461,467)(391,467)])
+}
+Add(Hub,16618856,497,427)
+{
+ link(onEvent1,7271414:doCompare,[(649,433)(649,188)])
+ link(onEvent2,252222:doDown,[(515,440)(515,139)])
+}
+Add(InfoTip,18582,140,14)
+{
+ Info=#37:Last modification 11:12:2010 11:53:59|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ Width=197
+ Height=18
+}
+Add(InfoTip,3786,133,0)
+{
+ Info=#25:Rich Editor version 0.156|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ Width=204
+ Height=18
+}
+Add(InfoTip,3927081,140,28)
+{
+ Info=#28:HiAsm version 4.04 build 182|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ Width=197
+ Height=18
+}
+Add(ScriptEvents,88089,35,7)
+{
+ Script=#15:function Load()|3:end|0:|15:function Save()|3:end|0:|21:function SaveBefore()|21:  Dim _Date as String|22:  Dim _Title as String|25:  Dim _strTitle as String|29:  _Date = Time("D:M:Y h:m:s")|37:  _Title = SDK.GetProp(18582, "Info")|84:  _strTitle = Delete(_Title, Len(_Title) - Len(_Date), Len(_Date) + 1) + " " + _Date|39:  sdk.SetProp(18582, "Info", _strTitle)|3:end|0:|0:|26:Function CmdEvent(Command)|26: If Command = "build" Then|17:  Dim num as Real|19:  Dim ver as String|21:  Dim Title as String|24:  Dim strTitle as String|45:  num = Real(SDK.GetProp(4061237, "Default"))|44:  SDK.SetProp(4061237, "Default", num+0.001)|44:  SDK.SetProp(3074520, "Version", num+0.001)|44:  ver = Str(SDK.GetProp(4061237, "Default"))|35:  Title = SDK.GetProp(3786, "Info")|75:  strTitle = Delete(Title, Len(Title) - Len(ver), Len(ver) + 1) + " " + ver|37:  SDK.SetProp(3786, "Info", strTitle)|57:  SDK.SetProp(3927081, "Info", "HiAsm version " + CurVer)|7: End If|13:End          |
+}
+Add(Memory,4061237,259,434)
+{
+ Default=Real(0.156)
+}
+Add(GetDataEx,15086998,539,161)
+{
+ link(Data,252222:Handle,[])
+}
+Add(GetDataEx,8209933,553,217)
+{
+ link(Data,252222:SelFont,[])
+}
+Add(FontEx,3034054,553,266)
+{
+ Point(doDefault)
+ Point(doBold)
+ Point(doItalic)
+ Point(doUnderline)
+ Point(doStrikethrough)
+ Point(vColor)
+ Point(doColor)
+ link(FontEx,8209933:Var2,[])
+}
+Add(Tristate,5477429,210,91)
+{
+ Boolean=1
+}
+Add(ColorDialog,8768563,441,329)
+{
+ Color=255
+ link(onColor,3034054:doColor,[(546,335)(546,307)])
+ link(Color,3034054:vColor,[(447,320)(559,320)])
+}
+Add(FindDialog,12820867,364,371)
+{
+ ShowHelp=0
+ Point(SearchWholeWord)
+ Point(SearchMatchCase)
+ Point(SearchDown)
+ Point(onHelp)
+ link(onFind,14998230:doEvent1,[])
+ link(onHelp,13759744:doWork3,[(409,384)(409,426)])
+}
+Add(DoData,2255049,322,371)
+{
+ link(onEventData,12820867:doDialog,[])
+}
+Add(EditControl,9751441,749,252)
+{
+ WordWrap=0
+ Point(doSelStart)
+ Point(doSelectLength)
+ Point(SelStart)
+ link(Handle,15086998:Var3,[(755,166)])
+}
+Add(Length,11547125,700,266)
+{
+}
+Add(Hub,11860472,665,217)
+{
+ OutCount=3
+ link(onEvent1,8442098:doOperation,[])
+ link(onEvent2,9751441:doSelStart,[(693,230)(693,258)])
+ link(onEvent3,7056185:doData,[(686,237)(686,321)])
+}
+Add(DoData,7056185,700,315)
+{
+ link(onEventData,9751441:doSelectLength,[(740,321)(740,265)])
+ link(Data,11547125:Result,[])
+}
+Add(If_else,2009871,595,105)
+{
+ Type=5
+ Op2=Integer(-1)
+ link(onTrue,11860472:doEvent1,[(637,111)(637,223)])
+}
+Add(DoData,11366890,749,301)
+{
+ link(onEventData,7522518:doWork2,[(793,307)(793,174)])
+ link(Data,9751441:SelStart,[])
+}
+Add(HubEx,7522518,742,168)
+{
+ Angle=2
+ link(onEvent,252222:doMinPos,[(528,174)(528,132)])
+}
+Add(Math,8442098,700,217)
+{
+ link(onResult,7522518:doWork3,[(746,223)])
+ link(Op2,9831828:State,[])
+}
+Add(If_else,7271414,658,182)
+{
+ Op2=Integer(0)
+ link(onTrue,9831828:doReset,[])
+ link(onFalse,9831828:doOn,[])
+}
+Add(Hub,14998230,413,371)
+{
+ OutCount=5
+ link(onEvent1,11547125:doLength,[(614,377)(614,272)])
+ link(onEvent2,9086492:doData,[(444,384)(444,433)])
+ link(onEvent3,8752494:doData,[(439,391)(439,482)])
+ link(onEvent4,3891428:doData,[(433,398)(433,531)])
+ link(onEvent5,252222:doFindText,[(479,405)(479,125)])
+}
+Add(DoData,9086492,455,427)
+{
+ link(onEventData,16618856:doEvent1,[])
+ link(Data,12820867:SearchDown,[(461,416)(398,416)])
+}
+Add(PageSetupDialog,9029744,539,7)
+{
+ Point(Driver)
+ Point(Device)
+ Point(LeftMargin)
+ Point(RightMargin)
+ Point(TopMargin)
+ Point(BottomMargin)
+ link(onDialog,234099:doData,[(596,13)(596,42)(463,42)(463,55)])
+}
+Add(PrintInfo,8332780,553,49)
+{
+ Point(LeftMargin)
+ Point(RightMargin)
+ Point(TopMargin)
+ Point(BottomMargin)
+ Point(doDocumentName)
+ link(LeftMargin,9029744:LeftMargin,[])
+ link(RightMargin,9029744:RightMargin,[])
+ link(TopMargin,9029744:TopMargin,[])
+ link(BottomMargin,9029744:BottomMargin,[])
+}
+Add(DoData,234099,476,49)
+{
+ link(onEventData,5609392:doEvent1,[])
+ link(Data,2953706:vText,[(482,37)(443,37)(443,145)(41,145)])
+}
+Add(Hub,5609392,525,49)
+{
+ link(onEvent1,8332780:doMargins,[])
+ link(onEvent2,8332780:doDocumentName,[])
+}
+Add(MessageBox,12902158,77,56)
+{
+ Text="Are You sure?"
+ Caption="Rich Editor Close"
+ Buttons=1
+ Icon=2
+ TopMost=0
+ link(onResult,1829440:doOperation,[])
+}

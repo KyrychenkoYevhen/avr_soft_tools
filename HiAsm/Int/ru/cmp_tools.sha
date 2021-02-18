@@ -1,0 +1,154 @@
+Make(modules)
+Add(MainForm,4521630,14,70)
+{
+ Left=20
+ Top=105
+ Width=525
+ Height=311
+ Caption="Настройка компиляторов"
+ BorderStyle=3
+}
+Add(ChildGroupBox,11274222,210,14)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,5012438,3,3)
+  {
+  }
+  Add(GroupBox,3923338,35,105)
+  {
+   Left=5
+   Top=5
+   Width=128
+   Height=50
+   Caption="Компилятор"
+  }
+  Add(ComboBox,7472328,14,14)
+  {
+   @Hint=#3:all|
+   Left=10
+   Top=20
+   Width=110
+   Height=21
+   Color=-16777211
+   ReadOnly=0
+  }
+END_SDK
+Add(Button,14973743,252,217)
+{
+ @Hint=#4:save|
+ Left=285
+ Top=255
+ Width=105
+ Height=25
+ Caption="Сохранить"
+}
+Add(ChildGroupBox,6406117,112,56)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,13022554,3,3)
+  {
+  }
+  Add(GroupBox,10299321,35,105)
+  {
+   Left=215
+   Top=5
+   Width=294
+   Height=50
+   Caption="Путь"
+  }
+  Add(Button,7589239,56,14)
+  {
+   @Hint=#3:...|
+   Left=270
+   Top=20
+   Width=20
+   Caption="..."
+  }
+  Add(Edit,15347934,14,14)
+  {
+   @Hint=#4:path|
+   Left=10
+   Top=20
+   Width=260
+   Color=-16777211
+   Text=""
+  }
+END_SDK
+Add(ChildGroupBox,5429197,112,14)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,5887590,3,3)
+  {
+  }
+  Add(GroupBox,4221729,35,105)
+  {
+   Left=5
+   Top=60
+   Width=505
+   Height=183
+   Caption="Командная строка"
+  }
+  Add(Memo,5904021,14,14)
+  {
+   @Hint=#7:cmdline|
+   Left=10
+   Top=20
+   Width=485
+   Height=155
+   Color=-16777211
+  }
+END_SDK
+Add(Button,12950918,315,217)
+{
+ @Hint=#5:close|
+ Left=405
+ Top=255
+ Width=105
+ Height=25
+ Caption="Закрыть"
+}
+Add(ChildGroupBox,11950886,161,14)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,11925947,3,3)
+  {
+  }
+  Add(GroupBox,5664511,35,105)
+  {
+   Left=135
+   Top=5
+   Width=77
+   Height=50
+   Caption="Расширение"
+  }
+  Add(Edit,13095842,14,14)
+  {
+   @Hint=#3:ext|
+   Left=10
+   Top=20
+   Color=-16777211
+   Text=""
+  }
+END_SDK
+Add(Button,10099949,196,217)
+{
+ @Hint=#3:add|
+ Left=150
+ Top=255
+ Width=105
+ Height=25
+ Caption="Добавить"
+}
+Add(Button,5933101,203,224)
+{
+ @Hint=#4:help|
+ Left=30
+ Top=255
+ Width=105
+ Height=25
+ Caption="Помощь"
+}

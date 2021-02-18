@@ -1,0 +1,188 @@
+Make(modules)
+Add(hcTplForm,10107961,217,196)
+{
+ Left=20
+ Top=105
+ Width=183
+ Height=201
+ Visible=1
+ Caption="Статистика схемы"
+ BorderStyle=3
+ Point(doShowModal)
+}
+Add(hcTplLabel,8313010,217,98)
+{
+ Left=15
+ Top=10
+ Width=131
+ Height=17
+ Caption="Всего элементов............."
+}
+Add(hcTplLabel,1375715,217,147)
+{
+ Left=145
+ Top=10
+ Width=11
+ Height=17
+ Font=[MS Sans Serif,8,1,0,1]
+ Caption="0"
+ Point(doCaption)
+}
+Add(hcTplLabel,293374,266,98)
+{
+ Left=15
+ Top=30
+ Width=130
+ Height=17
+ Caption="В текущем контейнере..."
+}
+Add(hcTplLabel,15745338,266,147)
+{
+ Left=145
+ Top=30
+ Width=11
+ Height=17
+ Font=[MS Sans Serif,8,1,0,1]
+ Caption="0"
+ Point(doCaption)
+}
+Add(hcHiAsmTrasmitter,2603750,70,56)
+{
+ DataCount=0
+ link(onInit,8656599:doEvent1,[])
+}
+Add(hcHub,8656599,119,56)
+{
+ link(onEvent1,14424120:doGet,[])
+ link(onEvent2,10107961:doShowModal,[(160,69)(160,216)])
+}
+Add(hcTplLabel,859250,315,98)
+{
+ Left=15
+ Top=50
+ Width=129
+ Height=17
+ Caption="Всего контейнеров........."
+}
+Add(hcTplLabel,6023660,315,147)
+{
+ Left=145
+ Top=50
+ Width=11
+ Height=17
+ Font=[MS Sans Serif,8,1,0,1]
+ Caption="0"
+ Point(doCaption)
+}
+Add(hcTplLabel,3028112,364,98)
+{
+ Left=15
+ Top=70
+ Width=128
+ Height=17
+ Caption="Элементов среды..........."
+}
+Add(hcTplLabel,9575962,364,147)
+{
+ Left=145
+ Top=70
+ Width=11
+ Height=17
+ Font=[MS Sans Serif,8,1,0,1]
+ Caption="0"
+ Point(doCaption)
+}
+Add(hcTplButton,9126770,168,161)
+{
+ Left=90
+ Top=140
+ Width=60
+ Height=25
+ Caption="Закрыть"
+ link(onClick,10107961:doClose,[(208,167)(208,209)])
+}
+Add(hcTplButton,13466203,210,287)
+{
+ Left=15
+ Top=140
+ Width=70
+ Height=25
+ Caption="Копировать"
+ link(onClick,15899742:doString,[])
+}
+Add(hcTplLabel,9636773,413,98)
+{
+ Left=15
+ Top=90
+ Width=125
+ Height=17
+ Caption="Ссылочных элементов.."
+}
+Add(hcTplLabel,15723119,413,147)
+{
+ Left=145
+ Top=90
+ Width=11
+ Height=17
+ Font=[MS Sans Serif,8,1,0,1]
+ Caption="0"
+ Point(doCaption)
+}
+Add(hcTplLabel,9825715,462,98)
+{
+ Left=15
+ Top=110
+ Width=127
+ Height=17
+ Caption="Соединенных точек........"
+}
+Add(hcTplLabel,15703214,462,147)
+{
+ Left=145
+ Top=110
+ Width=11
+ Height=17
+ Font=[MS Sans Serif,8,1,0,1]
+ Caption="0"
+ Point(doCaption)
+}
+Add(hcMT_Get,14424120,168,56)
+{
+ link(onData,1294495:doGet,[])
+ link(onGet,1375715:doCaption,[(208,69)(208,153)])
+}
+Add(hcMT_Get,1294495,217,56)
+{
+ link(onData,6246710:doGet,[])
+ link(onGet,15745338:doCaption,[(257,69)(257,153)])
+}
+Add(hcMT_Get,6246710,266,56)
+{
+ link(onData,15193358:doGet,[])
+ link(onGet,6023660:doCaption,[(306,69)(306,153)])
+}
+Add(hcMT_Get,15193358,315,56)
+{
+ link(onData,3239095:doGet,[])
+ link(onGet,9575962:doCaption,[(355,69)(355,153)])
+}
+Add(hcMT_Get,3239095,364,56)
+{
+ link(onData,15703214:doCaption,[(451,62)(451,153)])
+ link(onGet,15723119:doCaption,[(404,69)(404,153)])
+}
+Add(hcClipboard,498664,322,287)
+{
+}
+Add(hcFormatStr,15899742,259,287)
+{
+ DataCount=6
+ Mask="All: %1, sdk: %2, MultiElements: %3, Core: %4, links: %5, points: %6"
+ link(onFString,498664:doPutText,[])
+ link(Str1,1375715:Caption,[(265,187)(223,187)])
+ link(Str2,15745338:Caption,[])
+ link(Str3,6023660:Caption,[(279,233)(321,233)])
+ link(Str4,9575962:Caption,[(286,233)(370,233)])
+ link(Str5,15723119:Caption,[(293,233)(419,233)])
+ link(Str6,15703214:Caption,[(300,233)(468,233)])
+}

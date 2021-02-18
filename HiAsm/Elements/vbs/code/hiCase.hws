@@ -1,0 +1,31 @@
+func doCase(_data)
+  fvar(id)
+  id = cgt.pt_get_parent(cgt.pt_get_link_point(cgt.get_point_id('doCase')))
+  if(cgt.el_get_class_name(id) != "Case")
+    println('Select Case ', Data)
+  end
+
+  block.inclvl()
+   println('Case ', Value)
+   block.inclvl()
+    event(onTrue, _data)
+   block.declvl() 
+  block.declvl()
+  
+  if (linked(onNextCase))
+   id = cgt.pt_get_parent(cgt.pt_get_link_point(cgt.get_point_id(onNextCase)))
+   if(cgt.el_get_class_name(id) = "Case")
+     event(onNextCase, _data)
+   else
+     block.inclvl()
+      println('Case Else')
+      block.inclvl()
+       event(onNextCase, _data)
+      block.declvl()
+     block.declvl()
+     println('End Select')
+   end 
+  else
+    println('End Select')
+  end
+end

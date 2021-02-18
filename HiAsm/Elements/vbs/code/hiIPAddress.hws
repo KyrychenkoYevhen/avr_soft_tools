@@ -1,0 +1,51 @@
+include("object")
+include("control")
+
+func Init()
+  var(id)
+  id = IPAddress_
+  stack &= block.select(BLK_BODY)
+
+  println('Set ', id, ' = ', get_parent(), '.CreateIPAddress(', Left, ', ', Top, ', ', Width, ', ', Height, ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(isndef(Value))
+    println(id, '.Value = ', Value)
+  end
+  if(linked(sValue))
+    if(sys.gvarfind('ip_to_string_set') = -1)
+      gvar(ip_to_string_set)
+      lng.begin_func('IPtoString(value)')
+        println('h = Hex(value)')
+        println('While Len(h)<8')
+        block.inclvl()
+          println('h = "0" + h')
+        block.declvl()
+        println('Wend')
+        println('IPtoString = CByte("&H" & Mid(h, 1, 2)) & "." & CByte("&H" & Mid(h, 3, 2)) & "." & CByte("&H" & Mid(h, 5, 2)) & "." & CByte("&H" & Mid(h, 7, 2))')
+      lng.end_func(BLK_FUNC)
+    end
+  end
+  block.select(_arr.pop(stack))
+end
+
+func doSetRange(_data)
+  println(id, '.SetRange ', _arr.mt_pop(_data), ', ', _arr.mt_pop(_data), ', ', _data)
+end
+
+func vValue()
+  return('CLng(' + id + '.Value)')
+end
+
+func sValue()
+  return('IPtoString(' + id + '.Value)')
+end
+
+func IsBlank()
+  return(id + '.IsBlank')
+end

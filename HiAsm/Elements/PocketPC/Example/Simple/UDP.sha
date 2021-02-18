@@ -1,0 +1,134 @@
+Make(PocketPC)
+Pos(0,0)
+Add(MainForm,13090531,280,70)
+{
+ Left=20
+ Top=105
+}
+Add(Button,13640803,28,21)
+{
+ Left=5
+ Top=5
+ Caption="Listen"
+ link(onClick,14329876:doOpen,[(93,27)(93,76)])
+}
+Add(Button,14131239,28,91)
+{
+ Left=70
+ Top=5
+ Width=60
+ Caption="Close"
+ link(onClick,14329876:doClose,[])
+}
+Add(Edit,9673806,140,7)
+{
+ Left=145
+ Top=5
+ Text="1002"
+}
+Add(Memo,2712030,217,70)
+{
+ Left=5
+ Top=30
+ Width=225
+ Height=110
+ ScrollBars=3
+}
+Add(Button,8078011,28,147)
+{
+ Left=5
+ Top=155
+ Caption="Client"
+ link(onClick,8725664:doOpen,[(82,153)(82,244)])
+}
+Add(Button,1422623,28,301)
+{
+ Left=70
+ Top=155
+ Width=60
+ Caption="Close"
+ link(onClick,8725664:doClose,[(93,307)(93,265)])
+}
+Add(Label,100217,280,168)
+{
+ Left=5
+ Top=185
+ Width=23
+ Height=17
+ Caption="Port"
+}
+Add(Edit,13509425,322,168)
+{
+ Left=30
+ Top=180
+ Width=45
+ Text="1002"
+}
+Add(Label,6192524,175,168)
+{
+ Left=80
+ Top=185
+ Width=26
+ Height=17
+ Caption="Host"
+}
+Add(Edit,4710440,224,168)
+{
+ Left=110
+ Top=180
+ Width=105
+ Text="127.0.0.1"
+}
+Add(Button,13776725,161,301)
+{
+ Left=220
+ Top=180
+ Width=15
+ Caption=">"
+ link(onClick,6294740:doPing,[])
+}
+Add(Edit,4820458,126,168)
+{
+ Left=5
+ Top=210
+ Width=180
+}
+Add(Button,16071768,28,245)
+{
+ Left=190
+ Top=210
+ Width=45
+ Caption="Send"
+ link(onClick,8725664:doSend,[])
+}
+Add(UDP,14329876,126,70)
+{
+ Point(LocalPort)
+ link(onReceive,2712030:doAdd,[])
+ link(LocalPort,9673806:Text,[])
+}
+Add(UDP,8725664,126,238)
+{
+ AutoConnect=0
+ ReceiveMode=1
+ Point(RemotePort)
+ link(Data,4820458:Text,[])
+ link(RemoteIP,8832283:Var1,[(139,219)])
+ link(RemotePort,13509425:Text,[(146,231)(328,231)])
+}
+Add(Ping,6294740,224,301)
+{
+ Name=""
+ link(onFind,4710440:doText,[(268,307)(268,251)(214,251)(214,174)])
+ link(onFailed,2644687:doMessage,[])
+ link(Name,8832283:Var2,[])
+}
+Add(GetDataEx,8832283,217,210)
+{
+ link(Data,4710440:Text,[])
+}
+Add(Message,2644687,287,308)
+{
+ Message="Host not found"
+ Caption="Error"
+}

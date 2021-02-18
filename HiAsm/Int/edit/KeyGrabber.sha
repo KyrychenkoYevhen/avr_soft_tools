@@ -1,0 +1,46 @@
+*Редактор кода клавиши
+Make(modules)
+ver(4.01 build 177)
+Add(hcTplForm,2953706,378,182)
+{
+ Width=301
+ Height=60
+ Visible=1
+ Caption="Ввод кода"
+ BorderStyle=3
+ Point(doShowModal)
+ Point(onKeyDown)
+ link(onKeyDown,425114:doEvent1,[])
+}
+Add(hcHiAsmTrasmitter,2963275,280,154)
+{
+ link(onInit,6684674:doEvent1,[])
+ link(Arg1,11190520:Value,[(286,142)(525,142)(525,196)(489,196)])
+}
+Add(hcHub,6684674,329,154)
+{
+ link(onEvent1,4980085:doWork2,[])
+ link(onEvent2,2953706:doShowModal,[(355,167)(355,202)])
+}
+Add(hcTplLabel,11158208,392,77)
+{
+ Left=5
+ Top=10
+ Width=286
+ Height=17
+ Caption="Нажмите клавишу, код которой необходимо получить..."
+}
+Add(hcMemory,11190520,483,154)
+{
+}
+Add(HubEx,4980085,462,147)
+{
+ link(onEvent,11190520:doValue,[])
+}
+Add(hcHub,425114,427,189)
+{
+ OutCount=3
+ link(onEvent1,4980085:doWork3,[(466,195)])
+ link(onEvent2,2963275:doReturn,[(532,202)(532,127)(267,127)(267,160)])
+ link(onEvent3,2953706:doClose,[(450,209)(450,223)(364,223)(364,195)])
+}

@@ -1,0 +1,30 @@
+include("object")
+include("control")
+
+func Init()
+  var(id)
+  id = Polygon_
+  stack &= block.select(BLK_BODY)
+
+  println('Set ', id, ' = ', get_parent(), '.Polygon(', code(Script),')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  if(isndef(FillAll))
+    println(id, '.FillAll = True')
+  end
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doFillAll(_data)
+  println(id, '.FillAll = ', (_data='') ? 'False' : _data)
+end
+
+func vFillAll()
+  return(id + '.FillAll')
+end

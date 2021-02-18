@@ -1,0 +1,16 @@
+func doDraw()
+  var(id)
+  id=Polygon
+  if(linked(PointsArray))
+    //Polygon не воспринимает Array как аргумент, надо использовать элемент PointsArray 
+    println('Set ',id,' = ',Bitmap,'.Polygon(',PointsArray,')')
+  else
+    println('Set ',id,' = ',Bitmap,'.Polygon(',_arr.join(PointsArray, ','),')')
+  end
+  if(isndef(BgColor))
+    println(id,'.Color = ',BgColor)
+  end
+  if(Style='bsSolid')
+    println(id,'.FillAll = True')
+  end
+end

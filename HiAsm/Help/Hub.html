@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<link type="text/css" rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<table class="mes_table" border="1">
+			<tr class="prop_cap">
+				<td width="10%"><IMG src="../elements/delphi/icon/hub.ico"></td>
+				<td align="center">Hub - Разветвитель потоков</td>
+			</tr>
+			<tr>
+				<td style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px" colSpan="2">
+					<P align="justify">&nbsp;Компонент Hub - это компонент, ф-ции которого полностью 
+						аналогичны ф-ям реального устройства для построения локальных сетей с 
+						одноименным названием: Хаб. Его(компонента) задача состоит в том, чтобы 
+						"клонировать" поток, поданный на вход компонента,&nbsp;и выдать его без 
+						изменений на каждый выход. Или наоборот - слить все входные потоки в один. 
+						Причем клонирование и выдача данных через события onEvent№ происходит строго 
+						последовательно начиная с onEvent1 и заканчивая onEventN, где N= 
+						OutCount(кол-во выходов), т.е. события вызываются сверху вниз. Одним словом 
+						вызов любого метода doEvent№(но не всех одновременно) приводит к 
+						последовательной генерации событий onEvent№ сверху вниз.
+					</P>
+				</td>
+			</tr>
+			<tr>
+				<td class="down_sel" colSpan="2">&nbsp;Примеры: <a href="*Example*tutorial/hub.sha">Hub</a>,
+					<a href="*Example*example/RichEdit.sha">RichEdit</a></td>
+			</tr>
+		</table>
+	</body>
+</html>

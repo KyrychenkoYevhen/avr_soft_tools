@@ -1,0 +1,42 @@
+func Init()
+  var(obj_id)
+  obj_id = socket_
+  stack &= block.select(BLK_OBJ)
+  println('Dim ', obj_id )
+  if (sys.gvarfind('socket_is_set') = -1)
+    gvar(socket_is_set)
+    println('On Error Resume Next')
+    println('Set ', obj_id, ' = CreateObject("socket.tcp")')
+    println('If Err.Number <> 0 Then')
+    println('  Msgbox "Please install Socket.dll before!" & vbCrLf & "Open a command prompt and cd" & vbCrLf & "to the directory where the dll is located" & vbCrLf & "then type regsvr32 Socket.dll"')
+    println('  WScript.Quit 1')
+    println('End If')
+    println('Set ', obj_id, ' = Nothing')
+    println('On Error GoTo 0')
+    println('')
+  end
+  println('Set ', obj_id, ' = CreateObject("socket.tcp")')
+  block.select(BLK_NOTH)
+  println('Set ', obj_id, ' = Nothing')
+  block.select(_arr.pop(stack))
+end
+
+func doOpen(_data)
+  if(isndef(TelnetEmulation))
+    println(obj_id, '.DoTelnetEmulation = True')
+    println(obj_id, '.TelnetEmulation = "TTY"')
+  end
+  println(obj_id, '.Host = "', code(Host), ':', Port, '"')
+  if(isndef(TimeOut))
+    println(obj_id, '.TimeOut = ', TimeOut)
+  end
+  println(obj_id, '.Open()')
+end
+
+func doClose()
+  println(obj_id, '.Close()')
+end
+
+func Socket()
+  return(obj_id)
+end

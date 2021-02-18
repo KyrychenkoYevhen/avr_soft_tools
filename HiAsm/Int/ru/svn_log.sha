@@ -1,0 +1,39 @@
+Make(Modules)
+ver(4.03 build 180)
+Add(hcTplForm,10107961,168,98)
+{
+ Left=20
+ Top=105
+ Width=665
+ Height=222
+ Visible=1
+ Caption="История изменений"
+ Point(doShowModal)
+}
+Add(hcHiAsmTrasmitter,2603750,70,56)
+{
+ DataCount=0
+ link(onInit,8656599:doEvent1,[])
+}
+Add(hcHub,8656599,119,56)
+{
+ link(onEvent1,12447371:doString,[])
+ link(onEvent2,10107961:doShowModal,[(153,69)(153,118)])
+}
+Add(hcHTTPText,6708270,217,56)
+{
+ link(onLoad,12426387:doText,[(268,62)(268,76)])
+}
+Add(hcFormatStr,12447371,168,56)
+{
+ DataCount=3
+ Mask="http://hiasm.com/svn.php?p=%1&n=%2&e=%3&m="
+ link(onFString,6708270:doLoad,[])
+}
+Add(hcTplMemo,12426387,287,56)
+{
+ Width=657
+ Height=197
+ Align=5
+ ScrollBars=3
+}

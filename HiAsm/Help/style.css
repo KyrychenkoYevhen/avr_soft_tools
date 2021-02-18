@@ -1,0 +1,110 @@
+	body
+	{
+	SCROLLBAR-FACE-COLOR: #66ccff;
+	color: black;
+	SCROLLBAR-ARROW-COLOR: black;
+	font-family: Verdana;
+	SCROLLBAR-BASE-COLOR: #33ccff;
+	text-align: justify;
+	}
+td
+{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+}
+li
+{
+	color: #990033;
+}
+pre
+{
+    font-size: x-small;
+    font-family: 'Courier New';
+    background-color: lightgrey;
+}
+
+	A:link {
+	color: Blue; font-size: 10pt; TEXT-DECORATION: blink;
+}                                                  	
+A:visited {
+	color: #FF9900; font-size: 10pt; TEXT-DECORATION: none;
+}
+	A:hover {
+	color: Green; font-size: 10pt; TEXT-DECORATION: none;
+}
+	A:active {
+	color: #FF9900; font-size: 10pt; TEXT-DECORATION: none;
+}
+
+.textare {    font-family:Arial;    color: Navy;    background-color: Transparent;    border-color: white;}
+
+.mes_table
+{
+    font-size: x-small;
+    border-left-color: navy;
+    border-bottom-color: navy;
+    padding-bottom: 0px;
+    margin: 0px;
+    border-top-style: solid;
+    border-top-color: navy;
+    padding-top: 0px;
+    font-family: 'Comic Sans MS';
+    border-right-style: solid;
+    border-left-style: solid;
+    border-collapse: collapse;
+    background-color: #ffffff;
+    border-right-color: navy;
+    border-bottom-style: solid;
+}
+
+.prop_cap
+{
+    font-weight: bolder;
+    text-align: center;
+    background-color: #33ccff;
+}
+
+.down_sel
+{
+    background-color:#efefef;
+}
+
+	.tabs
+{
+	border-left-color: green;
+	border-bottom-color: green;
+	color: black;
+	border-top-color: green;
+	font-family: "Courier New" , Courier, monospace;
+	background-color: lightgrey;
+	border-right-color: green;
+}
+
+.ins_table
+{
+    font-size: x-small;
+    padding-bottom: 1px;
+    margin: 1px;
+    border-top-style: ridge;
+    padding-top: 1px;
+    font-family: 'Comic Sans MS';
+    border-right-style: ridge;
+    border-left-style: ridge;
+    border-collapse: separate;
+    background-color: #efefef;
+    border-bottom-style: ridge;
+}
+.prop
+{
+    font-size: smaller;
+    font-family: 'Comic Sans MS';
+    border-collapse: collapse;
+}
+	.titles{
+	filter:Glow(Strength=5, Color= blue);
+	font-family : "Courier New", Courier, monospace;
+	font-size : larger;
+	font-weight : bold;
+	text-align : center;
+	color :  #33ccff;
+}

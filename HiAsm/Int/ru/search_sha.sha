@@ -1,0 +1,193 @@
+Make(modules)
+Add(MainForm,4806885,21,105)
+{
+ Left=20
+ Top=105
+ Width=458
+ Height=296
+ Caption="Поиск проектов"
+ BorderStyle=3
+}
+Add(Label,4232485,0,14)
+{
+ Left=60
+ Top=20
+ Width=34
+ Height=17
+ Caption="Автор"
+}
+Add(ComboBox,7003527,56,14)
+{
+ @Hint=#6:author|
+ Left=125
+ Top=15
+ Width=125
+ Height=21
+ Color=-16777211
+ ReadOnly=0
+}
+Add(Label,745255,0,42)
+{
+ Left=60
+ Top=50
+ Width=70
+ Height=17
+ Caption="Добавлен"
+}
+Add(ComboBox,536008,63,35)
+{
+ @Hint=#6:create|
+ Left=125
+ Top=45
+ Width=125
+ Height=21
+ Color=-16777211
+ Strings=#1:-|6:1 день|5:3 дня|6:неделю|5:месяц|8:пол года|3:год|6:2 года|
+ Text="-"
+ ReadOnly=0
+}
+Add(Label,12035972,259,42)
+{
+ Left=255
+ Top=50
+ Width=34
+ Height=17
+ Caption="назад"
+}
+Add(Label,9341714,0,77)
+{
+ Left=5
+ Top=115
+ Width=114
+ Height=17
+ Caption="В название содержит"
+}
+Add(Edit,7215948,63,63)
+{
+ @Hint=#5:title|
+ Left=125
+ Top=110
+ Width=310
+ Color=-16777211
+ Text=""
+}
+Add(Edit,8475826,126,112)
+{
+ @Hint=#4:info|
+ Left=125
+ Top=140
+ Width=310
+ Color=-16777211
+ Text=""
+}
+Add(Label,5213442,63,126)
+{
+ Left=5
+ Top=140
+ Width=114
+ Height=17
+ Caption="В описание содержит"
+}
+Add(Label,2913593,308,98)
+{
+ Left=255
+ Top=75
+ Width=34
+ Height=17
+ Caption="назад"
+}
+Add(ComboBox,5674878,112,91)
+{
+ @Hint=#6:update|
+ Left=125
+ Top=70
+ Width=125
+ Height=21
+ Color=-16777211
+ Strings=#1:-|6:1 день|5:3 дня|6:неделю|5:месяц|8:пол года|3:год|6:2 года|
+ Text="-"
+ ReadOnly=0
+}
+Add(Label,528605,49,98)
+{
+ Left=60
+ Top=75
+ Width=54
+ Height=17
+ Caption="Обновлен"
+}
+Add(Label,3376588,7,182)
+{
+ Left=5
+ Top=170
+ Width=118
+ Height=17
+ Caption="Использует элементы"
+}
+Add(Button,12601287,329,182)
+{
+ @Hint=#3:add|
+ Left=415
+ Top=170
+ Width=20
+ Hint="Добавить элемент в список"
+ Caption="+"
+}
+Add(Button,9149051,399,301)
+{
+ @Hint=#4:find|
+ Left=170
+ Top=235
+ Width=80
+ Height=30
+ Caption="Искать"
+}
+Add(ChildPanel,13458735,28,91)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,4062507,10,10)
+  {
+  }
+  Add(Panel,4650544,35,105)
+  {
+   Left=10
+   Top=95
+   Width=430
+   Height=5
+  }
+END_SDK
+Add(ChildPanel,6726045,161,259)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,4062507,10,10)
+  {
+  }
+  Add(Panel,4650544,35,105)
+  {
+   Left=10
+   Top=225
+   Width=430
+   Height=5
+  }
+END_SDK
+Add(Memo,10428724,126,168)
+{
+ @Hint=#8:elements|
+ Left=125
+ Top=170
+ Width=135
+ Height=50
+ Color=-16777211
+}
+Add(ComboBox,1710788,280,161)
+{
+ @Hint=#6:eltree|
+ Left=265
+ Top=170
+ Width=145
+ Height=21
+ Color=-16777211
+ ReadOnly=0
+}

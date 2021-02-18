@@ -1,0 +1,183 @@
+Make(PocketPC)
+Pos(0,0)
+Add(MainForm,12772104,49,189)
+{
+ Left=20
+ Top=105
+}
+Add(Label,1190506,210,42)
+{
+ Top=45
+ Width=240
+ Height=254
+ Color=8421376
+ Caption=""
+ Point(MouseX)
+ Point(MouseY)
+ Point(onMouseDown)
+ Point(onMouseMove)
+ link(onMouseDown,7637918:doEvent1,[(277,55)(277,160)])
+ link(onMouseMove,3718874:doEvent1,[(252,62)(252,152)(172,152)(172,167)])
+}
+Add(Button,8217294,238,350)
+{
+ Left=10
+ Top=10
+ Width=60
+ Height=15
+ Caption="Left"
+ Data=String(left)
+ link(onClick,6837487:doEvent2,[(279,356)(279,314)])
+}
+Add(Button,9351205,238,301)
+{
+ Left=75
+ Top=10
+ Width=60
+ Height=15
+ Caption="Right"
+ Data=String(right)
+ link(onClick,6837487:doEvent1,[])
+}
+Add(Hub,6837487,301,301)
+{
+ InCount=4
+ OutCount=1
+ link(onEvent1,6472650:doWork3,[(382,307)])
+}
+Add(UDP,13499273,420,245)
+{
+ LocalPort=105
+ RemotePort=106
+ AutoConnect=0
+ ReceiveMode=1
+ Point(onError)
+ link(RemoteIP,960307:Text,[])
+ link(onError,15569348:doMessage,[])
+}
+Add(StrCat,11324692,301,252)
+{
+ link(onStrCat,6472650:doWork2,[])
+ link(Str2,10595346:Value,[(314,223)(524,223)])
+}
+Add(StrCat,16478651,238,252)
+{
+ Str2=":"
+ link(onStrCat,11324692:doStrCat,[])
+ link(Str1,16725991:Value,[(244,202)(517,202)])
+}
+Add(Button,1496189,343,210)
+{
+ Left=195
+ Top=10
+ Width=35
+ Caption="Open"
+ link(onClick,13499273:doOpen,[(390,216)(390,251)])
+}
+Add(HubEx,6472650,378,245)
+{
+ link(onEvent,13499273:doSend,[])
+}
+Add(Message,15569348,490,252)
+{
+}
+Add(Case,8527431,49,329)
+{
+ Value=Integer(13)
+ link(onTrue,13590621:doData,[])
+}
+Add(DoData,13590621,98,336)
+{
+ Data=String(left)
+ link(onEventData,10151740:doMessage,[])
+}
+Add(Message,10151740,147,336)
+{
+}
+Add(SampleDelta,3430109,343,119)
+{
+ link(onCalcDelta,2803728:doCompare,[])
+ link(Data,1190506:MouseX,[(349,97)(223,97)])
+}
+Add(SampleDelta,6155750,350,161)
+{
+ link(onCalcDelta,4582150:doCompare,[])
+ link(Data,1190506:MouseY,[(356,88)(230,88)])
+}
+Add(Memory,16725991,511,119)
+{
+}
+Add(Memory,10595346,518,161)
+{
+}
+Add(Hub,7637918,287,154)
+{
+ InCount=2
+ link(onEvent1,3430109:doCalcDelta,[(331,160)(331,125)])
+ link(onEvent2,6155750:doCalcDelta,[])
+}
+Add(Hub,3718874,182,161)
+{
+ link(onEvent1,7637918:doEvent2,[])
+ link(onEvent2,16478651:doStrCat,[(226,174)(226,258)])
+}
+Add(If_else,2803728,399,119)
+{
+ Type=2
+ Op2=Integer(8)
+ link(onTrue,14883652:doOperation,[])
+ link(onFalse,11497374:doWork3,[(494,132)])
+}
+Add(Math,14883652,448,119)
+{
+ OpType=2
+ Op2=5
+ link(onResult,11497374:doWork2,[])
+}
+Add(HubEx,11497374,490,112)
+{
+ link(onEvent,16725991:doValue,[])
+}
+Add(If_else,4582150,406,161)
+{
+ Type=2
+ Op2=Integer(8)
+ link(onTrue,8065087:doOperation,[])
+ link(onFalse,8865633:doWork3,[(501,174)])
+}
+Add(Math,8065087,455,161)
+{
+ OpType=2
+ Op2=5
+ link(onResult,8865633:doWork2,[])
+}
+Add(HubEx,8865633,497,154)
+{
+ link(onEvent,10595346:doValue,[])
+}
+Add(Edit,960307,427,42)
+{
+ Left=140
+ Top=10
+ Text=""
+}
+Add(Button,9199805,238,399)
+{
+ Left=10
+ Top=25
+ Width=30
+ Height=15
+ Caption="d"
+ Data=String(leftd)
+ link(onClick,6837487:doEvent3,[(285,405)(285,321)])
+}
+Add(Button,16747823,238,441)
+{
+ Left=40
+ Top=25
+ Width=30
+ Height=15
+ Caption="u"
+ Data=String(leftu)
+ link(onClick,6837487:doEvent4,[(292,447)(292,328)])
+}

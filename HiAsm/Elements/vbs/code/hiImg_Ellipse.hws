@@ -1,0 +1,18 @@
+func doDraw()
+  var(id)
+  id=Ellipse
+  if(Point2AsOffset = 'False')
+    println('Set ',id,' = ',Bitmap,'.Ellipse(',Point1[0],',',Point1[1],',',Point2[0]-Point1[0],',',Point2[1]-Point1[1],')')
+  else
+    println('Set ',id,' = ',Bitmap,'.Ellipse(',Point1[0],',',Point1[1],',',Point2[0],',',Point2[1],')')
+  end
+  if(isndef(BgColor) or linked (BgColor))
+    println(id,'.Color = ',BgColor)
+  end
+  if(isndef(Color) or linked(Color))
+    println(id,'.Pen.Color = ',Color)
+  end
+  if(isndef(Size)or linked(Size))
+    println(id,'.Pen.Width = ',Size)
+  end 
+end

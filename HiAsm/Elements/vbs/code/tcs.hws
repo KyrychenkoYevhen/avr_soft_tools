@@ -1,0 +1,12 @@
+if (sys.gvarfind('tcs_is_set') = -1)
+gvar (tcs_is_set)
+  fvar(old)
+  old=block.select(BLK_OBJ)
+ 
+  println('Dim tcs')
+  println('Set tcs = CreateObject("TCScript.Helper")')
+  println('')
+  block.select(BLK_NOTH)
+  println('Set tcs = Nothing')
+  block.select(old)
+end

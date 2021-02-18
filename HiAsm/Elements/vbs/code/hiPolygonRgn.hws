@@ -1,0 +1,25 @@
+func Create()
+  println ('Set ', id, ' = rgn.CreatePolygonRgn(', code(Array),')')
+end
+
+func Init()
+  include("regions")
+  var(id)
+  id = PolygonRgn_
+  if(!linked(doRegion))
+    stack &= block.select(BLK_BODY)
+    Create()
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doRegion(_data)
+  Create()
+  if(linked(onCreate))
+    event(onCreate, id + '.Value')
+  end
+end
+
+func Result()
+  return(id + '.Value')
+end

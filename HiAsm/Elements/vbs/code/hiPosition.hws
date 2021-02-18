@@ -1,0 +1,36 @@
+func MakeCode(dt)
+  fvar(p)
+  p = 'InStr'
+  if(isdef(Reverse))
+    p += '('
+    if(isndef(Start) or isndef(Compare))
+      p += Start && ', ' + Text + ', ' + Target + ', ' + Compare
+    else
+      p += Text + ', ' + Target
+    end
+  else
+    p += 'Rev(' + Text + ', ' + Target
+    if(isndef(Start) or isndef(Compare))
+      p += ', ' + Start + ', ' + Compare
+    end
+  end
+  p += ')'
+  return(p)
+end
+
+func doSearch(_data)
+  if(linked(Position))
+    println(res, ' = ', MakeCode(_data))
+    event(onSearch, res)
+  else
+    event(onSearch, MakeCode(_data))
+  end
+end
+
+func Position()
+  if(linked(doSearch))
+    return(res)
+  else
+    return(MakeCode())
+  end
+end

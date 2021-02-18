@@ -1,0 +1,55 @@
+include("object")
+include("control")
+
+func DrawImage(picture)
+  println('Set ', id, ' = ', get_parent(), '.DrawImage(', Left, ', ', Top, isndef(AutoSize) ? ', 0, 0, ' : (', ' + Width + ', ' + Height + ', '), picture, ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+end
+
+func Init()
+  var(id)
+  id = Image_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', id)
+  block.select(BLK_BODY)
+
+  DrawImage(Path)
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+  
+  // Local  methods and properties
+  if(isndef(CopyMode))
+    println(id, '.CopyMode = wso.Translate("', CopyMode, '")')
+  end
+  if(isndef(DrawType))
+    println(id, '.DrawType = wso.Translate("', DrawType, '")')
+  end
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doPattern(_data)
+  println(id, '.Brush.Color = ', _data)
+end
+
+func doCopyMode(_data)
+  println(id, '.CopyMode = ', _data)
+end
+
+func doDrawType(_data)
+  println(id, '.DrawType = ', _data)
+end
+
+func doDrawImage(_data)
+  DrawImage(Data)
+end
+
+func ImageWidth()
+  return(isndef(AutoSize) ? (id + '.Width') : (-1))
+end
+
+func ImageHeight()
+  return(isndef(AutoSize) ? (id + '.Height') : (-1))
+end

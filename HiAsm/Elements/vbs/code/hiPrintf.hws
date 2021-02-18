@@ -1,0 +1,42 @@
+func Init()
+  if(sys.gvarfind('fmt_is_set') = -1)
+    fvar(classpath)
+    stack &= block.select(BLK_FUNC)
+    gvar(fmt_is_set)
+    classpath = replace(sys.codedir() & 'classes\fmt.vbs','\\','\\\\')
+    println(code(file2str(classpath)))
+    block.select(_arr.pop(stack))
+  end
+  if(!isset(Arr))
+    fvar(i, s)
+      for(i = 0; i < _arr.count(Array); i++)
+        s &= Array[i][0]
+      end
+      s = _arr.join(s, ',')
+    stack &= block.select(BLK_GLOB)
+    println('Dim ', arr_)
+    println (arr_, ' = Array(', s, ')')
+    block.select(_arr.pop(stack))
+  end
+end
+
+func MakeCode(_data)
+  return('fmt(' + code("\"" + Template + "\"") + ', ' + (isset(Arr) ? Arr : arr_) + ')')
+end
+
+func doPrintf(_data)
+  if(linked(Result))
+    println(res, ' = ', MakeCode(_data))
+    event(onPrintf, res)
+  else
+    event(onPrintf, MakeCode(_data))
+  end
+end
+
+func Result()
+  if(linked(doPrintf))
+    return(res)
+  else
+    return(MakeCode())
+  end
+end

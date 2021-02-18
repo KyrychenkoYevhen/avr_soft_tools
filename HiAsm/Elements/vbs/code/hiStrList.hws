@@ -1,0 +1,237 @@
+func Init()
+  var(id)
+  id = StrList_
+  fvar(old, classpath)
+  old = block.select(BLK_CLASS)
+  if(sys.gvarfind('clinkedlist_is_set') = -1)
+    gvar(clinkedlist_is_set)
+    classpath = replace(sys.codedir() & 'classes\cLinkedList.vbs','\\','\\\\')
+    println(code(file2str(classpath)))
+  end
+  if(linked(doSort))
+    if(sys.gvarfind('qsort_is_set') = -1)
+      gvar (qsort_is_set)
+      classpath = replace(sys.codedir() & 'classes\QSort.vbs','\\','\\\\')
+      println(code(file2str(classpath)))
+    end
+    var(sort_id)
+    sort_id = Sort_
+  end
+  block.select(BLK_GLOB)
+  println('Dim ', id)
+  if(linked(doSort))
+   println('Dim ', sort_id)
+  end
+  if(linked(Index))
+   var(index_id)
+   index_id = Idx_
+   println('Dim ', index_id)
+  end
+  if(linked(String))
+   var(str_id)
+   str_id = SelStr_
+   println('Dim ', str_id)
+  end
+  if(linked(Text))
+    block.select(BLK_FUNC)
+    if(sys.gvarfind('list2text_is_set') = -1)
+      gvar(list2text_is_set)
+      lng.begin_func('List2Text(param)')
+        println('If param.Size = 0 Then')
+        block.inclvl()
+          println('List2Text = ""')
+        block.declvl()
+        println('Else') 
+        block.inclvl()
+          println('List2Text = Join(param.ToArray(), vbCrLf)')
+        block.declvl()
+        println('End If')
+      lng.end_func(BLK_FUNC)
+    end
+  end
+  block.select(BLK_OBJ)
+  println('Set ', id, ' = New cLinkedList')
+  if(linked(doSort))
+   println('Set ', sort_id, ' = New QSort')
+  end
+  if(isndef(Strings))
+    fvar(s)
+    s = Strings
+    if(_arr.count(s))
+      s = _arr.join(s, ', ') 
+    else
+      s = ''
+    end
+    block.select(BLK_GLOB)
+    println('Dim ', arr)
+    println(arr, ' = Array(', s, ')')
+    block.select(BLK_OBJ)
+    println(id, '.AppendArray(', arr, ')')
+  end
+  block.select(old)
+end
+
+func doAdd(_data)
+  println(id, '.Push ', StrData)
+  if(linked(onChange))
+    event(onChange)
+  end
+end
+
+func doClear()
+  println(id, '.Free')
+  if(linked(onChange))
+    event(onChange)
+  end
+end
+
+func doDelete(_data)
+  fvar(obj_tmp)
+  obj_tmp = tmp
+  println('Set ', obj_tmp, ' = New cLinkedList')
+  fvar(c)
+  c = Counter
+  println('For ', c, ' = 1 To ', _data)
+  block.inclvl()
+    println(obj_tmp, '.Push ', id, '.UnShift')
+  block.declvl()
+  println('Next')
+  println(id, '.UnShift')
+  println(id, '.PrependList(', obj_tmp, ')')
+  println('Set ', obj_tmp, ' = Nothing')
+  if(linked(onChange))
+    event(onChange)
+  end
+end
+
+func doText(_data)
+  println(id, '.Free')
+  println(id, '.AppendArray(Split(', _data, ', vbCrLf))')
+  println(id, '.Pop')
+  if(linked(onChange))
+    event(onChange)
+  end
+end
+
+func doLoad(_data)
+  include('fso')
+  println('Set st = fso.OpenTextFile(', FileName, ', 1)')
+  println(id, '.Free')
+  println('While Not st.AtEndOfStream')
+  block.inclvl()
+    println(id, '.Push st.ReadLine')
+  block.declvl()
+  println('Wend')
+  println('st.Close')
+  if(linked(onChange))
+    event(onChange)
+  end
+end
+
+func doSave(_data)
+  include('fso')
+  println('Set st = fso.CreateTextFile(', FileName, ', True)')
+  fvar(c)
+  c = Counter
+  println('For ', c, ' = 1 To ', id, '.Size')
+  block.inclvl()
+    println('st.WriteLine ', id, '.Item(', c, ')')
+  block.declvl()
+  println('Next')
+  println('st.Close')
+end
+
+func doAppend(_data)
+  include('fso')
+  println('Set st = fso.OpenTextFile(', FileName, ', 8, False)')
+  fvar(c)
+  c = Counter
+  println('For ', c, ' = 1 To ', id, '.Size')
+  block.inclvl()
+    println('st.WriteLine ', id, '.Item(', c, ')')
+  block.declvl()
+  println('Next')
+  println('st.Close')
+end
+
+func doSort()
+  println(arr, ' = ', id, '.ToArray()')
+  println(sort_id, '.Sort ', arr)
+  println(id, '.Free')
+  println(id, '.AppendArray(', arr, ')')
+end
+
+func doInsert(_data)
+  fvar(obj_tmp)
+  obj_tmp = tmp
+  println('Set ', obj_tmp, ' = New cLinkedList')
+  fvar(c)
+  c = Counter
+  println('For ', c, ' = 1 To ', _data)
+  block.inclvl()
+    println(obj_tmp, '.Push ', id, '.UnShift')
+  block.declvl()
+  println('Next')
+  println(obj_tmp, '.Push ', StrData)
+  println(id, '.PrependList(', obj_tmp, ')')
+  println('Set ', obj_tmp, ' = Nothing')
+  if(linked(onChange))
+    event(onChange)
+  end
+end
+
+func doGetIndex(_data)
+  fvar(c)
+  c = Counter
+  if(linked(Index))
+   println(index_id, ' = - 1')
+  end
+  println('For ', c, ' = 1 To ', id, '.Size')
+  block.inclvl()
+    println('If ', id, '.Item(', c, ') = ', StrToFind, ' Then')
+    block.inclvl()
+      if(linked(Index))
+        println(index_id, ' = ', c, ' - 1')
+      end
+      if(linked(onGetIndex))
+        event(onGetIndex, c && ' - 1')
+      end
+      println('Exit For')
+    block.declvl()
+    println('End If')
+  block.declvl()
+  println('Next')
+end
+
+func doGetString(_data)
+  if(linked(String))
+    println(str_id, ' = ', id, '.Item(', IdxToSelect, ' + 1)')
+  end
+  if(linked(onGetString))
+    event(onGetString, linked(String) ? str_id : id && '.Item(' && IdxToSelect && ' + 1)')
+  end
+end
+
+func Text()
+  return(code('List2Text(' && id && ')'))
+end
+
+func Count()
+  return(id && '.Size')
+end
+
+func Index()
+  return(index_id)
+end
+
+func String()
+  return(str_id)
+end
+
+func Array()
+  return(id && '.ToArray()')
+end
+
+func Handle()
+  return(id)
+end

@@ -1,0 +1,4 @@
+func vBoolean()
+  return('vb' && code(Boolean))
+end
+

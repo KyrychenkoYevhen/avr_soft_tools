@@ -1,0 +1,57 @@
+include("object")
+override("control", "onChange")
+include("buttoncontrol")
+
+func Init()
+  var(id)
+  id = chk_
+  fvar(old)
+  old = block.select(BLK_BODY)
+
+  println('Set ', id, ' = ', get_parent(), '.CreateCheckBox(', Left, ', ', Top, ', ', Width, ', ', Height, ', ', Text, ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+  ButtonControl_Init(id)
+
+  // Local  methods and properties
+  if(isndef(AllowGrayed))
+    println(id, '.AllowGrayed = True')
+  end
+  if(isndef(Checked))
+    println(id, '.Checked = True')
+  end
+  println('')
+  if(linked(onChange))
+    lng.begin_func(id + '_OnChange(Sender) \'' + code(Text))
+      event(onChange, 'Sender.State')
+    lng.end_func(BLK_EVENTS)
+  end
+  block.select(old)
+end
+
+func doCheck(_data)
+   println(id, '.Checked = ', (_data='') ? 'False' : _data)
+end
+
+func doState(_data)
+   println(id, '.State = ', (_data='') ? 0 : _data)
+end
+
+func doAllowGrayed(_data)
+   println(id, '.AllowGrayed = ', (_data='') ? 'False' : _data)
+end
+
+func vChecked()
+  return(id && '.Checked')
+end
+
+func State()
+  return(id && '.State')
+end
+
+func vAllowGrayed()
+  return(id && '.AllowGrayed')
+end

@@ -1,0 +1,108 @@
+Make(vbs)
+ver(4.04 build 184)
+Add(MainForm,2953706,21,21)
+{
+ Width=563
+ Height=588
+}
+Add(Button,13666085,56,119)
+{
+ Left=20
+ Top=20
+ Width=65
+ Text="HttpGet"
+ Point(onClick)
+ link(onClick,5473563:doEvent1,[])
+}
+Add(Edit,5913464,231,70)
+{
+ Left=95
+ Top=20
+ Width=435
+ Text="http://hiasm.com/xf/attach/files/CaptureForLacrimoz.jpg"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(ADODBStream,2727150,427,126)
+{
+}
+Add(ADODBStreamRW,15946572,427,189)
+{
+ link(Stream,6365304:Var2,[])
+}
+Add(Hub,366135,273,119)
+{
+ OutCount=6
+ link(onEvent1,1147050:doStrCat,[(329,125)(329,83)])
+ link(onEvent2,10929645:doData,[])
+ link(onEvent3,15946572:doWrite,[(357,139)(357,202)])
+ link(onEvent4,16757809:doSave,[(329,146)(329,223)])
+ link(onEvent5,2727150:doClose,[(418,153)(418,139)])
+ link(onEvent6,12494452:doDrawImage,[(317,160)(317,251)])
+}
+Add(ADODBStreamIO,16757809,371,210)
+{
+ SaveOptions=1
+ link(Stream,6365304:Var1,[(377,173)])
+ link(FileName,8280275:Var1,[(384,187)])
+}
+Add(DoData,10929645,371,126)
+{
+ link(onEventData,2727150:doOpen,[])
+}
+Add(GetDataEx,6365304,427,168)
+{
+ link(Data,2727150:Stream,[])
+}
+Add(WinHttp,14299245,231,119)
+{
+ Async=1
+ Point(doSetHeader)
+ link(onRequest,366135:doEvent1,[])
+ link(URL,5913464:vText,[])
+}
+Add(Image,12494452,406,245)
+{
+ Left=22
+ Top=45
+ Width=511
+ Height=496
+ Point(onClick)
+ link(Data,8280275:Var2,[])
+}
+Add(SpecFolder,15031238,392,28)
+{
+}
+Add(StrCat,1147050,406,77)
+{
+ Str2="\picture.jpg"
+ link(Str1,15031238:Temporary,[])
+}
+Add(GetDataEx,8280275,406,182)
+{
+ link(Data,1147050:Result,[])
+}
+Add(MT_Add,13032083,133,189)
+{
+ Data=String(Date)
+ InputMT=1
+ link(onAdd,2414906:doAdd,[])
+}
+Add(MT_Add,2414906,175,189)
+{
+ Data=String(Date)
+ InputMT=1
+ link(onAdd,14299245:doSetHeader,[(222,195)(222,139)])
+ link(Data,2750094:Now,[])
+}
+Add(Hub,5473563,105,119)
+{
+ OutCount=3
+ link(onEvent1,14299245:doOpen,[])
+ link(onEvent2,13032083:doAdd,[(126,132)(126,195)])
+ link(onEvent3,14299245:doRequest,[(185,139)(185,132)])
+}
+Add(Time,2750094,175,147)
+{
+}

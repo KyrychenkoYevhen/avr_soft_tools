@@ -1,0 +1,272 @@
+Make(delphi)
+ver(4.04 build 185)
+Add(InfoTip,3139768,56,14)
+{
+ Info=#9:Внимание!|
+ Font=[MS Sans Serif,12,1,255,1]
+ Transparent=1
+ Width=337
+ Height=102
+}
+Add(MainForm,93829,21,147)
+{
+ Width=397
+ Height=270
+ Font=[Arial,8,0,0,1]
+ Position=1
+ Point(Handle)
+ link(onCreate,4252681:doInit,[])
+}
+Add(LinkTip,9279260,147,98)
+{
+ Link="https://www.un4seen.com/"
+ Font=[MS Sans Serif,8,0,16711680,1]
+}
+Add(InfoTip,8392515,63,35)
+{
+ Info=#96:Для работы компонентов библиотеки BASS необходимо bass.dll поместить в папку с вашей программой.|77:Библиотеку можно взять либо в папке HiAsm, либо скачать с официального сайта:|
+ Frame=1
+ Width=309
+ Height=60
+}
+Add(Hub,670,973,280)
+{
+ link(onEvent1,620696:doRefresh,[])
+ link(onEvent2,14812060:doRefresh,[])
+}
+Add(Message,65006,175,168)
+{
+ Message="Error BASS initialization"
+ Caption="Error"
+ Icon=1
+}
+Add(Message,93305,693,322)
+{
+ Caption="Ошибка создания канала"
+}
+Add(PaintBox,620696,1015,280)
+{
+ Left=30
+ Top=65
+ Width=345
+ Height=75
+ link(onBeforeDraw,11394505:doDraw,[])
+}
+Add(Button,74264,546,287)
+{
+ Left=5
+ Top=15
+ Font=[Arial,8,0,0,1]
+ Caption="Play"
+ link(onClick,6163957:doEvent1,[])
+}
+Add(Timer,37612,910,280)
+{
+ Interval=33
+ Enable=1
+ link(onTimer,670:doEvent1,[])
+}
+Add(PaintBox,14812060,1127,287)
+{
+ Left=30
+ Top=145
+ Width=345
+ Height=90
+ link(onBeforeDraw,13733494:doDraw,[])
+}
+Add(Label,75448,525,126)
+{
+ Left=330
+ Top=15
+ Font=[Arial,8,0,0,1]
+ Caption="2500"
+}
+Add(Hub,2542160,434,161)
+{
+ link(onEvent1,64790:doStrCat,[(462,167)(462,132)])
+ link(onEvent2,6212927:doFreq,[(519,174)(519,209)])
+}
+Add(FTCG_Tools,6212927,637,203)
+{
+}
+BEGIN_SDK
+  Add(EditMultiEx,16524994,21,21)
+  {
+   WorkCount=#6:doFreq|8:doVolume|
+   VarCount=#7:getdata|
+   Width=503
+   Height=228
+   link(doFreq,1584974:doValue,[(56,27)(56,69)])
+   link(doVolume,15470044:doValue,[(49,34)(49,76)])
+   link(getdata,9423444:GetData,[(27,172)(69,172)])
+  }
+  Add(FT_Math,11805699,210,126)
+  {
+   OpType=2
+   link(onResult,8788767:doOperation,[])
+   link(Op2,1584974:Value,[])
+  }
+  Add(FT_Math,9082239,112,126)
+  {
+   Op2=1
+   link(onResult,7153045:doEvent1,[])
+   link(Op1,9082239:Result,[(118,114)(107,114)(107,169)(118,169)])
+  }
+  Add(FT_Math,8788767,259,126)
+  {
+   OpType=2
+   Op2=3.1415
+   link(onResult,5967425:doOperation,[])
+  }
+  Add(FT_Math,5967425,308,126)
+  {
+   OpType=13
+   link(onResult,15902:doOperation,[])
+  }
+  Add(FT_Hub,7153045,161,126)
+  {
+   link(onEvent1,11805699:doOperation,[])
+   link(onEvent2,13547133:doOperation,[(201,139)(201,188)])
+  }
+  Add(FT_Math,15902,357,126)
+  {
+   OpType=2
+   link(Op2,15470044:Value,[])
+  }
+  Add(FT_EventFromData,9423444,63,126)
+  {
+   link(onEvent,9082239:doOperation,[])
+  }
+  Add(FT_Memory,1584974,217,63)
+  {
+   Default=Integer(2500)
+  }
+  Add(FT_Memory,15470044,364,70)
+  {
+   Default=Integer(10000)
+  }
+  Add(FT_Math,13547133,210,182)
+  {
+   OpType=2
+   Op2=200
+   link(onResult,5692889:doOperation,[])
+  }
+  Add(FT_Math,5692889,259,182)
+  {
+   OpType=2
+   Op2=3.1415
+   link(onResult,7770315:doOperation,[])
+  }
+  Add(FT_Math,7770315,308,182)
+  {
+   OpType=13
+   link(onResult,10728165:doOperation,[])
+  }
+  Add(FT_Math,5391929,406,182)
+  {
+   link(onResult,9423444:doData,[(450,188)(450,223)(54,223)(54,132)])
+   link(Op1,15902:Result,[(412,170)(363,170)])
+  }
+  Add(FT_Math,10728165,357,182)
+  {
+   OpType=2
+   Op2=8000
+   link(onResult,5391929:doOperation,[])
+  }
+END_SDK
+Add(ScrollBar,1413,385,161)
+{
+ Left=90
+ Top=20
+ Width=235
+ Max=5000
+ Position=2500
+ link(onPosition,2542160:doEvent1,[])
+}
+Add(Hub,4502827,434,273)
+{
+ link(onEvent1,85961:doText,[(458,279)(458,237)])
+ link(onEvent2,68167:doOperation,[])
+}
+Add(StrCat,64790,476,126)
+{
+ Str2="Гц"
+ link(onStrCat,75448:doText,[])
+}
+Add(Math,68167,469,280)
+{
+ OpType=2
+ Op2=327.67
+ ResultType=0
+ link(onResult,6212927:doVolume,[(521,286)(521,216)])
+}
+Add(Label,85961,469,231)
+{
+ Left=330
+ Top=40
+ Font=[Arial,8,0,0,1]
+ Caption="30"
+}
+Add(ScrollBar,3421,385,273)
+{
+ Left=90
+ Top=40
+ Width=235
+ Max=100
+ Position=30
+ link(onPosition,4502827:doEvent1,[])
+}
+Add(BASS_StreamCreate,15224238,637,280)
+{
+ Name="Channel"
+ link(onCreate,14352658:doPlay,[])
+ link(onError,93305:doMessage,[(681,293)(681,328)])
+ link(Data,6212927:getdata,[])
+}
+Add(BASS_ChannelPlay,14352658,728,280)
+{
+ Channel="Channel"
+ link(onPlay,37612:doTimer,[])
+}
+Add(BASS_ChannelVisibleSpectrum,13733494,1183,287)
+{
+ SoundStream="Channel"
+ Width=4
+ Pen=65280
+ Peak=255
+ Mode=1
+ link(WindowsHandle,14812060:Bitmap,[(1189,275)(1170,275)(1170,329)(1133,329)])
+}
+Add(BASS_ChannelVisibleOcilloScope,11394505,1071,280)
+{
+ SoundStream="Channel"
+ Res=1
+ link(WindowsHandle,620696:Bitmap,[(1077,269)(1049,269)(1049,324)(1021,324)])
+}
+Add(Button,4045001,28,280)
+{
+ Left=5
+ Top=40
+ Caption="Stop"
+ link(onClick,14948287:doStop,[])
+}
+Add(BASS_ChannelStop,14948287,77,280)
+{
+ Channel="Channel"
+}
+Add(InfoTip,8212009,896,210)
+{
+ Info=#19:Визуализация канала|
+ Width=337
+ Height=130
+}
+Add(Hub,6163957,595,287)
+{
+ link(onEvent1,15224238:doDestroy,[])
+ link(onEvent2,15224238:doCreate,[(621,300)(621,286)])
+}
+Add(BASS_Init,4252681,105,161)
+{
+ link(onError,65006:doMessage,[])
+ link(Handle,93829:Handle,[(125,149)(76,149)(76,191)(27,191)])
+}

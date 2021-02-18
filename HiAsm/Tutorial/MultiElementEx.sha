@@ -1,0 +1,553 @@
+Make(delphi)
+Add(InfoTip,16464751,77,14)
+{
+ Info=#
+ Width=508
+ Height=1362
+}
+Add(Shape,2562225,105,910)
+{
+ Width=456
+ Height=25
+ Text="Пример 1"
+ Font=[Arial,12,1,0,1]
+ Color=12639424
+}
+Add(Shape,13531047,147,259)
+{
+ Width=375
+ Height=207
+ Type=2
+ Font=[Arial,8,0,0,1]
+}
+Add(MainForm,5476612,210,1155)
+{
+ Left=20
+ Top=105
+ Font=[Arial,8,0,0,1]
+}
+Add(MultiElementEx,10290782,91,147)
+{
+}
+BEGIN_SDK
+  Add(EditMultiEx,899891,3,3)
+  {
+  }
+END_SDK
+Add(Shape,6712503,77,14)
+{
+ Width=508
+ Height=25
+ Text="Использование динамических схем"
+ Font=[Times New Roman,14,1,0,1]
+ Color=10789024
+}
+Add(InfoTip,5050909,85,49)
+{
+ Info=#262: Все компоненты HiAsm, да и сама технология построения схем, в принципе не рассчитана на димачисое изменение своих частей. Но тем не менее дублировать некоторые её части и встраивать в общую схему HiAsm все же позволяет благодаря новому компоненту MultiElementEx|
+ Font=[Arial,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=491
+ Height=67
+}
+Add(InfoTip,4753282,133,147)
+{
+ Info=#189: При установки его св-ва Mode в Dynamic он позволяет организовать в программе создание и обработку массива схем, шаблон которой вы выстраиваете внутри контейнера обычным для HiAsm способом.|
+ Font=[Arial,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=449
+ Height=53
+}
+Add(InfoTip,9016932,84,203)
+{
+ Info=#103: Как и в случае со скриптами управление компонентом осуществляется через зарезервированные имена точек:|
+ Font=[Arial,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=498
+}
+Add(InfoTip,5381297,154,266)
+{
+ Info=#72:##add - добавляет в массив новую копию схемы и устанавливает её текущей.|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ HAlign=0
+ Width=365
+}
+Add(InfoTip,6076346,154,301)
+{
+ Info=#70:##select - устанавливает текущей схему, индекс которой указан в потоке|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ HAlign=0
+ Width=365
+}
+Add(InfoTip,7169645,154,336)
+{
+ Info=#111:##delete - удаляет из массива схему, индекс которой указан в потоке. при этом текущая схема не устанавливается.|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ HAlign=0
+ Width=365
+}
+Add(InfoTip,11749263,126,238)
+{
+ Info=#6:Методы|
+ Font=[Arial,14,1,0,1]
+ Frame=1
+ HAlign=0
+ Width=78
+ Height=18
+}
+Add(Shape,10326893,147,490)
+{
+ Width=375
+ Height=74
+ Type=2
+ Font=[Arial,8,0,0,1]
+}
+Add(InfoTip,4480453,154,497)
+{
+ Info=#49:##count - содержит количество элементов в массиве|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ HAlign=0
+ Width=365
+ Height=18
+}
+Add(InfoTip,15595995,126,469)
+{
+ Info=#8:Свойства|
+ Font=[Arial,14,1,0,1]
+ Frame=1
+ HAlign=0
+ Width=78
+ Height=18
+}
+Add(InfoTip,8109597,84,574)
+{
+ Info=#410: Важно понять, что такое текущая схема. Это схема, которой контейнер пересылает запросы на выполнение методов(точки типа Work) и на получение данных( точки типа Var ). В тоже время событие, сгенерированное любой из созданных динамически схем, всегда вызывает соответствующее событие контейнера MultiElementEx в основной схеме, что будет ниже продемонстрированно на примере. Так же ситуация обстоит и с данными.|
+ Font=[Arial,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=498
+ Height=95
+}
+Add(InfoTip,2977597,84,679)
+{
+ Info=#350: Cтоит отметить особенность работы зарезервированных точек внутри контейнера. Тут событие с точки #add можно использовать для инициализации схемы, т.к. оно происходит только один раз в момент её загрузки в память, а точку ##delete наоборот - для выполнения завершающих процедур. ##select - можно использовать для выполнения действий выбранной схемой.|
+ Font=[Arial,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=498
+ Height=88
+}
+Add(Button,8833920,140,1015)
+{
+ Left=35
+ Top=40
+ Font=[Arial,8,0,0,1]
+ Caption="Add"
+ link(onClick,2667018:##add,[])
+}
+Add(MultiElementEx,2667018,224,1015)
+{
+ Mode=1
+ link(onAddText,4767268:doAdd,[(269,1021)(269,1002)(214,1002)(214,951)])
+}
+BEGIN_SDK
+  Add(EditMultiEx,4430876,3,3)
+  {
+   WorkCount=#5:##add|
+   EventCount=#9:onAddText|
+   Height=151
+   Point(##add)
+   link(##add,12985552:doData,[(57,9)(57,48)])
+  }
+  Add(Timer,4565206,112,98)
+  {
+   link(onTimer,4710143:doNext,[])
+  }
+  Add(DoData,12985552,112,42)
+  {
+   Data=String(I'am create!)
+   link(onEventData,11129188:doWork2,[])
+  }
+  Add(Counter,4710143,161,98)
+  {
+   link(onNext,11129188:doWork3,[(221,104)])
+  }
+  Add(HubEx,11129188,217,35)
+  {
+   link(onEvent,4430876:onAddText,[(264,48)(264,9)])
+  }
+END_SDK
+Add(ListBox,4767268,224,945)
+{
+ Left=10
+ Top=65
+ Width=105
+ Height=195
+ Font=[Arial,8,0,0,1]
+}
+Add(Label,8250090,140,952)
+{
+ Left=15
+ Top=10
+ Width=53
+ Height=18
+ Font=[Arial,8,0,0,1]
+ Caption="Example 1"
+}
+Add(InfoTip,5452826,105,910)
+{
+ Info=#
+ Font=[Arial,8,0,0,1]
+ Width=456
+ Height=158
+}
+Add(InfoTip,204675,294,945)
+{
+ Info=#86: Наглядная демонстрация создания нескольких одинаковых схем во время работы программы.|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=260
+}
+Add(InfoTip,6951123,294,987)
+{
+ Info=#217: Каждый раз при нажатие на кнопку Add вы создаете в памяти очередную копию схемы, что производит запуск нового таймера со счетчиком с заданными начальными условиями. При этом старый экземпляр схемы продолжает работать|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=260
+ Height=74
+}
+Add(PointHint,880014,196,882)
+{
+ Info=#9:А эта нет|
+ Width=183
+ Height=18
+ link(Event,16442520:doTest,[(392,891)(392,874)])
+}
+Add(Timer,3556552,287,1134)
+{
+ Interval=10
+ link(onTimer,9244294:doRefresh,[])
+}
+Add(PaintBox,9244294,336,1134)
+{
+ Left=135
+ Top=55
+ Width=210
+ Height=210
+ Color=12639424
+ ClearBeforeDraw=0
+ link(onBeforeDraw,9184855:doFor,[])
+}
+Add(Button,331381,287,1183)
+{
+ Left=200
+ Top=30
+ Width=65
+ Font=[Arial,8,0,0,1]
+ Caption="Add"
+ link(onClick,14227323:##add,[])
+}
+Add(MultiElementEx,14227323,336,1183)
+{
+ Mode=1
+ link(Handle,9244294:Bitmap,[])
+}
+BEGIN_SDK
+  Add(EditMultiEx,10129213,3,3)
+  {
+   WorkCount=#5:##add|8:##select|
+   VarCount=#7:##count|
+   DataCount=#6:Handle|
+   Width=440
+   Height=319
+   Point(##add)
+   Point(##select)
+   Point(##count)
+   link(##add,2149117:doRandom,[(19,9)(19,55)])
+   link(##select,10271306:doDraw,[(14,16)(14,251)])
+  }
+  Add(Img_Ellipse,10271306,91,245)
+  {
+   Point2AsOffset=0
+   link(onDraw,2658985:doOperation,[])
+   link(Bitmap,10129213:Handle,[(97,16)(9,16)])
+   link(Point1,4655807:Point,[])
+   link(Point2,5914282:Point,[(111,233)(139,233)])
+  }
+  Add(PointXY,5914282,133,189)
+  {
+   X=10
+   Y=10
+  }
+  Add(Memory,7646524,126,49)
+  {
+   link(onData,2559567:doWork1,[(169,55)(169,167)])
+  }
+  Add(Memory,10908804,189,49)
+  {
+   link(onData,2196150:doWork1,[(268,55)(268,167)])
+  }
+  Add(PointXY,4655807,98,140)
+  {
+   link(X,6591336:Var1,[(104,114)])
+   link(Y,13022105:Var1,[(111,121)])
+  }
+  Add(MultiElement,2559567,210,161)
+  {
+  }
+  BEGIN_SDK
+    Add(EditMulti,2784491,3,3)
+    {
+     WorkCount=1
+     VarCount=1
+     Height=102
+     link(doWork1,13198225:doCompare,[(26,9)(26,41)])
+     link(Var1,115467:Value,[(9,86)(272,86)])
+    }
+    Add(If_else,13198225,49,35)
+    {
+     Type=1
+     Op2=Integer(1)
+     link(onTrue,1277010:doWork2,[])
+     link(onFalse,4875620:doCompare,[])
+    }
+    Add(Switch,8043746,203,35)
+    {
+     DataOn=Integer(-2)
+     DataOff=Integer(2)
+     link(onSwitch,115467:doValue,[])
+    }
+    Add(If_else,4875620,112,42)
+    {
+     Type=2
+     Op2=Integer(200)
+     link(onTrue,1277010:doWork3,[(179,48)])
+    }
+    Add(HubEx,1277010,175,28)
+    {
+     link(onEvent,8043746:doSwitch,[])
+    }
+    Add(Memory,115467,266,35)
+    {
+     Default=Integer(1)
+    }
+  END_SDK
+  Add(Hub,3093429,252,245)
+  {
+   link(onEvent1,11790344:doOperation,[])
+   link(onEvent2,2811565:doWork3,[(294,258)(294,283)(81,283)])
+  }
+  Add(Math,2658985,203,245)
+  {
+   link(onResult,3093429:doEvent1,[])
+   link(Op1,6591336:Var3,[(209,114)])
+   link(Op2,2559567:Var1,[])
+  }
+  Add(GetDataEx,6591336,119,105)
+  {
+   link(Data,7646524:Value,[])
+  }
+  Add(Math,11790344,308,245)
+  {
+   link(onResult,10908804:doValue,[(394,251)(394,26)(174,26)(174,55)])
+   link(Op1,13022105:Var3,[(314,121)])
+   link(Op2,2196150:Var1,[])
+  }
+  Add(GetDataEx,13022105,182,112)
+  {
+   link(Data,10908804:Value,[])
+  }
+  Add(MultiElement,2196150,315,161)
+  {
+  }
+  BEGIN_SDK
+    Add(EditMulti,2784491,3,3)
+    {
+     WorkCount=1
+     VarCount=1
+     Height=102
+     link(doWork1,13198225:doCompare,[(26,9)(26,41)])
+     link(Var1,115467:Value,[(9,86)(272,86)])
+    }
+    Add(If_else,13198225,49,35)
+    {
+     Type=1
+     Op2=Integer(1)
+     link(onTrue,1277010:doWork2,[])
+     link(onFalse,4875620:doCompare,[])
+    }
+    Add(Switch,8043746,203,35)
+    {
+     DataOn=Integer(-1)
+     DataOff=Integer(1)
+     link(onSwitch,115467:doValue,[])
+    }
+    Add(If_else,4875620,112,42)
+    {
+     Type=2
+     Op2=Integer(200)
+     link(onTrue,1277010:doWork3,[(179,48)])
+    }
+    Add(HubEx,1277010,175,28)
+    {
+     link(onEvent,8043746:doSwitch,[])
+    }
+    Add(Memory,115467,266,35)
+    {
+     Default=Integer(1)
+    }
+  END_SDK
+  Add(Random,2149117,35,49)
+  {
+   Min=1
+   link(onRandom,2811565:doWork2,[])
+  }
+  Add(HubEx,2811565,77,42)
+  {
+   link(onEvent,7646524:doValue,[])
+  }
+END_SDK
+Add(For,9184855,392,1134)
+{
+ IncludeEnd=1
+ link(onEvent,14227323:##select,[(431,1140)(431,1231)(326,1231)(326,1196)])
+ link(End,14227323:##count,[(405,1124)(380,1124)(380,1225)(342,1225)])
+}
+Add(InfoTip,15388325,112,1294)
+{
+ Info=#210: Обратите внимание на то, что метод ##select(и любой метод вообще) вызывается только для текущей схемы! Именно поэтому необходимо организовывать цикл для вызова методов всех имеющихся схем, а не только текущей.|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=442
+ Height=60
+}
+Add(Shape,9483055,105,1085)
+{
+ Width=456
+ Height=25
+ Text="Пример 2"
+ Font=[Arial,12,1,0,1]
+ Color=12639424
+}
+Add(InfoTip,7146635,105,1085)
+{
+ Info=#
+ Font=[Arial,8,0,0,1]
+ Width=456
+ Height=277
+}
+Add(Label,12293726,147,1155)
+{
+ Left=135
+ Top=10
+ Width=53
+ Height=18
+ Font=[Arial,8,0,0,1]
+ Caption="Example 2"
+}
+Add(InfoTip,1461906,112,1245)
+{
+ Info=#181: В этом примере становится совершенно очевидным использование динамических массивов там, где требуется работа с несколькими однотипными и в тоже время достаточно сложными объектами.|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=442
+ Height=46
+}
+Add(Shape,14299916,77,119)
+{
+ Width=508
+ Height=18
+ Text="Описание и примеры"
+ Font=[Times New Roman,12,1,8388608,1]
+ Color=12639424
+}
+Add(InfoTip,5385179,154,371)
+{
+ Info=#39:##clear - удаляет все схемы из элемента|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ HAlign=0
+ Width=365
+ Height=18
+}
+Add(InfoTip,11335127,154,392)
+{
+ Info=#79:##hselect - устанавливает текущей схему, индентификатор которой указан в потоке|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ HAlign=0
+ Width=365
+}
+Add(InfoTip,371338,154,427)
+{
+ Info=#119:##hdelete - удаляет из массива схему, идентификатор которой указан в потоке. при этом текущая схема не устанавливается.|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ HAlign=0
+ Width=365
+}
+Add(InfoTip,2887644,154,518)
+{
+ Info=#49:##index - содержит индекс текущей схемы в массиве|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ HAlign=0
+ Width=365
+ Height=18
+}
+Add(InfoTip,241563,154,539)
+{
+ Info=#47:##handle - содержит идентификатор текущей схемы|
+ Font=[Arial,8,0,0,1]
+ Frame=1
+ HAlign=0
+ Width=365
+ Height=18
+}
+Add(InfoTip,1132418,84,770)
+{
+ Info=#237: Все компоненты, построенные на базе динамического контейнера(и он сам конечно же) могут отображать точки с подсказками к ним.  Для этого после имени точки нужно поставить знак = и далее её описание. Например,  doMethod=Выполнение метода|
+ Font=[Arial,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=498
+ Height=67
+}
+Add(MultiElementEx,16442520,406,861)
+{
+}
+BEGIN_SDK
+  Add(EditMultiEx,14146965,3,3)
+  {
+   WorkCount=#26:doMethod=Выполнение метода|6:doTest|
+   VarCount=#40:Var=Содержит некоторое значение из схемы|
+  }
+END_SDK
+Add(PointHint,13177564,196,847)
+{
+ Info=#30:Эта точка содержит комментарий|
+ Width=183
+ Height=18
+ link(Event,16442520:doMethod,[(392,856)(392,867)])
+}

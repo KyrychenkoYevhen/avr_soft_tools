@@ -1,0 +1,128 @@
+;файл локализации программы HiAsm
+;доступны языки Ru и En
+
+Property %s for element %s not found!
+Element %s is not found!
+ProjectTree
+Enter point %s for element %s not found!
+Elements
+;5
+Help
+Info
+Constructor
+Replace the following file: %s?
+This component can not be duplicated!
+;10
+Help (for more detailed help see Help-file)
+Left:%d  Top:%d
+Width:%d  Height:%d
+Properties
+Property
+;15
+Value
+[DATA]
+[LIST]
+[ICON]
+[SCRIPT]
+;20
+Icon
+Clear
+Open
+Enter new value
+-
+;25
+Enter compiler name
+Errors
+Version is being checked...
+Version check complite!
+Download this version?
+;30
+I cant find the file due to invalid URL
+Network problem: can not connect to the server
+File is being downloaded...
+Download is complite!
+Download Meneger
+;35
+Save changes to the current project?
+-
+Data type
+Value
+Data editor
+;40
+Save
+Close this panel
+Count
+-
+Enter would-be hint for the component
+;45
+Actions
+Event
+Properties
+Data
+[Picture]
+;50
+Compiler has not been found
+Are you really shure you want to delete selected components?
+Close
+Picture editor
+About the project
+;55
+Projects explorer
+Element %1 can't be pasted!
+Do you really whant to DELETE file %s?
+Debug
+Create New Project
+;60
+[WAVE]
+Wave editor
+[ARRAY]
+Add
+Delete
+;65
+Edit
+Array editor
+Add scheme-programm
+Author
+Name
+;70
+File
+Cancel
+[FONT]
+Paste
+Info
+;75
+Copy
+Cut
+Delete
+Comment
+Params
+;80
+Points
+Back
+Forward
+Refresh
+[BINDATA]
+;85
+Save file change?
+File save
+Get file size
+Connect server
+Set file pointer
+;90
+Downlod
+Download complite
+URL not found
+Internet not found
+Add URL
+;95
+Start download
+Stop download
+Open download folder
+Check update
+Close all
+;100
+Bring To Front
+Send To Back
+HiAsm project(*.sha)|*.sha|HiAsm components pack(*.hic)|*.hic|Pascal file(*.pas)|*.pas|INI files(*.ini)|*.ini|HTML files(*.htm,*.html)|*.htm;*.html|Text files(*.txt,*.lst,*.rtf)|*.txt;*.lst;*.rtf|All files(*.*)|*.*
+All components
+In the current container

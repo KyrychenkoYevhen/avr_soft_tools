@@ -1,0 +1,43 @@
+func flgStyle()
+  fvar(mbStyle)
+  if(linked(Style))
+    mbStyle = Style
+  else
+    mbStyle = Buttons + Icon * 16 + Default * 256 + ModalMode * 4096
+    if(isndef(UserIcon))
+      mbStyle += 128  //  0x00000080L
+    end
+    if(isndef(Help))
+      mbStyle += 16384  //  0x00004000L
+    end
+    if(isndef(NoFocus))
+      mbStyle += 32768  //  0x00008000L
+    end
+    if(isndef(SetForeGround))
+      mbStyle += 65536  //  0x00010000L
+    end
+    if(isndef(DefaultDesktopOnly))
+      mbStyle += 131072  //  0x00020000L
+    end
+    if(isndef(TopMost))
+      mbStyle += 262144  //  0x00040000L
+    end
+    if(isndef(Right))
+      mbStyle += 524288  //  0x00080000L
+    end
+    if(isndef(RTLReading))
+      mbStyle += 1048576  //  0x00100000L
+    end
+  end
+  return(mbStyle)
+end
+
+func doMessageBox(_data)
+  fvar(txt)
+  txt = 'Replace(' + Text + ', "\r\n", vbCrLf)'
+  if(linked(onResult))
+    event(onResult, 'form_0.MessageBox(' + txt + ', ' + Caption + ', CLng(' + flgStyle() + '))')
+  else
+    println('form_0.MessageBox ', txt, ', ', Caption, ', CLng(', flgStyle(), ')')
+  end
+end

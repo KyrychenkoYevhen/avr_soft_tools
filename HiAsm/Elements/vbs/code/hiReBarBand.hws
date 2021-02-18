@@ -1,0 +1,150 @@
+func Init()
+  if(linked(Handle))
+    var(id)
+    id = frm + '.Band(' + Handle + ')'
+    stack &= block.select(BLK_BODY)
+    if(isndef(Text) or isndef(ImageIndex) or isndef(Color) or isndef(ParentColor) or isndef(ParentImage) or isndef(FixedImage) or isndef(FixedSize) or isndef(Break) or isndef(GripperAlways) or isndef(Locked) or isndef(Chevron))
+      println('With ', id)
+      block.inclvl()
+    end
+
+    if(isndef(Text))
+      println('.Text = ', Text)
+    end
+
+    if(isndef(ImageIndex))
+      println('.ImageIndex = ', ImageIndex)
+    end
+
+    if(isndef(Color))
+      println('.Color = ', Color)
+    end
+
+    if(isndef(ParentColor))
+      println('.ParentColor = False')
+    end
+
+    if(isndef(ParentImage))
+      println('.ParentImage = False')
+    end
+
+    if(isndef(FixedImage))
+      println('.FixedImage = False')
+    end
+
+    if(isndef(FixedSize))
+      println('.FixedSize = True')
+    end
+
+    if(isndef(Break))
+      println('.Break = False')
+    end
+
+    if(isndef(GripperAlways))
+      println('.GripperAlways = True')
+    end
+
+    if(isndef(Locked))
+      println('.Locked = True')
+    end
+
+    if(isndef(Chevron))
+      println('.Chevron = True')
+    end
+
+    if(isndef(Text) or isndef(ImageIndex) or isndef(Color) or isndef(ParentColor) or isndef(ParentImage) or isndef(FixedImage) or isndef(FixedSize) or isndef(Break) or isndef(GripperAlways) or isndef(Locked) or isndef(Chevron))
+      block.declvl()
+      println('End With')
+      println('')
+    end
+    block.select(_arr.pop(stack))
+  end
+end
+
+func doText(_data)
+  println(id, '.Text = ', _data)
+end
+
+func vText()
+  return(id + '.Text')
+end
+
+func doImageIndex(_data)
+  println(id, '.ImageIndex = ', _data)
+end
+
+func vImageIndex()
+  return(id + '.ImageIndex')
+end
+
+func doColor(_data)
+  println(id, '.ParentColor = ', _data)
+end
+
+func vColor()
+  return(id + '.Color')
+end
+
+func doParentColor(_data)
+  println(id, '.ParentColor = ', (_data='') ? 'False' : _data)
+end
+
+func vParentColor()
+  return(id + '.ParentColor')
+end
+
+func doParentImage(_data)
+  println(id, '.ParentImage = ', (_data='') ? 'False' : _data)
+end
+
+func vParentImage()
+  return(id + '.ParentImage')
+end
+
+func doFixedImage(_data)
+  println(id, '.FixedImage = ', (_data='') ? 'False' : _data)
+end
+
+func vFixedImage()
+  return(id + '.FixedImage')
+end
+
+func doFixedSize(_data)
+  println(id, '.FixedSize = ', (_data='') ? 'False' : _data)
+end
+
+func vFixedSize()
+  return(id + '.FixedSize')
+end
+
+func doBreak(_data)
+  println(id, '.Break = ', (_data='') ? 'False' : _data)
+end
+
+func vBreak()
+  return(id + '.Break')
+end
+
+func doGripperAlways(_data)
+  println(id, '.GripperAlways = ', (_data='') ? 'False' : _data)
+end
+
+func vGripperAlways()
+  return(id + '.GripperAlways')
+end
+
+func doLocked(_data)
+  println(id, '.Locked = ', (_data='') ? 'False' : _data)
+end
+
+func vLocked()
+  return(id + '.Locked')
+end
+
+func doChevron(_data)
+  println(id, '.Chevron = ', (_data='') ? 'False' : _data)
+end
+
+func vChevron()
+  return(id + '.Chevron')
+end

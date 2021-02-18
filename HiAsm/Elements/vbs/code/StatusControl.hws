@@ -1,0 +1,102 @@
+// ************************************************
+// StatusControl.hws for Vbs packet
+// WSO methods, properties and constants
+// Общие свойства и методы наследников класса StatusControl
+// Last modification: 19.09.2009
+// ************************************************
+
+// Common properties
+func StatusControl_Init(id)
+  if(isndef(Min) or isndef(Max) or isndef(Position) or isndef(Step))
+    println('With ', id)
+    block.inclvl()
+  end
+
+  if(isndef(Min))
+    println('.Min = ', Min)
+  end
+
+  if(isndef(Max))
+    println('.Max  = ', Max)
+  end
+
+  if(isndef(Position))
+    println('.Position  = ', Position)
+  end
+
+  if(isndef(Step))
+    println('.Step  = ', Step)
+  end
+
+  if(isndef(Min) or isndef(Max) or isndef(Position) or isndef(Step))
+    block.declvl()
+    println('End With')
+  end
+
+  // Common Events
+  if(linked(onChange))
+    stack &= block.select(BLK_GLOB)
+    if(isndef(IgnoreFirstEvent))
+      println('Dim ', FirstOnChange_)
+      println(FirstOnChange_, ' = False')
+    end
+    lng.begin_func(id + '_OnChange(Sender)\'' + code(id))
+      if(isndef(IgnoreFirstEvent))
+        println('If ', FirstOnChange_, ' Then')
+        block.inclvl()
+      end
+      event(onChange, 'Sender.Position')
+      if(isndef(IgnoreFirstEvent))
+        block.declvl()
+        println('Else')
+        block.inclvl()
+          println(FirstOnChange_, ' = True')
+        block.declvl()
+        println('End If')
+      end
+    lng.end_func(BLK_EVENTS)
+	block.select(_arr.pop(stack))
+  end
+end // Init
+
+// Common methods
+func doStepIt()
+  println(id, '.StepIt()')
+end
+
+func doStepBy(_data)
+  println(id, '.StepBy(', _data, ')')
+end
+
+func doMin(_data)
+  println(id, '.Min = ', _data)
+end
+
+func doMax(_data)
+  println(id, '.Max = ', _data)
+end
+
+func doPosition(_data)
+  println(id, '.Position = ', _data)
+end
+
+func doStep(_data)
+  println(id, '.Step = ', _data)
+end
+
+// Common Vars
+func vMin()
+  return(id + '.Min')
+end
+
+func vMax()
+  return(id + '.Max')
+end
+
+func vPosition()
+  return(id + '.Position')
+end
+
+func vStep()
+  return(id + '.Step')
+end

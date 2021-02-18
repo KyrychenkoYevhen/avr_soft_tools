@@ -1,0 +1,43 @@
+func Init()
+  include("shell")
+  var(fReg)
+  fReg = regVal
+end
+
+func Read(_data)
+  println('On Error Resume Next')
+  println(fReg, ' = shell.RegRead(' && Str('HKEY_' && HKey && '\\') & Key & '"\\"' & Value && ')')
+end
+
+func doRead(_data)
+  Read(_data)
+  if(linked(onRead))
+    if(NotEmpty='True')
+      print('If Err.Number=0 Then ')
+      event(onRead, fReg)
+    else
+      event(onRead, fReg)
+    end
+  end
+end
+
+func doWrite(_data)
+  println('shell.RegWrite ', Str('HKEY_' && HKey && '\\'), ' & ', Key, ' & "\" & ', Value, ', ', ((DataType='REG_DWORD') or (DataType='REG_BINARY')) ? code(Data) : Data, ', ', Str(DataType))
+end
+
+func doDeleteValue(_data)
+  println('shell.RegDelete ', Str('HKEY_' && HKey && '\\'), ' & ', Key, ' & "\" & ', Value)
+end
+
+func doDeleteKey(_data)
+  println('shell.RegDelete ', Str('HKEY_' && HKey && '\\'), ' & ', Key, ' & "\"')
+end
+
+func RData(_data)
+  if(linked(doRead))
+    return(fReg)
+  else
+    Read(_data)
+    return(fReg)
+  end
+end

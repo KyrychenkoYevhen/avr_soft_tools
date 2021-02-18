@@ -1,0 +1,48 @@
+Make(vbs)
+ver(4.03 build 180)
+Add(MainForm,2953706,21,105)
+{
+ Width=267
+ Height=137
+}
+Add(Button,11119413,126,112)
+{
+ Left=15
+ Top=40
+ Width=105
+ Text="NsLookup"
+ Point(onClick)
+ link(onClick,11345075:doNsLookup,[])
+}
+Add(Label,8840476,308,112)
+{
+ Left=15
+ Top=72
+ Width=225
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(DoData,652077,238,126)
+{
+ Data=String(Host not found!)
+ link(onEventData,13608972:doWork3,[(291,132)])
+}
+Add(HubEx,13608972,287,112)
+{
+ link(onEvent,8840476:doText,[])
+}
+Add(NsLookup,11345075,175,112)
+{
+ link(onFind,13608972:doWork2,[])
+ link(onFailed,652077:doData,[(223,125)(223,132)])
+ link(Data,12947777:sValue,[])
+}
+Add(IPAddress,12947777,175,63)
+{
+ Left=135
+ Top=40
+ Width=105
+ Value=2130706433
+ Point(sValue)
+}

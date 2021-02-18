@@ -1,0 +1,214 @@
+Make(vbs)
+ver(4.03 build 180)
+Add(Edit,12341236,266,147)
+{
+ Left=73
+ Top=25
+ Text="-6"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+ link(onChange,12247076:doWork1,[(305,153)])
+}
+Add(Edit,7133944,322,147)
+{
+ Left=133
+ Top=25
+ Text="2"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+ link(onChange,12247076:doWork2,[(359,153)(359,188)])
+}
+Add(Edit,4262759,196,147)
+{
+ Left=13
+ Top=25
+ Text="5"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+ link(onChange,1487750:doWork1,[(242,153)])
+}
+Add(Label,3308303,196,98)
+{
+ Left=13
+ Width=185
+ Height=24
+ Font=[MS Sans Serif,12,1,0,1]
+ Text="aX^2  +   bX   +   c = 0"
+ Point(doText)
+}
+Add(Label,15409048,543,245)
+{
+ Left=13
+ Top=105
+ Width=179
+ Height=19
+ Font=[MS Sans Serif,12,1,0,1]
+ Text=""
+ Point(doText)
+}
+Add(Label,1138722,543,203)
+{
+ Left=13
+ Top=77
+ Width=189
+ Height=19
+ Font=[MS Sans Serif,12,1,0,1]
+ Text=""
+ Point(doText)
+}
+Add(MainForm,2953706,21,119)
+{
+ Width=223
+ Height=171
+ link(onCreate,614862:doWork1,[(179,125)])
+}
+Add(MathParse,3485962,196,217)
+{
+ DataCount=3
+ MathStr="%2*%2 - %3/%1"
+ link(onResult,1120881:doCompare,[])
+ link(X1,7585876:Var2,[])
+ link(X3,277970:Var1,[(216,198)])
+}
+Add(If_else,1120881,245,217)
+{
+ Type=4
+ Op2=Real(0)
+ link(onTrue,13624890:doCalc,[])
+ link(onFalse,15453268:doCalc,[(285,230)(285,314)])
+ link(Op1,3485962:Result,[(251,210)(235,210)(235,258)(202,258)])
+}
+Add(Hub,13492494,396,217)
+{
+ link(onEvent1,1952792:doOperation,[(436,223)(436,209)])
+ link(onEvent2,5682588:doOperation,[(436,230)(436,251)])
+}
+Add(MathParse,15453268,294,308)
+{
+ DataCount=1
+ MathStr="Sqr(-(%1))"
+ link(onResult,5422952:doData,[])
+}
+Add(GetDataEx,7585876,196,193)
+{
+ link(Data,4262759:vText,[])
+}
+Add(GetDataEx,7956380,438,284)
+{
+ link(Data,2675272:Var1,[(444,184)])
+}
+Add(MathParse,8377752,147,217)
+{
+ MathStr="-(%2/%1/2)"
+ link(onResult,3485962:doCalc,[])
+ link(X1,7585876:Var1,[(153,198)])
+ link(X2,7961327:Var1,[(160,205)])
+}
+Add(Math,1952792,466,203)
+{
+ link(onResult,11229921:doWork2,[])
+ link(Op1,2675272:Var3,[(472,184)])
+}
+Add(Math,5682588,452,245)
+{
+ OpType=1
+ link(onResult,5683892:doWork2,[])
+ link(Op1,2675272:Var2,[])
+}
+Add(GetDataEx,2675272,452,179)
+{
+ link(Data,8377752:Result,[(458,139)(92,139)(92,261)(153,261)])
+}
+Add(FormatStr,2978564,473,308)
+{
+ Mask="%1 + i * %2"
+ link(onFString,11229921:doWork3,[(512,314)])
+ link(Str1,7956380:Var3,[(479,289)])
+}
+Add(FormatStr,15629732,438,343)
+{
+ Mask="%1 - i * %2"
+ link(onFString,5683892:doWork3,[(526,349)])
+ link(Str1,7956380:Var2,[])
+}
+Add(Hub,12256651,396,308)
+{
+ link(onEvent1,2978564:doString,[])
+ link(onEvent2,15629732:doString,[(433,321)(433,349)])
+}
+Add(HubEx,11229921,508,203)
+{
+ link(onEvent,1138722:doText,[])
+}
+Add(HubEx,5683892,522,245)
+{
+ link(onEvent,15409048:doText,[])
+}
+Add(HubEx,1487750,238,182)
+{
+ Angle=2
+ link(onEvent,614862:doWork2,[])
+}
+Add(HubEx,12247076,301,182)
+{
+ Angle=2
+ link(onEvent,1487750:doWork2,[])
+}
+Add(HubEx,614862,175,182)
+{
+ Angle=2
+ link(onEvent,7811801:doEvent1,[(114,188)(114,223)])
+}
+Add(MathParse,13624890,294,217)
+{
+ DataCount=1
+ MathStr="Sqr(%1)"
+ link(onResult,6230548:doData,[])
+}
+Add(DoData,6230548,350,217)
+{
+ link(onEventData,13492494:doEvent1,[])
+ link(Data,13624890:Result,[(356,210)(338,210)(338,258)(300,258)])
+}
+Add(DoData,5422952,350,308)
+{
+ link(onEventData,12256651:doEvent1,[])
+ link(Data,15453268:Result,[(356,296)(339,296)(339,353)(300,353)])
+}
+Add(Label,3195236,209,308)
+{
+ Left=13
+ Top=51
+ Width=180
+ Height=24
+ Font=[MS Sans Serif,12,1,0,1]
+ Text="aX^2  +   bX   +   c = 0"
+ Point(doText)
+}
+Add(Hub,7811801,119,217)
+{
+ link(onEvent1,8377752:doCalc,[])
+ link(onEvent2,11060265:doString,[(139,230)(139,314)])
+}
+Add(FormatStr,11060265,151,308)
+{
+ DataCount=3
+ Mask="%1x^2 + %2x + %3 = 0"
+ Point(doMask)
+ link(onFString,3195236:doText,[(196,314)(196,314)])
+ link(Str1,7585876:Var3,[(157,266)(212,266)(212,198)])
+ link(Str2,7961327:Var2,[(164,275)(272,275)])
+ link(Str3,277970:Var2,[(171,291)(307,291)])
+}
+Add(GetDataEx,7961327,266,200)
+{
+ link(Data,12341236:vText,[])
+}
+Add(GetDataEx,277970,301,193)
+{
+ Angle=1
+ link(Data,7133944:vText,[(328,198)])
+}

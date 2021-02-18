@@ -1,0 +1,94 @@
+*Редактор точек в формате Y*65535 + X
+Make(modules)
+ver(4.01 build 177)
+Add(hcTplForm,2953706,413,266)
+{
+ Width=115
+ Height=113
+ Visible=1
+ Caption="Point(X:Y)"
+ BorderStyle=3
+ Point(doShowModal)
+}
+Add(hcHiAsmTrasmitter,2963275,273,154)
+{
+ link(onInit,6684674:doEvent1,[])
+}
+Add(hcTplEdit,8296439,476,154)
+{
+ Left=25
+ Top=10
+ Width=70
+ Text=""
+}
+Add(hcHub,6684674,329,154)
+{
+ OutCount=3
+ link(onEvent1,10203537:doOperation,[])
+ link(onEvent2,4264871:doOperation,[(378,167)(378,216)])
+ link(onEvent3,2953706:doShowModal,[(367,174)(367,286)])
+}
+Add(hcTplLabel,5108075,525,133)
+{
+ Left=5
+ Top=15
+ Width=11
+ Height=17
+ Caption="X"
+}
+Add(hcTplButton,3639436,56,154)
+{
+ Left=30
+ Top=65
+ Width=65
+ Caption="OK"
+ link(onClick,4572632:doEvent1,[])
+}
+Add(hcTplEdit,10684030,476,210)
+{
+ Left=25
+ Top=35
+ Width=70
+ Text=""
+}
+Add(hcTplLabel,15291889,525,189)
+{
+ Left=5
+ Top=40
+ Width=11
+ Height=17
+ Caption="Y"
+}
+Add(hcMath,10203537,413,154)
+{
+ OpType=4
+ Op2=65535
+ ResultType=0
+ link(onResult,8296439:doText,[])
+}
+Add(hcMath,4264871,413,210)
+{
+ OpType=10
+ Op2=16
+ ResultType=0
+ link(onResult,10684030:doText,[])
+}
+Add(hcHub,4572632,105,154)
+{
+ link(onEvent1,8229556:doOperation,[])
+ link(onEvent2,2953706:doClose,[(137,167)(137,279)])
+}
+Add(hcMath,8229556,154,154)
+{
+ OpType=9
+ Op2=16
+ ResultType=0
+ link(onResult,12293320:doOperation,[])
+ link(Op1,10684030:Text,[(160,143)(43,143)(43,310)(482,310)])
+}
+Add(hcMath,12293320,217,154)
+{
+ ResultType=0
+ link(onResult,2963275:doReturn,[])
+ link(Op2,8296439:Text,[(230,142)(516,142)(516,195)(482,195)])
+}

@@ -1,0 +1,34 @@
+func create(_data)
+  fvar(i, s)
+  s = isndef(Name) ? code(Name) : code(_data) && isndef(IgnoreResult) ? '(' : ((_data_count_ > 0) ? ' ' : '')
+  for(i = 1; i <= _data_count_; i++)
+    if(i > 1)
+     s &&= ','
+    end
+    s &&= point("Arg" + i)
+  end
+  s &&= isndef(IgnoreResult) ? ')' : ''
+  return(s)
+end
+
+func doPrint(_data)
+  if(linked(Result))
+    println(res, ' = ', create(_data))
+    event(onPrint, res)
+  else
+    if(isdef(IgnoreResult))
+      println(create(_data))
+      event(onPrint)
+    else
+      event(onPrint, create(_data))
+    end
+  end
+end
+
+func Result()
+  if(linked(doPrint))
+    return(res)
+  else
+    return(create(''))
+  end
+end

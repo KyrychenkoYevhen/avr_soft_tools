@@ -1,0 +1,21 @@
+func doErrorTrap(_data)
+  println('On Error Resume Next')
+  event(onOk,_data)
+  if(linked(onError))
+    println('If Err.Number <> 0 Then')
+    block.inclvl()
+    event(onError,'Err.Number')
+    if(Quit=True)
+    println('WSript.Quit 1')
+    end
+    block.declvl()
+    println('End If')
+    if(not linked(doStop))
+      println('On Error GoTo 0')
+    end
+  end
+end
+
+func doStop(_data)
+  println('On Error GoTo 0')
+end

@@ -1,0 +1,282 @@
+include("object")
+override("control", "onChange")
+
+func Init()
+  var(id, lst, mtx)
+  id = ListView_
+  lst = StrList_
+  mtx = Matrix_
+  fvar(i, s)
+  stack &= block.select(BLK_BODY)
+
+  println('Set ', id, ' = ', get_parent(), '.CreateListView(', Left, ', ', Top, ', ', Width, ', ', Height, ', &h50110001)')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+  
+  // sys.initall() // needed for override
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  println('With ', id)
+  block.inclvl()
+    if(isdef(RowSelect))
+      println('.RowSelect = True')
+    end
+    if(isndef(Grid))
+      println('.GridLines = True')
+    end
+    if(isndef(ScrollBars))
+      println('.FlatScrollBars = True')
+    end
+    if(isndef(Header))
+      println('.Columns.Flat = True')
+    end
+    if(isdef(Redaction))
+      println('.ReadOnly = False')
+    end
+    if(isndef(HeaderShow))
+      println('.Columns.Visible = False')
+    end
+    if(isndef(CheckBoxes))
+      println('.CheckBoxes = True')
+    end
+    if(isndef(Columns))
+      for(i = 0; i < _arr.count(Columns); i++)
+        s = Columns[i]
+        print('.Columns.Add(')
+        if(pos('=', s) > 0)
+          s = replace(s, "=", '","')
+        end
+        if(pos(':', s) > 0)
+          println(replace(s, ":", '").DataType = "'))
+        else
+          println(s, ').DataType = 0')
+        end
+      end
+    end
+  block.declvl()
+  println('End With')
+  println('')
+
+  if(linked(onChange))
+    lng.begin_func(id + '_OnChange(Sender)\'' + code(id))
+      event(onChange, 'Sender.ItemIndex')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onColumnClick))
+    lng.begin_func(id + '_OnColumnClick(Sender, colItem)\'' + code(id))
+      event(onColumnClick, 'colItem.' && code(ColumnClick))
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onColumnResize))
+    lng.begin_func(id + '_OnColumnResize(Sender, colItem)\'' + code(id))
+      event(onColumnResize, 'colItem.' && code(ColumnClick))
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onEdited))
+    lng.begin_func(id + '_OnEdited(Sender, Item, Result)\'' + code(id))
+      event(onEdited, 'Result')
+    lng.end_func(BLK_EVENTS)
+  end
+  if(linked(onItemCheck))
+    lng.begin_func(id + '_OnItemCheck(Sender, Item)\'' + code(id))
+      event(onItemCheck, 'Item')
+    lng.end_func(BLK_EVENTS)
+  end
+  block.select(BLK_GLOB)
+  if(linked(Strings))
+    println('Dim ', lst, '()')
+  end
+  if(linked(Matrix))
+    println('Dim ', mtx, '()')
+  end
+  block.select(_arr.pop(stack))
+end
+
+func doAdd(_data)
+  println(strings_arr,' = Split(', StrData, ', vbCrLf)')
+  println(id, '.BeginUpdate()')
+  println('For i = 0 To UBound(',strings_arr,')')
+  block.inclvl()
+    println(arr, ' = Split(', strings_arr, '(i), ', StrDelimiter, ')')
+    println(id, '.Add ', arr, '(0)')
+    println('For j = 1 To UBound(', arr, ')')
+    block.inclvl()
+      println(id, '(', id, '.Count - 1).Subitems(j - 1) = ', arr, '(j)')
+    block.declvl()
+    println('Next')
+  block.declvl()
+  println('Next')
+  println(id, '.EndUpdate()')
+end
+
+func doClear(_data)
+  println(id, '.Clear')
+  if(ClearAll='True')
+    println(id, '.Columns.Clear')
+  end
+end
+
+func doDelete(_data)
+  println(id, '.Remove ', _data)
+end
+
+func doLoad(_data)
+  include('fso')
+  println('Set st = fso.OpenTextFile(', isndef(FileName) ? FileName : _data, ', 1)')
+  println(id, '.Clear')
+  println(id, '.BeginUpdate()')
+  println('While Not st.AtEndOfStream')
+  block.inclvl()
+    println(arr,' = Split(st.ReadLine, ', StrDelimiter, ')')
+    println(id, '.Add ', arr, '(0)')
+    println('For ', j, ' = 1 To UBound(', arr, ')')
+    block.inclvl()
+      println(id, '(', id, '.Count - 1).Subitems(', j, ' - 1) = ', arr, '(', j, ')')
+    block.declvl()
+    println('Next')
+  block.declvl()
+  println('Wend')
+  println(id, '.EndUpdate()')
+  println('st.Close')
+end
+
+func doSave(_data)
+  include('fso')
+  println('Set st = fso.CreateTextFile(', isndef(FileName) ? FileName : _data,', True)')
+  println('For ', j, ' = 0 To ', id, '.Count-1')
+    block.inclvl()
+    println(x, ' = ', id, '(', j, ').Text')
+    println('For ', i, ' = 0 To ', id, '.Columns.Count-2')
+    block.inclvl()
+      println(x, ' = ', x, ' & ', StrDelimiter, ' & ', id, '(', j, ').Subitems(', i, ')')
+    block.declvl()
+    println('Next')
+    println('st.WriteLine ', x)
+    block.declvl()
+  println('Next')
+  println('st.Close')
+end
+
+func doInsert(_data)
+  if(isset(StrData))
+    println(arr, ' = Split(', StrData, ', ', StrDelimiter, ')')
+    println(id, '.Insert ', _data, ', ', arr, '(0)')
+    println('For ', j, ' = 1 To UBound(', arr, ')')
+    block.inclvl()
+      println(id, '(', _data, ').Subitems(', j, ' - 1) = ', arr, '(', j, ')')
+    block.declvl()
+    println('Next')
+  end
+end
+
+func doAddColumn(_data)
+  fvar(n, s, sz)
+  n = name_
+  sz = size_
+  s = s_
+  println(Columns_Arr, ' = Split(', _data, ', ', StrDelimiter,')')
+  println('For ', i, ' = 0 To UBound(', Columns_Arr, ')')
+  block.inclvl()
+    println(s, ' = ', Columns_Arr, '(', i, ')')
+    println('If InStr(', s, ', ":") Then')
+    block.inclvl()
+      println(sort, ' = Mid(', s, ', InStr(', s, ',":") + 1)')
+      println(s, ' = Left(', s, ', InStr(', s, ', ":") - 1)')
+    block.declvl()
+    println('Else')
+    block.inclvl()
+      println(sort, ' = 0')
+    block.declvl()
+    println('End If')
+    println('If InStr(', s, ', "=") Then')
+    block.inclvl()
+      println(n, ' = Left(', s, ', InStr(', s, ', "=") - 1)')
+      println(s, ' = Right(', s, ', Len(', s, ') - InStr(', s, ', "="))')
+      println('If InStr(', s, ', "=") Then')
+      block.inclvl()
+        println(sz, ' = Left(', s, ', InStr(', s, ', "=") - 1)')
+        println(s, ' = Right(', s, ', Len(', s, ') - InStr(', s, ', "="))')
+        println(align_, ' = ', s)
+      block.declvl()
+      println('Else')
+      block.inclvl()
+        println(sz, ' = ', s)
+        println(align_, ' = 1')
+      block.declvl()
+      println('End If')
+    block.declvl()
+    println('Else')
+    block.inclvl()
+      println(n, ' = ', s)
+      println(sz, ' = 100')
+      println(align_, ' = 1')
+    block.declvl()
+    println('End If')
+    println(id, '.Columns.Add(', n, ', ', sz, ', ', align_, ').DataType = ', sort)
+  block.declvl()
+  println('Next')
+end
+
+func doSort(_data)
+  println(id, '.Sort ', DataType, ', ', Reverse, ', ', _data)
+end
+
+func doSelect(_data)
+  println(id, '.ItemIndex = ', _data)
+end
+
+func Count()
+  return(id && '.Count')
+end
+
+func Select()
+  println('ii = ', id, '.ItemIndex')
+  println('s = ', id, '(ii).Text')
+  println('For i = 0 To ', id, '.Columns.Count-2')
+  println('  s = s & ', StrDelimiter, ' & ', id, '(ii).Subitems(i)')
+  println('Next')
+  return('s')
+end
+
+func Index()
+  return(id && '.ItemIndex')
+end
+
+func Matrix()
+  println('Erase ', mtx)
+  println('ReDim ', mtx, '(', id, '.Count-1, ', id, '.Columns.Count-1', ')')
+  println('For ', j, ' = 0 To ', id, '.Count-1')
+    block.inclvl()
+    println(x, ' = ', id, '(', j, ').Text')
+    println(mtx, '(', j, ', 0) = ', id, '(', j, ').Text')
+    println('For ', i, ' = 0 To ', id, '.Columns.Count-2')
+    block.inclvl()
+      println(mtx, '(', j, ', ', i, '+1) = ', id, '(', j, ').Subitems(', i, ')')
+    block.declvl()
+    println('Next')
+    block.declvl()
+  println('Next')
+  return(mtx)
+end
+
+func Strings()
+  println('Erase ', lst)
+  println('ReDim ', lst, '(', id, '.Count-1', ')')
+  println('For ', j, ' = 0 To ', id, '.Count-1')
+    block.inclvl()
+    println(x, ' = ', id, '(', j, ').Text')
+    println('For ', i, ' = 0 To ', id, '.Columns.Count-2')
+    block.inclvl()
+      println(x, ' = ', x, ' & ', StrDelimiter, ' & ', id, '(', j, ').Subitems(', i, ')')
+    block.declvl()
+    println('Next')
+    println(lst, '(', j, ') = ', x)
+    block.declvl()
+  println('Next')
+  return(lst)
+end
+
+

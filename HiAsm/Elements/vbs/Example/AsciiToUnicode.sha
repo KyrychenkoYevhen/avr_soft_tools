@@ -1,0 +1,114 @@
+Make(vbs)
+ver(4.04 build 184)
+Add(MainForm,2953706,112,91)
+{
+ Width=501
+ Height=376
+ Text="Ascii to Unicode"
+}
+Add(Edit,4443138,336,84)
+{
+ Left=140
+ Top=30
+ Width=340
+ Height=305
+ Text=""
+ ScrollBars=2
+ WordWrap=1
+ ES_MULTILINE=0
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Button,12567834,112,42)
+{
+ Left=10
+ Top=5
+ Width=125
+ Text="File Open as ASCII"
+ Point(onClick)
+ link(onClick,12073747:doExecute,[])
+}
+Add(ODialog,12073747,154,42)
+{
+ link(onExecute,119299:doEvent1,[])
+}
+Add(Edit,9621911,224,42)
+{
+ Left=140
+ Top=5
+ Width=340
+ Text=""
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Hub,603572,238,98)
+{
+ OutCount=3
+ link(onEvent1,977924:doOpen,[(262,104)(262,48)])
+ link(onEvent2,7124734:doReadAll,[])
+ link(onEvent3,977924:doClose,[(274,118)(274,55)])
+}
+Add(ADODBStream,11239056,287,126)
+{
+ Type=1
+}
+Add(Button,6934083,112,154)
+{
+ Left=10
+ Top=30
+ Width=125
+ Text="File Save as Unicode"
+ Point(onClick)
+ link(onClick,2062844:doEvent1,[])
+}
+Add(ADODBStreamRW,8356495,287,189)
+{
+ Point(doWriteText)
+ link(Stream,16300564:Var2,[])
+ link(Data,4443138:vText,[(300,180)(342,180)])
+}
+Add(ADODBStreamIO,5972323,273,245)
+{
+ link(Stream,16300564:Var1,[(279,173)])
+ link(FileName,14253139:Value,[(286,237)(230,237)])
+}
+Add(Hub,7050459,238,196)
+{
+ OutCount=4
+ link(onEvent1,11239056:doOpen,[(265,202)(265,132)])
+ link(onEvent2,8356495:doWriteText,[])
+ link(onEvent3,5972323:doSave,[(262,216)(262,258)])
+ link(onEvent4,11239056:doClose,[(273,223)(273,139)])
+}
+Add(SDialog,4500428,182,154)
+{
+ link(onExecute,14253139:doValue,[])
+}
+Add(GetDataEx,16300564,287,168)
+{
+ link(Data,11239056:Stream,[])
+}
+Add(Memory,14253139,224,154)
+{
+}
+Add(Hub,2062844,154,154)
+{
+ link(onEvent1,4500428:doExecute,[])
+ link(onEvent2,7050459:doEvent1,[(177,167)(177,202)])
+}
+Add(FileTextStream,977924,287,42)
+{
+}
+Add(FileTextStreamRW,7124734,287,84)
+{
+ Point(doReadAll)
+ link(onRead,4443138:doText,[])
+ link(Stream,977924:Stream,[])
+}
+Add(Hub,119299,196,42)
+{
+ link(onEvent1,9621911:doText,[])
+ link(onEvent2,603572:doEvent1,[(215,55)(215,104)])
+}

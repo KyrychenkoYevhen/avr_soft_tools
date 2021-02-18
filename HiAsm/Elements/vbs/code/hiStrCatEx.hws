@@ -1,0 +1,13 @@
+func doStrCat
+    var(s)
+    s=Str1 + '+' + Str2
+    event(onStrCat, s)
+end
+
+func Result
+  if(linked(doStrCat))
+    return(s)
+  else
+    return(s)
+  end
+end

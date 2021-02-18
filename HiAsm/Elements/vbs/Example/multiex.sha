@@ -1,0 +1,86 @@
+Make(vbs)
+ver(4.03 build 180)
+Add(MainForm,2953706,21,105)
+{
+ Width=359
+ Height=123
+}
+Add(Edit,773032,175,133)
+{
+ Left=214
+ Top=20
+ Text="123"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Edit,7089793,112,133)
+{
+ Left=74
+ Top=20
+ Text="123"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+}
+Add(Button,14149155,84,196)
+{
+ Left=140
+ Top=20
+ Text="Compare"
+ Point(onClick)
+ link(onClick,14866700:doCompare,[])
+}
+Add(Label,10582173,196,196)
+{
+ Left=140
+ Top=50
+ Width=55
+ Text="Unknown"
+ AutoSize=1
+ Alignment=2
+ Point(doText)
+}
+Add(MultiElementEx,14866700,140,196)
+{
+ CodeType=1
+ Name="Comparator"
+ link(onCompare,10582173:doText,[])
+ link(Op1,7089793:vText,[(146,180)(118,180)])
+ link(Op2,773032:vText,[(153,180)(181,180)])
+}
+BEGIN_SDK
+  Add(EditMultiEx,2286236,21,21)
+  {
+   WorkCount=#9:doCompare|
+   EventCount=#9:onCompare|
+   VarCount=#6:Result|
+   DataCount=#3:Op1|3:Op2|
+   Width=195
+   Height=151
+   link(doCompare,4278800:doCompare,[])
+   link(Result,4278800:Result,[])
+  }
+  Add(If_else,4278800,49,91)
+  {
+   Op1=Integer(1)
+   link(onTrue,12240081:doData,[])
+   link(onFalse,567174:doData,[])
+   link(Op1,2286236:Op1,[])
+   link(Op2,2286236:Op2,[])
+  }
+  Add(DoData,12240081,140,91)
+  {
+   Data=String(Equal)
+   link(onEventData,3284211:doWork2,[])
+  }
+  Add(DoData,567174,98,98)
+  {
+   Data=String(Not Equal)
+   link(onEventData,3284211:doWork3,[(186,104)])
+  }
+  Add(HubEx,3284211,182,91)
+  {
+   link(onEvent,2286236:onCompare,[(194,97)(194,27)])
+  }
+END_SDK

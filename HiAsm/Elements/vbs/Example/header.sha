@@ -1,0 +1,9 @@
+Make(vbs)
+ver(4.03 build 180)
+Add(MainForm,2953706,21,105)
+{
+}
+Add(Header,15962559,112,105)
+{
+ Date=1
+}

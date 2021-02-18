@@ -1,0 +1,89 @@
+Make(delphi)
+ver(4.05 build 186)
+Add(MainForm,9340714,413,189)
+{
+ Position=1
+ link(onCreate,9449203:doWork2,[])
+}
+Add(ProgressBar,15560669,679,231)
+{
+ Left=35
+ Top=25
+ Width=330
+ Height=40
+ ProgressColor=15780518
+ Point(Handle)
+ Point(doStateProgress)
+ Point(doStateMarquee)
+}
+Add(StyleXP,7201581,413,147)
+{
+}
+Add(RadioButton,8146614,413,245)
+{
+ Left=145
+ Top=75
+ Width=90
+ TabOrder=-1
+ Selected=0
+ Caption="Normal"
+ link(onSelect,9146096:doWork2,[])
+}
+Add(RadioButton,11210444,413,280)
+{
+ Left=145
+ Top=100
+ Width=90
+ TabOrder=-1
+ Caption="Error"
+ link(onSelect,9146096:doWork3,[(480,286)(480,258)])
+}
+Add(RadioButton,3533996,413,315)
+{
+ Left=145
+ Top=125
+ Width=90
+ TabOrder=-1
+ Caption="Pause"
+ link(onSelect,9146096:doWork4,[(487,321)(487,265)])
+}
+Add(ChanelToIndex,9146096,511,238)
+{
+ Count=5
+ link(onIndex,5501655:doEvent1,[])
+}
+Add(VisualStrings,8304252,616,203)
+{
+ Lines=#2:50|
+ Point(doText)
+ Point(onText)
+ link(onText,15560669:doPosition,[(655,209)(655,237)])
+}
+Add(CheckBox,10161783,413,350)
+{
+ Left=265
+ Top=75
+ Width=90
+ TabOrder=-1
+ Caption="Marquee"
+ link(onCheck,11155207:doEvent1,[])
+}
+Add(Hub,5501655,560,238)
+{
+ link(onEvent1,15560669:doStateProgress,[])
+ link(onEvent2,1882366:doWork2,[])
+}
+Add(HubEx,9449203,588,203)
+{
+ link(onEvent,8304252:doText,[])
+}
+Add(Hub,11155207,553,350)
+{
+ link(onEvent1,15560669:doStateMarquee,[(633,356)(633,251)])
+ link(onEvent2,1882366:doWork3,[(592,363)])
+}
+Add(HubEx,1882366,588,245)
+{
+ Angle=3
+ link(onEvent,9449203:doWork3,[])
+}

@@ -1,0 +1,35 @@
+func UpKey
+return('upkey()')
+end
+
+func DownKey
+return('downkey()')
+end
+
+func LeftKey
+return('leftkey()')
+end
+
+func RightKey
+return('rightkey()')
+end
+
+func SpaceKey
+return('spacekey()')
+end
+
+func EscapeKey
+return('escapekey()')
+end
+
+func ShiftKey
+return('shiftkey()')
+end
+
+func ReturnKey
+return('returnkey()')
+end
+
+func ControlKey
+return('controlkey()')
+end

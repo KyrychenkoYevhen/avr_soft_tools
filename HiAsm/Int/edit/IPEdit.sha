@@ -1,0 +1,165 @@
+*Create by Nic
+Make(modules)
+ver(4.03 build 180)
+Add(hcTplEdit,5908842,497,56)
+{
+ Left=220
+ Top=15
+ Hint="0..255"
+ Text="0"
+}
+Add(hcTplEdit,15858619,455,98)
+{
+ Left=170
+ Top=15
+ Hint="0..255"
+ Text="0"
+}
+Add(hcTplEdit,14911590,413,140)
+{
+ Left=120
+ Top=15
+ Hint="0..255"
+ Text="0"
+}
+Add(hcTplEdit,11572078,371,182)
+{
+ Left=70
+ Top=15
+ Hint="1..255"
+ Text="0"
+}
+Add(hcTplForm,15167743,168,196)
+{
+ Width=342
+ Height=99
+ Visible=1
+ Caption="IP Address Editor"
+ Point(doShowModal)
+}
+Add(hcHiAsmTrasmitter,2963275,63,182)
+{
+ link(onInit,6684674:doEvent1,[])
+}
+Add(hcHub,6684674,119,182)
+{
+ link(onEvent1,601704:doConvert,[(147,188)(147,62)])
+ link(onEvent2,15167743:doShowModal,[(151,195)(151,216)])
+}
+Add(hcHub,7310988,119,231)
+{
+ link(onEvent1,11865545:doOperation,[])
+ link(onEvent2,15167743:doClose,[(157,244)(157,209)])
+}
+Add(hcTplButton,3639436,63,231)
+{
+ Left=135
+ Top=40
+ Width=65
+ Caption="OK"
+ link(onClick,7310988:doEvent1,[])
+}
+Add(hcHub,14638239,217,56)
+{
+ OutCount=4
+ link(onEvent1,4787136:doCopy,[])
+ link(onEvent2,4152690:doCopy,[(301,69)(301,104)])
+ link(onEvent3,4374780:doCopy,[(280,76)(280,146)])
+ link(onEvent4,15613734:doCopy,[(259,83)(259,188)])
+}
+Add(hcMath,11865545,371,231)
+{
+ OpType=9
+ Op2=24
+ ResultType=0
+ link(onResult,16420533:doOperation,[])
+ link(Op1,11572078:Text,[])
+}
+Add(hcMath,16420533,413,231)
+{
+ OpType=9
+ Op2=16
+ ResultType=0
+ link(onResult,8286969:doOperation,[])
+ link(Op1,14911590:Text,[])
+}
+Add(hcMath,8286969,455,231)
+{
+ OpType=9
+ Op2=8
+ ResultType=0
+ link(onResult,5002881:doOperation,[(499,237)(499,269)(359,269)(359,300)])
+ link(Op1,15858619:Text,[])
+}
+Add(hcMath,5002881,371,294)
+{
+ OpType=5
+ ResultType=0
+ link(onResult,15253291:doOperation,[])
+ link(Op1,11865545:Result,[])
+ link(Op2,16420533:Result,[(384,282)(419,282)])
+}
+Add(hcMath,15253291,413,294)
+{
+ OpType=5
+ ResultType=0
+ link(onResult,6794642:doOperation,[])
+ link(Op2,8286969:Result,[(426,278)(461,278)])
+}
+Add(hcMath,6794642,455,294)
+{
+ OpType=5
+ ResultType=0
+ link(onResult,2963275:doReturn,[(498,300)(498,341)(51,341)(51,188)])
+ link(Op2,5908842:Text,[(468,277)(503,277)])
+}
+Add(hcConvertor,601704,168,56)
+{
+ Mode=8
+ Digits=32
+ link(onResult,14638239:doEvent1,[])
+}
+Add(hcCopy,4787136,413,56)
+{
+ Position=25
+ Count=8
+ link(onCopy,3663328:doConvert,[])
+}
+Add(hcConvertor,3663328,455,56)
+{
+ Mode=7
+ link(onResult,5908842:doText,[])
+}
+Add(hcCopy,4152690,371,98)
+{
+ Position=17
+ Count=8
+ link(onCopy,2395152:doConvert,[])
+}
+Add(hcConvertor,2395152,413,98)
+{
+ Mode=7
+ link(onResult,15858619:doText,[])
+}
+Add(hcCopy,4374780,329,140)
+{
+ Position=9
+ Count=8
+ link(onCopy,13145274:doConvert,[])
+}
+Add(hcConvertor,13145274,371,140)
+{
+ Mode=7
+ link(onResult,14911590:doText,[])
+}
+Add(hcCopy,15613734,287,182)
+{
+ Position=1
+ Count=8
+ link(onCopy,15600067:doConvert,[])
+}
+Add(hcConvertor,15600067,329,182)
+{
+ Mode=7
+ link(onResult,11572078:doText,[])
+}

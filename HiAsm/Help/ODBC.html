@@ -1,0 +1,212 @@
+<html>
+<head>
+ <title>ODBC</title>
+ <meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+ <link type="text/css" rel="stylesheet" href="style.css">
+</head>
+<body>
+ <table width="100%" border="1px" class=mes_table>
+  <tr>
+   <td width="24"><img src="..\Elements\Delphi\icon\ODBC.ico"></td>
+   <td class="tabs">ODBC</td>
+  </tr>
+ </table>
+ <table width="100%">
+  <tr>
+   <td><hr></td>
+  </tr>
+ </table>
+ <table width="100%" class="mes_table" border=1>
+  <tr>
+   <td colspan="2" class="tabs">Точки входа</td>
+  </tr>
+  <tr>
+   <td colspan="2" align="left"><b>Действия:</b></td>
+  </tr>
+  <tr>
+   <td><font color="RED"><b>doConnectDSN</b></font></td>
+   <td>Создаёт соединение с Базой Данных по указанному DSN</td>
+  </tr>
+  <tr>
+   <td><font color="RED"><b>doConnectDrv</b></font></td>
+   <td>Создаёт соединение с Базой Данных по указанному драйверу</td>
+  </tr>
+  <tr>
+   <td><font color="RED"><b>doQuery</b></font></td>
+   <td>В потоке передаётся строка SQL-запроса на выборку полей</td>
+  </tr>
+  <tr>
+   <td><font color="RED"><b>doExec</b></font></td>
+   <td>В потоке передаётся строка SQL-запроса на изменение полей</td>
+  </tr>
+  <tr>
+   <td><font color="RED"><b>doBinary</b></font></td>
+   <td>В потоке передаётся строка SQL-запроса на изменение бинарных полей. Данные для записи снимаются с верхней точки BinaryStream</td>
+  </tr>
+  <tr>
+   <td><font color="RED"><b>doDisconnect</b></font></td>
+   <td>Закрывает соединение с Базой Данных</td>
+  </tr>
+  <tr>
+   <td><font color="RED"><b>doList</b></font></td>
+   <td>Создаёт список ODBC драйверов или источников данных, установленных в системе. Список получается из потока события onStreamString, а атрибуты из потока события onStreamBinary. Тип запрашиваемых данных задаётся свойством BrowseType или верхней одноименной точкой.</td>
+  </tr>
+  <tr>
+   <td><font color="RED"><b>doSetup</b></font></td>
+   <td>Создаёт новый источник данных (DSN), связанный с файлом Базы Данных через выбранный  драйвер, заданный свойством Driver или одноименной верхней точкой и именем, указанным свойством DSN_Name</td>
+  </tr>
+  <tr>
+   <td colspan="2" align="left"><b>События:</b></td>
+  </tr>
+  <tr>
+   <td><font color="GREEN"><b>onStreamString</b></font></td>
+   <td>Выдаёт в поток строковой результат запроса</td>
+   </tr>
+  <tr>
+   <td><font color="GREEN"><b>onStreamBinary</b></font></td>
+   <td>Выдаёт в поток бинарный результат запроса для метода doQuery, но выдаёт в поток строковой результат запроса для метода doList, возвращая атрибуты драйверов или источников данных.</td>
+  </tr>
+  <tr>
+   <td><font color="GREEN"><b>onRowCount</b></font></td>
+   <td>Происходит при успешном выполнении запроса на изменение полей. Возвращает количество изменённых полей</td>
+  </tr>
+  <tr>
+   <td><font color="GREEN"><b>onColumnsInfo</b></font></td>
+   <td>Происходит перед выдачей запрашиваемых данных. В потоке содержит имена полей</td>
+  </tr>
+  <tr>
+   <td colspan="2" align="left"><b>Свойства:</b></td>
+  </tr>
+  <tr>
+   <td><font color="BLUE"><b>FieldName</b></font></td>
+   <td>Имя поля данных выдаваемого в поток</td>
+  </tr>
+  <tr>
+   <td><font color="BLUE"><b>FieldType</b></font></td>
+   <td>Тип поля данных  выдаваемого в поток</td>
+  </tr>
+  <tr>
+   <td><font color="BLUE"><b>FieldSize</b></font></td>
+   <td>Размер поля данных в бинарном потоке</td>
+  </tr>
+  <tr>
+   <td><font color="BLUE"><b>ColumnsCount</b></font></td>
+   <td>Количество полученных столбцов</td>
+  </tr>
+  <tr>
+   <td colspan="2" align="left"><b>Данные:</b></td>
+  </tr>
+  <tr>
+   <td><font color="BROWN"><b>ConnectionDrv</b></font></td>
+   <td>Строка для подключения к источнику данных через указанный драйвер</td>
+  </tr>
+  <tr>
+   <td><font color="BROWN"><b>DSN_Name</b></font></td>
+   <td>(DataSourceName) Имя источника данных</td>
+  </tr>
+  <tr>
+   <td><font color="BROWN"><b>UserID</b></font></td>
+   <td>Имя пользователя для подключения к источнику данных</td>
+  </tr>
+  <tr>
+   <td><font color="BROWN"><b>Password</b></font></td>
+   <td>Пароль для подключения к источнику данных</td>
+  </tr>
+  <tr>
+   <td><font color="BROWN"><b>Driver</b></font></td>
+   <td>Строка, определяющая драйвер ODBC</td>
+  </tr>
+  <tr>
+   <td><font color="BROWN"><b>BinaryStream</b></font></td>
+   <td>Stream для записи в бинарное поле БД</td>
+  </tr>
+  <tr>
+   <td><font color="BROWN"><b>BrowseType</b></font></td>
+   <td>Строка, определяющая тип запрашиваемых данных методом doList</td>
+  </tr>
+  <tr>
+   <td><font color="BROWN"><b>FileDB</b></font></td>
+   <td>Имя файла Базы Данных для метода doSetup при создании нового источника данных (DSN)</td>
+  </tr>
+  <tr>
+   <td colspan="2" class="tabs">Значения параметров</td>
+  </tr>
+  <tr>
+   <td><font color="GRAY">ConnectionDrv</font></td>
+   <td>Строка для подключения к источнику данных через указанный драйвер</td>
+  </tr>
+  <tr>
+   <td><font color="GRAY">DSN_Name</font></td>
+   <td>(DataSourceName) Имя источника данных</td>
+  </tr>
+  <tr>
+   <td><font color="GRAY">User_ID</font></td>
+   <td>Имя пользователя для подключения к источнику данных</td>
+  </tr>
+  <tr>
+   <td><font color="GRAY">Password</font></td>
+   <td>Пароль для подключения к источнику данных</td>
+  </tr>
+  <tr>
+   <td><font color="GRAY">BrowseType</font></td>
+   <td>Тип запрашиваемых данных методом doList: Drivers - список установленных в системе ODBC драйверов; DataSources - список источников данных, определённых в системе.</td>
+  </tr>
+  <tr>
+   <td><font color="GRAY">Driver</font></td>
+   <td>Строка, определяющая драйвер ODBC</td>
+  </tr>
+  <tr>
+   <td><font color="GRAY">FileDB</font></td>
+   <td>Имя файла Базы Данных для метода doSetup при создании нового источника данных (DSN)</td>
+  </tr>
+ </table>
+  <table width="100%">
+   <tr><td><hr></td></tr>
+  </table>
+  <table class="mes_table" border="1">
+   <tr class="prop_cap">
+    <td align="center">Дополнительная информация и рекомендации</td>
+   </tr><tr>
+    <td style="PADDING-RIGHT: 20px; PADDING-LEFT: 20px">
+     <P align="justify">&nbsp;&nbsp;&nbsp;&nbsp;
+ Для непосредственного подключения к базе данных ODBC API предоставляет следующие три функции:
+     </P><P></P><P align="justify">&nbsp;&nbsp;&nbsp;&nbsp;
+SQLConnect - соединение с источником данных по DSN, имени и паролю пользователя;<BR>&nbsp;&nbsp;&nbsp;
+SQLDriverConnect - соединение с источником данных по указанной строке соединения или при помощи отображаемого диалога для интерактивного ввода параметров соединения;<BR>&nbsp;&nbsp;
+SQLBrowseConnect - соединение с источником данных с последовательным предварительным запросом атрибутов соединения.
+     </P><P></P><P align="justify">&nbsp;&nbsp;&nbsp;&nbsp;
+Элемент ODBC реализует первые две функции, но без диалога для интерактивного ввода параметров соединения. При подключении к источнику данных используются два метода: doConnectDSN и doConnectDrv, которые соответствуют функциям SQLConnect и SQLDriverConnect.    </P><P></P><P align="justify">&nbsp;&nbsp;&nbsp;&nbsp;
+Параметры подключения к источнику данных определяются свойствами: DSN_Name, User_ID и Password для метода doConnectDSN и ConnectionDrv для метода doConnectDrv.
+     </P><P></P><P align="justify">&nbsp;&nbsp;&nbsp;&nbsp;
+Для выполнения оператора SELECT вызывается метод doQuery. Результаты запроса получаем в потоках событий onStreamString и onStreamBinary для каждого запрошенного поля. В момент получения данных из потока актуальны нижние точки компонента, определяющие свойства поля данных: FieldName (имя поля данных), FieldType (тип поля данных) и FiledSize (количество байт поля данных в бинарном потоке). Для выполнения операторов UPDATE, DELETE или INSERT вызывается метод doExec, выполнение которого завершается событием onRowCount, в потоке которого содержится количество строк источника данных, на которые воздействовал оператор. Для получения имён полей запроса используется событие onColumnsInfo, а количество возвращённых колонок актуально после события onColumnsInfo на нижней точке ColumnsCount.
+     </P><P></P><P align="justify">&nbsp;&nbsp;&nbsp;&nbsp;
+  Для создания нового источника данных через ODBC драйвер вызывается метод doSetup. Для его выполнения необходимо определить свойство Driver, которое указывает драйвер ODBC, а также свойства DSN_Name, User_ID и Password. Последние два могут быть не указаны.
+     </P><P></P><P align="justify">&nbsp;&nbsp;&nbsp;&nbsp;
+Для получения списка, установленных в Вашей системе драйверов или источников данных, вызывается метод doList. После чего событие onStreamString вернёт в потоке список драйверов или источников данных, а событие onStreamBinary вернёт в потоке соответствующие им атрибуты.
+     </P><P></P><P align="justify">&nbsp;&nbsp;&nbsp;&nbsp;
+Для изменения и/или добавления бинарных данных (например изображений, музыки, программ и т.д.) в Базу Данных вызывается метод doBinary, данными для которого является верхняя точка BinaryStream, из названия которой следует, что на нее нужно подавать данные  как у нижней точки Stream элемента MemoryStream.
+     </P><P></P><P align="justify">&nbsp;&nbsp;&nbsp;&nbsp;
+      <font color="RED">Внимание!</font>
+Учтите, что за один запрос, выполненный методом doBinary, Вы может изменить или добавить только одно поле бинарных данных. Также следует заметить, что не все провайдеры данных поддерживают обработку нескольких наборов данных на один запрос. Поэтому в данной версии элемента не реализована поддержка запросов вида: SELECT ...; SELECT...; Разделяйте такие запросы на части для их последовательного выполнения.
+     </P><P></P><P align="justify">&nbsp;&nbsp;&nbsp;&nbsp;
+Для завершения сеанса подключения вызывается метод doDisconnect.
+     </p><p></p><P align="center">
+       Примеры строк запросов:
+     </p><p></p>
+SELECT * FROM  ALL_TYPES_FIELD ORDER BY charField - выборка всех полей из источника данных;<BR>     
+INSERT INTO ALL_TYPES_FIELD( imageField ) VALUES( ? ) - добавление бинарного поля в источник данных;<BR>
+UPDATE ALL_TYPES_FIELD SET imageField = ? WHERE ( intField LIKE '2147483647' ) - изменение бинарного поля источника данных;<BR>
+UPDATE ALL_TYPES_FIELD SET charField ='zero' WHERE ( bitField LIKE '0' ) - изменение символьного поля источника данных;<BR>
+DELETE FROM ALL_TYPES_FIELD - удаление всех записей источника данных;<BR>
+CREATE TABLE MyTABLE (ID int, Icon image) - создание таблицы источника данных;<BR>
+     <tr>
+      <td class="down_sel" colSpan="2">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Примеры:<BR>
+       &nbsp;&nbsp;<a href="*Example*example/datebase/odbc_access.sha">ODBC_Access</a><BR>
+       &nbsp;&nbsp;<a href="*Example*example/datebase/odbc_list.sha">ODBC_List</a><BR>
+       &nbsp;&nbsp;<a href="*Example*example/datebase/ImageDB_ODBC.sha">ODBC_ImageDB</a><BR>
+      </td>
+     </tr>
+  </table>
+</body>
+</html>

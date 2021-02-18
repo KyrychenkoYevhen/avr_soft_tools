@@ -1,0 +1,25 @@
+func doMessage()
+  fvar(msg,st)
+  msg=Message
+  
+  if(not linked(Style))
+    St=Buttons+Icon*16+DefaultButton*256+Modal*4096
+  else
+    St=Style
+  end
+
+  if(St = 0)
+    if(isndef(Caption))
+      St=', '
+    else
+      St=''
+    end
+  else
+    St=',' && St
+  end
+  if(linked(onMessage))
+   event(onMessage, 'MsgBox(' && Msg && St && isndef(Caption) ? (', ' && Caption):'' && ')')
+  else
+   println('MsgBox ',msg,St && isndef(Caption) ? (', ' && Caption):'')
+  end
+end

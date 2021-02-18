@@ -1,0 +1,45 @@
+Make(modules)
+Add(MainForm,11298591,56,196)
+{
+ Left=20
+ Top=105
+ Width=344
+ Height=105
+ Caption="Редактор клавиш"
+ BorderStyle=3
+}
+Add(Edit,13029503,49,105)
+{
+ @Hint=#4:edit|
+ Left=70
+ Top=15
+ Width=255
+ Color=-16777211
+ Text=""
+}
+Add(Label,13351797,35,112)
+{
+ Left=5
+ Top=20
+ Width=57
+ Height=17
+ Caption="Сочетание"
+}
+Add(Button,8580775,273,126)
+{
+ @Hint=#2:ok|
+ Left=240
+ Top=45
+ Width=85
+ Height=25
+ Caption="ОК"
+}
+Add(Button,15961236,175,133)
+{
+ @Hint=#3:del|
+ Left=145
+ Top=45
+ Width=85
+ Height=25
+ Caption="Удалить"
+}

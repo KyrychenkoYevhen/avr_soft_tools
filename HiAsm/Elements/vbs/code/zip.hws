@@ -1,0 +1,18 @@
+if (sys.gvarfind('zip_is_set') = -1)
+gvar (zip_is_set)
+  fvar(old)
+  old = block.select(BLK_OBJ)
+ 
+  println('On Error Resume Next')
+  println('Dim zip')
+  println('Set zip = CreateObject("XStandard.Zip")')
+  println('If Err.Number <> 0 Then')
+  println('	Msgbox "Please install XZip.dll before!" & vbCrLf & "Open a command prompt and cd" & vbCrLf & "to the directory where the dll is located" & vbCrLf & "then type regsvr32 XZip.dll"')
+  println('	WScript.Quit 1')
+  println('End If')
+  println('On Error GoTo 0')
+  println('')
+  block.select(BLK_NOTH)
+  println('Set zip = Nothing')
+  block.select(old)
+end

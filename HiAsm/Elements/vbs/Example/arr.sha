@@ -1,0 +1,86 @@
+Make(vbs)
+ver(4.04 build 185)
+Add(Button,5642384,147,140)
+{
+ Left=25
+ Top=25
+ Width=120
+ Height=35
+ Text="ArrayToString"
+ Data=Integer(2)
+ Point(onClick)
+ link(onClick,7168758:doEnum,[])
+}
+Add(StrArray,3616140,189,98)
+{
+ Strings=#3:aaa|3:bbb|3:ddd|3:ccc|
+}
+Add(MainForm,2953706,21,105)
+{
+ Width=177
+ Height=167
+}
+Add(ArrayEnum,7168758,189,140)
+{
+ link(onEnum,5205977:doStrCat,[])
+ link(onEndEnum,4614839:doMessageBox,[(231,153)(231,202)])
+ link(Array,3616140:Array,[])
+}
+Add(StrCat,5205977,238,140)
+{
+ link(Str1,2251079:Var3,[(244,126)(279,126)(279,184)])
+}
+Add(ArraySplit,4539981,196,266)
+{
+ Delimiter=","
+ link(onSplit,3280705:doEnum,[])
+}
+Add(Button,8927494,147,266)
+{
+ Left=25
+ Top=65
+ Width=120
+ Height=35
+ Text="Split"
+ Data=String(aa ,b b b,c_c_c,dd,e,ff)
+ Point(onClick)
+ link(onClick,4539981:doSplit,[])
+}
+Add(ArrayEnum,3280705,238,266)
+{
+ link(onEnum,10919010:doStrCat,[])
+ link(onEndEnum,13400497:doMessageBox,[(279,279)(279,335)])
+}
+Add(StrCat,10919010,287,266)
+{
+ link(onStrCat,16661346:doStrCat,[])
+ link(Str1,1116471:Var1,[(293,254)(327,254)(327,317)])
+}
+Add(Symbol,6661949,350,224)
+{
+ Symbol=2
+}
+Add(StrCat,16661346,343,266)
+{
+ link(Str2,6661949:vSymbol,[])
+}
+Add(GetDataEx,2251079,252,179)
+{
+ Angle=3
+ link(Data,5205977:Result,[(244,184)])
+}
+Add(GetDataEx,1116471,336,312)
+{
+ Angle=1
+ link(Data,16661346:Result,[(349,317)])
+}
+Add(MessageBox,13400497,336,329)
+{
+ Caption="Result"
+ link(Text,1116471:Var2,[])
+}
+Add(MessageBox,4614839,252,196)
+{
+ Caption="Result"
+ link(Text,2251079:Var2,[])
+}

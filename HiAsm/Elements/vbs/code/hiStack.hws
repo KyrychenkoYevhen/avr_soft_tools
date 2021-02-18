@@ -1,0 +1,61 @@
+func Init()
+  var (obj_id, val)
+  obj_id = Stack
+  val = item_
+  fvar (old,classpath)
+  old = block.select(BLK_CLASS)
+  if (block.intext ('class cLinkedList') = 0)
+   classpath=replace(sys.codedir() & 'classes\cLinkedList.vbs','\\','\\\\')
+   println(code(file2str(classpath)))
+  end
+  block.select(BLK_GLOB)
+  println('Dim ',obj_id)
+  println('Set ',obj_id,' = New cLinkedList')
+  block.select(old)
+end
+
+func doPush(_data)
+  println(obj_id,'.Push ',(linked(Data) or isndef(Data))?Data:_data)
+  if(linked(onPush))
+   event(onPush,_data)
+  end
+end
+
+func doPop()
+  if(linked(onEmpty))
+   println('If ',obj_id,'.Size = 0 Then')
+    block.inclvl()
+    event(onEmpty)
+    block.declvl()
+   println('End If')
+  end
+  if(linked(onPop))
+   if(IgnorEmpty='True')
+    println('If ',obj_id,'.Size > 0 Then')
+     block.inclvl()
+     println(val,' = ',obj_id,'.Pop')
+     event(onPop,val)
+     block.declvl()
+    println('End If')
+   else
+    println('If ',obj_id,'.Size > 0 Then')
+     block.inclvl()
+     println(val,' = ',obj_id,'.Pop')
+     event(onPop,val)
+     block.declvl()
+    println('Else')
+     block.inclvl()
+     event(onPop,Default)
+     block.declvl()
+    println('End If')
+   end
+  end
+end
+
+func doClear()
+  println(obj_id,'.Free')
+end
+
+func Value()
+  return(val)
+end

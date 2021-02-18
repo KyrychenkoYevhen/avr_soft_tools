@@ -1,0 +1,48 @@
+func Init()
+  if(isset(Handle))
+    var(obj)
+    obj = Handle
+  end
+end
+
+func doCreate(Data)
+  println('Set ', obj_, ' = ', obj, '.Get("Win32_Process")')
+  println(res_, ' = ', obj_, '.Create(', FilePath, ', Null, Null, ', pid_, ')')
+  if(linked(onError) or linked(onCreate))
+    println('If ', res_, ' <> 0 Then')
+    block.inclvl()
+      event(onError, res_)
+    block.declvl()
+    println('Else')
+    block.inclvl()
+      event(onCreate, pid_)
+    block.declvl()
+    println('End If')
+  end
+end
+
+func doTerminate()
+  if(linked(Process))
+    println(query_, ' = "Select * from Win32_Process Where Name = \'"', ' & ', code(Process), ' & ', '"\'"')
+    println('Set ', obj_, ' = ', obj, '.ExecQuery(', query_, ')')
+  else
+    println('Set ', obj_, ' = ', obj, '.ExecQuery("Select * from Win32_Process Where Name = \'', code(Process), '\'")')
+  end
+  println('For Each ', item_, ' In ', obj_)
+   block.inclvl()
+    println(item_, '.Terminate')
+   block.declvl()
+  println('Next')
+end
+
+func doTerminatePID()
+  if(linked(PID))
+    println(query_, ' = "Select * from Win32_Process Where ProcessId = \'"', ' & ', code(PID), ' & ', '"\'"')
+    println('Set ', obj_, ' = ', obj, '.ExecQuery(', query_, ')')
+    println('For Each ', item_, ' In ', obj_)
+    block.inclvl()
+      println(item_, '.Terminate')
+    block.declvl()
+    println('Next')
+  end
+end

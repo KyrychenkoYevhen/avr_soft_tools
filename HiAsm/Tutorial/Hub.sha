@@ -1,0 +1,192 @@
+Pos(0,0)
+Add(InfoTip,16464751,77,14)
+{
+ Info=''
+ Font=[MS Sans Serif,10,0,0]
+ Width=508
+ Height=508
+ @Freez=True
+}
+Add(MainForm,99821,126,182)
+{
+ Left=21
+ Top=105
+ Width=131
+ Height=178
+ Font=[MS Sans Serif,8,0,0]
+}
+Add(Message,56501,266,280)
+{
+ Message="Реакция на вызов события onEvent2"
+ Caption="Message 2"
+}
+Add(Shape,2562225,105,134)
+{
+ Width=456
+ Height=25
+ Text="Пример 1"
+ Font=[Arial,12,1,0]
+ Color=12639424
+ @Group=45204760
+}
+Add(Button,34339,126,238)
+{
+ Left=32
+ Top=33
+ Font=[Arial,8,0,0]
+ link(onClick,72301:doEvent1,[])
+}
+Add(Message,48210,266,196)
+{
+ Message="Реакция на вызов события onEvent1"
+ Caption="Message 1"
+}
+Add(Shape,14299916,77,98)
+{
+ Width=508
+ Height=18
+ Text="Примеры работы"
+ Font=[Times New Roman,12,1,8388608]
+ Color=12639424
+ @Freez=True
+}
+Add(InfoTip,69539,252,231)
+{
+ Info='Message 1'
+ Font=[Arial,8,0,0]
+ Frame=1
+ Height=18
+}
+Add(Hub,72301,182,238)
+{
+ link(onEvent1,48210:doMessage,[(247,244)(247,202)])
+ link(onEvent2,56501:doMessage,[(247,251)(247,286)])
+}
+Add(Shape,6712503,77,14)
+{
+ Width=508
+ Height=25
+ Text="Демонстрация работы компонента Hub"
+ Font=[Times New Roman,14,1,0]
+ Color=10789024
+ @Freez=True
+}
+Add(InfoTip,5050909,85,49)
+{
+ Info=' Hub - служит для ветвления событий схемы или наоборот - объединения нескольких событий в одно.'
+ Font=[Arial,10,0,0]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=491
+ Height=39
+ @Freez=True
+}
+Add(InfoTip,5452826,105,134)
+{
+ Info=''
+ Font=[Arial,8,0,0]
+ Width=456
+ Height=200
+ @Group=45204760
+}
+Add(Label,14062366,182,182)
+{
+ Left=10
+ Top=10
+ Font=[MS Sans Serif,8,0,0]
+ Caption="Пример 1"
+}
+Add(InfoTip,3577879,252,315)
+{
+ Info='Message 2'
+ Font=[Arial,8,0,0]
+ Frame=1
+ Height=18
+}
+Add(InfoTip,6951123,315,169)
+{
+ Info=' В примере сообщение 1 всегда будет отображено первым, а сообщение 2 втором, поскольку выполнение методов идет по очереди с верхней точки до самой нижней'
+ Font=[Arial,8,0,0]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=239
+ Height=60
+}
+Add(Shape,5162178,105,344)
+{
+ Width=456
+ Height=25
+ Text="Пример 2"
+ Font=[Arial,12,1,0]
+ Color=12639424
+ @Group=45226336
+}
+Add(InfoTip,9313740,105,344)
+{
+ Info=''
+ Font=[Arial,8,0,0]
+ Width=456
+ Height=158
+ @Group=45226336
+}
+Add(Button,11346495,126,441)
+{
+ Left=32
+ Top=108
+ Font=[Arial,8,0,0]
+ Data=String(Кнопка 2)
+ link(onClick,7132783:doEvent2,[(170,447)(170,398)])
+}
+Add(Message,15446692,245,385)
+{
+ Caption="Message"
+}
+Add(Button,4271839,126,385)
+{
+ Left=32
+ Top=83
+ Font=[Arial,8,0,0]
+ Data=String(Кнопка 1)
+ link(onClick,7132783:doEvent1,[])
+}
+Add(Hub,7132783,182,385)
+{
+ InCount=2
+ OutCount=1
+ link(onEvent1,15446692:doMessage,[])
+}
+Add(Label,1186017,245,427)
+{
+ Left=10
+ Top=60
+ Font=[MS Sans Serif,8,0,0]
+ Caption="Пример 2"
+}
+Add(InfoTip,13168752,315,381)
+{
+ Info=' А в этом примере при нажатие любой из кнопок происходит вызов одного и того же сообщения. Причем стоит обратить внимание, что каждая из кнопок помещает разные данные в поток и поэтому даже вызывая одно и тоже сообщение мы увидим разный текст: Кнопка 1 - принажатие первой кнопки и Кнопка 2 при нажатие второй.'
+ Font=[Arial,8,0,0]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=239
+ Height=116
+}
+Add(InfoTip,5069603,119,420)
+{
+ Info='Кнопка 1'
+ Font=[Arial,8,0,0]
+ Frame=1
+ Width=50
+ Height=18
+}
+Add(InfoTip,450472,119,476)
+{
+ Info='Кнопка 2'
+ Font=[Arial,8,0,0]
+ Frame=1
+ Width=50
+ Height=18
+}

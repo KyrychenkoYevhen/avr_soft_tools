@@ -1,0 +1,99 @@
+// ************************************************
+// Frame.hws for Vbs packet
+// WSO methods, properties and constants
+// Общие свойства и методы наследников класса Frame
+// Last modification: 17.11.2009
+// ************************************************
+
+// Common properties
+func Frame_Init(obj)
+  var(__id)
+  __id = obj
+  if(isndef(BorderWidth))
+    println(__id, '.BorderWidth = ', BorderWidth)
+  end
+  if(isndef(BevelWidth))
+    println(__id, '.BevelWidth = ', BevelWidth)
+  end
+  switch(BevelOuter)
+    case 1: println(__id, '.BevelOuter = ', -1)
+    case 2: println(__id, '.BevelOuter = ', 1)
+  end
+  switch(BevelInner)
+    case 1: println(__id, '.BevelInner = ', -1)
+    case 2: println(__id, '.BevelInner = ', 1)
+  end
+  if(isndef(AutoScroll))
+    println(__id, '.AutoScroll = True')
+  end
+  if(isndef(Tracking))
+    println(__id, '.Tracking = False')
+  end
+  if(isndef(CaptureMouse))
+    println(__id, '.CaptureMouse = 0')
+  else
+    fvar(mkButtons)
+    mkButtons = 0
+    if(isdef(LeftButton))
+      mkButtons += 1
+    end
+    if(isndef(MiddleButton))
+      mkButtons += 16
+    end
+    if(isndef(RightButton))
+      mkButtons += 2
+    end
+    if(mkButtons!=1)
+      println(__id, '.CaptureMouse = ', mkButtons)
+    end
+  end
+  if(isndef(ParentBackground))
+    println(__id, '.ParentBackground = False')
+  end
+end
+
+// Common methods
+func doGraphFont(_data)
+  println (__id, '.GraphFont = ', _data)
+end
+
+// Common vars
+func Controls()
+  return(__id + '.Controls')
+end
+
+func vBorderWidth()
+  return(__id + '.BorderWidth')
+end
+
+func vBevelWidth()
+  return(__id  + '.BevelWidth')
+end
+
+func vBevelOuter()
+  return(__id  + '.BevelOuter')
+end
+
+func vBevelInner()
+  return(__id  + '.BevelInner')
+end
+
+func GraphFont()
+  return(__id  + '.GraphFont')
+end
+
+func vAutoScroll()
+  return(__id + '.AutoScroll')
+end
+
+func vTracking()
+  return(__id + '.Tracking')
+end
+
+func vCaptureMouse()
+  return(__id + '.CaptureMouse')
+end
+
+func vParentBackground()
+  return(__id + '.ParentBackground')
+end

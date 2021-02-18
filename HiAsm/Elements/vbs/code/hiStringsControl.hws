@@ -1,0 +1,165 @@
+// ************************************************
+// hiStringsControl.hws for Vbs packet
+// WSO methods, properties and constants
+// Общие свойства и методы наследников класса StringsControl
+// Last modification: 14.08.2009
+// ************************************************
+
+// Common properties
+func Init()
+  if(linked(Handle))
+    var(id)
+    id = Handle
+    fvar(old)
+    old = block.select(BLK_BODY)
+    if(linked(Text))
+      if(sys.gvarfind('listtotext_is_set') = -1)
+        gvar(listtotext_is_set)
+        lng.begin_func('ListToText()')
+          println('If ', id, '.Count = 0 Then')
+          block.inclvl()
+            println('ListToText = ""')
+          block.declvl()
+          println('Else')
+          block.inclvl()
+            println('ret = ""')
+            println('For i = 0 To ', id, '.Count-1')
+            block.inclvl()
+              println('ret = ret & ', id, '.Item(i) & vbCrLf')
+            block.declvl()
+            println('Next')
+            println('ListToText = ret')
+          block.declvl()
+          println('End If')
+        lng.end_func(BLK_FUNC)
+      end
+    end
+    if(linked(Array))
+      if(sys.gvarfind('stringstoarray_is_set') = -1)
+        gvar(stringstoarray_is_set)
+        lng.begin_func('StringsToArray()')
+          println('Dim ret()')
+          println('If ', id, '.Count = 0 Then')
+          block.inclvl()
+            println('StringsToArray = Null')
+            println('Exit Function')
+          block.declvl()
+          println('End If')
+          println('If ', id, '.Count = 1 Then')
+          block.inclvl()
+            println('ReDim ret(0)')
+            println('ret(0) = ', id, '.Item(0)')
+            println('StringsToArray = ret')
+            println('Exit Function')
+          block.declvl()
+          println('End If')
+          println('ReDim ret(', id, '.Count-1)')
+          println('For i = 0 To ', id, '.Count-1')
+          block.inclvl()
+            println('ret(i) = ', id, '.Item(i)')
+          block.declvl()
+          println('Next')
+          println('StringsToArray = ret')
+        lng.end_func(BLK_FUNC)
+      end
+    end
+    block.select(old)
+  end
+end
+
+// Common methods
+func doAdd(_data)
+  println(arr, ' = Split(', dStr, ', vbCrLf)')
+  println(id, '.BeginUpdate()')
+  println('For ', i, ' = 0 To UBound(', arr,')')
+  block.inclvl()
+    println(id, '.Add ', arr, '(', i, ')')
+  block.declvl()
+  println('Next')
+  println(id, '.EndUpdate()')
+end
+
+func doRemove(_data)
+  println(id, '.Remove(', _data, ')')
+end
+
+func doInsert(_data)
+  println(id, '.Insert ', _arr.mt_pop(_data), ', ', _data)
+end
+
+func doClear(_data)
+  println(id, '.Clear()')
+end
+
+func doBeginUpdate(_data)
+  println(id, '.BeginUpdate()')
+end
+
+func doEndUpdate(_data)
+  println(id, '.EndUpdate()')
+end
+
+func doExChange(_data)
+  println(id, '.ExChange ', _arr.mt_pop(_data), ', ', _data)
+end
+
+func doSort(_data)
+  println(id, '.Sort ', _arr.mt_pop(_data), ', ', _data)
+end
+
+func doFind(_data)
+  if(linked(onFound))
+    event(onFound, id && '.Find(' && _arr.mt_pop(_data) && ', ' && _arr.mt_pop(_data) && ', ' && _data && ')')
+  end
+end
+
+func doTopIndex(_data)
+  println(id, '.TopIndex = ', _data)
+end
+
+func doString(_data)
+  if(linked(onString))
+    event(onString, id && '.Item(' && _data && ')')
+  end
+end
+
+func doLoad(_data)
+  include('fso')
+  println('Set st = fso.OpenTextFile(', isndef(FileName) ? FileName : _data, ', 1)')
+  println(id, '.Clear()')
+  println(id, '.BeginUpdate()')
+  println('While Not st.AtEndOfStream')
+  block.inclvl()
+    println(id, '.Add st.ReadLine')
+  block.declvl()
+  println('Wend')
+  println(id, '.EndUpdate()')
+  println('st.Close')
+end
+
+func doSave(_data)
+  include('fso')
+  println('Set st = fso.CreateTextFile(', isndef(FileName) ? FileName : _data,', True)')
+  println('For ', j, ' = 0 To ', id, '.Count-1')
+  block.inclvl()
+    println('st.WriteLine ', id, '.Item(', j, ')')
+  block.declvl()
+  println('Next')
+  println('st.Close')
+end
+
+func Count()
+  return(id && '.Count')
+end
+
+func Array()
+  return('StringsToArray()')
+end
+
+func TopIndex()
+  return(id + '.TopIndex')
+end
+
+func Text()
+  return('ListToText()')
+end

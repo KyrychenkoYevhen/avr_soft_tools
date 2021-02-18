@@ -1,0 +1,158 @@
+Make(delphi)
+Add(MainForm,2953706,70,49)
+{
+ Width=384
+ link(onCreate,4835785:doOpen,[])
+}
+Add(SQLite_DB,4835785,119,63)
+{
+ FileName="int\hiasm.db"
+ link(onOpen,13530164:doQuery,[])
+}
+Add(SQLite_Query,13530164,168,63)
+{
+ SQL="SELECT param FROM settings "
+ link(onQuery,16640370:doWork2,[])
+ link(onError,12093021:doMessage,[])
+}
+Add(ListBox,12778974,336,63)
+{
+ Width=155
+ Height=275
+ Align=1
+ ModeSp=2
+ DataType=1
+ Point(String)
+ link(onClick,274188:doString,[(380,76)(380,69)])
+}
+Add(ChildPanel,263049,224,140)
+{
+ link(onEvent1,11189534:doEvent1,[])
+ link(onEvent2,2794703:doWork2,[(270,153)(270,195)])
+ link(Data1,12778974:String,[(230,127)(363,127)])
+}
+BEGIN_SDK
+  Add(EditMulti,7196887,21,21)
+  {
+   EventCount=2
+   WorkCount=1
+   DataCount=1
+   link(doWork1,6120145:doText,[(101,27)(101,83)])
+  }
+  Add(Panel,10801153,35,105)
+  {
+   Left=155
+   Width=221
+   Height=275
+   Align=5
+   BevelInner=0
+  }
+  Add(ChildPanel,8693484,182,140)
+  {
+   link(onEvent1,7196887:onEvent1,[(268,146)(268,27)])
+   link(onEvent2,10232927:doString,[])
+  }
+  BEGIN_SDK
+    Add(EditMulti,11922354,21,21)
+    {
+     EventCount=2
+    }
+    Add(Panel,5834006,35,105)
+    {
+     Left=1
+     Top=244
+     Width=218
+     Height=30
+     Align=4
+     BevelInner=0
+    }
+    Add(Button,6885006,154,98)
+    {
+     Left=5
+     Top=5
+     Caption="Add"
+     link(onClick,1781127:doData,[])
+    }
+    Add(Edit,15342496,210,49)
+    {
+     Left=65
+     Top=5
+     Width=85
+     Text=""
+    }
+    Add(DoData,1781127,210,98)
+    {
+     link(onEventData,11922354:onEvent1,[(282,104)(282,27)])
+     link(Data,15342496:Text,[])
+    }
+    Add(Button,5530249,154,154)
+    {
+     Left=155
+     Top=5
+     Caption="Set"
+     link(onClick,11922354:onEvent2,[(288,160)(288,34)])
+    }
+  END_SDK
+  Add(Memo,6120145,182,56)
+  {
+   Left=1
+   Top=1
+   Width=218
+   Height=243
+   Align=5
+   ScrollBars=3
+  }
+  Add(FormatStr,10232927,245,147)
+  {
+   Mask="update settings set value = '%1' where param = '%2'"
+   link(onFString,7196887:onEvent2,[(299,153)(299,34)])
+   link(Str1,6120145:Text,[(251,124)(188,124)])
+   link(Str2,7196887:Data1,[(258,49)(27,49)])
+  }
+END_SDK
+Add(SQLite_Exec,15080700,392,189)
+{
+ link(onError,5819221:doMessage,[])
+ link(dbHandle,9424645:Var3,[(398,121)])
+}
+Add(FormatStr,14524020,336,140)
+{
+ DataCount=1
+ Mask="insert into settings(param) values('%1')"
+ link(onFString,2794703:doWork1,[(382,146)])
+}
+Add(Hub,11189534,280,140)
+{
+ link(onEvent1,14524020:doString,[])
+ link(onEvent2,16640370:doWork3,[(319,153)])
+}
+Add(HubEx,16640370,315,56)
+{
+ link(onEvent,12778974:doAdd,[])
+}
+Add(FormatStr,274188,392,63)
+{
+ DataCount=1
+ Mask="select value from settings where param = '%1'"
+ link(onFString,10333310:doQuery,[])
+}
+Add(SQLite_Query,10333310,448,63)
+{
+ link(onQuery,263049:doWork1,[(494,69)(494,44)(209,44)(209,146)])
+ link(dbHandle,9424645:Var1,[(454,51)(384,51)])
+}
+Add(GetDataEx,9424645,371,112)
+{
+ Angle=3
+ link(Data,4835785:dbHandle,[(125,121)])
+}
+Add(Message,12093021,224,77)
+{
+}
+Add(HubEx,2794703,378,182)
+{
+ link(onEvent,15080700:doExec,[])
+}
+Add(Message,5819221,448,189)
+{
+}

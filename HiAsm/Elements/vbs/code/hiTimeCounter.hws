@@ -1,0 +1,18 @@
+func doStart(_data)
+  fvar(old)
+  old=block.select(BLK_GLOB)
+  println('Dim ',timer,'Start, ',timer,'End')
+  block.select(old)
+ 
+  println(timer,'Start = Timer')
+  event(onStart)
+end
+
+func doStop(_data)
+  println(timer,'End = Timer')
+  switch (Precision)
+    case 0: event(onStop, '(' && timer && 'End - ' && timer && 'Start) * 1000')
+    case 1: event(onStop, '(' && timer && 'End - ' && timer && 'Start) * 1000000')
+    case 2: event(onStop, timer && 'End - ' && timer && 'Start')
+  end
+end

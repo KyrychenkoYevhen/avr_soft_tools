@@ -1,0 +1,23 @@
+// ************************************************
+// ButtonControl.hws for Vbs packet
+// WSO methods, properties and constants
+// Общие свойства и методы наследников класса ButtonControl
+// Last modification: 31.08.2009
+// ************************************************
+
+// Common properties
+func ButtonControl_Init(id)
+  if(isndef(Flat))
+    println(id, '.Flat = True')
+  end
+end
+
+// Common methods
+func doFlat(_data)
+  println (id, '.Flat = ', (_data='') ? 'False' : _data)
+end
+
+// Common vars
+func vFlat()
+  return(id  + '.Flat')
+end

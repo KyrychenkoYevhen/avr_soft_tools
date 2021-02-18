@@ -1,0 +1,120 @@
+Make(Delphi)
+Pos(0,27)
+Add(MainForm,7002395,70,92)
+{
+ Left=20
+ Top=105
+ Width=179
+ Height=155
+ link(onCreate,3632778:doOpen,[])
+}
+Add(StrPart,8853,392,127)
+{
+ Char=":"
+ link(onSplit,14689089:doMove,[])
+ link(onPart,8583835:doValue,[(439,140)(439,70)])
+}
+Add(Case,10904046,231,127)
+{
+ Value=String(left)
+ link(onNextCase,9128628:doCase,[])
+ link(onTrue,3108539:doData,[(271,140)(271,203)])
+}
+Add(Memory,78702,504,351)
+{
+}
+Add(UDP,3632778,119,127)
+{
+ LocalPort=106
+ link(onReceive,5908322:doCase,[])
+}
+Add(Case,5908322,182,127)
+{
+ Value=String(right)
+ link(onNextCase,10904046:doCase,[])
+ link(onTrue,805058:doData,[(222,140)(222,189)])
+}
+Add(MouseEvent,14689089,637,120)
+{
+ Button=0
+ Point(doPosition)
+ Point(doMouseDown)
+ Point(doMouseUp)
+ link(X,8583835:Value,[(650,108)(468,108)])
+}
+Add(DoData,805058,231,183)
+{
+ Data=Integer(2)
+ link(onEventData,12783835:doWork2,[])
+}
+Add(DoData,3108539,280,197)
+{
+ Data=Integer(1)
+ link(onEventData,12783835:doWork3,[(319,203)])
+}
+Add(HubEx,12783835,315,176)
+{
+ link(onEvent,14689089:doClick,[(509,189)(509,126)])
+}
+Add(Math,3758051,448,344)
+{
+ OpType=1
+ ResultType=0
+ link(Op2,78702:Value,[(461,334)(492,334)(492,393)(510,393)])
+}
+Add(Hub,4070412,385,344)
+{
+ link(onEvent1,3758051:doOperation,[])
+ link(onEvent2,78702:doValue,[])
+}
+Add(Memory,11275213,511,428)
+{
+}
+Add(Math,397657,455,421)
+{
+ OpType=1
+ ResultType=0
+ link(Op2,11275213:Value,[(468,411)(499,411)(499,470)(517,470)])
+}
+Add(Hub,11202280,392,421)
+{
+ link(onEvent1,397657:doOperation,[])
+ link(onEvent2,11275213:doValue,[])
+}
+Add(Math,14834648,462,22)
+{
+ OpType=2
+ Op2=5
+ ResultType=0
+}
+Add(Math,625211,462,141)
+{
+ OpType=2
+ Op2=3
+ ResultType=0
+}
+Add(Memory,8583835,462,64)
+{
+}
+Add(Case,9128628,280,127)
+{
+ Value=String(leftd)
+ link(onNextCase,407130:doCase,[])
+ link(onTrue,5512520:doData,[(327,140)(327,203)])
+}
+Add(Case,407130,336,127)
+{
+ Value=String(leftu)
+ link(onNextCase,8853:doSplit,[])
+ link(onTrue,8710253:doData,[(386,140)(386,217)])
+}
+Add(DoData,5512520,371,197)
+{
+ Data=Integer(1)
+ link(onEventData,14689089:doMouseDown,[(520,203)(520,147)])
+}
+Add(DoData,8710253,441,211)
+{
+ Data=Integer(1)
+ link(onEventData,14689089:doMouseUp,[(555,217)(555,154)])
+}

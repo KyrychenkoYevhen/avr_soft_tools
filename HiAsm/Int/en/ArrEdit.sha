@@ -1,0 +1,193 @@
+Make(modules)
+ver(4.03 build 180)
+Add(MainForm,1070405,70,175)
+{
+ Width=514
+ Height=350
+ Caption="Array editor"
+ BorderStyle=3
+}
+Add(Label,6939022,49,77)
+{
+ Left=5
+ Top=5
+ Width=31
+ Height=17
+ Caption="Type:"
+}
+Add(Label,12012668,105,77)
+{
+ @Hint=#4:type|
+ Left=35
+ Top=5
+ Width=16
+ Height=17
+ Caption="----"
+}
+Add(Label,7790199,147,70)
+{
+ Left=140
+ Top=5
+ Width=35
+ Height=17
+ Caption="Count:"
+}
+Add(Label,10121474,224,70)
+{
+ @Hint=#5:count|
+ Left=180
+ Top=5
+ Width=10
+ Height=17
+ Caption="0"
+}
+Add(Label,10320110,49,98)
+{
+ Left=5
+ Top=30
+ Width=32
+ Height=17
+ Caption="Name"
+}
+Add(Edit,2705550,84,91)
+{
+ @Hint=#4:name|
+ Left=35
+ Top=25
+ Width=190
+ Text=""
+}
+Add(Button,1420991,210,119)
+{
+ @Hint=#3:add|
+ Left=165
+ Top=55
+ Width=60
+ Height=25
+ Caption="Add"
+}
+Add(Button,11843096,203,147)
+{
+ @Hint=#3:del|
+ Left=165
+ Top=85
+ Width=60
+ Height=25
+ Caption="Remove"
+}
+Add(Button,4756680,203,182)
+{
+ @Hint=#5:clear|
+ Left=165
+ Top=115
+ Width=60
+ Height=25
+ Caption="Clear"
+}
+Add(Button,614397,210,210)
+{
+ @Hint=#2:up|
+ Left=165
+ Top=145
+ Width=60
+ Height=25
+ Caption="Up"
+}
+Add(Button,15311069,210,238)
+{
+ @Hint=#4:down|
+ Left=165
+ Top=175
+ Width=60
+ Height=25
+ Caption="Down"
+}
+Add(Button,368993,203,273)
+{
+ @Hint=#5:close|
+ Left=165
+ Top=205
+ Width=60
+ Height=25
+ Caption="Close"
+}
+Add(Label,4909315,217,371)
+{
+ Left=165
+ Top=300
+ Width=33
+ Height=17
+ Caption="Index:"
+}
+Add(Label,3639443,252,364)
+{
+ @Hint=#5:index|
+ Left=195
+ Top=300
+ Width=10
+ Height=17
+ Caption="0"
+}
+Add(ChildPanel,14842362,301,105)
+{
+}
+BEGIN_SDK
+  Add(EditMulti,15064002,3,3)
+  {
+  }
+  Add(Panel,7711320,35,105)
+  {
+   Left=240
+   Top=25
+   Width=260
+   Height=265
+   Caption="[]"
+   BevelInner=1
+  }
+  Add(Image,2898346,105,105)
+  {
+   @Hint=#5:image|
+   Left=2
+   Top=2
+   Width=256
+   Height=251
+   Align=5
+  }
+END_SDK
+Add(RadioButton,10224523,287,357)
+{
+ @Hint=#6:center|
+ Left=245
+ Top=300
+ Width=75
+ Height=15
+ Caption="By center"
+ Selected=0
+}
+Add(RadioButton,16725981,378,357)
+{
+ @Hint=#5:scale|
+ Left=360
+ Top=300
+ Width=110
+ Height=15
+ Caption="Scaling"
+}
+Add(Button,10686286,161,232)
+{
+ @Hint=#6:export|
+ Left=165
+ Top=235
+ Width=60
+ Height=25
+ Caption="Export"
+}
+Add(Button,5420863,161,266)
+{
+ @Hint=#6:import|
+ Left=165
+ Top=265
+ Width=60
+ Height=25
+ Caption="Import"
+}

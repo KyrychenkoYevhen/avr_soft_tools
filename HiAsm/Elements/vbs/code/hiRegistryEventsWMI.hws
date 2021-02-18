@@ -1,0 +1,54 @@
+func Init()
+  if(isset(Handle))
+    var(obj, sink)
+    obj = Handle
+    sink = SINK_
+    stack &= block.select(BLK_OBJ)
+    println('Set wmi', sink, ' = WScript.CreateObject("WbemScripting.SWbemSink", "', sink, '_")')
+    println('')
+    if(linked(onEvent))
+      lng.begin_func(sink + '_OnObjectReady(wmiObject, wmiAsyncContext)')
+        event(onEvent, 'wmiObject.GetObjectText_()')
+      lng.end_func(BLK_FUNC)
+    end
+    block.select(_arr.pop(stack))
+  end
+end
+
+func GetScale()
+  fvar(query)
+  switch(Object)
+    case 'Tree': query = 'RegistryTreeChangeEvent'
+    case 'Key': query = 'RegistryKeyChangeEvent'
+    case 'Value': query = 'RegistryValueChangeEvent'
+  end
+  return(query)
+end
+
+func GetWhere()
+  fvar(param)
+  switch(Object)
+    case 'Tree': param = 'RootPath'
+    case 'Key': param = 'KeyPath'
+    case 'Value': param = 'KeyPath'
+  end
+  return(param)
+end
+
+func doMonitoring(_data)
+  if(linked(onEvent))
+    if(linked(RootPath))
+      println(query, ' = "SELECT * FROM ', GetScale(), ' WHERE Hive=\'HKEY_', Hkey, '\' AND ', GetWhere(), '=\'"', ' & Replace(', RootPath, ', "\\", "\\\\") & "\'"', (Object='Value')?(' & " AND ValueName=\'' + code(Value) +'\'"'):'')
+      println(obj, '.ExecNotificationQueryAsync wmi', sink, ', ', query)
+    else
+      println(obj, '.ExecNotificationQueryAsync wmi', sink, ', "SELECT * FROM ', GetScale(), ' WHERE Hive=\'HKEY_', Hkey, '\' AND ', GetWhere(), '=\'', code(replace(RootPath, "\\", "\\\\")), '\'', (Object='Value')?(' AND ValueName=\'' + code(Value) +'\''):'','"')
+    end
+    if(Mode)
+      println('While(1)')
+      block.inclvl()
+        println('WScript.Sleep 1000')
+      block.declvl()
+      println('Wend')
+    end
+  end
+end

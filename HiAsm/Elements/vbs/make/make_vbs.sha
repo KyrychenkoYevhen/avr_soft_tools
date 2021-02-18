@@ -1,0 +1,63 @@
+Make(Modules)
+ver(4.04 build 185)
+Add(MakeEntryPoint,3565775,21,105)
+{
+ link(onStart,12031692:doEvent,[])
+}
+Add(GetParams,8294915,133,105)
+{
+ Run=0
+}
+Add(MakeProject,8976005,133,154)
+{
+}
+Add(Complite,15007304,133,203)
+{
+}
+Add(Hub,12031692,77,105)
+{
+ OutCount=5
+ link(onEvent1,8294915:doDeclare,[])
+ link(onEvent2,8976005:doDeclare,[(121,118)(121,160)])
+ link(onEvent3,15007304:doDeclare,[(116,125)(116,209)])
+ link(onEvent4,15189190:doDeclare,[(112,132)(112,258)])
+ link(onEvent5,7859971:doDeclare,[(108,139)(108,307)])
+}
+Add(While,5390718,245,252)
+{
+ link(Data,6181983:IsTimeOut,[])
+}
+Add(WaitObject,6181983,238,210)
+{
+ Point(IsTimeOut)
+ link(ObjHandle,13063000:Var3,[(244,201)(227,201)(227,296)])
+}
+Add(RunProject,15189190,133,252)
+{
+ link(onDeclare,15907528:doShellExecute,[])
+ link(Data,13063000:Var1,[(139,246)(170,246)(170,296)])
+}
+Add(StopProject,7859971,133,301)
+{
+ link(onDeclare,4698014:doTerminateProcess,[])
+}
+Add(TerminateProcess,4698014,196,301)
+{
+}
+Add(ShellExecuteEx,15907528,182,252)
+{
+ link(onShellExecute,5390718:doWhile,[])
+}
+Add(GetDataEx,13063000,182,291)
+{
+ link(Data,15907528:Process,[])
+}
+Add(InfoTip,13449485,14,364)
+{
+ Info=#49:„тобы получить правильный файл make_vbs.cpp надо:|27: - компилировать эту схему;|96: - переименовать расширение получившегос€ после компил€ции файла с make_vbs.dll на make_vbs.cpp;|75: - открыть на редактирование в любом текстовом редакторе файл make_vbs.cpp;|32: - добавить в файл после строки:|28:       ShellExecuteEx(&si6);|20:   следующую строку:|44:       params.data = (void *)(si6.hProcess);|47: - переместить локальное объ€влени€ переменной:|24:   SHELLEXECUTEINFO si6;|65:   в глобальное объ€вление (например, сделать 5-ой строкой файла)|31: - сохранить изменени€ в файле;|82: - запустить make.bat дл€ получени€ файла make_vbs.dll при помощи GCC компил€тора;|1: |3:   |
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=561
+ Height=214
+}

@@ -1,0 +1,115 @@
+*Использование компонента Stack
+Pos(0,0)
+Add(MainForm,21324,105,455)
+{
+ Left=21
+ Top=105
+ Width=310
+ Height=157
+ Font=[MS Sans Serif,8,0,0,1]
+ Point(Close)
+}
+Add(InfoTip,11345298,322,252)
+{
+ Info=' Чтобы увидеть работу компонента введите несколько значений в поле ввода, нажимая после каждого ввода кнопку Push. Затем столько же раз подряд нажмите Pop.'
+ Font=[MS Sans Serif,8,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=232
+ Height=123
+}
+Add(InfoTip,5050909,85,49)
+{
+ Info=' Stack - позволяет организовать работу со стеком в схемах HiAsm'
+ Font=[Arial,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=491
+ Height=39
+}
+Add(Shape,2562225,105,218)
+{
+ Width=456
+ Height=25
+ Text="Пример"
+ Font=[Arial,12,1,0,1]
+ Color=12639424
+}
+Add(InfoTip,5452826,105,218)
+{
+ Info=''
+ Font=[Arial,8,0,0,1]
+ Width=456
+ Height=179
+}
+Add(InfoTip,16464751,77,14)
+{
+ Info=''
+ Font=[MS Sans Serif,10,0,0,1]
+ Width=508
+ Height=403
+}
+Add(Shape,14299916,77,98)
+{
+ Width=508
+ Height=18
+ Text="Примеры работы"
+ Font=[Times New Roman,12,1,8388608,1]
+ Color=12639424
+}
+Add(Shape,6712503,77,14)
+{
+ Width=508
+ Height=25
+ Text="Использование компонента Stack"
+ Font=[Times New Roman,14,1,0,1]
+ Color=10789024
+}
+Add(InfoTip,14116923,85,119)
+{
+ Info=' Стек - это механизм повсеместно используемый в программирование в силу своей простоты и удобства. Смысл его сводится к тому, что вы можете класть туда(в стек) данные только "наверх" и соответственно брать только "сверху". Например, если вы запишите в стек числа: 3, 7, 1, то получить назад их можно только в обратной последовательности, т.е. 1, 7, 3.'
+ Font=[Arial,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=498
+ Height=88
+}
+Add(Stack,3663537,196,322)
+{
+ link(onPush,7390531:doMessage,[(247,328)(247,307)])
+ link(onPop,15266308:doMessage,[(247,335)(247,356)])
+ link(Data,465182:Text,[])
+}
+Add(Button,4265358,119,301)
+{
+ Left=55
+ Top=40
+ Font=[MS Sans Serif,8,0,0,1]
+ link(onClick,3663537:doPush,[(173,307)(173,328)])
+}
+Add(Button,4835523,119,350)
+{
+ Left=55
+ Top=70
+ Font=[MS Sans Serif,8,0,0,1]
+ Caption="Pop"
+ link(onClick,3663537:doPop,[(173,356)(173,335)])
+}
+Add(Message,7390531,266,301)
+{
+ Caption="Save"
+}
+Add(Message,15266308,266,350)
+{
+ Caption="Restore"
+}
+Add(Edit,465182,196,259)
+{
+ Left=115
+ Top=40
+ Width=145
+ Font=[MS Sans Serif,8,0,0,1]
+}

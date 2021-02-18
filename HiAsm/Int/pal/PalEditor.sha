@@ -1,0 +1,230 @@
+Make(delphi)
+ver(4.05 build 186)
+Add(MainForm,2953706,28,133)
+{
+ Width=226
+ Height=226
+ link(onCreate,15434872:doEvent1,[(72,153)(72,139)])
+}
+Add(ChildPanelEx,7023964,133,133)
+{
+ link(onClick,12952399:doConvert,[])
+}
+BEGIN_SDK
+  Add(EditMultiEx,14214354,21,21)
+  {
+   WorkCount=#5:doFor|7:doColor|6:doSave|6:doLoad|
+   EventCount=#7:onClick|
+   Width=328
+   Height=249
+   link(doFor,13694243:doWork1,[(88,27)])
+   link(doColor,4821455:doColor,[(57,34)(57,118)])
+   link(doSave,7454537:doEvent1,[(42,41)(42,146)])
+   link(doLoad,283016:doEvent1,[(35,48)(35,202)])
+  }
+  Add(Panel,5697059,196,224)
+  {
+   Left=5
+   Top=45
+   Width=125
+   Height=150
+   BevelInner=0
+   BevelOuter=1
+   Point(doColor)
+  }
+  Add(ChildPanelEx,4821455,196,98)
+  {
+   Mode=1
+   link(onClick,9552778:doEvent1,[])
+   link(Array,1363312:Array,[])
+  }
+  BEGIN_SDK
+    Add(EditMultiEx,3513034,21,21)
+    {
+     WorkCount=#5:##add|9:##hselect|7:doColor|8:##select|7:##clear|
+     EventCount=#7:onClick|
+     VarCount=#13:##eventHandle|
+     DataCount=#5:Array|
+     Width=216
+     Point(##add)
+     Point(##hselect)
+     Point(##select)
+     Point(##clear)
+     Point(##eventHandle)
+     link(##add,7742274:doRead,[(45,27)(45,181)])
+     link(doColor,9148525:doWork1,[(53,41)])
+     link(##select,7742274:doAdd,[(35,48)(35,195)])
+    }
+    Add(Panel,16285466,126,63)
+    {
+     Left=10
+     Top=15
+     Width=15
+     Height=15
+     Layout="parent.grid"
+     Point(doColor)
+     link(onClick,3829397:doData,[])
+    }
+    Add(Memory,16773494,77,70)
+    {
+     link(onData,16285466:doColor,[])
+    }
+    Add(DoData,3829397,175,63)
+    {
+     link(onEventData,3513034:onClick,[(222,69)(222,27)])
+     link(Data,9736780:Var3,[(181,51)(135,51)(135,114)])
+    }
+    Add(ArrayRW,7742274,63,175)
+    {
+     link(onRead,9148525:doWork3,[(107,181)(107,126)(53,126)])
+     link(Array,3513034:Array,[(69,34)(27,34)])
+     link(Value,9736780:Var2,[])
+    }
+    Add(GetDataEx,9736780,70,105)
+    {
+     link(Data,16773494:Value,[])
+    }
+    Add(HubEx,9148525,49,63)
+    {
+     link(onEvent,16773494:doValue,[])
+    }
+  END_SDK
+  Add(For,9605387,105,98)
+  {
+   End=63
+   link(onEvent,4821455:##add,[])
+   link(onStop,4794699:doResize,[(167,111)(167,160)])
+  }
+  Add(ToolBarLayout,4794699,196,154)
+  {
+   Name="grid"
+   Padding=2
+   AutoSize=0
+  }
+  Add(Hub,9552778,245,98)
+  {
+   link(onEvent1,14214354:onClick,[(267,104)(267,27)])
+   link(onEvent2,12864797:doData,[])
+  }
+  Add(DoData,12864797,287,105)
+  {
+   link(onEventData,4821455:##hselect,[(328,111)(328,88)(183,88)(183,111)])
+   link(Data,4821455:##eventHandle,[(293,93)(278,93)(278,142)(202,142)])
+  }
+  Add(For,9763344,112,147)
+  {
+   End=63
+   link(onEvent,4821455:##select,[(183,153)(183,125)])
+  }
+  Add(IntegerArray,1363312,196,49)
+  {
+   IntArray=[]
+  }
+  Add(Hub,7454537,49,140)
+  {
+   OutCount=3
+   link(onEvent1,1363312:doClear,[(69,146)(69,69)])
+   link(onEvent2,9763344:doFor,[])
+   link(onEvent3,1363312:doSave,[(75,160)(75,55)])
+  }
+  Add(Hub,283016,56,196)
+  {
+   OutCount=3
+   link(onEvent1,1363312:doLoad,[(79,202)(79,62)])
+   link(onEvent2,4821455:##clear,[(188,209)(188,132)])
+   link(onEvent3,13694243:doWork3,[(88,216)])
+  }
+  Add(HubEx,13694243,84,91)
+  {
+   link(onEvent,9605387:doFor,[])
+  }
+END_SDK
+Add(Edit,11715737,245,133)
+{
+ Left=140
+ Top=45
+ Width=55
+ Text=""
+ link(onChange,3442339:doConvert,[])
+}
+Add(Convertor,12952399,189,133)
+{
+ Mode=6
+ Digits=6
+ link(onResult,11715737:doText2,[(233,139)(233,146)])
+}
+Add(Convertor,3442339,294,133)
+{
+ Mode=5
+ Digits=6
+ link(onResult,7023964:doColor,[(336,139)(336,124)(122,124)(122,146)])
+}
+Add(ComboBox,3626554,182,245)
+{
+ Left=6
+ Top=10
+ Width=125
+ Height=21
+ DataType=1
+ Point(EditText)
+ Point(doSelect)
+ link(onClick,7958409:doStrCat,[])
+}
+Add(FileSearch,1706180,119,245)
+{
+ Ext="*.pal"
+ Dir="."
+ SubDir=1
+ FullName=1
+ link(onSearch,13902:doWork2,[])
+ link(onEndSearch,3626554:doSelect,[(173,258)(173,293)])
+}
+Add(Hub,15434872,84,133)
+{
+ link(onEvent1,7023964:doFor,[])
+ link(onEvent2,1706180:doSearch,[(108,146)(108,251)])
+}
+Add(Button,13560650,126,322)
+{
+ Left=140
+ Top=105
+ Caption="Save"
+ link(onClick,5114858:doEvent1,[])
+}
+Add(Dir,12948517,238,189)
+{
+}
+Add(StrCat,13046955,217,322)
+{
+ link(onStrCat,7023964:doSave,[(287,328)(287,178)(120,178)(120,153)])
+ link(Str1,16045739:Var1,[(223,236)])
+ link(Str2,10825223:Var2,[])
+}
+Add(StrCat,7958409,238,252)
+{
+ link(onStrCat,7023964:doLoad,[(282,258)(282,184)(124,184)(124,160)])
+ link(Str1,16045739:Var2,[])
+}
+Add(GetDataEx,16045739,238,231)
+{
+ link(Data,12948517:CurrentDir,[])
+}
+Add(Hub,5114858,182,322)
+{
+ link(onEvent1,13046955:doStrCat,[])
+ link(onEvent2,10105635:doData,[(206,335)(206,384)])
+}
+Add(DoData,10105635,252,378)
+{
+ link(onEventData,13902:doWork3,[(294,384)(294,418)(165,418)])
+ link(Data,10825223:Var1,[(258,295)(230,295)])
+}
+Add(GetDataEx,10825223,224,301)
+{
+ Angle=3
+ link(Data,3626554:EditText,[(202,306)])
+}
+Add(HubEx,13902,161,245)
+{
+ link(onEvent,3626554:doAdd,[])
+}

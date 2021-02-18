@@ -1,0 +1,60 @@
+include("object")
+include("control")
+
+func SetLine()
+  println('Set ', id, ' = ', get_parent(), '.Line(', X1, ', ', Y1, ', ', X2, ', ', Y2, ')')
+  println('WScript.ConnectObject ', id, ', "', id, '_"')
+end
+
+func Init()
+  var(id)
+  id = Line_
+  stack &= block.select(BLK_BODY)
+  
+  SetLine()
+
+  // Common methods and properties
+  Object_Init(id)
+  Control_Init(id)
+
+  // Local  methods and properties
+  println('')
+  block.select(_arr.pop(stack))
+end
+
+func doRedraw()
+  println('If Not (', id, ' Is Nothing) Then Set ', id, ' = Nothing')
+  SetLine()
+end
+
+func doX1(_data)
+  println(id, '.X(0) = ', X1)
+end
+
+func doY1(_data)
+  println(id, '.Y(0) = ', Y1)
+end
+
+func doX2(_data)
+  println(id, '.X(1) = ', X2)
+end
+
+func doY2(_data)
+  println(id, '.Y(1) = ', Y2)
+end
+
+func vX1(_data)
+  return(id + '.X(0)')
+end
+
+func vY1(_data)
+  return(id + '.Y(0)')
+end
+
+func vX2(_data)
+  return(id + '.X(1)')
+end
+
+func vY2(_data)
+  return(id + '.Y(1)')
+end

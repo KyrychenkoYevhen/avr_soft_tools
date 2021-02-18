@@ -1,0 +1,10 @@
+func doPrint(_data)
+  fvar(dt, i)
+  dt = _data
+  if(isset(Lines))
+    for(i = 0; i < _arr.count(Lines); i++)
+      println(code(Lines[i]))
+    end
+  end
+  event(onPrint, dt)
+end

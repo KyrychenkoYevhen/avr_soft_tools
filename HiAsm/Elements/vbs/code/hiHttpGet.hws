@@ -1,0 +1,31 @@
+func Init()
+  var(obj_id, request)
+  obj_id = httpget_
+  stack &= block.select(BLK_OBJ)
+  println('Dim ', obj_id )
+  if (sys.gvarfind('w3utils_is_set') = -1)
+    gvar(w3utils_is_set)
+    println('On Error Resume Next')
+    println('Set ', obj_id, ' = CreateObject("w3.NetUtils")')
+    println('If Err.Number <> 0 Then')
+    println('  Msgbox "Please install w3u_base.dll before!" & vbCrLf & "Open a command prompt and cd" & vbCrLf & "to the directory where the dll is located" & vbCrLf & "then type regsvr32 w3u_base.dll"')
+    println('  WScript.Quit 1')
+    println('End If')
+    println('Set ', obj_id, ' = Nothing')
+    println('On Error GoTo 0')
+    println('')
+  end
+  println('Set ', obj_id, ' = CreateObject("w3.NetUtils")')
+  block.select(BLK_NOTH)
+  println('Set ', obj_id, ' = Nothing')
+  block.select(_arr.pop(stack))
+end
+
+func doDownload(_data)
+  request = obj_id + '.HTTPGet(' + URL + (isndef(UserName) ? (', "' + code(UserName) + ':' + code(Password) + '"') : '') + ((isndef(LimitSize) ? (', ' + LimitSize) : '')) + ')'
+  event(onDownload, request)
+end
+
+func Content()
+  return(request)
+end

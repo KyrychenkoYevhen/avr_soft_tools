@@ -1,0 +1,4 @@
+func doEcho
+  println('Wscript.Echo ', Message)
+  event(onEcho)
+end

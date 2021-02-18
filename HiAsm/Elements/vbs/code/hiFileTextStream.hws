@@ -1,0 +1,41 @@
+func Init()
+  include("fso")
+  fvar(old)
+  old = block.select(BLK_GLOB)
+  if(sys.gvarfind('filestream_is_set') = -1)
+    gvar(filestream_is_set)
+    println('Const Reading = 1, Writing = 2, Appending = 8')
+  end
+  if(linked(Stream) or linked(onCreate))
+    println('Dim ', ts)
+  end
+  block.select(old)
+end
+
+func doOpen(_data)
+  if(NewFile and (Mode='Writing' or Mode='Appending'))
+   println('If not fso.FileExists(', FileName, ') Then')
+   block.inclvl()
+    println('Set ', ts, ' = fso.CreateTextFile(', isndef(FileName) ? FileName : _data, ', True, ', (Format=0) ? 'False)' : 'True)')
+    println('If IsObject(', ts, ') Then ', ts, '.Close')
+    if(linked(onCreate))
+      event(onCreate, ts)
+    end
+   block.declvl()
+   println('End If')
+  end
+  if(linked(Stream))
+   println('Set ', ts, ' = fso.GetFile(', isndef(FileName) ? FileName : _data, ').OpenAsTextStream(', Mode, ', ', Format*-1, ')')
+  end
+  if(linked(onStream))
+   event(onStream, linked(Stream) ? ts : 'fso.GetFile(' && isndef(FileName) ? FileName : _data && ').OpenAsTextStream(' && Mode && ', ' && Format*-1 && ')')
+  end
+end
+
+func doClose()
+  println('If IsObject(', ts, ') Then ', ts, '.Close')
+end
+
+func Stream()
+  return(ts)
+end

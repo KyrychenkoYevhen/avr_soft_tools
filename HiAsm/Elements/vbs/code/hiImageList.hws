@@ -1,0 +1,65 @@
+func Init()
+  include('wso')
+  var(id)
+  id = Images_
+  fvar(old, i)
+  old = block.select(block.reggen())
+  println('Set ', id, ' = wso.CreateImageList()')
+  if(isndef(BitsPerPixel) or isndef(ImgSet) or isndef(Width) or isndef(Height) or isndef(ImgLst))
+    println('With ', id)
+    block.inclvl()
+  end
+  if(isndef(BitsPerPixel))
+    println('.BitsPerPixel = ', BitsPerPixel)
+  end
+  if(isndef(ImgSet))
+    println('.Load(', ImgSet, ')')
+  end
+  if(isndef(Width))
+    println('.Width = ', Width)
+  end
+  if(isndef(Height))
+    println('.Height = ', Height)
+  end
+  if(isndef(ImgLst))
+    for(i = 0; i < _arr.count(ImgLst); i++)
+      println('.Add(', ImgLst[i], ')')
+    end
+  end
+  if(isndef(BitsPerPixel) or isndef(ImgSet) or isndef(Width) or isndef(Height) or isndef(ImgLst))
+    block.declvl()
+    println('End With')
+  end
+  block.copyto(BLK_BODY)
+  block.delete(block.select(old))
+end
+
+// Common methods
+func doAdd(_data)
+  println(id, '.Add(', Image, ')')
+end
+
+func doRemove(_data)
+  println(id, '.Remove(', _data, ')')
+end
+
+func doLoad(_data)
+  println(id, '.Load(', Image, ')')
+end
+
+func doClear(_data)
+  println(id, '.Clear()')
+end
+
+func doImgSet(_data)
+  println(id, '.Load(', _data, ')')
+end
+
+func Count()
+  return(id && '.Count')
+end
+
+func Images()
+  return(id)
+end
+

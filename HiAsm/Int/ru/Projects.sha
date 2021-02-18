@@ -1,0 +1,37 @@
+Make(modules)
+Add(MainForm,16246787,42,133)
+{
+ Left=20
+ Top=105
+ Width=158
+ Height=288
+ Caption="Проекты"
+ BorderStyle=3
+}
+Add(Button,4738896,224,280)
+{
+ @Hint=#2:ok|
+ Left=30
+ Top=230
+ Width=90
+ Height=25
+ Caption="OK"
+}
+Add(ComboBox,7207184,224,84)
+{
+ @Hint=#4:prjs|
+ Left=10
+ Top=10
+ Width=130
+ Height=21
+ Color=-16777211
+ ReadOnly=0
+}
+Add(ListBox,4127114,224,154)
+{
+ @Hint=#5:clist|
+ Left=10
+ Top=35
+ Width=130
+ Height=185
+}

@@ -1,0 +1,441 @@
+Make(modules)
+ver(4.03 build 180)
+Add(hcTplForm,3362207,350,273)
+{
+ Left=20
+ Top=105
+ Width=200
+ Height=119
+ Visible=1
+ Caption="Data editor"
+ BorderStyle=3
+ Point(doShowModal)
+}
+Add(hcTplTabControl,15676757,252,126)
+{
+ Left=5
+ Top=5
+ Width=185
+ Hint="Выбор типа данных"
+ Tabs=#4:NULL|7:Integer|6:String|4:Real|
+ Buttons=1
+}
+Add(hcTplEdit,9740592,301,126)
+{
+ Left=5
+ Top=35
+ Width=155
+ Text=""
+}
+Add(hcTplButton,3639436,154,210)
+{
+ Left=65
+ Top=65
+ Width=65
+ Caption="OK"
+ link(onClick,7308001:doEvent1,[])
+}
+Add(hcTplButton,5640250,476,210)
+{
+ Left=165
+ Top=35
+ Width=20
+ Hint="Специальная вставка"
+ Caption="@"
+ Data=String(test)
+ link(onClick,9967159:doPopup,[])
+}
+Add(hcHiAsmTrasmitter,3953940,252,210)
+{
+ DataCount=2
+ link(onInit,3008961:doEvent1,[])
+ link(Arg1,15676757:CurrentIndex,[])
+ link(Arg2,1359693:Var1,[(265,184)])
+}
+Add(hcMT_Get,9672090,350,210)
+{
+ link(onData,4525522:doWork3,[(396,216)])
+ link(onGet,15676757:doSelect,[(405,223)(405,106)(240,106)(240,132)])
+}
+Add(hcHub,3008961,301,210)
+{
+ link(onEvent1,9672090:doGet,[])
+ link(onEvent2,3362207:doShowModal,[(341,223)(341,293)])
+}
+Add(hcHub,7308001,203,210)
+{
+ link(onEvent1,3953940:doReturn,[])
+ link(onEvent2,3362207:doClose,[(245,223)(245,286)])
+}
+Add(hcPopupMenu,9967159,532,210)
+{
+ Menu=#9:Цвет HTML|11:Код клавиши|1:-|2:+1|2:-1|
+ link(onClick,3443338:doCompare,[])
+}
+Add(hcChildForm,4153706,630,210)
+{
+ link(onSetColor,1753665:doWork2,[])
+}
+BEGIN_SDK
+  Add(EditMultiEx,16295353,21,21)
+  {
+   WorkCount=#11:doShowColor|
+   EventCount=#10:onSetColor|
+   Width=615
+   Height=354
+   link(doShowColor,5884929:doShowModal,[(42,27)(42,139)])
+  }
+  Add(hcTplForm,5884929,63,119)
+  {
+   Left=35
+   Top=105
+   Width=303
+   Height=214
+   Visible=1
+   Caption="Генератор HTML цветов"
+   BorderStyle=3
+   Point(doShowModal)
+  }
+  Add(hcTplEdit,16703120,567,238)
+  {
+   Left=110
+   Top=10
+   Width=65
+   Ctl3D=1
+   Text=""
+   ReadOnly=0
+   Point(doColor)
+  }
+  Add(hcTplScrollBar,6337188,350,91)
+  {
+   Left=40
+   Top=40
+   Width=215
+   Hint="Красная составляющая цвета"
+   Max=255
+   link(onPosition,1117534:doEvent1,[])
+  }
+  Add(hcTplButton,13276875,294,322)
+  {
+   Left=105
+   Top=150
+   Width=85
+   Height=30
+   Caption="OK"
+   link(onClick,10468682:doEvent1,[])
+  }
+  Add(hcTplScrollBar,6347363,294,133)
+  {
+   Left=40
+   Top=60
+   Width=215
+   Hint="Зеленая составляющая цвета"
+   Max=255
+   link(onPosition,7364760:doEvent1,[])
+  }
+  Add(hcTplScrollBar,2983548,238,175)
+  {
+   Left=40
+   Top=80
+   Width=215
+   Hint="Синяя составляющая цвета"
+   Max=255
+   link(onPosition,7343569:doEvent1,[])
+  }
+  Add(hcTplLabel,1717677,511,91)
+  {
+   Left=265
+   Top=40
+   Width=16
+   Height=17
+   Caption="00"
+   Point(doCaption)
+  }
+  Add(hcTplLabel,10555175,511,133)
+  {
+   Left=265
+   Top=60
+   Width=16
+   Height=17
+   Caption="00"
+   Point(doCaption)
+  }
+  Add(hcTplLabel,6324767,511,175)
+  {
+   Left=265
+   Top=80
+   Width=16
+   Height=17
+   Caption="00"
+   Point(doCaption)
+  }
+  Add(hcTplLabel,15209175,112,91)
+  {
+   Left=20
+   Top=40
+   Width=13
+   Height=17
+   Font=[MS Sans Serif,8,1,255,1]
+   Caption="R"
+  }
+  Add(hcTplLabel,14356455,112,133)
+  {
+   Left=20
+   Top=60
+   Width=13
+   Height=17
+   Font=[MS Sans Serif,8,1,32768,1]
+   Caption="G"
+  }
+  Add(hcTplLabel,1810554,112,175)
+  {
+   Left=20
+   Top=80
+   Width=12
+   Height=17
+   Font=[MS Sans Serif,8,1,16711680,1]
+   Caption="B"
+  }
+  Add(hcTplScrollBar,2465706,56,224)
+  {
+   Left=40
+   Top=115
+   Width=215
+   Hint="Подбор оттенка серого"
+   Max=255
+   link(onPosition,8876831:doEvent1,[])
+  }
+  Add(hcTplLabel,11979071,56,266)
+  {
+   Left=10
+   Top=115
+   Width=26
+   Height=17
+   Caption="Gray"
+  }
+  Add(hcHub,1117534,406,91)
+  {
+   link(onEvent1,458800:doConvert,[])
+   link(onEvent2,13626292:doWork1,[(452,104)])
+  }
+  Add(hcMath,16086782,238,238)
+  {
+   OpType=9
+   Op2=16
+   ResultType=0
+   link(onResult,10557279:doOperation,[])
+   link(Op1,2983548:CurPos,[])
+  }
+  Add(hcConvertor,458800,462,91)
+  {
+   Mode=6
+   link(onResult,1717677:doCaption,[])
+  }
+  Add(hcMath,10557279,294,238)
+  {
+   OpType=9
+   Op2=8
+   ResultType=0
+   link(onResult,13585438:doOperation,[])
+   link(Op1,6347363:CurPos,[])
+  }
+  Add(hcMath,13585438,350,238)
+  {
+   link(onResult,5489636:doOperation,[])
+   link(Op1,6337188:CurPos,[])
+  }
+  Add(hcMath,5489636,399,238)
+  {
+   link(onResult,11992014:doEvent1,[])
+   link(Op1,16086782:Result,[(405,226)(390,226)(390,280)(244,280)])
+  }
+  Add(hcConvertor,4358261,511,238)
+  {
+   Mode=6
+   Digits=6
+   link(onResult,16703120:doText,[])
+  }
+  Add(hcHub,11992014,455,238)
+  {
+   link(onEvent1,4358261:doConvert,[])
+   link(onEvent2,16703120:doColor,[(500,251)(500,258)])
+  }
+  Add(hcHub,8876831,112,224)
+  {
+   OutCount=3
+   link(onEvent1,6337188:doPosition,[(191,230)(191,97)])
+   link(onEvent2,6347363:doPosition,[(201,237)(201,139)])
+   link(onEvent3,2983548:doPosition,[(210,244)(210,181)])
+  }
+  Add(hcHub,7364760,406,133)
+  {
+   link(onEvent1,2330732:doConvert,[])
+   link(onEvent2,13626292:doWork2,[])
+  }
+  Add(hcConvertor,2330732,462,133)
+  {
+   Mode=6
+   link(onResult,10555175:doCaption,[])
+  }
+  Add(hcHub,7343569,406,175)
+  {
+   link(onEvent1,6838303:doConvert,[])
+   link(onEvent2,6240857:doWork2,[])
+  }
+  Add(hcConvertor,6838303,462,175)
+  {
+   Mode=6
+   link(onResult,6324767:doCaption,[])
+  }
+  Add(hcDoData,2286710,511,322)
+  {
+   link(onEventData,16295353:onSetColor,[(613,328)(613,27)])
+   link(Data,4358261:Result,[])
+  }
+  Add(hcHub,10468682,350,322)
+  {
+   link(onEvent1,2286710:doData,[])
+   link(onEvent2,5884929:doClose,[(394,335)(394,363)(35,363)(35,132)])
+  }
+  Add(HubEx,13626292,448,140)
+  {
+   Angle=1
+   link(onEvent,6240857:doWork1,[])
+  }
+  Add(HubEx,6240857,448,182)
+  {
+   Angle=1
+   link(onEvent,16086782:doOperation,[(452,219)(226,219)(226,244)])
+  }
+  Add(hcTplLabel,2852116,203,287)
+  {
+   Left=15
+   Top=140
+   Width=267
+   Height=2
+   Color=-16777200
+   Caption=""
+   AutoSize=1
+  }
+END_SDK
+Add(hcIf_else,3443338,581,210)
+{
+ Op2=Integer(0)
+ link(onTrue,4153706:doShowColor,[])
+ link(onFalse,6468436:doCompare,[(620,223)(620,249)(569,249)(569,265)])
+}
+Add(HubEx,4525522,392,112)
+{
+ Angle=2
+ link(onEvent,9740592:doText,[(289,118)(289,132)])
+}
+Add(hcIf_else,6468436,581,259)
+{
+ Op2=Integer(3)
+ link(onTrue,2681464:doOperation,[])
+ link(onFalse,4943383:doCompare,[(619,272)(619,293)(569,293)(569,314)])
+}
+Add(hcIf_else,4943383,581,308)
+{
+ Op2=Integer(4)
+ link(onTrue,9124096:doOperation,[])
+ link(onFalse,1479729:doCompare,[(625,321)(625,342)(569,342)(569,363)])
+}
+Add(hcMath,2681464,630,259)
+{
+ Op2=1
+ link(onResult,12590603:doWork2,[])
+ link(Op1,11022429:Var2,[])
+}
+Add(hcMath,9124096,630,308)
+{
+ OpType=1
+ Op2=1
+ link(onResult,7736153:doWork2,[])
+ link(Op1,11022429:Var1,[(636,300)(627,300)(627,254)])
+}
+Add(HubEx,1753665,672,210)
+{
+ Angle=3
+ link(onEvent,4525522:doWork2,[(676,118)])
+}
+Add(HubEx,12590603,672,259)
+{
+ Angle=3
+ link(onEvent,1753665:doWork3,[])
+}
+Add(GetDataEx,1359693,301,179)
+{
+ link(Data,9740592:Text,[])
+}
+Add(GetDataEx,11022429,630,249)
+{
+ link(Data,1359693:Var3,[(636,184)])
+}
+Add(hcIf_else,1479729,581,357)
+{
+ Op2=Integer(1)
+ link(onTrue,4164694:doShowModal,[])
+}
+Add(hcChildForm,4164694,630,357)
+{
+ link(onKeyDown,7736153:doWork3,[(676,363)])
+}
+BEGIN_SDK
+  Add(EditMultiEx,3045917,21,21)
+  {
+   WorkCount=#11:doShowModal|
+   EventCount=#9:onKeyDown|
+   Width=209
+   Height=172
+   link(doShowModal,14484702:doShowModal,[(35,27)(35,146)])
+  }
+  Add(hcTplForm,14484702,49,126)
+  {
+   Left=35
+   Top=105
+   Width=267
+   Height=79
+   Visible=1
+   Caption="Получение кода клавиши"
+   BorderStyle=3
+   Point(onKeyDown)
+   Point(doShowModal)
+   link(onKeyDown,16051233:doEvent1,[])
+  }
+  Add(hcTplLabel,13507122,119,28)
+  {
+   Left=20
+   Top=10
+   Width=215
+   Height=17
+   Caption="Нажмите клавишу для получения ее кода"
+  }
+  Add(hcTplLabel,12876306,119,77)
+  {
+   Left=100
+   Top=35
+   Width=29
+   Height=17
+   Caption="Код: "
+  }
+  Add(hcTplLabel,13413974,147,140)
+  {
+   Left=135
+   Top=35
+   Width=13
+   Height=17
+   Caption="..."
+   Point(doCaption)
+  }
+  Add(hcHub,16051233,98,133)
+  {
+   link(onEvent1,3045917:onKeyDown,[(180,139)(180,27)])
+   link(onEvent2,13413974:doCaption,[])
+  }
+END_SDK
+Add(HubEx,7736153,672,308)
+{
+ Angle=3
+ link(onEvent,12590603:doWork3,[])
+}

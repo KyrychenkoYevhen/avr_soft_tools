@@ -1,0 +1,52 @@
+Make(vbs)
+ver(4.03 build 180)
+Add(MainForm,2953706,7,98)
+{
+ Width=158
+ Height=120
+ Text="Swap text"
+}
+Add(Edit,7476161,301,119)
+{
+ Left=85
+ Top=25
+ Text="Edit2"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+ link(Data,5668226:Value,[])
+}
+Add(Edit,9561081,252,28)
+{
+ Left=15
+ Top=25
+ Text="Edit1"
+ Point(doText)
+ Point(onChange)
+ Point(vText)
+ Point(doFont)
+ link(Data,7476161:vText,[(258,17)(349,17)(349,163)(307,163)])
+}
+Add(Button,12393133,98,105)
+{
+ Left=50
+ Top=60
+ Text="Swap"
+ Point(onClick)
+ link(onClick,11958172:doEvent1,[])
+}
+Add(DoData,4769114,252,77)
+{
+ link(onEventData,5668226:doValue,[])
+ link(Data,9561081:vText,[])
+}
+Add(Hub,11958172,154,105)
+{
+ OutCount=3
+ link(onEvent1,4769114:doData,[(219,111)(219,83)])
+ link(onEvent2,9561081:doText,[(230,118)(230,34)])
+ link(onEvent3,7476161:doText,[])
+}
+Add(Memory,5668226,301,77)
+{
+}

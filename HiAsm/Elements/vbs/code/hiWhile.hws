@@ -1,0 +1,7 @@
+func doWhile
+ println('While ' + Op1 + ' ' + While + ' ' + Op2)
+ block.inclvl()
+  event(onWhile)
+ block.declvl()
+ println('Wend')
+end

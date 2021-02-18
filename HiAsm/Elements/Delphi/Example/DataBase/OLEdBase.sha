@@ -1,0 +1,104 @@
+*Пример работы с файлом dBase#13#10______________________#13#10Автор: nesco
+Make(delphi)
+ver(4.04 build 185)
+Add(MainForm,3171043,119,84)
+{
+ Left=20
+ Top=105
+ Width=390
+ Height=390
+ Caption="OLEdBase"
+ Position=1
+ link(onCreate,11947023:doStrCat,[])
+}
+Add(OLEdb,2142462,350,238)
+{
+ link(onConnect,14252000:doCreate,[])
+ link(Driver,5564056:FString,[(356,182)(398,182)])
+}
+Add(Button,941652,266,238)
+{
+ Left=305
+ Top=5
+ Width=75
+ TabOrder=-1
+ Caption="Подключить"
+ link(onClick,2142462:doOpen,[])
+}
+Add(OLEdb_Query,11136757,455,238)
+{
+ link(onQuery,16321824:doStr,[(503,244)(503,209)])
+ link(onColumns,5673081:doEnum,[])
+ link(Text,10216816:FString,[])
+}
+Add(OLEdb_Session,14252000,406,238)
+{
+ link(onCreate,11136757:doQuery,[])
+}
+Add(StringTable,6078793,581,210)
+{
+ Left=5
+ Top=140
+ Width=375
+ Height=210
+ Point(doAddColumn)
+}
+Add(MT_Enum,5673081,518,245)
+{
+ link(onItem,6078793:doAddColumn,[])
+}
+Add(MT_String,16321824,518,203)
+{
+ link(onResult,6078793:doAdd,[(566,209)(566,216)])
+}
+Add(Edit,11108326,217,98)
+{
+ Left=5
+ Top=5
+ Width=295
+ Text=""
+ link(onChange,12314600:doEvent1,[])
+}
+Add(Dir,5145339,168,49)
+{
+}
+Add(StrCat,11947023,168,98)
+{
+ Str2="Phone.dbf"
+ link(onStrCat,11108326:doText,[])
+ link(Str1,5145339:CurrentDir,[])
+}
+Add(FormatStr,5564056,392,98)
+{
+ DataCount=1
+ Mask="Driver={Microsoft dBASE Driver (*.dbf)};\r\nDriverId=533;\r\nDescription=dBase 5;\r\nFIL=dBase 5;\r\nDefaultDir=%1;\r\nPageTimeout=600;\r\nCollatingSequence=International;"
+ Point(FString)
+ link(onFString,14216946:doText,[])
+}
+Add(FormatStr,10216816,462,140)
+{
+ Mask="SELECT * FROM %1"
+ Point(FString)
+}
+Add(Memo,14216946,518,77)
+{
+ Left=5
+ Top=30
+ Width=375
+ Height=105
+}
+Add(FilePartElm,3189965,308,140)
+{
+ Mode=2
+ link(onPart,10216816:doString,[])
+}
+Add(FilePartElm,8180295,308,98)
+{
+ Mode=0
+ link(onPart,5564056:doString,[])
+}
+Add(Hub,12314600,266,98)
+{
+ link(onEvent1,8180295:doPart,[])
+ link(onEvent2,3189965:doPart,[(294,111)(294,146)])
+}

@@ -1,0 +1,20 @@
+func Init
+ fvar(old)
+ old = block.select(BLK_GLOB)
+ if(pos('Dim ' & Name, block.astext())=0) 
+  println('Dim ', code(Name))
+ end
+ if(isndef(Data))
+   println(code(Name), ' = ', Data)
+ end
+ block.select(old)
+end
+
+func doValue(_data)
+  println(code(Name), ' = ', _data)
+  event(onValue, code(Name))
+end
+
+func Var
+  return(code(Name))
+end

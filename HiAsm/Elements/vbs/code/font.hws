@@ -1,0 +1,29 @@
+  if(ParentFont = 'True')
+    println(id,'.ParentFont = True')
+  else
+  if(isndef(Font))
+  if(isndef(Font))
+    println('  With ',id,'.Font')
+    println('    .Name =' ,Font[0])
+    if(Font[2]<>8)
+      println('    .Size = ',Font[2])
+    end
+    if((Font[3] and 1)=1)
+      println('    .Bold = True')
+    end 
+    if((Font[3] and 2)=2)
+      println('    .Italic = True')
+    end
+    if((Font[3] and 4)=4)
+      println('    .Underline = True')
+    end
+    if(Font[1]<>0)
+      println('    .Color = ',Font[1])
+    end
+    println('  End With')
+    end
+  end
+
+  if(isndef(Color))
+    println(id,'.Color = ',Color)
+  end

@@ -1,0 +1,22 @@
+func doGet(_data)
+  if(isset(Socket))
+    fvar(sock)
+    sock = Socket + '.Get' + GetType + ((GetType='Line') ? '()' : ('(' + _data + ')'))
+    if(Waiting='None')
+      event(onGet, sock)
+    else
+      println(Socket, '.', Waiting, '(', ((Waiting='WaitFor') ? Substring : ''), ')')
+      if(Waiting='WaitForDisconnect')
+        event(onGet, Socket + '.Buffer')
+      else
+        event(onGet, sock)
+      end
+    end
+  end
+end
+
+func Buffer()
+  if(isset(Socket))
+    return(Socket && '.Buffer')
+  end
+end

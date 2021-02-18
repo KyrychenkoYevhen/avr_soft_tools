@@ -1,0 +1,305 @@
+Make(delphi)
+ver(4.04 build 184)
+Add(Shape,16116075,414,253)
+{
+ Width=261
+ Height=117
+ Font=[Times New Roman,12,1,8388608,1]
+ Color=13225364
+}
+Add(MainForm,467614,49,21)
+{
+}
+Add(Shape,6712503,41,21)
+{
+ Width=640
+ Height=25
+ Text="Компоненты для работы с типами"
+ Font=[Times New Roman,14,1,0,1]
+ Color=10789024
+}
+Add(InfoTip,8547638,41,46)
+{
+ Info=#
+ Frame=3
+ Width=10
+ Height=697
+}
+Add(Shape,14299916,51,46)
+{
+ Width=625
+ Height=18
+ Text="Немного истории создания и замысел..."
+ Font=[Times New Roman,12,1,8388608,1]
+ Color=12639424
+}
+Add(InfoTip,5050909,51,64)
+{
+ Info=#149:Типы (Types) - это список переменных, где каждая имеет свое имя и может иметь абсолютно любое значение (может содержать даже MT-поток или другой тип)|186:Сами по себе типы очень похожи на MT, только каждое звено не привязано к строго определенному месту в цепи, что дает дополнительные возможности - в этом и заключается замысел их создания|
+ Font=[MS Sans Serif,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=625
+ Height=81
+}
+Add(Shape,13995898,51,144)
+{
+ Width=625
+ Height=18
+ Text="Как пользоваться типами?"
+ Font=[Times New Roman,12,1,8388608,1]
+ Color=12639424
+}
+Add(InfoTip,14727780,51,253)
+{
+ Info=#62:Создать собственный тип можно с помощью компонента Type_Create|57:В свойстве Vars задается список начальных переменных типа|
+ Font=[MS Sans Serif,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=205
+ Height=116
+}
+Add(InfoTip,7199576,257,252)
+{
+ Info=#
+ Frame=3
+ Width=157
+ Height=121
+}
+Add(InfoTip,3369108,415,253)
+{
+ Info=#11:Примечание:|198:Данные для переменной в компонентах Type_Create, Type_FatsCreate, Type_Add, Type_Set возможно в свойстве Vars после написания имени переменной поставить "=" и написать ее значение (см. пример слева)|
+ Font=[MS Sans Serif,10,0,0,1]
+ Frame=1
+ HAlign=0
+ Width=261
+ Height=118
+}
+Add(Button,11350710,266,308)
+{
+ Left=315
+ Top=220
+ Data=Real(1.23)
+ link(onClick,14556451:doCreate,[])
+ AddHint(-7,-32,36,13,Data)
+}
+Add(Type_Create,14556451,315,308)
+{
+ Vars=#4:var1|4:var2|8:var3=str|
+ link(var1,12818456:Value,[])
+ AddHint(41,-33,38,39,Vars)
+ AddHint(25,38,53,13,Name)
+}
+Add(Memory,12818456,315,259)
+{
+}
+Add(InfoTip,6311625,51,370)
+{
+ Info=#
+ Frame=3
+ Width=624
+ Height=10
+}
+Add(InfoTip,3023073,51,244)
+{
+ Info=#
+ Frame=3
+ Width=624
+ Height=10
+}
+Add(Shape,7012187,50,162)
+{
+ Width=625
+ Height=82
+ Font=[Times New Roman,12,1,8388608,1]
+ Color=8421631
+}
+Add(InfoTip,5786088,51,162)
+{
+ Info=#17:ВАЖНОЕ ЗАМЕЧАНИЕ:|221:Почти во всех компонентах для работы с типами есть свойство Name, оно определяет имя создаваемого типа, при несоответствии имени типа и значения свойства Name у компонента для работы с ним работа с типом будет НЕВОЗМОЖНА.|80:При этом будет выдано событие onError, значение индексов ошибок смотрите в вики.|
+ Font=[MS Sans Serif,10,0,0,1]
+ Frame=1
+ HAlign=0
+ Width=618
+ Height=80
+}
+Add(InfoTip,14453678,51,379)
+{
+ Info=#91:Извлечение значений можно сделать двумя способами: с помощью Type_MultiMem и Type_MultiData|50:Они отличаются способом выдачи данных (см. пример)|
+ Font=[MS Sans Serif,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=205
+ Height=109
+}
+Add(InfoTip,11593118,257,378)
+{
+ Info=#
+ Frame=3
+ Width=418
+ Height=114
+}
+Add(Type_MultiMem,8408243,315,406)
+{
+ Vars=#4:var1|4:var2|4:var3|
+ Point(GType)
+ link(onMem,11129743:doString,[])
+ link(GType,1252441:Var2,[])
+ AddHint(-14,58,53,13,Name)
+}
+Add(Button,4528912,266,406)
+{
+ Left=315
+ Top=420
+ link(onClick,8408243:doMem,[])
+}
+Add(Button,16378280,462,406)
+{
+ Left=410
+ Top=395
+ link(onClick,7267443:doSeparate,[])
+}
+Add(Type_MultiData,7267443,511,406)
+{
+ Vars=#9:##onError|4:var1|4:var2|4:var3|
+ Point(GType)
+ link(##onError,3854221:doMessage,[])
+ link(var1,15956556:doWork2,[])
+ link(var2,9412333:doWork2,[])
+ link(var3,9412333:doWork3,[(557,433)])
+ link(GType,1252441:Var3,[(517,389)])
+ AddHint(-14,57,53,13,Name)
+}
+Add(FormatStr,11129743,364,406)
+{
+ DataCount=3
+ Mask="%1 %2 %3"
+ link(onFString,6372558:doMessage,[])
+ link(Str1,8408243:var1,[(370,394)(351,394)(351,451)(321,451)])
+ link(Str2,8408243:var2,[(377,394)(353,394)(353,450)(328,450)])
+ link(Str3,8408243:var3,[(384,394)(355,394)(355,451)(335,451)])
+}
+Add(Message,6372558,413,406)
+{
+}
+Add(Message,3854221,574,406)
+{
+ Icon=1
+}
+Add(Message,4543452,574,448)
+{
+}
+Add(HubEx,15956556,553,413)
+{
+ link(onEvent,4543452:doMessage,[(567,419)(567,454)])
+}
+Add(HubEx,9412333,553,420)
+{
+ Angle=3
+ link(onEvent,15956556:doWork3,[])
+}
+Add(GetDataEx,1252441,315,384)
+{
+ link(Data,14556451:FType,[])
+}
+Add(InfoTip,5340869,51,489)
+{
+ Info=#
+ Frame=3
+ Width=624
+ Height=10
+}
+Add(InfoTip,15820677,51,498)
+{
+ Info=#81:Работа с типами происходит по принципу добавления в него переменных при создании:|89:Type_Set: пишутся имена переменных (существующих уже), а на точки подаются новые значения|27:Type_Add: (см. Type_Create)|50:Type_Delete: пишутся имена переменных для удаления|
+ Font=[MS Sans Serif,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=625
+ Height=81
+}
+Add(InfoTip,8221306,44,578)
+{
+ Info=#
+ Frame=3
+ Width=633
+ Height=114
+}
+Add(Button,9368902,63,637)
+{
+ Left=105
+ Top=595
+ link(onClick,14880600:doCreate,[])
+}
+Add(Type_Create,14880600,112,637)
+{
+ link(onCreate,5283350:doAdd,[])
+}
+Add(Type_Add,5283350,161,637)
+{
+ Vars=#6:Var1=1|13:Var2=variable|
+ AddHint(-16,-48,65,26,Vars)
+}
+Add(Type_Set,15021503,364,644)
+{
+ Vars=#5:GType|4:var2|
+ link(GType,7923640:Var2,[])
+ link(var2,13763026:Text,[])
+ AddHint(47,2,47,26,Vars)
+}
+Add(Edit,13763026,371,588)
+{
+ Left=255
+ Top=585
+}
+Add(Button,15219459,315,644)
+{
+ Left=315
+ Top=640
+ link(onClick,15021503:doSet,[])
+}
+Add(Button,10737947,532,644)
+{
+ Left=500
+ Top=640
+ link(onClick,16711754:doDelete,[])
+}
+Add(Type_Delete,16711754,581,644)
+{
+ Vars=#4:Var1|
+ link(GType,7923640:Var3,[(587,632)])
+ AddHint(-6,-42,37,13,Vars)
+}
+Add(GetDataEx,7923640,364,627)
+{
+ Angle=3
+ link(Data,14880600:FType,[(299,632)(299,681)(118,681)])
+}
+Add(InfoTip,12922481,51,694)
+{
+ Info=#210:На странице http://www.hiasm.com/wiki.html вы можете найти более подробную информацию о компонентах и способах их применения. Там имеются примеры использования компонентов-типов с описанием всех их возможностей|
+ Font=[MS Sans Serif,10,0,0,1]
+ Frame=1
+ Transparent=1
+ HAlign=0
+ Width=625
+ Height=53
+}
+Add(InfoTip,9144478,671,46)
+{
+ Info=#
+ Frame=3
+ Width=10
+ Height=697
+}
+Add(Shape,11235872,41,742)
+{
+ Width=640
+ Height=25
+ Font=[Times New Roman,14,1,0,1]
+ Color=10789024
+}

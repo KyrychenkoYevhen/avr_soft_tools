@@ -1,0 +1,9 @@
+func doPrint(_data)
+  var(i,sp)
+  for(i = 1; i <= block.lvlenabled(); i++)
+    sp=sp & '  '
+  end
+  println(code(_arr.join(Lines,"\r\n" + sp)))
+
+  event(onPrint, _data)
+end

@@ -1,0 +1,30 @@
+func Init()
+  fvar(old)
+    if(Extern = 0)
+      old = block.select(BLK_GLOB)
+      println('Dim ', s)
+    end
+    if(isndef(Default))
+      println(s, ' = ', Default)
+    end
+  if(old)
+    block.select(old)
+  end
+end
+
+func doStrCat
+  if(linked(Result))
+    println(s, ' = ', Str1,' & ',Str2)
+    event(onStrCat, s)
+  else
+    event(onStrCat, Str1 && ' & ' && Str2)
+  end
+end
+
+func Result
+  if(linked(doStrCat))
+    return(s)
+  else
+    return(Str1 & Str2)
+  end
+end

@@ -1,0 +1,18 @@
+// ************************************************
+// PrintDialogBase.hws for Vbs packet
+// WSO methods, properties and constants
+// Общие свойства и методы наследников класса PrintDialogBase
+// Last modification: 29.09.2009
+// ************************************************
+
+func Driver()
+  return(id  + '.Driver')
+end
+
+func Device()
+  return(id  + '.Device')
+end
+
+func Port()
+  return(id  + '.Port')
+end

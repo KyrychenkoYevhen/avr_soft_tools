@@ -1,0 +1,11 @@
+if(sys.gvarfind('rgn_is_set') = -1)
+  include("wso")
+  gvar(rgn_is_set)
+  stack &= block.select(BLK_OBJ)
+  println('Dim rgn')
+  println('Set rgn = wso.Regions')
+  println('')
+  block.select(BLK_NOTH)
+  println('Set rgn = Nothing')
+  block.select(_arr.pop(stack))
+end

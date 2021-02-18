@@ -1,0 +1,22 @@
+func Init()
+  var(val)
+  val = val_
+  stack &= block.select(BLK_GLOB)
+  println('Dim ', val)
+  if(isndef(Data))
+    println(val, ' = ', Data)
+    println('')
+  end
+  block.select(_arr.pop(stack))
+end
+
+func doData(_data)
+  fvar(dt)
+  dt = Data 
+  println('If ', val, ' <> ', dt, ' Then')
+  block.inclvl()
+    println(val, ' = ', dt) 
+    event(onData, val)
+  block.declvl()
+  println('End If')
+end

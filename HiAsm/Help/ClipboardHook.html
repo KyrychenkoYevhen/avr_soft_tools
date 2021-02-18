@@ -1,0 +1,45 @@
+<html>
+	<head>
+		<meta content="http://schemas.microsoft.com/intellisense/ie5" name="vs_targetSchema">
+		<LINK href="style.css" type="text/css" rel="stylesheet">
+	</head>
+	<body>
+		<table class="mes_table" border="1">
+			<tr class="prop_cap">
+				<td width="10%"><IMG src="../elements/delphi/icon/ClipboardHook.ico"></td>
+				<td align="center">ClipboardHook</td>
+			</tr>
+			<tr>
+				<td style="PADDING-RIGHT: 4px; PADDING-LEFT: 4px; HEIGHT: 34px" colSpan="2">
+					<P align="justify">
+						&nbsp;Компонент&nbsp;ClipboardHook - предназначен для мониторинга буфера обмена 
+						на попадание туда текста и графики в формате BMP. Он может работать только с 
+						формой потому, что Windows информирует программы об изменение буфера обмена 
+						только через форму. Похожий на него компонент Clipboard работает без формы, но 
+						он и не умеет отлавливать изменения, давая нам только возможность просмотреть, 
+						что находится в буфере обмена на данный момент.</P>
+					<P align="justify">&nbsp;Наиболее интересным методом данного компонента является 
+						метод doPut, эмулирующий нажатия сочетания клавиш Ctrl+V в активном или 
+						указанном в потоке окне. Этот прием можно увидеть во всевозможных корректорах 
+						набора текста(самыми популярными программами этой серии являются программы 
+						заменители неверно набрнного текста). Фактически данный метод является 
+						комбинацией из&nbsp;двух более простых методов:</P>
+					<OL>
+						<LI>
+							<DIV align="justify"><FONT color="#000000">Установка активного окна, если оно задано</FONT></DIV>
+						<LI>
+							<DIV align="justify"><FONT color="#000000">Эмуляция нажатия сочетания клавиш Ctrl+V</FONT></DIV>
+						</LI>
+					</OL>
+					<P align="justify">&nbsp;Окно, в которое нужно вывести текст определяется по его 
+						Handle.</P>
+				</td>
+			</tr>
+			<tr>
+				<td class="down_sel" colSpan="2">&nbsp;Примеры: <a href="*Example*example/ClipText.sha">
+						ClipText </a>, <a href="*Example*example/Demo.sha">Demo</a>, <a href="*Example*example/Image/Image.sha">
+						Image</a></td>
+			</tr>
+		</table>
+	</body>
+</html>

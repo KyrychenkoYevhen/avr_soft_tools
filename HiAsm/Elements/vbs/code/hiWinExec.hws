@@ -1,0 +1,100 @@
+func Init()
+  include('shell')
+  if(linked(doConsoleExec))
+    var(obj)
+    obj = obj_
+    stack &= block.select(BLK_GLOB)
+    println('Dim ', obj)
+    block.select(_arr.pop(stack))
+  end
+  if(linked(stdOut))
+    lng.begin_func('ReadStdOut(oExec)')
+      println('If IsObject(oExec) Then')
+      block.inclvl()
+        println('If Not oExec.StdOut.AtEndOfStream Then')
+        block.inclvl()
+          println('ReadStdOut = oExec.StdOut.ReadAll')
+          println('Exit Function')
+        block.declvl()
+        println('End If')
+      block.declvl()
+      println('End If')
+      println('ReadStdOut = ""')
+    lng.end_func(BLK_FUNC)
+  end
+  if(linked(onConsoleError))
+    lng.begin_func('ReadStdErr(oExec)')
+      println('If Not oExec.StdErr.AtEndOfStream Then')
+      block.inclvl()
+        println('ReadStdErr = oExec.StdErr.ReadAll')
+        println('Exit Function')
+      block.declvl()
+      println('End If')
+      println('ReadStdErr = ""')
+    lng.end_func(BLK_FUNC)
+  end
+end
+
+func MakeCode(fn)
+  return('shell.Run(' + fn + ', ' + Mode + ', ' + RunEvent +')')
+end
+
+func Run(cmd)
+  if(linked(onExec))
+    event(onExec, MakeCode(cmd))
+  else
+    println(MakeCode(cmd)
+  end
+end
+
+func doExec(_data)
+  Run(FileName + ((isndef(Params)) ? (' & ' + '" "' + ' & ' + Params): ''))
+end
+
+func doShellExec(_data)
+  Run(FileName)
+end
+
+func doConsoleExec(_data)
+  println('Set ', obj, ' = shell.Exec(', FileName, (isndef(Params)) ? (' & ' + '" "' + ' & ' + Params): '', ')')
+  println('Do While ', obj, '.Status = 0')
+  block.inclvl()
+    println('WScript.Sleep 100')
+  block.declvl()
+  println('Loop')
+  if(linked(onConsoleError))
+    println(res, ' = ReadStdErr(', obj, ')')
+    println('If Len(', res, ') Then')
+    block.inclvl()
+      event(onConsoleError, res)
+    block.declvl()
+    println('Else')
+    block.inclvl()
+      event(onExec, obj)
+    block.declvl()
+    println('End If')
+  else
+    event(onExec, obj)
+  end
+end
+
+func doConsoleInput(_data)
+  println(obj, '.StdIn.WriteLine ', _data)
+end
+
+func doConsoleTerminate()
+  println(obj, '.Terminate')
+  event(onConsoleTerminate)
+end
+
+func doRunCpl(_data)
+  Run(FileName)
+end
+
+func ConsoleStatus()
+  return(obj + '.Status')
+end
+
+func StdOut()
+  return('ReadStdOut(' + obj + ')')
+end

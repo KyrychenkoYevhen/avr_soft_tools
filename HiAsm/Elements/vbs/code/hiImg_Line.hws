@@ -1,0 +1,27 @@
+func isNumeric(op)
+  if(typeof(op) = 1 or typeof(op) = 7)
+    return(1)
+  else
+    return(0)
+  end
+end
+
+func doDraw()
+  var(id)
+  id=Line
+  if(Point2AsOffset = 'False')
+    if(isNumeric(Point1[0]) and isNumeric(Point2[0]) and isNumeric(Point1[1]) and isNumeric(Point2[1]))
+      println('Set ',id,' = ',Bitmap,'.Line(',Point1[0],',',Point1[1],',',Point2[0]+Point1[0],',',Point2[1]+Point1[1],')')
+    else 
+      println('Set ',id,' = ',Bitmap,'.Line(',Point1[0],',',Point1[1],',',Point2[0],'+',Point1[0],',',Point2[1],'+',Point1[1],')')
+    end
+  else
+    println('Set ',id,' = ',Bitmap,'.Line(',Point1[0],',',Point1[1],',',Point2[0],',',Point2[1],')')
+  end
+  if(isndef(Color) or linked(Color))
+    println(id,'.Pen.Color = ',Color)
+  end
+  if(isndef(Size) or linked (Size))
+    println(id,'.Pen.Width = ',Size)
+  end
+end

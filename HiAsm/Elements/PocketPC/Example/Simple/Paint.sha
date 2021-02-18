@@ -1,0 +1,71 @@
+Make(PocketPC)
+Pos(0,0)
+Add(MainForm,12772104,119,49)
+{
+ Left=20
+ Top=105
+ Point(onMouseDown)
+ Point(onMouseMove)
+ Point(MouseX)
+ Point(MouseY)
+ link(onMouseDown,19256:doEvent1,[])
+ link(onMouseMove,35425:doEvent1,[(180,104)(180,279)])
+}
+Add(PointXY,26249,126,154)
+{
+ link(X,12772104:MouseX,[])
+ link(Y,12772104:MouseY,[])
+}
+Add(Hub,35425,252,273)
+{
+ link(onEvent1,16478651:doStrCat,[])
+ link(onEvent2,19256:doEvent2,[(294,286)(294,138)(193,138)(193,104)])
+}
+Add(DoData,83944,259,91)
+{
+ link(onEventData,2309:doValue,[])
+ link(Data,11014:Data1,[(265,80)(99,80)(99,255)(132,255)])
+}
+Add(Hub,19256,203,91)
+{
+ InCount=2
+ OutCount=1
+ link(onEvent1,83944:doData,[])
+}
+Add(Memory,2309,322,91)
+{
+}
+Add(GetData,11014,126,210)
+{
+ link(Data,26249:Point,[])
+}
+Add(Message,15569348,511,245)
+{
+}
+Add(UDP,13499273,441,238)
+{
+ LocalPort=105
+ RemotePort=106
+ RemoteIP="169.254.151.71"
+ AutoConnect=0
+ ReceiveMode=1
+ Point(onError)
+ link(onError,15569348:doMessage,[])
+}
+Add(Button,1496189,280,21)
+{
+ Left=175
+ Top=5
+ link(onClick,13499273:doOpen,[(397,27)(397,244)])
+}
+Add(StrCat,16478651,308,273)
+{
+ Str2=":"
+ link(onStrCat,11324692:doStrCat,[])
+ link(Str1,11014:Data2,[(314,258)(139,258)])
+}
+Add(StrCat,11324692,371,273)
+{
+ link(onStrCat,13499273:doSend,[(422,279)(422,251)])
+ link(Str2,2309:Value,[(384,198)(328,198)])
+}

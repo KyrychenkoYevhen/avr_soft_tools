@@ -1,0 +1,105 @@
+func Init()
+  if(linked(Hint))
+    var(id)
+    id = Hint
+    if(isndef(Text))
+      println(id, '.Text = ', Text)
+    end
+    if(isndef(Title))
+      println(id, '.Title = ', Title)
+    end
+    if(isndef(Image))
+      println(id, '.Image = ', Image)
+    end
+    if(isndef(Visible))
+      println(id, '.Visible = True')
+    end
+    if(isndef(Balloon))
+      println(id, '.Balloon = True')
+    end
+    if(isndef(AlwaysTip))
+      println(id, '.AlwaysTip = True')
+    end
+    if(isndef(NoPrefix))
+      println(id, '.NoPrefix = True')
+    end
+    if(isndef(MaxWidth))
+      println(id, '.MaxWidth = ', MaxWidth)
+    end
+    if(isndef(ParentData))
+      println(id, '.ParentData = False')
+    end
+  end
+end
+
+func doText(_data)
+  println(id, '.Text = ', _data)
+end
+
+func vText()
+  return(id + '.Text')
+end
+
+func doTitle(_data)
+  println(id, '.Title = ', _data)
+end
+
+func vTitle()
+  return(id + '.Title')
+end
+
+func doImage(_data)
+  println(id, '.Image = ', _data)
+end
+
+func vImage()
+  return(id + '.Image')
+end
+
+func doVisible(_data)
+  println(id, '.Visible = ', (_data='') ? 'False' : _data)
+end
+
+func vVisible()
+  return(id + '.Visible')
+end
+
+func doBalloon(_data)
+  println(id, '.Balloon = ', (_data='') ? 'False' : _data)
+end
+
+func vBalloon()
+  return(id + '.Balloon')
+end
+
+func doAlwaysTip(_data)
+  println(id, '.AlwaysTip = ', (_data='') ? 'False' : _data)
+end
+
+func vAlwaysTip()
+  return(id + '.AlwaysTip')
+end
+
+func doNoPrefix(_data)
+  println(id, '.NoPrefix = ', (_data='') ? 'False' : _data)
+end
+
+func vNoPrefix()
+  return(id + '.NoPrefix')
+end
+
+func doMaxWidth(_data)
+  println(id, '.MaxWidth = ', _data)
+end
+
+func vMaxWidth()
+  return(id + '.MaxWidth')
+end
+
+func doParentData(_data)
+  println(id, '.ParentData = ', (_data='') ? 'False' : _data)
+end
+
+func vParentData()
+  return(id + '.ParentData')
+end

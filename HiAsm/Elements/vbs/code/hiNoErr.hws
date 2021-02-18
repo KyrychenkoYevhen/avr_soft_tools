@@ -1,0 +1,3 @@
+func doNoErr()
+  println('On Error Resume Next') 
+end

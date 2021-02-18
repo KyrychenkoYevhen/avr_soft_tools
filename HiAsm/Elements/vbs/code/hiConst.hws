@@ -1,0 +1,12 @@
+func Init
+  fvar(old)
+  old = block.select(BLK_GLOB) 
+  if(pos('Const ' & Name, block.astext())=0) 
+   println('Const ', code(Name), ' = ', Data)
+  end
+  block.select(old)
+end
+
+func Value()
+  return(code(Name))
+end
