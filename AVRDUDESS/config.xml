@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ConfigData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <configVersion>1</configVersion>
-  <preset>Default</preset>
-  <updateCheck>0</updateCheck>
+  <updateCheck>1642447994</updateCheck>
   <skipVersion>
     <Major>0</Major>
     <Minor>0</Minor>
@@ -11,4 +10,43 @@
   <avrdudeLoc />
   <avrdudeConfLoc />
   <avrSizeLoc />
+  <windowLocation>
+    <X>538</X>
+    <Y>315</Y>
+  </windowLocation>
+  <language>english</language>
+  <hiddenMCUs />
+  <hiddenProgrammers />
+  <previousSettings>
+    <programmer>usbasp</programmer>
+    <mcu>m324p</mcu>
+    <port>usb</port>
+    <baud>115200</baud>
+    <bitclock>0.5</bitclock>
+    <flashFile />
+    <flashFormat>a</flashFormat>
+    <flashOp>w</flashOp>
+    <EEPROMFile />
+    <EEPROMFormat>a</EEPROMFormat>
+    <EEPROMOp>w</EEPROMOp>
+    <force>false</force>
+    <disableVerify>false</disableVerify>
+    <disableFlashErase>false</disableFlashErase>
+    <eraseFlashAndEEPROM>false</eraseFlashAndEEPROM>
+    <doNotWrite>false</doNotWrite>
+    <lfuse />
+    <hfuse />
+    <efuse />
+    <setFuses>false</setFuses>
+    <lockBits />
+    <setLock>false</setLock>
+    <additional />
+    <verbosity>0</verbosity>
+    <name />
+  </previousSettings>
+  <usePreviousSettings>true</usePreviousSettings>
+  <windowSize>
+    <Width>660</Width>
+    <Height>754</Height>
+  </windowSize>
 </ConfigData>
