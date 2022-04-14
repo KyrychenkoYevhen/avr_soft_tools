@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ConfigData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <configVersion>1</configVersion>
-  <updateCheck>1642447994</updateCheck>
+  <updateCheck>1642786102</updateCheck>
   <skipVersion>
     <Major>0</Major>
     <Minor>0</Minor>
@@ -11,8 +11,8 @@
   <avrdudeConfLoc />
   <avrSizeLoc />
   <windowLocation>
-    <X>538</X>
-    <Y>315</Y>
+    <X>130</X>
+    <Y>130</Y>
   </windowLocation>
   <language>english</language>
   <hiddenMCUs />
@@ -23,22 +23,22 @@
     <port>usb</port>
     <baud>115200</baud>
     <bitclock>0.5</bitclock>
-    <flashFile />
-    <flashFormat>a</flashFormat>
-    <flashOp>w</flashOp>
+    <flashFile>C:\Users\Evgen\Documents\123test.hex</flashFile>
+    <flashFormat>i</flashFormat>
+    <flashOp>r</flashOp>
     <EEPROMFile />
     <EEPROMFormat>a</EEPROMFormat>
     <EEPROMOp>w</EEPROMOp>
-    <force>false</force>
+    <force>true</force>
     <disableVerify>false</disableVerify>
     <disableFlashErase>false</disableFlashErase>
     <eraseFlashAndEEPROM>false</eraseFlashAndEEPROM>
     <doNotWrite>false</doNotWrite>
-    <lfuse />
-    <hfuse />
-    <efuse />
+    <lfuse>0xE7</lfuse>
+    <hfuse>0xD9</hfuse>
+    <efuse>0xFF</efuse>
     <setFuses>false</setFuses>
-    <lockBits />
+    <lockBits>0x3F</lockBits>
     <setLock>false</setLock>
     <additional />
     <verbosity>0</verbosity>
