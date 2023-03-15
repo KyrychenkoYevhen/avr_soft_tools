@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ConfigData xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <configVersion>1</configVersion>
-  <updateCheck>1642786102</updateCheck>
+  <updateCheck>1678734641</updateCheck>
   <skipVersion>
     <Major>0</Major>
     <Minor>0</Minor>
@@ -11,21 +11,21 @@
   <avrdudeConfLoc />
   <avrSizeLoc />
   <windowLocation>
-    <X>130</X>
-    <Y>130</Y>
+    <X>247</X>
+    <Y>144</Y>
   </windowLocation>
   <language>english</language>
   <hiddenMCUs />
   <hiddenProgrammers />
   <previousSettings>
-    <programmer>usbasp</programmer>
-    <mcu>m324p</mcu>
-    <port>usb</port>
+    <programmer>arduino</programmer>
+    <mcu>m328p</mcu>
+    <port>COM29</port>
     <baud>115200</baud>
-    <bitclock>0.5</bitclock>
-    <flashFile>C:\Users\Evgen\Documents\123test.hex</flashFile>
+    <bitclock />
+    <flashFile>C:\Users\Evgen\Desktop\12345\Blink\Blink.ino.with_bootloader.eightanaloginputs.hex</flashFile>
     <flashFormat>i</flashFormat>
-    <flashOp>r</flashOp>
+    <flashOp>w</flashOp>
     <EEPROMFile />
     <EEPROMFormat>a</EEPROMFormat>
     <EEPROMOp>w</EEPROMOp>
@@ -34,11 +34,11 @@
     <disableFlashErase>false</disableFlashErase>
     <eraseFlashAndEEPROM>false</eraseFlashAndEEPROM>
     <doNotWrite>false</doNotWrite>
-    <lfuse>0xE7</lfuse>
-    <hfuse>0xD9</hfuse>
-    <efuse>0xFF</efuse>
+    <lfuse>0xFF</lfuse>
+    <hfuse>0xDA</hfuse>
+    <efuse>0xFD</efuse>
     <setFuses>false</setFuses>
-    <lockBits>0x3F</lockBits>
+    <lockBits>0xFF</lockBits>
     <setLock>false</setLock>
     <additional />
     <verbosity>0</verbosity>
@@ -47,6 +47,6 @@
   <usePreviousSettings>true</usePreviousSettings>
   <windowSize>
     <Width>660</Width>
-    <Height>754</Height>
+    <Height>686</Height>
   </windowSize>
 </ConfigData>

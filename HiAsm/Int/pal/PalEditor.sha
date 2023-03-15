@@ -1,5 +1,5 @@
 Make(delphi)
-ver(4.05 build 186)
+ver(4.02 build 180)
 Add(MainForm,2953706,28,133)
 {
  Width=226
@@ -48,9 +48,9 @@ BEGIN_SDK
      Width=216
      Point(##add)
      Point(##hselect)
+     Point(##eventHandle)
      Point(##select)
      Point(##clear)
-     Point(##eventHandle)
      link(##add,7742274:doRead,[(45,27)(45,181)])
      link(doColor,9148525:doWork1,[(53,41)])
      link(##select,7742274:doAdd,[(35,48)(35,195)])
@@ -184,7 +184,7 @@ Add(Hub,15434872,84,133)
  link(onEvent1,7023964:doFor,[])
  link(onEvent2,1706180:doSearch,[(108,146)(108,251)])
 }
-Add(Button,13560650,126,322)
+Add(Button,13560650,126,315)
 {
  Left=140
  Top=105
@@ -194,10 +194,10 @@ Add(Button,13560650,126,322)
 Add(Dir,12948517,238,189)
 {
 }
-Add(StrCat,13046955,217,322)
+Add(StrCat,13046955,217,315)
 {
- link(onStrCat,7023964:doSave,[(287,328)(287,178)(120,178)(120,153)])
- link(Str1,16045739:Var1,[(223,236)])
+ link(onStrCat,7023964:doSave,[(287,321)(287,178)(120,178)(120,153)])
+ link(Str1,16045739:Var1,[(223,233)])
  link(Str2,10825223:Var2,[])
 }
 Add(StrCat,7958409,238,252)
@@ -205,26 +205,26 @@ Add(StrCat,7958409,238,252)
  link(onStrCat,7023964:doLoad,[(282,258)(282,184)(124,184)(124,160)])
  link(Str1,16045739:Var2,[])
 }
-Add(GetDataEx,16045739,238,231)
+Add(GetDataEx,16045739,231,224)
 {
  link(Data,12948517:CurrentDir,[])
 }
-Add(Hub,5114858,182,322)
+Add(Hub,5114858,182,315)
 {
  link(onEvent1,13046955:doStrCat,[])
- link(onEvent2,10105635:doData,[(206,335)(206,384)])
+ link(onEvent2,10105635:doData,[(206,328)(206,377)])
 }
-Add(DoData,10105635,252,378)
+Add(DoData,10105635,252,371)
 {
- link(onEventData,13902:doWork3,[(294,384)(294,418)(165,418)])
- link(Data,10825223:Var1,[(258,295)(230,295)])
+ link(onEventData,13902:doWork3,[(296,377)(296,410)(165,410)])
+ link(Data,10825223:Var3,[(258,303)])
 }
-Add(GetDataEx,10825223,224,301)
+Add(GetDataEx,10825223,217,294)
 {
  Angle=3
- link(Data,3626554:EditText,[(202,306)])
+ link(Data,3626554:EditText,[(202,303)])
 }
-Add(HubEx,13902,161,245)
+Add(HubEx,13902,161,238)
 {
  link(onEvent,3626554:doAdd,[])
 }

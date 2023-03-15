@@ -1,0 +1,13 @@
+15.03.23_06:36:46.697;..\src\3rd\easyloggingpp\logger.cpp:111;I: Логгер запущен!
+15.03.23_06:36:46.744;..\src\ui\mainwindow\mainwindow.cpp:34;I: Инициализация приложения...
+15.03.23_06:36:46.746;..\src\ui\mainwindow\mainwindow.cpp:42;I: Версия приложения: 2.2.0.5
+15.03.23_06:36:46.772;..\src\ui\mainwindow\mainwindow.cpp:160;I: Выбран репозиторий: http://svn.hiasm.com/packs
+15.03.23_06:36:46.775;..\src\util\svnutil.cpp:269;I: Запрашиваем статус рабочей копии.
+15.03.23_06:36:46.779;..\src\util\svnutil.cpp:213;E: Не удалось запустить процесс: No such file or directory
+15.03.23_06:36:46.780;..\src\util\svnutil.cpp:289;I: Запрашиваем информацию о репозитории.
+15.03.23_06:36:46.783;..\src\util\svnutil.cpp:213;E: Не удалось запустить процесс: No such file or directory
+15.03.23_06:36:53.396;..\src\ui\mainwindow\mainwindow.cpp:160;I: Выбран репозиторий: http://svn.hiasm.com/packs
+15.03.23_06:36:53.397;..\src\util\svnutil.cpp:269;I: Запрашиваем статус рабочей копии.
+15.03.23_06:36:53.401;..\src\util\svnutil.cpp:213;E: Не удалось запустить процесс: No such file or directory
+15.03.23_06:36:53.402;..\src\util\svnutil.cpp:289;I: Запрашиваем информацию о репозитории.
+15.03.23_06:36:53.405;..\src\util\svnutil.cpp:213;E: Не удалось запустить процесс: No such file or directory

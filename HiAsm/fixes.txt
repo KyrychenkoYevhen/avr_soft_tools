@@ -1,15 +1,5 @@
 Список фиксингов
 
-0:56 05.01.2012
-
-- upg: new FTCG key words
-- add: support C# syntax highlight
-- fix: replace spaces to tab in syntax editor
-
-16:15 19.05.2011
-
-- upg: change forum location
-
 17:18 20.01.2011
 
 - add: activate key dialog
